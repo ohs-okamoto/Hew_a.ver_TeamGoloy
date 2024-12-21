@@ -6,7 +6,7 @@
 #include <io.h>
 #include <stdio.h>
 #include <string.h>
-#include "direct3d.h"
+#include "Direct3d.h"
 
 
 

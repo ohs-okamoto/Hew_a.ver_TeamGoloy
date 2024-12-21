@@ -1,11 +1,11 @@
-#include "input.h"
+#include "Input.h"
 
 //コンストラクタ
 Input::Input()
 {
 	VibrationTime = 0;
 }
-
+//※作成者　岡本穂高
 //デストラクタ
 Input::~Input()
 {
@@ -16,7 +16,7 @@ Input::~Input()
 	vibration.wRightMotorSpeed = 0;
 	XInputSetState(0, &vibration);
 }
-
+//※作成者　岡本穂高
 void Input::Update()
 {
 	//1フレーム前の入力を記録しておく
@@ -41,7 +41,7 @@ void Input::Update()
 		}
 	}
 }
-
+//※作成者　岡本穂高
 //キー入力
 bool Input::GetKeyPress(int key) //プレス
 {
@@ -55,7 +55,7 @@ bool Input::GetKeyRelease(int key) //リリース
 {
 	return !(keyState[key] & 0x80) && (keyState_old[key] & 0x80);
 }
-
+//※作成者　岡本穂高
 //左アナログスティック
 DirectX::XMFLOAT2 Input::GetLeftAnalogStick(void)
 {
@@ -67,6 +67,7 @@ DirectX::XMFLOAT2 Input::GetLeftAnalogStick(void)
 	res.y = y / 32767.0f; //-1～1
 	return res;
 }
+//※作成者　岡本穂高
 //右アナログスティック
 DirectX::XMFLOAT2 Input::GetRightAnalogStick(void)
 {
@@ -78,7 +79,7 @@ DirectX::XMFLOAT2 Input::GetRightAnalogStick(void)
 	res.y = y / 32767.0f; //-1～1
 	return res;
 }
-
+//※作成者　岡本穂高
 //左トリガー
 float Input::GetLeftTrigger(void)
 {
@@ -91,7 +92,7 @@ float Input::GetRightTrigger(void)
 	BYTE t = controllerState.Gamepad.bRightTrigger; // 0～255
 	return t / 255.0f;
 }
-
+//※作成者　岡本穂高
 //ボタン入力
 bool Input::GetButtonPress(WORD btn) //プレス
 {
@@ -105,7 +106,7 @@ bool Input::GetButtonRelease(WORD btn) //リリース
 {
 	return (controllerState.Gamepad.wButtons & btn) == 0 && (controllerState_old.Gamepad.wButtons & btn) != 0;
 }
-
+//※作成者　岡本穂高
 //振動
 void Input::SetVibration(int frame, float powor)
 {

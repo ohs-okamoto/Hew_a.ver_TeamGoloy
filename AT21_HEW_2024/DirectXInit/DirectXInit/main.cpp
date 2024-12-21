@@ -12,7 +12,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 
 //--------------------------------------------------------------------------------------
-// エントリポイント＝一番最初に実行される関数
+// エントリポイント＝一番最初に実行される関数　　※作成者　岡本穂高
 //--------------------------------------------------------------------------------------
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
@@ -135,8 +135,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 }
 
 //--------------------------------------------------------------------------------------
-//ウィンドウプロシージャ
+//ウィンドウプロシージャ　　※作成者　岡本穂高
 //--------------------------------------------------------------------------------------
+
+//以下のコードいじるなら岡本まで連絡
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	static bool isFullscreen = false;
