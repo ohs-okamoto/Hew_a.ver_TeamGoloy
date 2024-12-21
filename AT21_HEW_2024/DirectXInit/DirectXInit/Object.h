@@ -1,7 +1,7 @@
 #pragma once
 #include "direct3d.h"
 #include "WICTextureLoader.h"
-
+//¦ì¬Ò@‰ª–{•ä‚
 class Object
 {
 private:
