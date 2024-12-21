@@ -139,6 +139,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 //--------------------------------------------------------------------------------------
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	static bool isFullscreen = false;
+	static bool isMessageBoxShowed = false;
 	switch (uMsg)
 	{
 	case WM_DESTROY:// ウィンドウ破棄のメッセージ
@@ -158,7 +160,35 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		if (LOWORD(wParam) == VK_ESCAPE) { //入力されたキーがESCAPEなら
 			PostMessage(hWnd, WM_CLOSE, wParam, lParam);//「WM_CLOSE」を送る
 		}
+		else if (LOWORD(wParam) == VK_F11) {
+			//F11でフルスクリーンに切り替え
+			isFullscreen = !isFullscreen;
+			if (isFullscreen) {
+				//疑似フルスクリーンモードに変更
+				SetWindowLongPtr(hWnd, GWL_STYLE, WS_POPUP | WS_MINIMIZEBOX); //ウィンドウ粋を解除
+				//ディスプレイ解像度を取得
+				int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+				int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+				SetWindowPos(hWnd, HWND_TOP, 0, 0, screenWidth, screenHeight, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
+			}
+			else {
+				//通常ウィンドウに戻す
+				SetWindowLongPtr(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);//ウィンドウ粋を戻す
+				SetWindowPos(hWnd, HWND_TOP, 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
+
+			}
+		}
+		break;
+	case WM_ACTIVATE:
+		if (wParam == WA_INACTIVE) {
+			if (isFullscreen && !isMessageBoxShowed)//フルスクリーン表示かつメッセージボックス非表示
+			{
+				ShowWindow(hWnd, SW_MINIMIZE);//ウィンドウを最小化する（タスク切り替え時に背後に残る問題対策）
+
+			}
+		}
+		return DefWindowProc(hWnd, uMsg, wParam, lParam);//標準挙動を実行させるため
 	default:
 		// 受け取ったメッセージに対してデフォルトの処理を実行
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
