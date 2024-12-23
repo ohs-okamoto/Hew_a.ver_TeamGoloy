@@ -2,13 +2,13 @@
 
 
 // 障害物の衝突をチェック
-bool checkCollision(double posX, double posY) {
+bool CheckCollision(double posX, double posY) {
     // シンプルな衝突判定: X, Y座標が特定範囲に入ったら衝突
     return (posX >= 50.0 && posX <= 60.0 && posY <= 10.0);
 }
 
 // プレイヤーの状態を更新
-void updatePlayer(Player& player, const Input& input) {
+void UpdatePlayer(Player& player, const Input& input) {
     // 状態ごとに挙動を処理
     if (player.state == PlayerState::Gliding) {
         // 滑空中
@@ -31,7 +31,7 @@ void updatePlayer(Player& player, const Input& input) {
     player.posY += player.velY * DELTA_TIME;
 
     // 衝突判定
-    if (checkCollision(player.posX, player.posY)) {
+    if (CheckCollision(player.posX, player.posY)) {
         player.velX = 0.0;
         player.velY = 0.0;
         std::cout << "Collision detected!" << std::endl;
@@ -48,7 +48,7 @@ void updatePlayer(Player& player, const Input& input) {
 }
 
 // 滑空開始
-void startGlide(Player& player) {
+void StartGlide(Player& player) {
     if (player.state != PlayerState::Gliding && player.glideCount > 0) {
         player.state = PlayerState::Gliding;
         player.velY = -5.0; // 滑空開始時に軽い上昇を付与
