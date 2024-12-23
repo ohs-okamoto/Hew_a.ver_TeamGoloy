@@ -5,11 +5,11 @@ void Game::Init(HWND hWnd)
 {
 	D3D_Create(hWnd);//Directxを初期化
 
-	player.Init(L"asset/tati.png");//サンタを初期化
-	player.SetPos(-200.0f, -150.0f, 0.0f);		//位置を設定
-	player.SetSize(100.0f, 80.0f, 0.f);	//大きさを設定
-	player.SetAngle(0.0f);             		//角度を設定
-	player.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	santa.Init(L"asset/tati.png", 1, 1);//サンタを初期化
+	santa.SetPos(-200.0f, -150.0f, 0.0f);		//位置を設定
+	santa.SetSize(100.0f, 80.0f, 0.f);	//大きさを設定
+	santa.SetAngle(0.0f);             		//角度を設定
+	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
 	player.Init(L"asset/char01.png",3,4);//プレイヤーを初期化
 	player.SetPos(100.0f, 0.0f, 0.0f);		//位置を設定
@@ -23,49 +23,49 @@ void Game::Init(HWND hWnd)
 	background.SetAngle(0.0f);//角度を設定	    
 
 	//山
-	mounten[1].Init(L"asset/mountain_stage_1.png");//ゲーム背景
+	mounten[1].Init(L"asset/mountain_stage_1.png", 1, 1);//ゲーム背景
 	mounten[1].SetPos(0.0f, 0.0f, 0.0f);//位置を特定
 	mounten[1].SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
 	mounten[1].SetAngle(0.0f);//角度設定
 
-	mounten[2].Init(L"asset/mountain_stage_1.png");//ゲーム背景
+	mounten[2].Init(L"asset/mountain_stage_1.png", 1, 1);//ゲーム背景
 	mounten[2].SetPos(640.0f, 0.0f, 0.0f);//位置を特定
 	mounten[2].SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
 	mounten[2].SetAngle(0.0f);//角度設定
 
-	mounten[3].Init(L"asset/mountain_stage_1.png");//ゲーム背景
+	mounten[3].Init(L"asset/mountain_stage_1.png", 1, 1);//ゲーム背景
 	mounten[3].SetPos(1280.0f, 0.0f, 0.0f);//位置を特定
 	mounten[3].SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
 	mounten[3].SetAngle(0.0f);//角度設定
 
 	//地面
-	ground[1].Init(L"asset/ground.png");//地面
+	ground[1].Init(L"asset/ground.png", 1, 1);//地面
 	ground[1].SetPos(0.0f, -300.0f, 0.0f);//位置を特定
 	ground[1].SetSize(640.0f, 200.0f, 0.0f);//大きさ設定
 	ground[1].SetAngle(0.0f);//角度設定
 
-	ground[2].Init(L"asset/ground.png");//地面
+	ground[2].Init(L"asset/ground.png", 1, 1);//地面
 	ground[2].SetPos(700.0f, -300.0f, 0.0f);//位置を特定
 	ground[2].SetSize(640.0f, 200.0f, 0.0f);//大きさ設定
 	ground[2].SetAngle(0.0f);//角度設定
 
-	ground[3].Init(L"asset/ground.png");//地面
+	ground[3].Init(L"asset/ground.png", 1, 1);//地面
 	ground[3].SetPos(1400.0f, -300.0f, 0.0f);//位置を特定
 	ground[3].SetSize(640.0f, 200.0f, 0.0f);//大きさ設定
 	ground[3].SetAngle(0.0f);//角度設定
 
 	//木
-	tree[1].Init(L"asset/wood_stage_1.png");//タイトル背景
+	tree[1].Init(L"asset/wood_stage_1.png", 1, 1);//タイトル背景
 	tree[1].SetPos(0.0f, -50.0f, 0.0f);//位置を特定
 	tree[1].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
 	tree[1].SetAngle(0.0f);//角度設定
 
-	tree[2].Init(L"asset/wood_stage_1.png");//タイトル背景
+	tree[2].Init(L"asset/wood_stage_1.png", 1, 1);//タイトル背景
 	tree[2].SetPos(640.0f, -50.0f, 0.0f);//位置を特定
 	tree[2].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
 	tree[2].SetAngle(0.0f);//角度設定
 
-	tree[3].Init(L"asset/wood_stage_1.png");//タイトル背景
+	tree[3].Init(L"asset/wood_stage_1.png", 1, 1);//タイトル背景
 	tree[3].SetPos(1280.0f, -50.0f, 0.0f);//位置を特定
 	tree[3].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
 	tree[3].SetAngle(0.0f);//角度設定
@@ -73,12 +73,12 @@ void Game::Init(HWND hWnd)
 
 
 
-	sky.Init(L"asset/sky.png");//タイトル背景
+	sky.Init(L"asset/sky.png", 1, 1);//タイトル背景
 	sky.SetPos(0.0f, 0.0f, 0.0f);//位置を特定
 	sky.SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
 	sky.SetAngle(0.0f);//角度設定
 
-	star.Init(L"asset/star.png");//星
+	star.Init(L"asset/star.png", 1, 1);//星
 	star.SetPos(0.0f, 0.0f, 0.0f);//位置を特定
 	star.SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
 	star.SetAngle(0.0f);//角度設定
@@ -111,7 +111,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 santa_pos = santa.GetPos();
 		//山
 		DirectX::XMFLOAT3 mounten_pos1 = mounten[1].GetPos();
-		DirectX::XMFLOAT3 mounten_pos2=  mounten[2].GetPos():
+		DirectX::XMFLOAT3 mounten_pos2 = mounten[2].GetPos();
 		DirectX::XMFLOAT3 mounten_pos3 = mounten[3].GetPos();
 
 		//背景の木
@@ -153,7 +153,7 @@ void Game::Update(void) {
 
 			santa_pos.x -= 5;
 
-			if (p_pos.x <= 0)//プレイヤーが画面真ん中に行ったとき
+			if (santa_pos.x <= 0)//プレイヤーが画面真ん中に行ったとき
 			{
 				santa_pos.x += 5;
 

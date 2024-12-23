@@ -2,7 +2,7 @@
 #include "Object.h"
 #include "input.h"
 
-#define image		(3)
+#define image		(4)
 
 enum SceneName {
 	TITLE,
