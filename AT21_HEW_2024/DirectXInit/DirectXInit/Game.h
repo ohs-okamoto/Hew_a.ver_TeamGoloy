@@ -1,11 +1,31 @@
 #pragma once
 #include "Object.h"
 #include "input.h"
+
+#define image		(3)
+
+enum SceneName {
+	TITLE,
+	STAGE_1,
+	RESULT
+};
+
 class Game
 {
 private:
 	Object player;//プレイヤーオブジェクト
 	Object background;//プレイヤーオブジェクト
+
+	Object santa;//サンタオブジェクト
+	Object mounten[image];//ゲーム画面の背景にある山
+	Object tree[image];//ゲーム画面の背景にある木
+	Object ground[image];//地面
+	Object star;//星
+	Object sky;//空
+
+
+	int changescene = TITLE;//シーン
+
 	Input input; //入力
 
 public:
