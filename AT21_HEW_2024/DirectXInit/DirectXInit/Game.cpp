@@ -136,6 +136,11 @@ void Game::Update(void) {
 				if (santa.numU >= 4)
 				{
 					santa.numU = 0;
+					santa.numV++;
+					if (santa.numV >= 2)
+					{
+						santa.numV = 0;
+					}
 				}
 
 			}
