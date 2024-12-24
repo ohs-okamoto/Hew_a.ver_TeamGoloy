@@ -1,6 +1,6 @@
 #include"PhysicalOperationh.h"
 
-
+/*
 // 障害物の衝突をチェック
 bool CheckCollision(double posX, double posY) {
     // シンプルな衝突判定: X, Y座標が特定範囲に入ったら衝突
@@ -56,3 +56,4 @@ void StartGlide(Player& player) {
         std::cout << "Gliding started! Remaining glides: " << player.glideCount << std::endl;
     }
 }
+*/

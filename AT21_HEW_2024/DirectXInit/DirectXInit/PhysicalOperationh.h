@@ -1,4 +1,6 @@
+/*
 #pragma once
+
 #include"Direct3d.h"
 #include"Object.h"
 #include"Game.h"
@@ -33,3 +35,4 @@ const double DELTA_TIME = 0.016;  // 1フレームの時間 (約60FPS)
 void UpdatePlayer(Player& player, const Input& input);  // プレイヤー状態の更新
 void StartGlide(Player& player);                        // 滑空開始
 bool CheckCollision(double posX, double posY);          // 障害物の衝突チェック
+*/
