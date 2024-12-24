@@ -11,7 +11,16 @@ void Game::Init(HWND hWnd)
 	santa.SetAngle(0.0f);             		//角度を設定
 	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	
+	title.Init(L"asset/title.png", 1, 1);//サンタを初期化
+	title.SetPos(150.0f, 50.0f, 0.0f);		//位置を設定
+	title.SetSize(250.0f, 150.0f, 0.f);	//大きさを設定
+	title.SetAngle(0.0f);             		//角度を設定
+	title.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	titlesanta.Init(L"asset/Hukuro_2.png", 1, 1);//を初期化
+	titlesanta.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
+	titlesanta.SetSize(640.0f, 480.0f, 0.f);     //大きさ設定
+	titlesanta.SetAngle(0.0f);//角度を設定	    
 
 	background.Init(L"asset/background.png",1,1);//プレイヤーを初期化
 	background.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
@@ -51,25 +60,23 @@ void Game::Init(HWND hWnd)
 	ground[3].SetAngle(0.0f);//角度設定
 
 	//木
-	tree[1].Init(L"asset/wood_stage_1.png", 1, 1);//タイトル背景
+	tree[1].Init(L"asset/wood_stage_1.png", 1, 1);//木
 	tree[1].SetPos(0.0f, -50.0f, 0.0f);//位置を特定
 	tree[1].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
 	tree[1].SetAngle(0.0f);//角度設定
 
-	tree[2].Init(L"asset/wood_stage_1.png", 1, 1);//タイトル背景
+	tree[2].Init(L"asset/wood_stage_1.png", 1, 1);//木
 	tree[2].SetPos(640.0f, -50.0f, 0.0f);//位置を特定
 	tree[2].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
 	tree[2].SetAngle(0.0f);//角度設定
 
-	tree[3].Init(L"asset/wood_stage_1.png", 1, 1);//タイトル背景
+	tree[3].Init(L"asset/wood_stage_1.png", 1, 1);//木
 	tree[3].SetPos(1280.0f, -50.0f, 0.0f);//位置を特定
 	tree[3].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
 	tree[3].SetAngle(0.0f);//角度設定
 
 
-
-
-	sky.Init(L"asset/sky.png", 1, 1);//タイトル背景
+	sky.Init(L"asset/sky.png", 1, 1);//ゲーム背景
 	sky.SetPos(0.0f, 0.0f, 0.0f);//位置を特定
 	sky.SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
 	sky.SetAngle(0.0f);//角度設定
@@ -167,8 +174,7 @@ void Game::Update(void) {
 		}
 
 		//画像が画面外に行ったときにその画像を一番後ろに置く
-			//例　画像１が画面外→画像３の後ろに
-
+			//例　画像１が画面外→画像３の後ろに 
 			//山のスクロール　640=画面サイズ
 		if (mounten_pos1.x <= -640 * 2)
 		{
@@ -251,8 +257,8 @@ void Game::Draw(void)
 	{
 	case TITLE://タイトル
 		background.Draw();//プレイヤー描画
-		player.Draw();//プレイヤー描画
-		
+		titlesanta.Draw();
+		title.Draw();
 		break;
 
 	case STAGE_1://ゲーム
@@ -295,10 +301,12 @@ void Game::Draw(void)
 void Game::Uninit(void)
 {
 	background.Uninit();//プレイヤー終了
+	titlesanta.Uninit();//終了
+	title.Uninit();//終了
 
+	sky.Uninit();//終了
+	star.Uninit();//終了
 
-	sky.Uninit();
-	star.Uninit();
 	for (int i = 1; i < image; i++)
 	{
 		ground[i].Uninit();

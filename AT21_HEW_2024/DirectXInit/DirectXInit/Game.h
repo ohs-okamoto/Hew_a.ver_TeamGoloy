@@ -14,6 +14,8 @@ class Game
 {
 private:
 	Object background;//プレイヤーオブジェクト
+	Object titlesanta;//タイトル
+	Object title;//タイトル
 
 	Object santa;//サンタオブジェクト
 	Object mounten[image];//ゲーム画面の背景にある山
