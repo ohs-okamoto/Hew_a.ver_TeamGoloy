@@ -6,7 +6,7 @@ void Game::Init(HWND hWnd)
 {
 	D3D_Create(hWnd);//Directxを初期化
 
-	santa.Init(L"asset/tati.png", 1, 1);//サンタを初期化
+	santa.Init(L"asset/Santa_Nomal_Pack_Move.png", 4, 2);//サンタを初期化
 	santa.SetPos(-200.0f, -175.0f, 0.0f);		//位置を設定
 	santa.SetSize(70.0f, 50.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
@@ -128,6 +128,18 @@ void Game::Update(void) {
 		if (input.GetKeyPress(VK_D))
 		{
 			santa_pos.x += 5;
+
+			framcount++;//フレームカウント
+			if (framcount % 10 == 0)//１０フレームに一回行われる
+			{
+				santa.numU++;
+				if (santa.numU >= 4)
+				{
+					santa.numU = 0;
+				}
+
+			}
+
 
 			if (santa_pos.x >= 0)//プレイヤーが画面真ん中に行ったとき
 			{

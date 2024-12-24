@@ -26,7 +26,7 @@ private:
 
 
 	int changescene = TITLE;//ƒV[ƒ“
-
+	int framcount = 0;
 	Input input; //“ü—Í
 
 public:
