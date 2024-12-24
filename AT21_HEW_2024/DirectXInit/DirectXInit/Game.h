@@ -13,7 +13,6 @@ enum SceneName {
 class Game
 {
 private:
-	Object player;//プレイヤーオブジェクト
 	Object background;//プレイヤーオブジェクト
 
 	Object santa;//サンタオブジェクト

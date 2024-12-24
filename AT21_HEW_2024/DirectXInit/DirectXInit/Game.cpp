@@ -11,11 +11,7 @@ void Game::Init(HWND hWnd)
 	santa.SetAngle(0.0f);             		//角度を設定
 	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	player.Init(L"asset/char01.png",3,4);//プレイヤーを初期化
-	player.SetPos(100.0f, 0.0f, 0.0f);		//位置を設定
-	player.SetSize(200.0f, 300.0f, 0.f);	//大きさを設定
-	player.SetAngle(0.0f);             		//角度を設定
-	player.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	
 
 	background.Init(L"asset/background.png",1,1);//プレイヤーを初期化
 	background.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
@@ -90,9 +86,6 @@ void Game::Init(HWND hWnd)
 void Game::Update(void) {
 	input.Update();
 
-	DirectX::XMFLOAT3 pos = player.GetPos();
-	pos.x = 1.0f; //値を更新
-	player.SetPos(pos.x, pos.y, pos.z);
 
 	//値更新する処理の後に入力処理を記述すること byほたか
 
@@ -301,7 +294,6 @@ void Game::Draw(void)
 
 void Game::Uninit(void)
 {
-	player.Uninit();//プレイヤー終了
 	background.Uninit();//プレイヤー終了
 
 
