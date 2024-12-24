@@ -7,8 +7,8 @@ void Game::Init(HWND hWnd)
 	D3D_Create(hWnd);//Directxを初期化
 
 	santa.Init(L"asset/tati.png", 1, 1);//サンタを初期化
-	santa.SetPos(-200.0f, -150.0f, 0.0f);		//位置を設定
-	santa.SetSize(100.0f, 80.0f, 0.f);	//大きさを設定
+	santa.SetPos(-200.0f, -175.0f, 0.0f);		//位置を設定
+	santa.SetSize(70.0f, 50.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
 	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
@@ -62,18 +62,18 @@ void Game::Init(HWND hWnd)
 
 	//木
 	tree[1].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	tree[1].SetPos(0.0f, -50.0f, 0.0f);//位置を特定
-	tree[1].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
+	tree[1].SetPos(0.0f, -30.0f, 0.0f);//位置を特定
+	tree[1].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
 	tree[1].SetAngle(0.0f);//角度設定
 
 	tree[2].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	tree[2].SetPos(640.0f, -50.0f, 0.0f);//位置を特定
-	tree[2].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
+	tree[2].SetPos(640.0f, -30.0f, 0.0f);//位置を特定
+	tree[2].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
 	tree[2].SetAngle(0.0f);//角度設定
 
 	tree[3].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	tree[3].SetPos(1280.0f, -50.0f, 0.0f);//位置を特定
-	tree[3].SetSize(640.0f, 320.0f, 0.0f);//大きさ設定
+	tree[3].SetPos(1280.0f, -30.0f, 0.0f);//位置を特定
+	tree[3].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
 	tree[3].SetAngle(0.0f);//角度設定
 
 
@@ -276,15 +276,17 @@ void Game::Draw(void)
 		for (int i = 1; i < image; i++)
 		{
 
-			ground[i].Draw();
-
+			tree[i].Draw();
 		}
 
 		for (int i = 1; i < image; i++)
 		{
 
-			tree[i].Draw();
+			ground[i].Draw();
+
 		}
+
+		
 
 		santa.Draw();//プレイヤー描画
 		
