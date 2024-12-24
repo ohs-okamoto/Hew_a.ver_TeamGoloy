@@ -1,5 +1,6 @@
 #include "Game.h"
 
+//2024年12/24 横スクロール（仮？）作成　畦内
 
 void Game::Init(HWND hWnd)
 {
