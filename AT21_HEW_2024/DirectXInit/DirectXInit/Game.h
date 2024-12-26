@@ -19,10 +19,11 @@ private:
 
 	Object santa;//サンタオブジェクト
 	Object mounten[image];//ゲーム画面の背景にある山
-	Object tree[image];//ゲーム画面の背景にある木
+	Object wood[image];//ゲーム画面の背景にある木
 	Object ground[image];//地面
 	Object star;//星
 	Object sky;//空
+	Object tree;
 
 
 	int changescene = TITLE;//シーン

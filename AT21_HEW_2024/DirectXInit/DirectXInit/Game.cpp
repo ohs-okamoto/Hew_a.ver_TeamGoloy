@@ -61,20 +61,25 @@ void Game::Init(HWND hWnd)
 	ground[3].SetAngle(0.0f);//角度設定
 
 	//木
-	tree[1].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	tree[1].SetPos(0.0f, -30.0f, 0.0f);//位置を特定
-	tree[1].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
-	tree[1].SetAngle(0.0f);//角度設定
+	wood[1].Init(L"asset/wood_stage_1.png", 1, 1);//木
+	wood[1].SetPos(0.0f, -30.0f, 0.0f);//位置を特定
+	wood[1].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
+	wood[1].SetAngle(0.0f);//角度設定
 
-	tree[2].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	tree[2].SetPos(640.0f, -30.0f, 0.0f);//位置を特定
-	tree[2].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
-	tree[2].SetAngle(0.0f);//角度設定
+	wood[2].Init(L"asset/wood_stage_1.png", 1, 1);//木
+	wood[2].SetPos(640.0f, -30.0f, 0.0f);//位置を特定
+	wood[2].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
+	wood[2].SetAngle(0.0f);//角度設定
 
-	tree[3].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	tree[3].SetPos(1280.0f, -30.0f, 0.0f);//位置を特定
-	tree[3].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
-	tree[3].SetAngle(0.0f);//角度設定
+	wood[3].Init(L"asset/wood_stage_1.png", 1, 1);//木
+	wood[3].SetPos(1280.0f, -30.0f, 0.0f);//位置を特定
+	wood[3].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
+	wood[3].SetAngle(0.0f);//角度設定
+
+	tree.Init(L"asset/koyoju.png", 1, 1);//木
+	tree.SetPos(450.0f, -70.0f, 0.0f);//位置を特定
+	tree.SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
+	tree.SetAngle(0.0f);//角度設定
 
 
 	sky.Init(L"asset/sky.png", 1, 1);//ゲーム背景
@@ -105,6 +110,8 @@ void Game::Update(void) {
 		{
 			changescene = STAGE_1;
 		}
+
+
 		break;
 	case STAGE_1:
 	{
@@ -116,9 +123,11 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 mounten_pos3 = mounten[3].GetPos();
 
 		//背景の木
-		DirectX::XMFLOAT3 tree_pos1 = tree[1].GetPos();
-		DirectX::XMFLOAT3 tree_pos2 = tree[2].GetPos();
-		DirectX::XMFLOAT3 tree_pos3 = tree[3].GetPos();
+		DirectX::XMFLOAT3 wood_pos1 = wood[1].GetPos();
+		DirectX::XMFLOAT3 wood_pos2 = wood[2].GetPos();
+		DirectX::XMFLOAT3 wood_pos3 = wood[3].GetPos();
+
+		DirectX::XMFLOAT3 tree_pos = tree.GetPos();
 
 		//地面
 		DirectX::XMFLOAT3 ground_pos1 = ground[1].GetPos();
@@ -156,14 +165,15 @@ void Game::Update(void) {
 				mounten_pos2.x -= 0.5;
 				mounten_pos3.x -= 0.5;
 
-				tree_pos1.x -= 3;
-				tree_pos2.x -= 3;
-				tree_pos3.x -= 3;
+				wood_pos1.x -= 3;
+				wood_pos2.x -= 3;
+				wood_pos3.x -= 3;
 
 				ground_pos1.x -= 5;
 				ground_pos2.x -= 5;
 				ground_pos3.x -= 5;
 
+				tree_pos.x -= 5;
 			}
 		}
 		if (input.GetKeyPress(VK_A))
@@ -181,13 +191,15 @@ void Game::Update(void) {
 				mounten_pos2.x += 0.5;
 				mounten_pos3.x += 0.5;
 
-				tree_pos1.x += 3;
-				tree_pos2.x += 3;
-				tree_pos3.x += 3;
+				wood_pos1.x += 3;
+				wood_pos2.x += 3;
+				wood_pos3.x += 3;
 
 				ground_pos1.x += 5;
 				ground_pos2.x += 5;
 				ground_pos3.x += 5;
+
+				tree_pos.x += 5;
 			}
 		}
 
@@ -213,21 +225,21 @@ void Game::Update(void) {
 		}
 
 		//木のスクロール
-		if (tree_pos1.x <= -640 * 2)
+		if (wood_pos1.x <= -640 * 2)
 		{
-			tree_pos1.x = tree_pos3.x + SCREEN_WIDTH;
+			wood_pos1.x = wood_pos3.x + SCREEN_WIDTH;
 
 		}
 
-		if (tree_pos2.x <= -640 * 2)
+		if (wood_pos2.x <= -640 * 2)
 		{
-			tree_pos2.x = tree_pos1.x + SCREEN_WIDTH;
+			wood_pos2.x = wood_pos1.x + SCREEN_WIDTH;
 
 		}
 
-		if (tree_pos3.x <= -640 * 2)
+		if (wood_pos3.x <= -640 * 2)
 		{
-			tree_pos3.x = tree_pos2.x + SCREEN_WIDTH;
+			wood_pos3.x = wood_pos2.x + SCREEN_WIDTH;
 
 		}
 
@@ -239,9 +251,11 @@ void Game::Update(void) {
 		mounten[2].SetPos(mounten_pos2.x, mounten_pos2.y, mounten_pos2.z);
 		mounten[3].SetPos(mounten_pos3.x, mounten_pos3.y, mounten_pos3.z);
 	
-		tree[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
-		tree[2].SetPos(tree_pos2.x, tree_pos2.y, tree_pos2.z);
-		tree[3].SetPos(tree_pos3.x, tree_pos3.y, tree_pos3.z);
+		wood[1].SetPos(wood_pos1.x, wood_pos1.y, wood_pos1.z);
+		wood[2].SetPos(wood_pos2.x, wood_pos2.y, wood_pos2.z);
+		wood[3].SetPos(wood_pos3.x, wood_pos3.y, wood_pos3.z);
+
+		tree.SetPos(tree_pos.x, tree_pos.y, tree_pos.z);
 
 		ground[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		ground[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
@@ -293,7 +307,7 @@ void Game::Draw(void)
 		for (int i = 1; i < image; i++)
 		{
 
-			tree[i].Draw();
+			wood[i].Draw();
 		}
 
 		for (int i = 1; i < image; i++)
@@ -303,7 +317,7 @@ void Game::Draw(void)
 
 		}
 
-		
+		tree.Draw();
 
 		santa.Draw();//プレイヤー描画
 		
@@ -330,10 +344,10 @@ void Game::Uninit(void)
 	for (int i = 1; i < image; i++)
 	{
 		ground[i].Uninit();
-		tree[i].Uninit();
+		wood[i].Uninit();
 		mounten[i].Uninit();
 	}
-
+	tree.Uninit();
 	
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
