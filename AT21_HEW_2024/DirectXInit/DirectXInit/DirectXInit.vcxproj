@@ -130,6 +130,7 @@
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="direct3d.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="object.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Direct3d.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PhysicalOperationh.h" />

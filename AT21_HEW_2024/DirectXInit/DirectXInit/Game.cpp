@@ -29,17 +29,17 @@ void Game::Init(HWND hWnd)
 	background.SetAngle(0.0f);//Šp“x‚ğİ’è	    
 
 	//R
-	mounten[1].Init(L"asset/mountain_stage_1.png", 1, 1);//ƒQ[ƒ€”wŒi
+	mounten[1].Init(L"asset/background_stage_1_v02.png", 1, 1);//ƒQ[ƒ€”wŒi
 	mounten[1].SetPos(0.0f, 0.0f, 0.0f);//ˆÊ’u‚ğ“Á’è
 	mounten[1].SetSize(640.0f, 480.0f, 0.0f);//‘å‚«‚³İ’è
 	mounten[1].SetAngle(0.0f);//Šp“xİ’è
 
-	mounten[2].Init(L"asset/mountain_stage_1.png", 1, 1);//ƒQ[ƒ€”wŒi
+	mounten[2].Init(L"asset/background_stage_1_v02.png", 1, 1);//ƒQ[ƒ€”wŒi
 	mounten[2].SetPos(640.0f, 0.0f, 0.0f);//ˆÊ’u‚ğ“Á’è
 	mounten[2].SetSize(640.0f, 480.0f, 0.0f);//‘å‚«‚³İ’è
 	mounten[2].SetAngle(0.0f);//Šp“xİ’è
 
-	mounten[3].Init(L"asset/mountain_stage_1.png", 1, 1);//ƒQ[ƒ€”wŒi
+	mounten[3].Init(L"asset/background_stage_1_v02.png", 1, 1);//ƒQ[ƒ€”wŒi
 	mounten[3].SetPos(1280.0f, 0.0f, 0.0f);//ˆÊ’u‚ğ“Á’è
 	mounten[3].SetSize(640.0f, 480.0f, 0.0f);//‘å‚«‚³İ’è
 	mounten[3].SetAngle(0.0f);//Šp“xİ’è
