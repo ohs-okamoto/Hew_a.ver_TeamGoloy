@@ -1,5 +1,6 @@
-#include "GameController.h"
 #include <windows.h>
+#include "GameController.h"
+
 
 //作成者：内野
 GameController::GameController() {      //コンストラクタ
