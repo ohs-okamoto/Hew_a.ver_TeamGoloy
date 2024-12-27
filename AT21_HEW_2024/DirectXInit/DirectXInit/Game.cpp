@@ -1,4 +1,8 @@
 #include "Game.h"
+#include "Collision.h"
+#include <iostream>
+
+using namespace std;
 
 //2024年12/24 横スクロール（仮？）作成　畦内
 
@@ -77,7 +81,8 @@ void Game::Init(HWND hWnd)
 	wood[3].SetAngle(0.0f);//角度設定
 
 	tree.Init(L"asset/koyoju.png", 1, 1);//木
-	tree.SetPos(450.0f, -70.0f, 0.0f);//位置を特定
+
+	tree.SetPos(400.0f, -70.0f, 0.0f);//位置を特定
 	tree.SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
 	tree.SetAngle(0.0f);//角度設定
 
@@ -98,6 +103,10 @@ void Game::Init(HWND hWnd)
 
 void Game::Update(void) {
 	input.Update();
+
+	Collision collision; // 宣言
+	collision.canMoveRight = true; // フラグを初期化
+	collision.canMoveLeft = true; // フラグを初期化
 
 
 	//値更新する処理の後に入力処理を記述すること byほたか
@@ -134,12 +143,71 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 ground_pos2 = ground[2].GetPos();
 		DirectX::XMFLOAT3 ground_pos3 = ground[3].GetPos();
 
-		if (input.GetKeyPress(VK_D))
+		// 一旦仮で重力的なものをを追加します　ゴロイ
+		santa_pos.y -= 1;
+
+		// サンタが下に落ちた時に初期位置に戻る処理　ゴロイ
+		if (santa_pos.y == -250.0f)
+		{
+			santa_pos.x = 200.0f;
+			santa_pos.y = -175.0f;
+		}
+
+		
+
+			// 地面との当たり判定の追加 ゴロイ
+		for (int i = 0; i < image; i++) {
+			DirectX::XMFLOAT3 ground_pos = ground[i].GetPos();
+
+			if (collision.ground_santa(ground[i], santa, 50.0f, 0.0f)) {
+				//// サンタが地面の上にいる場合
+				if (santa_pos.y > ground_pos1.y + ground[i].GetSize().y / 2.0f) {
+
+					santa_pos.y = ground_pos1.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
+					std::cout << "\nSanta is on top of the ground." << std::endl;
+				}
+				else {
+					std::cout << "\nSanta is falling." << std::endl;
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_pos.x < ground_pos1.x && santa_pos.y < ground_pos1.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_pos.x > ground_pos1.x && santa_pos.y < ground_pos1.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+		}
+
+		
+		// 木との当たり判定の追加　ゴロイ
+		if (collision.tree_santa(tree, santa, 200.0f, 0.0f)) {
+
+			// サンタが木の右側にぶつかった場合
+			if (santa_pos.x < tree_pos.x) {
+
+				collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+			}
+			// サンタが木の左側にぶつかった場合
+			if (santa_pos.x > tree_pos.x) {
+
+				collision.canMoveLeft = false; // 左に移動中なら移動を停止
+
+			}
+		}
+
+		
+
+		if (collision.canMoveRight && input.GetKeyPress(VK_D))
 		{
 			santa_pos.x += 5;
-
-			framcount++;//フレームカウント
-			if (framcount % 10 == 0)//１０フレームに一回行われる
+			framcount++; //フレームカウント
+			if (framcount % 10 == 0) //１０フレームに一回行われる
 			{
 				santa.numU++;
 				if (santa.numU >= 4)
@@ -151,13 +219,10 @@ void Game::Update(void) {
 						santa.numV = 0;
 					}
 				}
-
 			}
 
-
-			if (santa_pos.x >= 0)//プレイヤーが画面真ん中に行ったとき
+			if (santa_pos.x >= 0) //プレイヤーが画面真ん中に行ったとき
 			{
-
 				santa_pos.x -= 5;
 
 				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
@@ -176,17 +241,14 @@ void Game::Update(void) {
 				tree_pos.x -= 5;
 			}
 		}
-		if (input.GetKeyPress(VK_A))
+		if (collision.canMoveLeft && input.GetKeyPress(VK_A))
 		{
-
 			santa_pos.x -= 5;
-
-			if (santa_pos.x <= 0)//プレイヤーが画面真ん中に行ったとき
+			if (santa_pos.x <= 0) //プレイヤーが画面真ん中に行ったとき
 			{
 				santa_pos.x += 5;
 
-
-				//背景などを右に動かしてプレイヤーが左に動いてるように見せる
+				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
 				mounten_pos1.x += 0.5;
 				mounten_pos2.x += 0.5;
 				mounten_pos3.x += 0.5;
@@ -202,6 +264,7 @@ void Game::Update(void) {
 				tree_pos.x += 5;
 			}
 		}
+
 
 		//画像が画面外に行ったときにその画像を一番後ろに置く
 			//例　画像１が画面外→画像３の後ろに 
@@ -260,7 +323,6 @@ void Game::Update(void) {
 		ground[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		ground[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 		ground[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
-
 
 
 	}

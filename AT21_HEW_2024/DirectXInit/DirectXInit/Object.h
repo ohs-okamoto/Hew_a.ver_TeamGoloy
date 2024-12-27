@@ -30,6 +30,7 @@ private:
 	int splitX = 1;
 	int splitY = 1;
 
+	DirectX::XMFLOAT3 position; // 位置を保持するメンバ変数
 
 public:
 
@@ -44,9 +45,11 @@ public:
 	void SetSize(float x, float y, float z);//大きさセット
 	void SetAngle(float a);//角度セット
 	void SetColor(float r, float g, float b, float a); //色をセット
-	DirectX::XMFLOAT3 GetPos(void);   //座標をゲット
+	DirectX::XMFLOAT3 GetPos(void) const;   //座標をゲット
 	DirectX::XMFLOAT3 GetSize(void);  //大きさをセット
 	DirectX::XMFLOAT4 GetColor(void); //いろをセット
 	float GetAngle(void);			  //角度をセット
+
+	//DirectX::XMFLOAT3 GetPos() const; // const 修飾子を追加して宣言
 };
 

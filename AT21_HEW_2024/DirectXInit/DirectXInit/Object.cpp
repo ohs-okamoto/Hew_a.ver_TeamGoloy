@@ -114,7 +114,7 @@ void Object::SetColor(float r, float g, float b, float a) {
 	color.w = a;
 }
 
-DirectX::XMFLOAT3 Object::GetPos(void)
+DirectX::XMFLOAT3 Object::GetPos(void) const
 {
 	return pos;//À•W‚ğƒQƒbƒg
 }

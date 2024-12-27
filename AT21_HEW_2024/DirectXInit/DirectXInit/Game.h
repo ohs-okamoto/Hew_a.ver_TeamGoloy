@@ -36,6 +36,7 @@ public:
 	void Draw();//描画
 	void Uninit();//終了
 
-
+	// 現在の位置を取得するメソッド 
+	DirectX::XMFLOAT3 GetSantaPos() const { return santa.GetPos(); } // サンタの位置を取得するメソッド
 };
 

@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include "Game.h"
+#include <iostream>
 
 // マクロ定義
 #define CLASS_NAME   "DX21Smpl"// ウインドウクラスの名前
@@ -10,12 +11,32 @@
 // 関数のプロトタイプ宣言
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+// コンソールに関する関数 ゴロイ
+void SetupConsole() {
+	AllocConsole();
+	FILE* file;
+	freopen_s(&file, "CONOUT$", "w", stdout);
+	freopen_s(&file, "CONOUT$", "w", stderr);
+	freopen_s(&file, "CONOUT$", "w", stdin);
+}
+
+// コンソールのカーソル位置を設定する関数
+void SetConsoleCursorPosition(int x, int y) {
+	COORD coord;
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
 
 //--------------------------------------------------------------------------------------
 // エントリポイント＝一番最初に実行される関数　　※作成者　岡本穂高
 //--------------------------------------------------------------------------------------
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
+	// コンソールウィンドウの初期化 ゴロイ
+	SetupConsole();
+
 	// ウィンドウクラス情報をまとめる
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
@@ -107,6 +128,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 			if (nowCount >= oldCount + frequency / 60) {
 				//ゲーム処理実行
 				game.Update();
+
+				// コンソールを先頭に戻して新しい情報を表示
+				SetConsoleCursorPosition(0, 0);
+				auto santaPos = game.GetSantaPos();
+				std::cout<<"Santaの座標: (" << game.GetSantaPos().x << ", " << game.GetSantaPos().y << ")" << std::endl;
+				
+
 				game.Draw();
 
 				fpsCounter++;//ゲーム処理を実行したら＋１する
