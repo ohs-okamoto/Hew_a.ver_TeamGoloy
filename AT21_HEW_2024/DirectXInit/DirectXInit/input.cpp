@@ -9,6 +9,7 @@ Input::Input()
 //デストラクタ
 Input::~Input()
 {
+
 	//振動を終了させる
 	XINPUT_VIBRATION vibration;
 	ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
