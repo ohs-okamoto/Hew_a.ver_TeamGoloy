@@ -10,7 +10,7 @@ void Game::Init(HWND hWnd)
 {
 	D3D_Create(hWnd);//Directxを初期化
 
-	santa.Init(L"asset/Santa_Nomal_Pack_Move.png", 4, 2);//サンタを初期化
+	santa.Init(L"asset/Santa_Normal_Move.png", 4, 4);//サンタを初期化
 	santa.SetPos(-200.0f, -175.0f, 0.0f);		//位置を設定
 	santa.SetSize(70.0f, 50.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
@@ -202,10 +202,17 @@ void Game::Update(void) {
 		}
 
 		
-
+		// 12/30  サンタの移動アニメーション追加  	畦内　
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
 		{
-			santa_pos.x += 5;
+			santa_pos.x += 5;//右移動
+			if (changeRight == true)
+			{
+				//初期化
+				santa.numU = 0;
+				santa.numV = 0;
+				changeRight = false;//一旦falseにして一回しか処理されないようにする
+			}
 			framcount++; //フレームカウント
 			if (framcount % 10 == 0) //１０フレームに一回行われる
 			{
@@ -241,9 +248,37 @@ void Game::Update(void) {
 				tree_pos.x -= 5;
 			}
 		}
+		else
+		{
+			//キーを離すとtrueに戻るう
+			changeRight = true;
+		}
+
 		if (collision.canMoveLeft && input.GetKeyPress(VK_A))
 		{
-			santa_pos.x -= 5;
+			santa_pos.x -= 5;//左移動
+			if (changeLeft == true)
+			{
+				//初期化
+				santa.numU = 0;
+				santa.numV = 2;
+				changeLeft = false;//一旦falseにして一回しか処理されないようにする
+			}
+			framcount++; //フレームカウント
+			if (framcount % 10 == 0) //１０フレームに一回行われる
+			{
+				santa.numU++;
+				if (santa.numU >= 4)
+				{
+					santa.numU = 0;
+					santa.numV++;
+					if (santa.numV >= 4)
+					{
+						santa.numV = 2;
+					}
+				}
+			}
+
 			if (santa_pos.x <= 0) //プレイヤーが画面真ん中に行ったとき
 			{
 				santa_pos.x += 5;
@@ -263,6 +298,11 @@ void Game::Update(void) {
 
 				tree_pos.x += 5;
 			}
+		}
+		else
+		{
+			//キーを離すとtrueに戻る
+			changeLeft = true;
 		}
 
 
@@ -323,9 +363,8 @@ void Game::Update(void) {
 		ground[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		ground[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 		ground[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
-
-
 	}
+	break;
 	case RESULT:
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN))

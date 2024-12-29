@@ -23,7 +23,11 @@ private:
 	Object ground[image];//地面
 	Object star;//星
 	Object sky;//空
-	Object tree;
+	Object tree;//木
+
+
+	bool changeRight = true;//キャラの
+	bool changeLeft = true;//
 
 
 	int changescene = TITLE;//シーン
