@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Texture.h"
 #include "Collision.h"
 #include <iostream>
 

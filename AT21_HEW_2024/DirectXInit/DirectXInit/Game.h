@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "input.h"
+#include "Texture.h"
 
 #define image		(4)
 

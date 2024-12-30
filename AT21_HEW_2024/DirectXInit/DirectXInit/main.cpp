@@ -88,6 +88,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 	Game game;
 	game.Init(hWnd);
 
+	Texture texture;
 	// ゲームループに入る前にDirectXの初期化をする
 	MSG msg;
 
@@ -129,6 +130,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 				//ゲーム処理実行
 				game.Update();
 
+				//texture.Load();変更途中
 				// コンソールを先頭に戻して新しい情報を表示
 				SetConsoleCursorPosition(0, 0);
 				auto santaPos = game.GetSantaPos();
