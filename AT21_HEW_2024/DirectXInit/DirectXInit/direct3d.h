@@ -1,8 +1,8 @@
 #pragma once
 #include <d3d11.h>  // DirectX11を使うためのヘッダーファイル
 #include <DirectXMath.h>
-#define SCREEN_WIDTH (640)	// ウインドウの幅
-#define SCREEN_HEIGHT (480)	// ウインドウの高さ
+#define SCREEN_WIDTH (1280)	// ウインドウの幅
+#define SCREEN_HEIGHT (720)	// ウインドウの高さ
 
 // 関数のプロトタイプ宣言
 HRESULT D3D_Create(HWND hwnd);

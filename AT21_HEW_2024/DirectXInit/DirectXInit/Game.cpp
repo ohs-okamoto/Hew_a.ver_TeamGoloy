@@ -4,18 +4,22 @@
 
 using namespace std;
 
-//2024年12/24 横スクロール（仮？）作成　畦内
+//2024年12/24 横スクロール 作成　畦内
 
 void Game::Init(HWND hWnd)
 {
 	D3D_Create(hWnd);//Directxを初期化
-
+//====================================================
+//プレイヤー関連
+//====================================================
 	santa.Init(L"asset/Santa_Normal_Move.png", 4, 4);//サンタを初期化
 	santa.SetPos(-200.0f, -175.0f, 0.0f);		//位置を設定
-	santa.SetSize(70.0f, 50.0f, 0.f);	//大きさを設定
+	santa.SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
 	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
-
+//====================================================
+//タイトル
+//====================================================
 	title.Init(L"asset/title.png", 1, 1);//サンタを初期化
 	title.SetPos(150.0f, 50.0f, 0.0f);		//位置を設定
 	title.SetSize(250.0f, 150.0f, 0.f);	//大きさを設定
@@ -24,77 +28,77 @@ void Game::Init(HWND hWnd)
 
 	titlesanta.Init(L"asset/Hukuro_2.png", 1, 1);//を初期化
 	titlesanta.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
-	titlesanta.SetSize(640.0f, 480.0f, 0.f);     //大きさ設定
+	titlesanta.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
 	titlesanta.SetAngle(0.0f);//角度を設定	    
 
 	background.Init(L"asset/background.png",1,1);//プレイヤーを初期化
 	background.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
-	background.SetSize(640.0f, 480.0f, 0.f);     //大きさ設定
+	background.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
 	background.SetAngle(0.0f);//角度を設定	    
-
+//====================================================
+//ステージ
+//====================================================
 	//山
 	mounten[1].Init(L"asset/background_stage_1_v03.png", 1, 1);//ゲーム背景
 	mounten[1].SetPos(0.0f, 0.0f, 0.0f);//位置を特定
-	mounten[1].SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
+	mounten[1].SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	mounten[1].SetAngle(0.0f);//角度設定
 
 	mounten[2].Init(L"asset/background_stage_1_v03.png", 1, 1);//ゲーム背景
-	mounten[2].SetPos(640.0f, 0.0f, 0.0f);//位置を特定
-	mounten[2].SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
+	mounten[2].SetPos(1280.0f, 0.0f, 0.0f);//位置を特定
+	mounten[2].SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	mounten[2].SetAngle(0.0f);//角度設定
 
 	mounten[3].Init(L"asset/background_stage_1_v03.png", 1, 1);//ゲーム背景
-	mounten[3].SetPos(1280.0f, 0.0f, 0.0f);//位置を特定
-	mounten[3].SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
+	mounten[3].SetPos(2560.0f, 0.0f, 0.0f);//位置を特定
+	mounten[3].SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	mounten[3].SetAngle(0.0f);//角度設定
 
 	//地面
 	ground[1].Init(L"asset/ground.png", 1, 1);//地面
 	ground[1].SetPos(0.0f, -300.0f, 0.0f);//位置を特定
-	ground[1].SetSize(640.0f, 200.0f, 0.0f);//大きさ設定
+	ground[1].SetSize(1280, 200.0f, 0.0f);//大きさ設定
 	ground[1].SetAngle(0.0f);//角度設定
 
 	ground[2].Init(L"asset/ground.png", 1, 1);//地面
-	ground[2].SetPos(700.0f, -300.0f, 0.0f);//位置を特定
-	ground[2].SetSize(640.0f, 200.0f, 0.0f);//大きさ設定
+	ground[2].SetPos(1400.0f, -300.0f, 0.0f);//位置を特定
+	ground[2].SetSize(1280.0f, 200.0f, 0.0f);//大きさ設定
 	ground[2].SetAngle(0.0f);//角度設定
 
 	ground[3].Init(L"asset/ground.png", 1, 1);//地面
-	ground[3].SetPos(1400.0f, -300.0f, 0.0f);//位置を特定
-	ground[3].SetSize(640.0f, 200.0f, 0.0f);//大きさ設定
+	ground[3].SetPos(2500.0f, -300.0f, 0.0f);//位置を特定
+	ground[3].SetSize(1280.0f, 200.0f, 0.0f);//大きさ設定
 	ground[3].SetAngle(0.0f);//角度設定
 
 	//木
 	wood[1].Init(L"asset/wood_stage_1.png", 1, 1);//木
 	wood[1].SetPos(0.0f, -30.0f, 0.0f);//位置を特定
-	wood[1].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
+	wood[1].SetSize(1280.0f, 420.0f, 0.0f);//大きさ設定
 	wood[1].SetAngle(0.0f);//角度設定
 
 	wood[2].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	wood[2].SetPos(640.0f, -30.0f, 0.0f);//位置を特定
-	wood[2].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
+	wood[2].SetPos(1280.0f, -30.0f, 0.0f);//位置を特定
+	wood[2].SetSize(1280.0f, 420.0f, 0.0f);//大きさ設定
 	wood[2].SetAngle(0.0f);//角度設定
 
 	wood[3].Init(L"asset/wood_stage_1.png", 1, 1);//木
-	wood[3].SetPos(1280.0f, -30.0f, 0.0f);//位置を特定
-	wood[3].SetSize(640.0f, 420.0f, 0.0f);//大きさ設定
+	wood[3].SetPos(2560.0f, -30.0f, 0.0f);//位置を特定
+	wood[3].SetSize(1280.0f, 420.0f, 0.0f);//大きさ設定
 	wood[3].SetAngle(0.0f);//角度設定
 
 	tree.Init(L"asset/koyoju.png", 1, 1);//木
-
 	tree.SetPos(400.0f, -70.0f, 0.0f);//位置を特定
 	tree.SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
 	tree.SetAngle(0.0f);//角度設定
 
-
 	sky.Init(L"asset/sky.png", 1, 1);//ゲーム背景
 	sky.SetPos(0.0f, 0.0f, 0.0f);//位置を特定
-	sky.SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
+	sky.SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	sky.SetAngle(0.0f);//角度設定
 
 	star.Init(L"asset/star.png", 1, 1);//星
 	star.SetPos(0.0f, 0.0f, 0.0f);//位置を特定
-	star.SetSize(640.0f, 480.0f, 0.0f);//大きさ設定
+	star.SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	star.SetAngle(0.0f);//角度設定
 
 
@@ -308,39 +312,39 @@ void Game::Update(void) {
 
 		//画像が画面外に行ったときにその画像を一番後ろに置く
 			//例　画像１が画面外→画像３の後ろに 
-			//山のスクロール　640=画面サイズ
-		if (mounten_pos1.x <= -640 * 2)
+			//山のスクロール　1280=画面サイズ
+		if (mounten_pos1.x <= -1280 * 2)
 		{
 			mounten_pos1.x = mounten_pos3.x + SCREEN_WIDTH;
 
 		}
 
-		if (mounten_pos2.x <= -640 * 2)
+		if (mounten_pos2.x <= -1280 * 2)
 		{
 			mounten_pos2.x = mounten_pos1.x + SCREEN_WIDTH;
 
 		}
 
-		if (mounten_pos3.x <= -640* 2)
+		if (mounten_pos3.x <= -1280 * 2)
 		{
 			mounten_pos3.x = mounten_pos2.x + SCREEN_WIDTH;
 
 		}
 
 		//木のスクロール
-		if (wood_pos1.x <= -640 * 2)
+		if (wood_pos1.x <= -1280 * 2)
 		{
 			wood_pos1.x = wood_pos3.x + SCREEN_WIDTH;
 
 		}
 
-		if (wood_pos2.x <= -640 * 2)
+		if (wood_pos2.x <= -1280 * 2)
 		{
 			wood_pos2.x = wood_pos1.x + SCREEN_WIDTH;
 
 		}
 
-		if (wood_pos3.x <= -640 * 2)
+		if (wood_pos3.x <= -1280 * 2)
 		{
 			wood_pos3.x = wood_pos2.x + SCREEN_WIDTH;
 
