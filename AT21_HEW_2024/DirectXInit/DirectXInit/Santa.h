@@ -1,5 +1,6 @@
 #pragma once
 //岡本穂高　2024/12/28 19:41
+/*
 class SANTA
 {
 public:
@@ -14,3 +15,4 @@ private:
 	int timeLife;//サンタのHP
 };
 
+*/

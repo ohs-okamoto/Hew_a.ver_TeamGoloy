@@ -1,8 +1,9 @@
 #pragma once
 #include "Object.h"
 #include "input.h"
+#include "Texture.h"
 
-#define image		(4)
+#define image		(10)
 
 enum SceneName {
 	TITLE,
@@ -17,6 +18,8 @@ private:
 	Object titlesanta;//タイトル
 	Object title;//タイトル
 
+
+
 	Object santa;//サンタオブジェクト
 	Object mounten[image];//ゲーム画面の背景にある山
 	Object wood[image];//ゲーム画面の背景にある木
@@ -24,7 +27,16 @@ private:
 	Object star;//星
 	Object sky;//空
 	Object tree;//木
+	Object rock[image];//いわ
+	Object icicle[image];//木
+	Object stairs[image];//階段
 
+	Object snowman[image];//雪だるま
+	Object tonakai;//トナカイ
+	Object star_monster;//星野　敵
+	
+	Object present[image];//プレゼント
+	Object goal_present;//ゴール
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
