@@ -586,13 +586,13 @@ void Game::Update(void) {
 		ground[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		ground[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 		ground[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 
-=======
+//=======
 		ground[4].SetPos(ground_pos4.x, ground_pos4.y, ground_pos4.z);
 		ground[5].SetPos(ground_pos5.x, ground_pos5.y, ground_pos5.z);
->>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
+//>>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
 	}
 	break;
 	case RESULT:

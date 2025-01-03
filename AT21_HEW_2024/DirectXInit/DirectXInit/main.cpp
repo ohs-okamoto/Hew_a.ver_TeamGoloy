@@ -30,16 +30,7 @@ void SetConsoleCursorPosition(int x, int y) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void ClearConsoleLine() {
-	// コンソールのカーソル位置を保存
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-	COORD cursorPosition = csbi.dwCursorPosition;
 
-	// カーソル位置の行をクリア
-	std::cout << std::setw(100) << std::setfill(' ') << ' ';
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
-}
 
 
 
@@ -144,12 +135,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 				//ゲーム処理実行
 				game.Update();
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 				// コンソールを先頭に戻して新しい情報を表示 ゴロイ
-=======
+//=======
 				//texture.Load();変更途中
 				// コンソールを先頭に戻して新しい情報を表示
->>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
+				// 
+//>>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
 				SetConsoleCursorPosition(0, 0);
 				auto santaPos = game.GetSantaPos();
 				std::cout<<"サンタの座標 : (" << game.GetSantaPos().x << ", " << game.GetSantaPos().y << ")\n" << std::endl;
@@ -162,9 +154,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 					const auto& santaObj = game.GetGround(i);
 					Collision collision; // 当たり判定オブジェクト
 
-					// カーソル位置を適切に設定 
-					SetConsoleCursorPosition(0, 2 + i);
-					ClearConsoleLine();
+					
 
 
 					// 地面とサンタの当たり判定チェック
