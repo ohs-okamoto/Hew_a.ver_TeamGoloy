@@ -40,7 +40,10 @@ public:
 	void Draw();//描画
 	void Uninit();//終了
 
-	// 現在の位置を取得するメソッド 
-	DirectX::XMFLOAT3 GetSantaPos() const { return santa.GetPos(); } // サンタの位置を取得するメソッド
+	DirectX::XMFLOAT3 GetSantaPos()const; // サンタの位置を取得するメソッド
+	const Object& GetSanta() const; // サンタオブジェクトへの参照を取得するメソッド
+
+	DirectX::XMFLOAT3 GetGroundPos(int index)const;
+	const Object& GetGround(int index) const; // 地面オブジェクトへの参照を取得する
 };
 

@@ -157,17 +157,17 @@ void Game::Update(void) {
 
 			// 地面との当たり判定の追加 ゴロイ
 		for (int i = 0; i < image; i++) {
-			DirectX::XMFLOAT3 ground_pos = ground[i].GetPos();
+			DirectX::XMFLOAT3 ground_pos = GetGroundPos(i);
 
 			if (collision.ground_santa(ground[i], santa, 50.0f, 0.0f)) {
+
 				//// サンタが地面の上にいる場合
 				if (santa_pos.y > ground_pos1.y + ground[i].GetSize().y / 2.0f) {
-
-					santa_pos.y = ground_pos1.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
-					std::cout << "\nSanta is on top of the ground." << std::endl;
+                    santa_pos.y = ground_pos1.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
-					std::cout << "\nSanta is falling." << std::endl;
+					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
 				// サンタが地面の右側にぶつかった場合
@@ -363,6 +363,8 @@ void Game::Update(void) {
 		ground[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		ground[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 		ground[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
+
+
 	}
 	break;
 	case RESULT:
@@ -452,4 +454,32 @@ void Game::Uninit(void)
 	
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
+}
+
+DirectX::XMFLOAT3 Game::GetSantaPos() const {
+	return santa.GetPos();
+}
+
+const Object& Game::GetSanta() const {
+	return santa;
+}
+
+
+DirectX::XMFLOAT3 Game::GetGroundPos(int index) const {
+	if (index >= 0 && index < image) {
+		return ground[index].GetPos();
+	}
+	else {
+		return { 0.0f, 0.0f, 0.0f }; // 範囲外の場合、デフォルト値を返す
+	}
+}
+
+const Object& Game::GetGround(int index) const {
+	if (index >= 0 && index < image) {
+		return ground[index];
+	}
+	else {
+		static Object dummy;
+		return dummy; // 範囲外の場合、ダミーオブジェクトを返す
+	}
 }

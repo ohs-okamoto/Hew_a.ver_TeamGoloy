@@ -2,7 +2,9 @@
 
 #include <Windows.h>
 #include "Game.h"
+#include "Collision.h"
 #include <iostream>
+#include <iomanip> // <iomanip>を追加
 
 // マクロ定義
 #define CLASS_NAME   "DX21Smpl"// ウインドウクラスの名前
@@ -27,6 +29,18 @@ void SetConsoleCursorPosition(int x, int y) {
 	coord.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
+
+void ClearConsoleLine() {
+	// コンソールのカーソル位置を保存
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	COORD cursorPosition = csbi.dwCursorPosition;
+
+	// カーソル位置の行をクリア
+	std::cout << std::setw(100) << std::setfill(' ') << ' ';
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
+}
+
 
 
 //--------------------------------------------------------------------------------------
@@ -129,11 +143,28 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 				//ゲーム処理実行
 				game.Update();
 
-				// コンソールを先頭に戻して新しい情報を表示
+				// コンソールを先頭に戻して新しい情報を表示 ゴロイ
 				SetConsoleCursorPosition(0, 0);
 				auto santaPos = game.GetSantaPos();
-				std::cout<<"Santaの座標: (" << game.GetSantaPos().x << ", " << game.GetSantaPos().y << ")" << std::endl;
+				std::cout<<"サンタの座標 : (" << game.GetSantaPos().x << ", " << game.GetSantaPos().y << ")\n" << std::endl;
 				
+				
+				// 地面の座標を出力
+				for (int i = 0; i < image; ++i) {
+					auto groundPos = game.GetGroundPos(i);
+					const auto& groundObj = game.GetGround(i);
+					const auto& santaObj = game.GetGround(i);
+					Collision collision; // 当たり判定オブジェクト
+
+					// カーソル位置を適切に設定 
+					SetConsoleCursorPosition(0, 2 + i);
+					ClearConsoleLine();
+
+
+					// 地面とサンタの当たり判定チェック
+					bool isColliding = collision.ground_santa(groundObj, santaObj, 50.0f, 50.0f);
+					std::cout << "Ground[" << i << "]の座標 : (" << groundPos.x << "," << groundPos.y << "," << groundPos.z << ") - Collision : " << (collision.isColliding ? "〇":"×") << " - Direction: " << collision.collisionDirection<< "\n";
+				}
 
 				game.Draw();
 
