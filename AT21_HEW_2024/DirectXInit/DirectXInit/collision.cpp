@@ -132,3 +132,63 @@ bool Collision::tree_santa(Object obj1, Object obj2, float bufferX, float buffer
     std::cout << "当たっています。" << std::endl;
     return true;
 }
+
+bool Collision::goal_santa(Object obj1, Object obj2, float bufferX, float bufferY)
+{
+    float coord1 = 0.0f, coord2 = 0.0f;
+    isColliding = false; // 初期化
+    collisionDirection = "None";
+
+    // 1の右端と2の左端
+    coord1 = obj1.GetPos().x + (obj1.GetSize().x - bufferX) / 2.0f;
+    coord2 = obj2.GetPos().x - obj2.GetSize().x / 2.0f;
+    if (coord1 < coord2) {
+        collisionDirection = "　";
+        return false;
+    } // 1の右端<2の左端　当たってないので判定終了
+
+
+// 1の左端と2の右端
+    coord1 = obj1.GetPos().x - (obj1.GetSize().x - bufferX) / 2.0f;
+    coord2 = obj2.GetPos().x + obj2.GetSize().x / 2.0f;
+    if (coord1 > coord2) {
+        collisionDirection = "　";
+        return false;
+    } // 1の左端>2の右端　当たってないので判定終了
+
+// 1の下端と2の上端
+    coord1 = obj1.GetPos().y + (obj1.GetSize().y - bufferY) / 2.0f;
+    coord2 = obj2.GetPos().y - obj2.GetSize().y / 2.0f;
+    if (coord1 < coord2) {
+        collisionDirection = "　";
+        return false;
+    } // 1の下端<2の上端　当たってないので判定終了
+
+// 1の上端と2の下端
+    coord1 = obj1.GetPos().y - (obj1.GetSize().y - bufferY) / 2.0f;
+    coord2 = obj2.GetPos().y + obj2.GetSize().y / 2.0f;
+    if (coord1 > coord2) {
+        collisionDirection = "　";
+        return false;
+    } // 1の上端>2の下端　当たってないので判定終了
+
+// ここまでたどり着いたら、当たっている
+
+    isColliding = true; // 当たり判定があったことをフラグで示す
+
+    // 衝突の方向を判定
+    if (obj1.GetPos().y < obj2.GetPos().y) {
+        collisionDirection = "↑";
+    }
+    else if (obj1.GetPos().x < obj2.GetPos().x) {
+        collisionDirection = "→";
+    }
+    else if (obj1.GetPos().x > obj2.GetPos().x) {
+        collisionDirection = "←";
+    }
+    else {
+        collisionDirection = "↓";
+    }
+
+    return true;
+}
