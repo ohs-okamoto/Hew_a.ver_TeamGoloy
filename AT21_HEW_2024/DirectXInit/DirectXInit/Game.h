@@ -36,7 +36,7 @@ private:
 	Object star_monster;//星野　敵
 	
 	Object present[image];//プレゼント
-	Object goal_present;//ゴール
+	Object goal;//ゴール
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//

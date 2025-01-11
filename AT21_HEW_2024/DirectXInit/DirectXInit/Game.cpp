@@ -40,6 +40,11 @@ void Game::Init(HWND hWnd)
 //====================================================
 //ステージ
 //====================================================
+	
+	goal.Init(L"asset/house.png", 1, 1);//ゴール
+	goal.SetPos(5800.0f, -70.0f, 0.0f);//位置を特定
+	goal.SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
+	goal.SetAngle(0.0f);//角度設定
 	//山
 	mounten[1].Init(L"asset/background_stage_1_v03.png", 1, 1);//ゲーム背景
 	mounten[1].SetPos(0.0f, 0.0f, 0.0f);//位置を特定
@@ -245,6 +250,8 @@ void Game::Update(void) {
 	{
 		//サンタ
 		DirectX::XMFLOAT3 santa_pos = santa.GetPos();
+		//ゴール
+		DirectX::XMFLOAT3 goal_pos = goal.GetPos();
 		//山
 		DirectX::XMFLOAT3 mounten_pos1 = mounten[1].GetPos();
 		DirectX::XMFLOAT3 mounten_pos2 = mounten[2].GetPos();
@@ -418,6 +425,8 @@ void Game::Update(void) {
 				present_pos3.x -= 5;
 
 				tree_pos.x -= 5;
+
+				goal_pos.x -= 5;
 			}
 		}
 		else
@@ -497,6 +506,8 @@ void Game::Update(void) {
 				present_pos3.x += 5;
 
 				tree_pos.x += 5;
+
+				goal_pos.x += 5;
 			}
 		}
 		else
@@ -549,6 +560,8 @@ void Game::Update(void) {
 
 
 		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+
+		goal.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
 
 		mounten[1].SetPos(mounten_pos1.x, mounten_pos1.y, mounten_pos1.z);
 		mounten[2].SetPos(mounten_pos2.x, mounten_pos2.y, mounten_pos2.z);
@@ -672,8 +685,9 @@ void Game::Draw(void)
 		star_monster.Draw();
 
 		tree.Draw();
-
+		
 		santa.Draw();//プレイヤー描画
+		goal.Draw();
 		
 		break;
 
@@ -710,6 +724,7 @@ void Game::Uninit(void)
 	tree.Uninit();
 	star_monster.Uninit();
 	tonakai.Uninit();
+	goal.Uninit();
 	
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
