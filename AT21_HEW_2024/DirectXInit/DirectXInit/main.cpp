@@ -142,6 +142,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 				// コンソールを先頭に戻して新しい情報を表示
 				// 
 //>>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
+				/*
 				SetConsoleCursorPosition(0, 0);
 				auto santaPos = game.GetSantaPos();
 				std::cout<<"サンタの座標 : (" << game.GetSantaPos().x << ", " << game.GetSantaPos().y << ")\n" << std::endl;
@@ -161,7 +162,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 					bool isColliding = collision.ground_santa(groundObj, santaObj, 50.0f, 50.0f);
 					std::cout << "Ground[" << i << "]の座標 : (" << groundPos.x << "," << groundPos.y << "," << groundPos.z << ") - Collision : " << (collision.isColliding ? "〇":"×") << " - Direction: " << collision.collisionDirection<< "\n";
 				}
-
+				*/
 				game.Draw();
 
 				fpsCounter++;//ゲーム処理を実行したら＋１する

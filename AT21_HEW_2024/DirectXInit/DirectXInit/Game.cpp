@@ -228,7 +228,7 @@ void Game::Update(void) {
 	collision.canMoveLeft = true; // フラグを初期化
 
 
-	//値更新する処理の後に入力処理を記述すること byほたか
+	//値更新する処理の後に入力処理を記述すること by岡本
 
 	switch (changescene)
 	{
@@ -330,7 +330,7 @@ void Game::Update(void) {
 			}
 		}
 
-		
+		/*
 		// 木との当たり判定の追加　ゴロイ
 		if (collision.tree_santa(tree, santa, 200.0f, 0.0f)) {
 
@@ -347,7 +347,7 @@ void Game::Update(void) {
 
 			}
 		}
-
+		*/
 		//
 		// 12/30  サンタの移動アニメーション追加  	畦内　
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
@@ -422,7 +422,7 @@ void Game::Update(void) {
 		}
 		else
 		{
-			//キーを離すとtrueに戻るう
+			//キーを離すとtrueに戻る
 			changeRight = true;
 		}
 
