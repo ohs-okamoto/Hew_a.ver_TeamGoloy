@@ -242,6 +242,7 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
 			changescene = STAGE_1;
+
 		}
 
 
@@ -298,7 +299,7 @@ void Game::Update(void) {
 
 
 		// 一旦仮で重力的なものをを追加します　ゴロイ
-		santa_pos.y -= 1;
+		//santa_pos.y -= 1;
 		
 		// サンタが下に落ちた時に初期位置に戻る処理　ゴロイ
 		if (santa_pos.y == -250.0f)
@@ -335,6 +336,64 @@ void Game::Update(void) {
 					collision.canMoveLeft = false; // 左に移動中なら移動を停止
 				}
 			}
+		}
+
+		if (collision.goal_santa(goal, santa, 250.0f, 0.0f))
+		{	
+			// サンタがゴールの右側にぶつかった場合
+			if (santa_pos.x < goal_pos.x && santa_pos.y < goal_pos.y) 
+			{
+
+				changescene = RESULT;
+				//初期化
+				santa_pos.x = -400;
+
+				mounten_pos1.x = 0;
+				mounten_pos2.x = 1280;
+				mounten_pos3.x = 2560;
+
+				wood_pos1.x = 0;
+				wood_pos2.x = 1280;
+				wood_pos3.x = 2560;
+
+				rock_pos1.x = -250;
+				rock_pos2.x = 300;
+				rock_pos3.x = 1100;
+				rock_pos4.x = 1100;
+				rock_pos5.x = 2300;
+				rock_pos6.x = 4400;
+
+				ground_pos1.x = 0;
+				ground_pos2.x = 1300;
+				ground_pos3.x = 3100;
+				ground_pos4.x = 4500;
+				ground_pos5.x = 5300;
+
+				stairs_pos1.x = 540;
+				stairs_pos2.x = 565;
+				stairs_pos3.x = 600;
+				stairs_pos4.x = 2800;
+
+				snowman_pos1.x = 30;
+				snowman_pos2.x = 1400;
+				snowman_pos3.x = 2700;
+
+				star_monster_pos.x = 4800;
+				tonakai_pos.x = 3600;
+
+				present_pos1.x = 800;
+				present_pos2.x = 2800;
+				present_pos3.x = 4500;
+
+				tree_pos.x = 1900;
+
+				goal_pos.x = 5800;
+			}
+
+			// サンタがゴールにぶつかった場合
+			/*if (santa_pos.x > goal_pos.x && santa_pos.y < goal_pos.y) {
+				changescene = RESULT;
+			}*/
 		}
 
 		/*
