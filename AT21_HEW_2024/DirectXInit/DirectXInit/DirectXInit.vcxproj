@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="direct3d.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="input.cpp" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Direct3d.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="Input.h" />
