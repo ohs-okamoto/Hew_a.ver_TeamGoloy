@@ -20,7 +20,7 @@ bool Collision::square_square(Object obj1, Object obj2)
 	coord2 = obj2.GetPos().x + obj2.GetSize().x / 2.0f;
 	if (coord1 > coord2) { return false; } // 1の左端>2の右端　当たってないので判定終了
 
-	// 1の下端と2の上端
+	// 1の下端と2の上端・」
 	coord1 = obj1.GetPos().y + obj1.GetSize().y / 2.0f;
 	coord2 = obj2.GetPos().y - obj2.GetSize().y / 2.0f;
 	if (coord1 < coord2) { return false; } // 1の下端<2の上端　当たってないので判定終了

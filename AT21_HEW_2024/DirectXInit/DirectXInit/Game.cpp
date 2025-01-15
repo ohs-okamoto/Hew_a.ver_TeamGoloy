@@ -11,12 +11,13 @@ using namespace std;
 void Game::Init(HWND hWnd)
 {
 	D3D_Create(hWnd);//Directxを初期化
+	
 //====================================================
 //プレイヤー関連
 //====================================================
 	santa.Init(L"asset/Santa_Normal_Move.png", 4, 4);//サンタを初期化
 	santa.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
-	santa.SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
+	santa.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
 	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 //====================================================
@@ -615,8 +616,8 @@ void Game::Draw(void)
 {
 
 	D3D_StartRender();//描画開始
-	
-	switch (changescene)
+
+		switch (changescene)
 	{
 	case TITLE://タイトル
 		background.Draw();//プレイヤー描画
