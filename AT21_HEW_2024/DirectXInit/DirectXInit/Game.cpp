@@ -39,7 +39,7 @@ void Game::Init(HWND hWnd)
 	background.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
 	background.SetAngle(0.0f);//角度を設定	    
 //====================================================
-//ステージ
+//ステージ1
 //====================================================
 	
 	goal.Init(L"asset/house.png", 1, 1);//ゴール
@@ -186,6 +186,20 @@ void Game::Init(HWND hWnd)
 	present[3].SetPos(4500.0f, -300.0f, 0.0f);////位置を特定
 	present[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	present[3].SetAngle(0.0f);//角度設定
+//====================================================
+//ステージ2
+//====================================================
+
+
+
+
+
+
+
+
+
+
+
 
 //====================================================
 //てき
@@ -245,7 +259,6 @@ void Game::Update(void) {
 			changescene = STAGE_1;
 
 		}
-
 
 		break;
 	case STAGE_1:
@@ -668,6 +681,13 @@ void Game::Update(void) {
 //>>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
 	}
 	break;
+
+	case STAGE_2:
+	{
+
+	}
+	break;
+
 	case RESULT:
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN))
@@ -689,7 +709,7 @@ void Game::Draw(void)
 
 	D3D_StartRender();//描画開始
 
-		switch (changescene)
+	switch (changescene)
 	{
 	case TITLE://タイトル
 		background.Draw();//プレイヤー描画
@@ -701,6 +721,7 @@ void Game::Draw(void)
 		
 		sky.Draw();
 		star.Draw();
+
 		//やま
 		for (int i = 1; i < image; i++)
 		{
@@ -741,6 +762,7 @@ void Game::Draw(void)
 		{
 			snowman[i].Draw();
 		}
+
 		tonakai.Draw();
 		star_monster.Draw();
 
@@ -750,8 +772,11 @@ void Game::Draw(void)
 		goal.Draw();
 		
 		break;
+	case STAGE_2://リザルト
 
-	case 2://リザルト
+		break;
+
+	case RESULT://リザルト
 
 		break;
 	}
@@ -786,6 +811,10 @@ void Game::Uninit(void)
 	tonakai.Uninit();
 	goal.Uninit();
 	
+
+
+
+
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
 }
