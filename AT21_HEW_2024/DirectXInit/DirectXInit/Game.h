@@ -8,6 +8,7 @@
 enum SceneName {
 	TITLE,
 	STAGE_1,
+	STAGE_2,
 	RESULT
 };
 
@@ -37,6 +38,10 @@ private:
 	
 	Object present[image];//プレゼント
 	Object goal;//ゴール
+
+
+
+
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//

@@ -129,7 +129,9 @@
   <ItemGroup>
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="direct3d.cpp" />
-    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemy.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="input.cpp" />
@@ -167,7 +169,9 @@
   <ItemGroup>
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Direct3d.h" />
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enemy.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="Input.h" />
