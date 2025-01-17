@@ -51,10 +51,10 @@ public:
 	float GetAngle(void);			  //角度をセット
 
 	// コンストラクタ
-	Object();
-	Object(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size, DirectX::XMFLOAT4 _color,  float _speed, int _hp);
-	// デストラクタ
-	virtual ~Object();
+	//Object();
+	//Object(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size, DirectX::XMFLOAT4 _color,  float _speed, int _hp);
+	//// デストラクタ
+	//virtual ~Object();
 
 	//DirectX::XMFLOAT3 GetPos() const; // const 修飾子を追加して宣言
 };
