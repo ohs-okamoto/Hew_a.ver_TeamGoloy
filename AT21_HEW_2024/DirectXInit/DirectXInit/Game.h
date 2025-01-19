@@ -40,15 +40,14 @@ private:
 	Object goal;//ゴール
 
 
-
-
-
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
 
 
 	int changescene = TITLE;//シーン
 	int framcount = 0;
+
+	
 	Input input; //入力
 
 public:
