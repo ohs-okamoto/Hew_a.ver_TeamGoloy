@@ -15,7 +15,7 @@ void Game::Init(HWND hWnd)
 //====================================================
 //プレイヤー関連
 //====================================================
-	santa.Init(L"asset/Santa_Normal_Move.png", 4, 4);//サンタを初期化
+	santa.Init(L"asset/Santa_Normal_Move_v2.png", 4, 4);//サンタを初期化
 	santa.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
 	santa.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
@@ -63,27 +63,27 @@ void Game::Init(HWND hWnd)
 	mounten[3].SetAngle(0.0f);//角度設定
 
 	//地面
-	ground[1].Init(L"asset/ground.png", 1, 1);//地面
+	ground[1].Init(L"asset/Stage.png", 1, 1);//地面
 	ground[1].SetPos(0.0f, -300.0f, 0.0f);//位置を特定
 	ground[1].SetSize(1280, 200.0f, 0.0f);//大きさ設定
 	ground[1].SetAngle(0.0f);//角度設定
 
-	ground[2].Init(L"asset/ground.png", 1, 1);//地面
+	ground[2].Init(L"asset/Stage.png", 1, 1);//地面
 	ground[2].SetPos(1300.0f, -300.0f, 0.0f);//位置を特定
 	ground[2].SetSize(700.0f, 200.0f, 0.0f);//大きさ設定
 	ground[2].SetAngle(0.0f);//角度設定
 
-	ground[3].Init(L"asset/ground.png", 1, 1);//地面
+	ground[3].Init(L"asset/Stage.png", 1, 1);//地面
 	ground[3].SetPos(3100.0f, -300.0f, 0.0f);//位置を特定
 	ground[3].SetSize(2500.0f, 200.0f, 0.0f);//大きさ設定
 	ground[3].SetAngle(0.0f);//角度設定
 
-	ground[4].Init(L"asset/ground.png", 1, 1);//地面
+	ground[4].Init(L"asset/Stage.png", 1, 1);//地面
 	ground[4].SetPos(4500.0f, -450.0f, 0.0f);//位置を特定
-	ground[4].SetSize(500.0f, 200.0f, 0.0f);//大きさ設定
+	ground[4].SetSize(400.0f, 200.0f, 0.0f);//大きさ設定
 	ground[4].SetAngle(0.0f);//角度設定
 
-	ground[5].Init(L"asset/ground.png", 1, 1);//地面
+	ground[5].Init(L"asset/Stage.png", 1, 1);//地面
 	ground[5].SetPos(5300.0f, -300.0f, 0.0f);//位置を特定
 	ground[5].SetSize(1280.0f, 200.0f, 0.0f);//大きさ設定
 	ground[5].SetAngle(0.0f);//角度設定
@@ -104,7 +104,7 @@ void Game::Init(HWND hWnd)
 	wood[3].SetSize(1280.0f, 420.0f, 0.0f);//大きさ設定
 	wood[3].SetAngle(0.0f);//角度設定
 
-	tree.Init(L"asset/koyoju.png", 1, 1);//木
+	tree.Init(L"asset/tree.png", 1, 1);//木
 	tree.SetPos(1900.0f, -70.0f, 0.0f);//位置を特定
 	tree.SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
 	tree.SetAngle(0.0f);//角度設定
@@ -151,17 +151,17 @@ void Game::Init(HWND hWnd)
 	rock[6].SetAngle(0.0f);//角度設定
 
 	//kaidan
-	stairs[1].Init(L"asset/stairs.png", 1, 1);//いわ
+	stairs[1].Init(L"asset/block.png", 1, 1);//いわ
 	stairs[1].SetPos(540.0f, -165.0f, 0.0f);//位置を特定
 	stairs[1].SetSize(200.0f, 70.0f, 0.0f);//大きさ設定
 	stairs[1].SetAngle(0.0f);//角度設定
 
-	stairs[2].Init(L"asset/stairs.png", 1, 1);//いわ
+	stairs[2].Init(L"asset/block.png", 1, 1);//いわ
 	stairs[2].SetPos(565.0f, -95.0f, 0.0f);//位置を特定
 	stairs[2].SetSize(150.0f, 70.0f, 0.0f);//大きさ設定
 	stairs[2].SetAngle(0.0f);//角度設定
 
-	stairs[3].Init(L"asset/stairs.png", 1, 1);//いわあ
+	stairs[3].Init(L"asset/block.png", 1, 1);//いわあ
 	stairs[3].SetPos(600.0f, -25.0f, 0.0f);////位置を特定
 	stairs[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	stairs[3].SetAngle(0.0f);//角度設定
@@ -189,6 +189,8 @@ void Game::Init(HWND hWnd)
 //====================================================
 //ステージ2
 //====================================================
+
+
 
 
 
@@ -246,19 +248,25 @@ void Game::Update(void) {
 	Collision collision; // 宣言
 	collision.canMoveRight = true; // フラグを初期化
 	collision.canMoveLeft = true; // フラグを初期化
-
+	
 
 	//値更新する処理の後に入力処理を記述すること by岡本
 
 	switch (changescene)
 	{
 	case TITLE:
+		
 		//キー入力で本編
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
 			changescene = STAGE_1;
-
 		}
+
+		if (input.GetKeyTrigger(VK_2))
+		{
+			changescene = STAGE_2;
+		}
+
 
 		break;
 	case STAGE_1:
@@ -279,6 +287,7 @@ void Game::Update(void) {
 
 		DirectX::XMFLOAT3 tree_pos = tree.GetPos();
 
+		
 		//地面
 		DirectX::XMFLOAT3 ground_pos1 = ground[1].GetPos();
 		DirectX::XMFLOAT3 ground_pos2 = ground[2].GetPos();
@@ -331,8 +340,8 @@ void Game::Update(void) {
 			if (collision.ground_santa(ground[i], santa, 50.0f, 0.0f)) {
 
 				//// サンタが地面の上にいる場合
-				if (santa_pos.y > ground_pos1.y + ground[i].GetSize().y / 2.0f) {
-                    santa_pos.y = ground_pos1.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
+				if (santa_pos.y > ground_pos.y + ground[i].GetSize().y / 2.0f) {
+                    santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -340,13 +349,13 @@ void Game::Update(void) {
 				}
 
 				// サンタが地面の右側にぶつかった場合
-				if (santa_pos.x < ground_pos1.x && santa_pos.y < ground_pos1.y) {
+				if (santa_pos.x < ground_pos.x && santa_pos.y < ground_pos.y) {
 
 					collision.canMoveRight = false; // 右に移動中なら移動を停止
 				}
 
 				// サンタが地面にぶつかった場合
-				if (santa_pos.x > ground_pos1.x && santa_pos.y < ground_pos1.y) {
+				if (santa_pos.x > ground_pos.x && santa_pos.y < ground_pos.y) {
 					collision.canMoveLeft = false; // 左に移動中なら移動を停止
 				}
 			}
@@ -360,6 +369,7 @@ void Game::Update(void) {
 
 				changescene = RESULT;
 				//初期化
+				
 				santa_pos.x = -400;
 
 				mounten_pos1.x = 0;
@@ -475,6 +485,7 @@ void Game::Update(void) {
 				rock_pos5.x -= 5;
 				rock_pos6.x -= 5;
 
+				
 				ground_pos1.x -= 5;
 				ground_pos2.x -= 5;
 				ground_pos3.x -= 5;
@@ -553,6 +564,7 @@ void Game::Update(void) {
 				rock_pos5.x += 5;
 				rock_pos6.x += 5;
 
+				
 				ground_pos1.x += 5;
 				ground_pos2.x += 5;
 				ground_pos3.x += 5;
@@ -669,6 +681,8 @@ void Game::Update(void) {
 		star_monster.SetPos(star_monster_pos.x, star_monster_pos.y, star_monster_pos.z);
 		tonakai.SetPos(tonakai_pos.x, tonakai_pos.y, tonakai_pos.z);
 
+		
+
 		ground[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		ground[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 		ground[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
@@ -684,6 +698,8 @@ void Game::Update(void) {
 
 	case STAGE_2:
 	{
+
+
 
 	}
 	break;
@@ -774,10 +790,15 @@ void Game::Draw(void)
 		break;
 	case STAGE_2://リザルト
 
+
+
+
+
+
 		break;
 
 	case RESULT://リザルト
-
+		
 		break;
 	}
 
