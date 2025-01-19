@@ -8,6 +8,7 @@ using namespace std;
 //2024年12/24 横スクロール 作成　畦内
 
 //2024年12/31  ステージ１作成 　畦内
+
 void Game::Init(HWND hWnd)
 {
 	D3D_Create(hWnd);//Directxを初期化
@@ -190,6 +191,17 @@ void Game::Init(HWND hWnd)
 //ステージ2
 //====================================================
 
+	//地面
+	Ground_Stge2[1].Init(L"asset/Stage.png", 1, 1);//地面
+	Ground_Stge2[1].SetPos(0.0f, -300.0f, 0.0f);//位置を特定
+	Ground_Stge2[1].SetSize(1280, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[1].SetAngle(0.0f);//角度設定
+
+	Ground_Stge2[2].Init(L"asset/Stage.png", 1, 1);//地面
+	Ground_Stge2[2].SetPos(1300.0f, -300.0f, 0.0f);//位置を特定
+	Ground_Stge2[2].SetSize(700.0f, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[2].SetAngle(0.0f);//角度設定
+	
 
 
 
@@ -663,7 +675,6 @@ void Game::Update(void) {
 		rock[5].SetPos(rock_pos5.x, rock_pos5.y, rock_pos5.z);
 		rock[6].SetPos(rock_pos6.x, rock_pos6.y, rock_pos6.z);
 
-
 		stairs[1].SetPos(stairs_pos1.x, stairs_pos1.y, stairs_pos1.z);
 		stairs[2].SetPos(stairs_pos2.x, stairs_pos2.y, stairs_pos2.z);
 		stairs[3].SetPos(stairs_pos3.x, stairs_pos3.y, stairs_pos3.z);
@@ -681,25 +692,133 @@ void Game::Update(void) {
 		star_monster.SetPos(star_monster_pos.x, star_monster_pos.y, star_monster_pos.z);
 		tonakai.SetPos(tonakai_pos.x, tonakai_pos.y, tonakai_pos.z);
 
-		
-
 		ground[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		ground[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 		ground[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
-//<<<<<<< HEAD
 
-
-//=======
 		ground[4].SetPos(ground_pos4.x, ground_pos4.y, ground_pos4.z);
 		ground[5].SetPos(ground_pos5.x, ground_pos5.y, ground_pos5.z);
-//>>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
+
 	}
 	break;
 
 	case STAGE_2:
 	{
+		//サンタ
+		DirectX::XMFLOAT3 santa_pos = santa.GetPos();
+
+		//山
+		DirectX::XMFLOAT3 mounten_pos1 = mounten[1].GetPos();
+		DirectX::XMFLOAT3 mounten_pos2 = mounten[2].GetPos();
+		DirectX::XMFLOAT3 mounten_pos3 = mounten[3].GetPos();
+
+		//地面
+		DirectX::XMFLOAT3 ground_pos1 = Ground_Stge2[1].GetPos();
+		DirectX::XMFLOAT3 ground_pos2 = Ground_Stge2[2].GetPos();
+
+		//右移動
+		if (collision.canMoveRight && input.GetKeyPress(VK_D))
+		{
+			santa_pos.x += 5;//右移動
+			if (changeRight == true)
+			{
+				//初期化
+				santa.numU = 0;
+				santa.numV = 0;
+				changeRight = false;//一旦falseにして一回しか処理されないようにする
+			}
+			framcount++; //フレームカウント
+			if (framcount % 10 == 0) //１０フレームに一回行われる
+			{
+				santa.numU++;
+				if (santa.numU >= 4)
+				{
+					santa.numU = 0;
+					santa.numV++;
+					if (santa.numV >= 2)
+					{
+						santa.numV = 0;
+					}
+				}
+			}
+
+			if (santa_pos.x >= 0) //プレイヤーが画面真ん中に行ったとき
+			{
+				santa_pos.x -= 5;
+
+				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
+				mounten_pos1.x -= 0.5;
+				mounten_pos2.x -= 0.5;
+				mounten_pos3.x -= 0.5;
+
+				ground_pos1.x -= 5;
+				ground_pos2.x -= 5;
+				
+			}
+		}
+		else
+		{
+			//キーを離すとtrueに戻る
+			changeRight = true;
+		}
+		//左移動
+		if (collision.canMoveLeft && input.GetKeyPress(VK_A))
+		{
+			santa_pos.x -= 5;//左移動
+			if (changeLeft == true)
+			{
+				//初期化
+				santa.numU = 0;
+				santa.numV = 2;
+				changeLeft = false;//一旦falseにして一回しか処理されないようにする
+			}
+			framcount++; //フレームカウント
+			if (framcount % 10 == 0) //１０フレームに一回行われる
+			{
+				santa.numU++;
+				if (santa.numU >= 4)
+				{
+					santa.numU = 0;
+					santa.numV++;
+					if (santa.numV >= 4)
+					{
+						santa.numV = 2;
+					}
+				}
+			}
+
+			if (santa_pos.x <= 0) //プレイヤーが画面真ん中に行ったとき
+			{
+				santa_pos.x += 5;
+
+				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
+				mounten_pos1.x += 0.5;
+				mounten_pos2.x += 0.5;
+				mounten_pos3.x += 0.5;
+
+				ground_pos1.x += 5;
+				ground_pos2.x += 5;
+				
+			}
+		}
+		else
+		{
+			//キーを離すとtrueに戻る
+			changeLeft = true;
+		}
 
 
+
+
+		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+
+		mounten[1].SetPos(mounten_pos1.x, mounten_pos1.y, mounten_pos1.z);
+		mounten[2].SetPos(mounten_pos2.x, mounten_pos2.y, mounten_pos2.z);
+		mounten[3].SetPos(mounten_pos3.x, mounten_pos3.y, mounten_pos3.z);
+
+
+		Ground_Stge2[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
+		Ground_Stge2[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 
 	}
 	break;
@@ -708,7 +827,6 @@ void Game::Update(void) {
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
-
 			changescene = TITLE;//タイトルへ
 		}
 		break;
@@ -788,13 +906,25 @@ void Game::Draw(void)
 		goal.Draw();
 		
 		break;
-	case STAGE_2://リザルト
+	case STAGE_2://ステージ２
+
+		sky.Draw();
+		star.Draw();
+
+		//やま
+		for (int i = 1; i < image; i++)
+		{
+			mounten[i].Draw();//ゲーム背景
+		}
+
+		//じめん
+		for (int i = 1; i < image; i++)
+		{
+			Ground_Stge2[i].Draw();
+		}
 
 
-
-
-
-
+		santa.Draw();//プレイヤー描画
 		break;
 
 	case RESULT://リザルト
@@ -825,6 +955,9 @@ void Game::Uninit(void)
 		stairs[i].Uninit();
 		snowman[i].Uninit();
 		present[i].Uninit();
+		
+
+		Ground_Stge2[i].Uninit();
 		
 	}
 	tree.Uninit();

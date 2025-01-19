@@ -22,11 +22,13 @@ private:
 
 
 	Object santa;//サンタオブジェクト
-	Object mounten[image];//ゲーム画面の背景にある山
-	Object wood[image];//ゲーム画面の背景にある木
-	Object ground[image];//地面
 	Object star;//星
 	Object sky;//空
+	Object mounten[image];//ゲーム画面の背景にある山
+
+
+	Object wood[image];//ゲーム画面の背景にある木
+	Object ground[image];//地面
 	Object tree;//木
 	Object rock[image];//いわ
 	Object icicle[image];//木
@@ -38,6 +40,11 @@ private:
 	
 	Object present[image];//プレゼント
 	Object goal;//ゴール
+
+
+	//ステージ２関連
+	Object Ground_Stge2[image];
+
 
 
 	bool changeRight = true;//キャラの
