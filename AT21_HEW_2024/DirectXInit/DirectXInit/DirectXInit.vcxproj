@@ -135,6 +135,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="physicalOperation.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PhysicalOperationh.h" />
     <ClInclude Include="Santa.h" />
