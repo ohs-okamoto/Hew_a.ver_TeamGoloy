@@ -7,8 +7,9 @@ public:
 	Item(int id); // コンストラクタ
 	~Item(); // デストラクタ
 	
-	void ItemGet(int item);
-	void ItemRelease();
+	void ItemGet(int item); // アイテムを取る
+	void ItemRelease(); // アイテムを取り出す
+	void ItemEffect(); // アイテムを効果
 	bool QueueFull() const; // キューが満杯がどうかを確認
 private:
 	int item; // アイテムの種類

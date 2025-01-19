@@ -25,3 +25,7 @@ void Item::ItemRelease() { // アイテムを取り出す
 bool Item::QueueFull() const { // キューが満杯かどうかを確認
 	return itemQueue.size() >= MAX_ITEMS;
 }
+
+void Item::ItemEffect() { // アイテム効果
+
+}
