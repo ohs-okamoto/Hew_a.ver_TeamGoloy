@@ -44,6 +44,10 @@ private:
 
 	//ステージ２関連
 	Object Ground_Stge2[image];
+	Object Tree_Stge2[image];
+	Object Block_Stge2[image];
+	Object Icicles_Stge2[image];
+	Object Stairs_Stge2[image];
 
 
 

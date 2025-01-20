@@ -167,6 +167,7 @@ void Game::Init(HWND hWnd)
 	stairs[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	stairs[3].SetAngle(0.0f);//角度設定
 
+
 	stairs[4].Init(L"asset/stairs.png", 1, 1);//いわあ
 	stairs[4].SetPos(2800.0f, 80.0f, 0.0f);////位置を特定
 	stairs[4].SetSize(300.0f, 70.0f, 0.0f);//大きさ設定
@@ -198,16 +199,88 @@ void Game::Init(HWND hWnd)
 	Ground_Stge2[1].SetAngle(0.0f);//角度設定
 
 	Ground_Stge2[2].Init(L"asset/Stage.png", 1, 1);//地面
-	Ground_Stge2[2].SetPos(1300.0f, -300.0f, 0.0f);//位置を特定
-	Ground_Stge2[2].SetSize(700.0f, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[2].SetPos(2000.0f, -300.0f, 0.0f);//位置を特定
+	Ground_Stge2[2].SetSize(2350.0f, 200.0f, 0.0f);//大きさ設定
 	Ground_Stge2[2].SetAngle(0.0f);//角度設定
+
+	Ground_Stge2[3].Init(L"asset/Stage.png", 1, 1);//地面
+	Ground_Stge2[3].SetPos(3300.0f, -420.0f, 0.0f);//位置を特定
+	Ground_Stge2[3].SetSize(250.0f, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[3].SetAngle(0.0f);//角度設定
 	
+	Ground_Stge2[4].Init(L"asset/Stage.png", 1, 1);//地面
+	Ground_Stge2[4].SetPos(3800.0f, -300.0f, 0.0f);//位置を特定
+	Ground_Stge2[4].SetSize(800, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[4].SetAngle(0.0f);//角度設定
 
+	Ground_Stge2[5].Init(L"asset/Stage.png", 1, 1);//地面
+	Ground_Stge2[5].SetPos(4450.0f, -420.0f, 0.0f);//位置を特定
+	Ground_Stge2[5].SetSize(500, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[5].SetAngle(0.0f);//角度設定
 
+	Ground_Stge2[6].Init(L"asset/Stage.png", 1, 1);//地面
+	Ground_Stge2[6].SetPos(5300.0f, -300.0f, 0.0f);//位置を特定
+	Ground_Stge2[6].SetSize(1200.0f, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[6].SetAngle(0.0f);//角度設定
 
+	Ground_Stge2[7].Init(L"asset/Stage.png", 1, 1);//地面
+	Ground_Stge2[7].SetPos(7400.0f, -300.0f, 0.0f);//位置を特定
+	Ground_Stge2[7].SetSize(1300.0f, 200.0f, 0.0f);//大きさ設定
+	Ground_Stge2[7].SetAngle(0.0f);//角度設定
 
+	//ブロック
+	Block_Stge2[1].Init(L"asset/stairs.png", 1, 1);//ブロック
+	Block_Stge2[1].SetPos(2000.0f, 200.0f, 0.0f);//位置を特定
+	Block_Stge2[1].SetSize(450, 50.0f, 0.0f);//大きさ設定
+	Block_Stge2[1].SetAngle(0.0f);//角度設定
 
+	//つらら
+	Icicles_Stge2[1].Init(L"asset/turara.png", 1, 1);//つらら
+	Icicles_Stge2[1].SetPos(1800.0f, 100.0f, 0.0f);//位置を特定
+	Icicles_Stge2[1].SetSize(150, 200.0f, 0.0f);//大きさ設定
+	Icicles_Stge2[1].SetAngle(0.0f);//角度設定
 
+	Icicles_Stge2[2].Init(L"asset/turara.png", 1, 1);//つらら
+	Icicles_Stge2[2].SetPos(2000.0f, 100.0f, 0.0f);//位置を特定
+	Icicles_Stge2[2].SetSize(150, 200.0f, 0.0f);//大きさ設定
+	Icicles_Stge2[2].SetAngle(0.0f);//角度設定
+
+	Icicles_Stge2[3].Init(L"asset/turara.png", 1, 1);//つらら
+	Icicles_Stge2[3].SetPos(2200.0f, 100.0f, 0.0f);//位置を特定
+	Icicles_Stge2[3].SetSize(150, 200.0f, 0.0f);//大きさ設定
+	Icicles_Stge2[3].SetAngle(0.0f);//角度設定
+
+	//木
+	Tree_Stge2[1].Init(L"asset/tree3.png", 1, 1);//木
+	Tree_Stge2[1].SetPos(900.0f, -70.0f, 0.0f);//位置を特定
+	Tree_Stge2[1].SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
+	Tree_Stge2[1].SetAngle(0.0f);//角度設定
+
+	//kaidan
+	Stairs_Stge2[1].Init(L"asset/block2.png", 1, 1);//いわ
+	Stairs_Stge2[1].SetPos(5720.0f, -170.0f, 0.0f);//位置を特定
+	Stairs_Stge2[1].SetSize(370.0f, 65.0f, 0.0f);//大きさ設定
+	Stairs_Stge2[1].SetAngle(0.0f);//角度設定
+
+	Stairs_Stge2[2].Init(L"asset/block2.png", 1, 1);//いわ
+	Stairs_Stge2[2].SetPos(5755.0f, -105.0f, 0.0f);//位置を特定
+	Stairs_Stge2[2].SetSize(300.0f, 65.0f, 0.0f);//大きさ設定
+	Stairs_Stge2[2].SetAngle(0.0f);//角度設定
+
+	Stairs_Stge2[3].Init(L"asset/block2.png", 1, 1);//いわあ
+	Stairs_Stge2[3].SetPos(5790.0f, -40.0f, 0.0f);////位置を特定
+	Stairs_Stge2[3].SetSize(230.0f, 65.0f, 0.0f);//大きさ設定
+	Stairs_Stge2[3].SetAngle(0.0f);//角度設定
+
+	Stairs_Stge2[4].Init(L"asset/block2.png", 1, 1);//いわ
+	Stairs_Stge2[4].SetPos(5825.0f, 25.0f, 0.0f);//位置を特定
+	Stairs_Stge2[4].SetSize(160.0f, 65.0f, 0.0f);//大きさ設定
+	Stairs_Stge2[4].SetAngle(0.0f);//角度設定
+
+	Stairs_Stge2[5].Init(L"asset/block2.png", 1, 1);//いわ
+	Stairs_Stge2[5].SetPos(5860.0f, 90.0f, 0.0f);//位置を特定
+	Stairs_Stge2[5].SetSize(90.0f, 65.0f, 0.0f);//大きさ設定
+	Stairs_Stge2[5].SetAngle(0.0f);//角度設定
 
 
 
@@ -273,7 +346,7 @@ void Game::Update(void) {
 		{
 			changescene = STAGE_1;
 		}
-
+		//２を押すとステージ２へ	
 		if (input.GetKeyTrigger(VK_2))
 		{
 			changescene = STAGE_2;
@@ -701,7 +774,7 @@ void Game::Update(void) {
 
 	}
 	break;
-
+	
 	case STAGE_2:
 	{
 		//サンタ
@@ -715,6 +788,25 @@ void Game::Update(void) {
 		//地面
 		DirectX::XMFLOAT3 ground_pos1 = Ground_Stge2[1].GetPos();
 		DirectX::XMFLOAT3 ground_pos2 = Ground_Stge2[2].GetPos();
+		DirectX::XMFLOAT3 ground_pos3 = Ground_Stge2[3].GetPos();
+		DirectX::XMFLOAT3 ground_pos4 = Ground_Stge2[4].GetPos();
+		DirectX::XMFLOAT3 ground_pos5 = Ground_Stge2[5].GetPos();
+		DirectX::XMFLOAT3 ground_pos6 = Ground_Stge2[6].GetPos();
+		DirectX::XMFLOAT3 ground_pos7 = Ground_Stge2[7].GetPos();
+		//つらら
+		DirectX::XMFLOAT3 icicle_pos1 = Icicles_Stge2[1].GetPos();
+		DirectX::XMFLOAT3 icicle_pos2 = Icicles_Stge2[2].GetPos();
+		DirectX::XMFLOAT3 icicle_pos3 = Icicles_Stge2[3].GetPos();
+		//階段
+		DirectX::XMFLOAT3 stairs_pos1 = Stairs_Stge2[1].GetPos();
+		DirectX::XMFLOAT3 stairs_pos2 = Stairs_Stge2[2].GetPos();
+		DirectX::XMFLOAT3 stairs_pos3 = Stairs_Stge2[3].GetPos();
+		DirectX::XMFLOAT3 stairs_pos4 = Stairs_Stge2[4].GetPos();
+		DirectX::XMFLOAT3 stairs_pos5 = Stairs_Stge2[5].GetPos();
+		//木
+		DirectX::XMFLOAT3 tree_pos1 = Tree_Stge2[1].GetPos();
+		//つららの上
+		DirectX::XMFLOAT3 block_pos1 = Block_Stge2[1].GetPos();
 
 		//右移動
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
@@ -747,13 +839,32 @@ void Game::Update(void) {
 				santa_pos.x -= 5;
 
 				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
+				//山
 				mounten_pos1.x -= 0.5;
 				mounten_pos2.x -= 0.5;
 				mounten_pos3.x -= 0.5;
-
+				//地面
 				ground_pos1.x -= 5;
 				ground_pos2.x -= 5;
-				
+				ground_pos3.x -= 5;
+				ground_pos4.x -= 5;
+				ground_pos5.x -= 5;
+				ground_pos6.x -= 5;
+				ground_pos7.x -= 5;
+				//木
+				tree_pos1.x -= 5;
+				//つらら上
+				block_pos1.x -= 5;
+				//つらら
+				icicle_pos1.x -= 5;
+				icicle_pos2.x -= 5;
+				icicle_pos3.x -= 5;
+				//階段
+				stairs_pos1.x -= 5;
+				stairs_pos2.x -= 5;
+				stairs_pos3.x -= 5;
+				stairs_pos4.x -= 5;
+				stairs_pos5.x -= 5;
 			}
 		}
 		else
@@ -792,13 +903,32 @@ void Game::Update(void) {
 				santa_pos.x += 5;
 
 				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
+				//山
 				mounten_pos1.x += 0.5;
 				mounten_pos2.x += 0.5;
 				mounten_pos3.x += 0.5;
-
+				//地面
 				ground_pos1.x += 5;
 				ground_pos2.x += 5;
-				
+				ground_pos3.x += 5;
+				ground_pos4.x += 5;
+				ground_pos5.x += 5;
+				ground_pos6.x += 5;
+				ground_pos7.x += 5;
+				//木
+				tree_pos1.x += 5;
+				//つらら上
+				block_pos1.x += 5;
+				//つらら
+				icicle_pos1.x += 5;
+				icicle_pos2.x += 5;
+				icicle_pos3.x += 5;
+				//階段
+				stairs_pos1.x += 5;
+				stairs_pos2.x += 5;
+				stairs_pos3.x += 5;
+				stairs_pos4.x += 5;
+				stairs_pos5.x += 5;
 			}
 		}
 		else
@@ -807,19 +937,56 @@ void Game::Update(void) {
 			changeLeft = true;
 		}
 
+		//画像が画面外に行ったときにその画像を一番後ろに置く
+			//例　画像１が画面外→画像３の後ろに 
+			//山のスクロール　1280=画面サイズ
+		if (mounten_pos1.x <= -1280 * 2)
+		{
+			mounten_pos1.x = mounten_pos3.x + SCREEN_WIDTH;
+
+		}
+
+		if (mounten_pos2.x <= -1280 * 2)
+		{
+			mounten_pos2.x = mounten_pos1.x + SCREEN_WIDTH;
+
+		}
+
+		if (mounten_pos3.x <= -1280 * 2)
+		{
+			mounten_pos3.x = mounten_pos2.x + SCREEN_WIDTH;
+
+		}
 
 
+		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);//サンタ
 
-		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
-
+		//背景　山
 		mounten[1].SetPos(mounten_pos1.x, mounten_pos1.y, mounten_pos1.z);
 		mounten[2].SetPos(mounten_pos2.x, mounten_pos2.y, mounten_pos2.z);
 		mounten[3].SetPos(mounten_pos3.x, mounten_pos3.y, mounten_pos3.z);
-
-
+		//ステージ地面
 		Ground_Stge2[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		Ground_Stge2[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
-
+		Ground_Stge2[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
+		Ground_Stge2[4].SetPos(ground_pos4.x, ground_pos4.y, ground_pos4.z);
+		Ground_Stge2[5].SetPos(ground_pos5.x, ground_pos5.y, ground_pos5.z);
+		Ground_Stge2[6].SetPos(ground_pos6.x, ground_pos6.y, ground_pos6.z);
+		Ground_Stge2[7].SetPos(ground_pos7.x, ground_pos7.y, ground_pos7.z);
+		//つらら
+		Icicles_Stge2[1].SetPos(icicle_pos1.x, icicle_pos1.y, icicle_pos1.z);
+		Icicles_Stge2[2].SetPos(icicle_pos2.x, icicle_pos2.y, icicle_pos2.z);
+		Icicles_Stge2[3].SetPos(icicle_pos3.x, icicle_pos3.y, icicle_pos3.z);
+		//階段
+		Stairs_Stge2[1].SetPos(stairs_pos1.x, stairs_pos1.y, stairs_pos1.z);
+		Stairs_Stge2[2].SetPos(stairs_pos2.x, stairs_pos2.y, stairs_pos2.z);
+		Stairs_Stge2[3].SetPos(stairs_pos3.x, stairs_pos3.y, stairs_pos3.z);
+		Stairs_Stge2[4].SetPos(stairs_pos4.x, stairs_pos4.y, stairs_pos4.z);
+		Stairs_Stge2[5].SetPos(stairs_pos5.x, stairs_pos5.y, stairs_pos5.z);
+		//木
+		Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
+		//つらら上
+		Block_Stge2[1].SetPos(block_pos1.x, block_pos1.y, block_pos1.z);
 	}
 	break;
 
@@ -923,6 +1090,27 @@ void Game::Draw(void)
 			Ground_Stge2[i].Draw();
 		}
 
+		//木
+		for (int i = 1; i < image; i++)
+		{
+			Tree_Stge2[i].Draw();
+		}
+
+		//ブロック
+		for (int i = 1; i < image; i++)
+		{
+			Block_Stge2[i].Draw();
+		}
+		//つらら
+		for (int i = 1; i < image; i++)
+		{
+			Icicles_Stge2[i].Draw();
+		}
+		//階段
+		for (int i = 1; i < image; i++)
+		{
+			Stairs_Stge2[i].Draw();
+		}
 
 		santa.Draw();//プレイヤー描画
 		break;
@@ -958,17 +1146,18 @@ void Game::Uninit(void)
 		
 
 		Ground_Stge2[i].Uninit();
-		
+		Tree_Stge2[i].Uninit();
+		Block_Stge2[i].Uninit();
+		Icicles_Stge2[i].Uninit();
+		Stairs_Stge2[i].Uninit();
+
+
 	}
 	tree.Uninit();
 	star_monster.Uninit();
 	tonakai.Uninit();
 	goal.Uninit();
 	
-
-
-
-
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
 }
