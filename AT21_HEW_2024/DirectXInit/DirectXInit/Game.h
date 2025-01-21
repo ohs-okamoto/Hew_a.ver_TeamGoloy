@@ -48,7 +48,7 @@ private:
 	Object Block_Stge2[image];
 	Object Icicles_Stge2[image];
 	Object Stairs_Stge2[image];
-
+	Object Present_Stage2[image];
 
 
 	bool changeRight = true;//ƒLƒƒƒ‰‚Ì
