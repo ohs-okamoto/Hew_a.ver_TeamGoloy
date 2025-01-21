@@ -234,10 +234,11 @@ void Game::Init(HWND hWnd)
 	Block_Stge2[1].SetSize(450, 50.0f, 0.0f);//大きさ設定
 	Block_Stge2[1].SetAngle(0.0f);//角度設定
 
-	Block_Stge2[2].Init(L"asset/block.png", 1, 1);//ブロック
-	Block_Stge2[2].SetPos(2000.0f, 200.0f, 0.0f);//位置を特定
-	Block_Stge2[2].SetSize(450, 50.0f, 0.0f);//大きさ設定
-	Block_Stge2[2].SetAngle(0.0f);//角度設定
+	//壊せるブロック
+	Breakrock_Stge2[1].Init(L"asset/block.png", 1, 1);//ブロック
+	Breakrock_Stge2[1].SetPos(4450.0f, -250.0f, 0.0f);//位置を特定
+	Breakrock_Stge2[1].SetSize(150,150.0f, 0.0f);//大きさ設定
+	Breakrock_Stge2[1].SetAngle(0.0f);//角度設定
 
 	//つらら
 	Icicles_Stge2[1].Init(L"asset/turara.png", 1, 1);//つらら
@@ -309,7 +310,7 @@ void Game::Init(HWND hWnd)
 	Present_Stage2[2].SetAngle(0.0f);//角度設定
 
 	Present_Stage2[3].Init(L"asset/present.png", 1, 1);//プレゼント
-	Present_Stage2[3].SetPos(0.0f, -40.0f, 0.0f);////位置を特定
+	Present_Stage2[3].SetPos(4450.0f, -250.0f, 0.0f);////位置を特定
 	Present_Stage2[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Present_Stage2[3].SetAngle(0.0f);//角度設定
 
@@ -842,6 +843,8 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 tree_pos3 = Tree_Stge2[3].GetPos();
 		//つららの上
 		DirectX::XMFLOAT3 block_pos1 = Block_Stge2[1].GetPos();
+		//壊せるブロック
+		DirectX::XMFLOAT3 breakrock_pos1 = Breakrock_Stge2[1].GetPos();
 
 		//右移動
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
@@ -892,6 +895,8 @@ void Game::Update(void) {
 				tree_pos3.x -= 5;
 				//つらら上
 				block_pos1.x -= 5;
+				//壊せるブロック
+				breakrock_pos1.x -= 5;
 				//つらら
 				icicle_pos1.x -= 5;
 				icicle_pos2.x -= 5;
@@ -962,6 +967,8 @@ void Game::Update(void) {
 				tree_pos3.x += 5;
 				//つらら上
 				block_pos1.x += 5;
+				//壊せるブロック
+				breakrock_pos1.x += 5;
 				//つらら
 				icicle_pos1.x += 5;
 				icicle_pos2.x += 5;
@@ -1040,6 +1047,8 @@ void Game::Update(void) {
 		Tree_Stge2[3].SetPos(tree_pos3.x, tree_pos3.y, tree_pos3.z);
 		//つらら上
 		Block_Stge2[1].SetPos(block_pos1.x, block_pos1.y, block_pos1.z);
+		//壊せるブロック
+		Breakrock_Stge2[1].SetPos(breakrock_pos1.x, breakrock_pos1.y, breakrock_pos1.z);
 	}
 	break;
 
@@ -1164,12 +1173,16 @@ void Game::Draw(void)
 		{
 			Stairs_Stge2[i].Draw();
 		}
+		//壊せるブロック
+		for (int i = 1; i < image; i++)
+		{
+			Breakrock_Stge2[i].Draw();
+		}
 		//プレゼント
 		for (int i = 1; i < image; i++)
 		{
 			Present_Stage2[i].Draw();
 		}
-
 		santa.Draw();//プレイヤー描画
 		break;
 
@@ -1209,7 +1222,7 @@ void Game::Uninit(void)
 		Icicles_Stge2[i].Uninit();
 		Stairs_Stge2[i].Uninit();
 		Present_Stage2[i].Uninit();
-
+		Breakrock_Stge2[i].Uninit();
 	}
 	tree.Uninit();
 	star_monster.Uninit();
