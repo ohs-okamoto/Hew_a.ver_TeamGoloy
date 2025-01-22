@@ -234,12 +234,6 @@ void Game::Init(HWND hWnd)
 	Block_Stge2[1].SetSize(450, 50.0f, 0.0f);//大きさ設定
 	Block_Stge2[1].SetAngle(0.0f);//角度設定
 
-	//壊せるブロック
-	Breakrock_Stge2[1].Init(L"asset/block.png", 1, 1);//ブロック
-	Breakrock_Stge2[1].SetPos(4450.0f, -250.0f, 0.0f);//位置を特定
-	Breakrock_Stge2[1].SetSize(150,150.0f, 0.0f);//大きさ設定
-	Breakrock_Stge2[1].SetAngle(0.0f);//角度設定
-
 	//つらら
 	Icicles_Stge2[1].Init(L"asset/turara.png", 1, 1);//つらら
 	Icicles_Stge2[1].SetPos(1800.0f, 100.0f, 0.0f);//位置を特定
@@ -261,16 +255,6 @@ void Game::Init(HWND hWnd)
 	Tree_Stge2[1].SetPos(900.0f, -70.0f, 0.0f);//位置を特定
 	Tree_Stge2[1].SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
 	Tree_Stge2[1].SetAngle(0.0f);//角度設定
-
-	Tree_Stge2[2].Init(L"asset/tree.png", 1, 1);//木
-	Tree_Stge2[2].SetPos(3450.0f, -70.0f, 0.0f);//位置を特定
-	Tree_Stge2[2].SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
-	Tree_Stge2[2].SetAngle(0.0f);//角度設定
-
-	Tree_Stge2[3].Init(L"asset/tree3.png", 1, 1);//木
-	Tree_Stge2[3].SetPos(900.0f, -70.0f, 0.0f);//位置を特定
-	Tree_Stge2[3].SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
-	Tree_Stge2[3].SetAngle(0.0f);//角度設定
 
 	//kaidan
 	Stairs_Stge2[1].Init(L"asset/block2.png", 1, 1);//いわ
@@ -298,21 +282,7 @@ void Game::Init(HWND hWnd)
 	Stairs_Stge2[5].SetSize(90.0f, 65.0f, 0.0f);//大きさ設定
 	Stairs_Stge2[5].SetAngle(0.0f);//角度設定
 
-	//プレゼント
-	Present_Stage2[1].Init(L"asset/present.png", 1, 1);//プレゼント
-	Present_Stage2[1].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
-	Present_Stage2[1].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
-	Present_Stage2[1].SetAngle(0.0f);//角度設定
 
-	Present_Stage2[2].Init(L"asset/present.png", 1, 1);//プレゼント
-	Present_Stage2[2].SetPos(3300.0f, -265.0f, 0.0f);//位置を特定
-	Present_Stage2[2].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
-	Present_Stage2[2].SetAngle(0.0f);//角度設定
-
-	Present_Stage2[3].Init(L"asset/present.png", 1, 1);//プレゼント
-	Present_Stage2[3].SetPos(4450.0f, -250.0f, 0.0f);////位置を特定
-	Present_Stage2[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
-	Present_Stage2[3].SetAngle(0.0f);//角度設定
 
 
 
@@ -850,10 +820,6 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 icicle_pos1 = Icicles_Stge2[1].GetPos();
 		DirectX::XMFLOAT3 icicle_pos2 = Icicles_Stge2[2].GetPos();
 		DirectX::XMFLOAT3 icicle_pos3 = Icicles_Stge2[3].GetPos();
-		//プレゼント
-		DirectX::XMFLOAT3 present_pos1 = Present_Stage2[1].GetPos();
-		DirectX::XMFLOAT3 present_pos2 = Present_Stage2[2].GetPos();
-		DirectX::XMFLOAT3 present_pos3 = Present_Stage2[3].GetPos();
 		//階段
 		DirectX::XMFLOAT3 stairs_pos1 = Stairs_Stge2[1].GetPos();
 		DirectX::XMFLOAT3 stairs_pos2 = Stairs_Stge2[2].GetPos();
@@ -862,12 +828,8 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos5 = Stairs_Stge2[5].GetPos();
 		//木
 		DirectX::XMFLOAT3 tree_pos1 = Tree_Stge2[1].GetPos();
-		DirectX::XMFLOAT3 tree_pos2 = Tree_Stge2[2].GetPos();
-		DirectX::XMFLOAT3 tree_pos3 = Tree_Stge2[3].GetPos();
 		//つららの上
 		DirectX::XMFLOAT3 block_pos1 = Block_Stge2[1].GetPos();
-		//壊せるブロック
-		DirectX::XMFLOAT3 breakrock_pos1 = Breakrock_Stge2[1].GetPos();
 
 		//右移動
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
@@ -914,20 +876,12 @@ void Game::Update(void) {
 				ground_pos7.x -= 5;
 				//木
 				tree_pos1.x -= 5;
-				tree_pos2.x -= 5;
-				tree_pos3.x -= 5;
 				//つらら上
 				block_pos1.x -= 5;
-				//壊せるブロック
-				breakrock_pos1.x -= 5;
 				//つらら
 				icicle_pos1.x -= 5;
 				icicle_pos2.x -= 5;
 				icicle_pos3.x -= 5;
-				//プレゼント
-				present_pos1.x -= 5;
-				present_pos2.x -= 5;
-				present_pos3.x -= 5;
 				//階段
 				stairs_pos1.x -= 5;
 				stairs_pos2.x -= 5;
@@ -986,20 +940,12 @@ void Game::Update(void) {
 				ground_pos7.x += 5;
 				//木
 				tree_pos1.x += 5;
-				tree_pos2.x += 5;
-				tree_pos3.x += 5;
 				//つらら上
 				block_pos1.x += 5;
-				//壊せるブロック
-				breakrock_pos1.x += 5;
 				//つらら
 				icicle_pos1.x += 5;
 				icicle_pos2.x += 5;
 				icicle_pos3.x += 5;
-				//プレゼント
-				present_pos1.x += 5;
-				present_pos2.x += 5;
-				present_pos3.x += 5;
 				//階段
 				stairs_pos1.x += 5;
 				stairs_pos2.x += 5;
@@ -1054,10 +1000,6 @@ void Game::Update(void) {
 		Icicles_Stge2[1].SetPos(icicle_pos1.x, icicle_pos1.y, icicle_pos1.z);
 		Icicles_Stge2[2].SetPos(icicle_pos2.x, icicle_pos2.y, icicle_pos2.z);
 		Icicles_Stge2[3].SetPos(icicle_pos3.x, icicle_pos3.y, icicle_pos3.z);
-		//プレゼント
-		Present_Stage2[1].SetPos(present_pos1.x, present_pos1.y, present_pos1.z);
-		Present_Stage2[2].SetPos(present_pos2.x, present_pos2.y, present_pos2.z);
-		Present_Stage2[3].SetPos(present_pos3.x, present_pos3.y, present_pos3.z);
 		//階段
 		Stairs_Stge2[1].SetPos(stairs_pos1.x, stairs_pos1.y, stairs_pos1.z);
 		Stairs_Stge2[2].SetPos(stairs_pos2.x, stairs_pos2.y, stairs_pos2.z);
@@ -1066,12 +1008,8 @@ void Game::Update(void) {
 		Stairs_Stge2[5].SetPos(stairs_pos5.x, stairs_pos5.y, stairs_pos5.z);
 		//木
 		Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
-		Tree_Stge2[2].SetPos(tree_pos2.x, tree_pos2.y, tree_pos2.z);
-		Tree_Stge2[3].SetPos(tree_pos3.x, tree_pos3.y, tree_pos3.z);
 		//つらら上
 		Block_Stge2[1].SetPos(block_pos1.x, block_pos1.y, block_pos1.z);
-		//壊せるブロック
-		Breakrock_Stge2[1].SetPos(breakrock_pos1.x, breakrock_pos1.y, breakrock_pos1.z);
 	}
 	break;
 
@@ -1196,16 +1134,7 @@ void Game::Draw(void)
 		{
 			Stairs_Stge2[i].Draw();
 		}
-		//壊せるブロック
-		for (int i = 1; i < image; i++)
-		{
-			Breakrock_Stge2[i].Draw();
-		}
-		//プレゼント
-		for (int i = 1; i < image; i++)
-		{
-			Present_Stage2[i].Draw();
-		}
+
 		santa.Draw();//プレイヤー描画
 		break;
 
@@ -1244,8 +1173,8 @@ void Game::Uninit(void)
 		Block_Stge2[i].Uninit();
 		Icicles_Stge2[i].Uninit();
 		Stairs_Stge2[i].Uninit();
-		Present_Stage2[i].Uninit();
-		Breakrock_Stge2[i].Uninit();
+
+
 	}
 	tree.Uninit();
 	star_monster.Uninit();
