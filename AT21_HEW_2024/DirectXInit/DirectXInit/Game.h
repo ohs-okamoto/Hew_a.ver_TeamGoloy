@@ -43,13 +43,13 @@ private:
 
 
 	//ステージ２関連
-	Object Ground_Stge2[image];
-	Object Tree_Stge2[image];
-	Object Block_Stge2[image];
-	Object Icicles_Stge2[image];
-	Object Stairs_Stge2[image];
-
-
+	Object Ground_Stge2[image];//ステージ２の床
+	Object Tree_Stge2[image];//木
+	Object Block_Stge2[image];//ブロック
+	Object Icicles_Stge2[image];//つらら
+	Object Stairs_Stge2[image];//階段
+	Object Present_Stage2[image];//プレゼント
+	Object Breakrock_Stge2[image];//壊せる岩
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
