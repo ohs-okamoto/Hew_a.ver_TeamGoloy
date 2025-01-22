@@ -135,13 +135,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 				//ゲーム処理実行
 				game.Update();
 
-//<<<<<<< HEAD
+
 				// コンソールを先頭に戻して新しい情報を表示 ゴロイ
-//=======
+
 				//texture.Load();変更途中
 				// コンソールを先頭に戻して新しい情報を表示
 				// 
-//>>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
+
 				/*
 				SetConsoleCursorPosition(0, 0);
 				auto santaPos = game.GetSantaPos();

@@ -325,19 +325,19 @@ void Game::Init(HWND hWnd)
 //てき
 //====================================================
 
-	snowman[1].Init(L"asset/snowman.png", 4, 1);//雪だるまを初期化
+	snowman[1].Init(L"asset/Snowman_Move_v2.png", 4, 1);//雪だるまを初期化
 	snowman[1].SetPos(30.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[1].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[1].SetAngle(0.0f);             		//角度を設定
 	snowman[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	snowman[2].Init(L"asset/snowman.png", 4, 1);//雪だるまを初期化
+	snowman[2].Init(L"asset/Snowman_Move_v2.png", 4, 1);//雪だるまを初期化
 	snowman[2].SetPos(1400.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[2].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[2].SetAngle(0.0f);             		//角度を設定
 	snowman[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	snowman[3].Init(L"asset/snowman.png", 4, 1);//ゆきを初期化
+	snowman[3].Init(L"asset/Snowman_Move_v2.png", 4, 1);//ゆきを初期化
 	snowman[3].SetPos(2700.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[3].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[3].SetAngle(0.0f);             		//角度を設定
@@ -426,21 +426,15 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos2 = stairs[2].GetPos();
 		DirectX::XMFLOAT3 stairs_pos3 = stairs[3].GetPos();
 		DirectX::XMFLOAT3 stairs_pos4 = stairs[4].GetPos();
-<<<<<<< HEAD
-		//敵
-		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();
-		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();
-		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();
-		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();
-		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();
-=======
 
+		//敵
+		
 		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();          //雪の敵
 		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();		   //雪の敵
 		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();		   //雪の敵
 		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();	   //星の敵
 		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();			   //鹿の敵
->>>>>>> 7d103ecc69355c59e963885ae52861049b2edb74
+
 
 
 		DirectX::XMFLOAT3 present_pos1 = present[1].GetPos();
@@ -469,6 +463,9 @@ void Game::Update(void) {
 				
 			}
 		}
+
+		snowman_pos1.x -= 1;
+
 
 			// 地面との当たり判定の追加 ゴロイ
 		for (int i = 0; i < image; i++) {
@@ -790,18 +787,18 @@ void Game::Update(void) {
 		//		snowman_pos1.x += moveX;
 		//	}
 		//}
-		
-		if (framcount % 1 == 0) //1０フレームに一回行われる
-		{
-			
-				snowman[1].numU++;
-				if (snowman[1].numU >= 4)
-				{
-					snowman[1].numU = 0;
+		//
+		//if (framcount % 1 == 0) //1０フレームに一回行われる
+		//{
+		//	
+		//		snowman[1].numU++;
+		//		if (snowman[1].numU >= 4)
+		//		{
+		//			snowman[1].numU = 0;
 
-			}
-			
-		}
+		//	}
+		//	
+		//}
 		
 
 		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
