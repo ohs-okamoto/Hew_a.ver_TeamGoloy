@@ -472,9 +472,26 @@ void Game::Update(void) {
 			}
 		}
 
-		snowman_pos1.x -= 1;
+		//-------敵移動--------//
+		if (moveFg == false)
+		{
+			snowman_pos1.x -= 1;
+			if (snowman_pos1.x < ground_pos1.x-240)//左はしに行ったら
+			{
+				moveFg = true;
+			}
+		}
 
+		if (moveFg == true)
+		{
+			snowman_pos1.x += 1;
+			if (snowman_pos1.x > ground_pos1.x + 240)//右端に行ったら
+			{
+				moveFg = false;
+			}
+		}
 
+		
 			// 地面との当たり判定の追加 ゴロイ
 		for (int i = 0; i < image; i++) {
 			DirectX::XMFLOAT3 ground_pos = GetGroundPos(i);
