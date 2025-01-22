@@ -457,9 +457,17 @@ void Game::Update(void) {
 		if (framcount2 % 10 == 0) //１０フレームに一回行われる
 		{
 			snowman[1].numU++;
-			if (snowman[1].numU >= 4)
+			snowman[2].numU++;
+			snowman[3].numU++;
+			star_monster.numU++;
+			tonakai.numU++;
+			if (snowman[1].numU >= 4 || snowman[2].numU >= 4 || snowman[3].numU >= 4 || star_monster.numU >= 3 || tonakai.numU >= 4)
 			{
 				snowman[1].numU = 0;
+				snowman[2].numU = 0;
+				snowman[3].numU = 0;
+				star_monster.numU = 0;
+				tonakai.numU = 0;
 				
 			}
 		}
@@ -776,29 +784,7 @@ void Game::Update(void) {
 
 		}
 		
-		//敵の移動&アニメーション
-		//if (snowman_pos1.x >= 20) {
-		//	for (int moveX = 0; moveX += 4; moveX <= 60) {
-		//		snowman_pos1.x += moveX;
-		//	}
-		//}
-		//if (snowman_pos1.x >= 60) {
-		//	for (int moveX = 0; moveX -= 4; moveX >= 20) {
-		//		snowman_pos1.x += moveX;
-		//	}
-		//}
-		//
-		//if (framcount % 1 == 0) //1０フレームに一回行われる
-		//{
-		//	
-		//		snowman[1].numU++;
-		//		if (snowman[1].numU >= 4)
-		//		{
-		//			snowman[1].numU = 0;
-
-		//	}
-		//	
-		//}
+		
 		
 
 		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
