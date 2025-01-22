@@ -16,11 +16,14 @@ void Game::Init(HWND hWnd)
 //====================================================
 //プレイヤー関連
 //====================================================
+
 	santa.Init(L"asset/Santa_Normal_Move_v2.png", 4, 4);//サンタを初期化
 	santa.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
 	santa.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
 	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+
 //====================================================
 //タイトル
 //====================================================
@@ -120,7 +123,7 @@ void Game::Init(HWND hWnd)
 	star.SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	star.SetAngle(0.0f);//角度設定
 
-	//いわ
+	//回収いわ
 	rock[1].Init(L"asset/iwa.png", 1, 1);//いわ
 	rock[1].SetPos(-250.0f, -175.0f, 0.0f);//位置を特定
 	rock[1].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
@@ -167,13 +170,12 @@ void Game::Init(HWND hWnd)
 	stairs[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	stairs[3].SetAngle(0.0f);//角度設定
 
-
 	stairs[4].Init(L"asset/stairs.png", 1, 1);//いわあ
 	stairs[4].SetPos(2800.0f, 80.0f, 0.0f);////位置を特定
 	stairs[4].SetSize(300.0f, 70.0f, 0.0f);//大きさ設定
 	stairs[4].SetAngle(0.0f);//角度設定
 
-
+	//プレゼント
 	present[1].Init(L"asset/present.png", 1, 1);//いわあ
 	present[1].SetPos(800.0f, -25.0f, 0.0f);////位置を特定
 	present[1].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
@@ -314,6 +316,37 @@ void Game::Init(HWND hWnd)
 	Present_Stage2[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Present_Stage2[3].SetAngle(0.0f);//角度設定
 
+	//回収できる岩
+	Collectrock_Stage2[1].Init(L"asset/iwa.png", 1, 1);//プレゼント
+	Collectrock_Stage2[1].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[1].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Collectrock_Stage2[1].SetAngle(0.0f);//角度設定
+
+	Collectrock_Stage2[2].Init(L"asset/iwa.png", 1, 1);//プレゼント
+	Collectrock_Stage2[2].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[2].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Collectrock_Stage2[2].SetAngle(0.0f);//角度設定
+
+	Collectrock_Stage2[3].Init(L"asset/iwa.png", 1, 1);//プレゼント
+	Collectrock_Stage2[3].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Collectrock_Stage2[3].SetAngle(0.0f);//角度設定
+
+	Collectrock_Stage2[4].Init(L"asset/iwa.png", 1, 1);//プレゼント
+	Collectrock_Stage2[4].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[4].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Collectrock_Stage2[4].SetAngle(0.0f);//角度設定
+
+	Collectrock_Stage2[5].Init(L"asset/iwa.png", 1, 1);//プレゼント
+	Collectrock_Stage2[5].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[5].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Collectrock_Stage2[5].SetAngle(0.0f);//角度設定
+
+	Collectrock_Stage2[6].Init(L"asset/iwa.png", 1, 1);//プレゼント
+	Collectrock_Stage2[6].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[6].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Collectrock_Stage2[6].SetAngle(0.0f);//角度設定
+
 
 
 
@@ -423,7 +456,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos2 = stairs[2].GetPos();
 		DirectX::XMFLOAT3 stairs_pos3 = stairs[3].GetPos();
 		DirectX::XMFLOAT3 stairs_pos4 = stairs[4].GetPos();
-
+		//敵
 		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();
 		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();
 		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();
@@ -446,7 +479,17 @@ void Game::Update(void) {
 			santa_pos.y = -175.0f;
 		}
 
-		
+
+		framcount2++;
+		if (framcount2 % 10 == 0) //１０フレームに一回行われる
+		{
+			snowman[1].numU++;
+			if (snowman[1].numU >= 4)
+			{
+				snowman[1].numU = 0;
+				
+			}
+		}
 
 			// 地面との当たり判定の追加 ゴロイ
 		for (int i = 0; i < image; i++) {

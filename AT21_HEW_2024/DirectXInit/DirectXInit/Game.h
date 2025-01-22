@@ -50,6 +50,7 @@ private:
 	Object Stairs_Stge2[image];//階段
 	Object Present_Stage2[image];//プレゼント
 	Object Breakrock_Stge2[image];//壊せる岩
+	Object Collectrock_Stage2[image];
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
@@ -57,6 +58,7 @@ private:
 
 	int changescene = TITLE;//シーン
 	int framcount = 0;
+	int framcount2 = 0;
 
 	
 	Input input; //入力
