@@ -3,10 +3,10 @@
 #include "Collision.h"
 #include <iostream>
 
+
 using namespace std;
 
 //2024年12/24 横スクロール 作成　畦内
-
 //2024年12/31  ステージ１作成 　畦内
 
 void Game::Init(HWND hWnd)
@@ -456,12 +456,21 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos2 = stairs[2].GetPos();
 		DirectX::XMFLOAT3 stairs_pos3 = stairs[3].GetPos();
 		DirectX::XMFLOAT3 stairs_pos4 = stairs[4].GetPos();
+<<<<<<< HEAD
 		//敵
 		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();
 		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();
 		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();
 		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();
 		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();
+=======
+
+		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();          //雪の敵
+		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();		   //雪の敵
+		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();		   //雪の敵
+		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();	   //星の敵
+		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();			   //鹿の敵
+>>>>>>> 7d103ecc69355c59e963885ae52861049b2edb74
 
 
 		DirectX::XMFLOAT3 present_pos1 = present[1].GetPos();
@@ -799,8 +808,31 @@ void Game::Update(void) {
 			wood_pos3.x = wood_pos2.x + SCREEN_WIDTH;
 
 		}
+		
+		//敵の移動&アニメーション
+		//if (snowman_pos1.x >= 20) {
+		//	for (int moveX = 0; moveX += 4; moveX <= 60) {
+		//		snowman_pos1.x += moveX;
+		//	}
+		//}
+		//if (snowman_pos1.x >= 60) {
+		//	for (int moveX = 0; moveX -= 4; moveX >= 20) {
+		//		snowman_pos1.x += moveX;
+		//	}
+		//}
+		
+		if (framcount % 1 == 0) //1０フレームに一回行われる
+		{
+			
+				snowman[1].numU++;
+				if (snowman[1].numU >= 4)
+				{
+					snowman[1].numU = 0;
 
-
+			}
+			
+		}
+		
 
 		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
 
