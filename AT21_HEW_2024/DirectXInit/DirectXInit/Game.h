@@ -60,7 +60,13 @@ private:
 	int framcount = 0;
 	int framcount2 = 0;
 
-	bool moveFg = false;
+	bool moveFg1 = false;
+	bool moveFg2= false;
+	bool moveFg3 = false;
+	bool moveFg4 = false;
+	bool moveFg5 = false;
+
+
 	Input input; //“ü—Í
 
 public:

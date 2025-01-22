@@ -338,7 +338,7 @@ void Game::Init(HWND hWnd)
 	snowman[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
 	snowman[3].Init(L"asset/Snowman_Move_v2.png", 4, 1);//ゆきを初期化
-	snowman[3].SetPos(2700.0f, -160.0f, 0.0f);		//位置を設定
+	snowman[3].SetPos(2000.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[3].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[3].SetAngle(0.0f);             		//角度を設定
 	snowman[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
@@ -473,23 +473,83 @@ void Game::Update(void) {
 		}
 
 		//-------敵移動--------//
-		if (moveFg == false)
+
+		//雪だるま（１）
+		if (moveFg1 == false)
 		{
 			snowman_pos1.x -= 1;
 			if (snowman_pos1.x < ground_pos1.x-240)//左はしに行ったら
 			{
-				moveFg = true;
+				moveFg1 = true;
 			}
 		}
 
-		if (moveFg == true)
+		if (moveFg1 == true)
 		{
 			snowman_pos1.x += 1;
 			if (snowman_pos1.x > ground_pos1.x + 240)//右端に行ったら
 			{
-				moveFg = false;
+				moveFg1 = false;
 			}
 		}
+
+		//雪だるま（2）
+		if (moveFg2 == false)
+		{
+			snowman_pos2.x -= 1;
+			if (snowman_pos2.x < ground_pos2.x - 180)//左はしに行ったら
+			{
+				moveFg2 = true;
+			}
+		}
+
+		if (moveFg2 == true)
+		{
+			snowman_pos2.x += 1;
+			if (snowman_pos2.x > ground_pos2.x + 240)//右端に行ったら
+			{
+				moveFg2 = false;
+			}
+		}
+
+		//雪だるま（3）
+		if (moveFg3 == false)
+		{
+			snowman_pos3.x -= 1;
+			if (snowman_pos3.x < ground_pos3.x - 700)//左に行ったら
+			{
+				moveFg3 = true;
+			}
+		}
+
+		if (moveFg3 == true)
+		{
+			snowman_pos3.x += 1;
+			if (snowman_pos3.x > ground_pos3.x - 200)//右端に行ったら
+			{
+				moveFg3 = false;
+			}
+		}
+
+		//星の敵（１）
+		if (moveFg4 == false)
+		{
+			star_monster_pos.x -= 2;
+			if (star_monster_pos.x < ground_pos3.x - 0)//左に行ったら
+			{
+				moveFg4 = true;
+			}
+		}
+
+		if (moveFg4 == true)
+		{
+			star_monster_pos.x += 2;
+			if (star_monster_pos.x > ground_pos3.x + 300)//右端に行ったら
+			{
+				moveFg4 = false;
+			}
+		}
+
 
 		
 			// 地面との当たり判定の追加 ゴロイ
