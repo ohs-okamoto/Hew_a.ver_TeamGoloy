@@ -3,10 +3,10 @@
 #include "Collision.h"
 #include <iostream>
 
+
 using namespace std;
 
 //2024”N12/24 ‰¡ƒXƒNƒ[ƒ‹ ì¬@Œl“à
-
 //2024”N12/31  ƒXƒe[ƒW‚Pì¬ @Œl“à
 
 void Game::Init(HWND hWnd)
@@ -394,11 +394,11 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos3 = stairs[3].GetPos();
 		DirectX::XMFLOAT3 stairs_pos4 = stairs[4].GetPos();
 
-		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();
-		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();
-		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();
-		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();
-		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();
+		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();          //á‚Ì“G
+		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();		   //á‚Ì“G
+		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();		   //á‚Ì“G
+		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();	   //¯‚Ì“G
+		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();			   //Ž­‚Ì“G
 
 
 		DirectX::XMFLOAT3 present_pos1 = present[1].GetPos();
@@ -726,8 +726,31 @@ void Game::Update(void) {
 			wood_pos3.x = wood_pos2.x + SCREEN_WIDTH;
 
 		}
+		
+		//“G‚ÌˆÚ“®&ƒAƒjƒ[ƒVƒ‡ƒ“
+		//if (snowman_pos1.x >= 20) {
+		//	for (int moveX = 0; moveX += 4; moveX <= 60) {
+		//		snowman_pos1.x += moveX;
+		//	}
+		//}
+		//if (snowman_pos1.x >= 60) {
+		//	for (int moveX = 0; moveX -= 4; moveX >= 20) {
+		//		snowman_pos1.x += moveX;
+		//	}
+		//}
+		
+		if (framcount % 1 == 0) //1‚OƒtƒŒ[ƒ€‚Éˆê‰ñs‚í‚ê‚é
+		{
+			
+				snowman[1].numU++;
+				if (snowman[1].numU >= 4)
+				{
+					snowman[1].numU = 0;
 
-
+			}
+			
+		}
+		
 
 		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
 
