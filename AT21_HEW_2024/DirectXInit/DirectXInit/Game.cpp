@@ -45,7 +45,11 @@ void Game::Init(HWND hWnd)
 //====================================================
 //ステージ1
 //====================================================
-	
+	Stage1_Loading.Init(L"asset/Stage1.png", 1, 1);//を初期化
+	Stage1_Loading.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
+	Stage1_Loading.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
+	Stage1_Loading.SetAngle(0.0f);//角度を設定	    
+
 	goal.Init(L"asset/house.png", 1, 1);//ゴール
 	goal.SetPos(5800.0f, -70.0f, 0.0f);//位置を特定
 	goal.SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
@@ -325,19 +329,19 @@ void Game::Init(HWND hWnd)
 //てき
 //====================================================
 
-	snowman[1].Init(L"asset/Snowman_Move_v2.png", 4, 1);//雪だるまを初期化
+	snowman[1].Init(L"asset/Snowman_Move_v3.png", 4, 2);//雪だるまを初期化
 	snowman[1].SetPos(30.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[1].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[1].SetAngle(0.0f);             		//角度を設定
 	snowman[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	snowman[2].Init(L"asset/Snowman_Move_v2.png", 4, 1);//雪だるまを初期化
+	snowman[2].Init(L"asset/Snowman_Move_v3.png", 4, 2);//雪だるまを初期化
 	snowman[2].SetPos(1400.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[2].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[2].SetAngle(0.0f);             		//角度を設定
 	snowman[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	snowman[3].Init(L"asset/Snowman_Move_v2.png", 4, 1);//ゆきを初期化
+	snowman[3].Init(L"asset/Snowman_Move_v3.png", 4, 2);//ゆきを初期化
 	snowman[3].SetPos(2000.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[3].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[3].SetAngle(0.0f);             		//角度を設定
@@ -350,7 +354,7 @@ void Game::Init(HWND hWnd)
 	star_monster.SetAngle(0.0f);             		//角度を設定
 	star_monster.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	tonakai.Init(L"asset/tonakai.png", 4, 1);//となかいを初期化
+	tonakai.Init(L"asset/Tonakai_Move_v3.png", 4, 2);//となかいを初期化
 	tonakai.SetPos(4800.0f, -140.0f, 0.0f);		//位置を設定
 	tonakai.SetSize(220.0f, 130.0f, 0.f);	//大きさを設定
 	tonakai.SetAngle(0.0f);             		//角度を設定
@@ -373,11 +377,11 @@ void Game::Update(void) {
 	switch (changescene)
 	{
 	case TITLE:
-		
+	{
 		//キー入力で本編
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
-			changescene = STAGE_1;
+			changescene = STAGE1_LOADING;
 		}
 		//２を押すとステージ２へ	
 		if (input.GetKeyTrigger(VK_2))
@@ -385,7 +389,17 @@ void Game::Update(void) {
 			changescene = STAGE_2;
 		}
 
-
+	}
+	break;
+	//ステージ選択した後に出るやつ
+	case STAGE1_LOADING:
+	{
+		framcount++;
+		if (framcount % 100 == 0) //２秒弱ぐらいでシーン切り替え
+		{
+			changescene = STAGE_1;
+		}
+	}
 		break;
 	case STAGE_1:
 	{
@@ -477,6 +491,7 @@ void Game::Update(void) {
 		//雪だるま（１）
 		if (moveFg1 == false)
 		{
+			snowman[1].numV = 0;
 			snowman_pos1.x -= 1;
 			if (snowman_pos1.x < ground_pos1.x-240)//左はしに行ったら
 			{
@@ -486,6 +501,7 @@ void Game::Update(void) {
 
 		if (moveFg1 == true)
 		{
+			snowman[1].numV = 1;
 			snowman_pos1.x += 1;
 			if (snowman_pos1.x > ground_pos1.x + 240)//右端に行ったら
 			{
@@ -496,6 +512,7 @@ void Game::Update(void) {
 		//雪だるま（2）
 		if (moveFg2 == false)
 		{
+			snowman[2].numV = 0;
 			snowman_pos2.x -= 1;
 			if (snowman_pos2.x < ground_pos2.x - 180)//左はしに行ったら
 			{
@@ -505,6 +522,7 @@ void Game::Update(void) {
 
 		if (moveFg2 == true)
 		{
+			snowman[2].numV = 1;
 			snowman_pos2.x += 1;
 			if (snowman_pos2.x > ground_pos2.x + 240)//右端に行ったら
 			{
@@ -515,6 +533,7 @@ void Game::Update(void) {
 		//雪だるま（3）
 		if (moveFg3 == false)
 		{
+			snowman[3].numV = 0;
 			snowman_pos3.x -= 1;
 			if (snowman_pos3.x < ground_pos3.x - 700)//左に行ったら
 			{
@@ -524,6 +543,7 @@ void Game::Update(void) {
 
 		if (moveFg3 == true)
 		{
+			snowman[3].numV = 1;
 			snowman_pos3.x += 1;
 			if (snowman_pos3.x > ground_pos3.x - 200)//右端に行ったら
 			{
@@ -553,6 +573,7 @@ void Game::Update(void) {
 		//トナカイの敵
 		if (moveFg5 == false)
 		{
+			tonakai.numV = 0;
 			tonakai_pos.x -= 2;
 			if (tonakai_pos.x < ground_pos5.x - 400)//左に行ったら
 			{
@@ -562,6 +583,7 @@ void Game::Update(void) {
 
 		if (moveFg5 == true)
 		{
+			tonakai.numV = 1;
 			tonakai_pos.x += 2;
 			if (tonakai_pos.x > ground_pos5.x +200)//右端に行ったら
 			{
@@ -1171,7 +1193,9 @@ void Game::Draw(void)
 		titlesanta.Draw();
 		title.Draw();
 		break;
-
+	case STAGE1_LOADING:
+		Stage1_Loading.Draw();
+		break;
 	case STAGE_1://ゲーム
 		
 		sky.Draw();
@@ -1287,7 +1311,7 @@ void Game::Uninit(void)
 
 	sky.Uninit();//終了
 	star.Uninit();//終了
-
+	Stage1_Loading.Uninit();
 	for (int i = 1; i < image; i++)
 	{
 		ground[i].Uninit();

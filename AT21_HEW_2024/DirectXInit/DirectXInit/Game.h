@@ -7,6 +7,7 @@
 
 enum SceneName {
 	TITLE,
+	STAGE1_LOADING,
 	STAGE_1,
 	STAGE_2,
 	RESULT
@@ -19,6 +20,7 @@ private:
 	Object titlesanta;//タイトル
 	Object title;//タイトル
 
+	Object Stage1_Loading;
 
 
 	Object santa;//サンタオブジェクト
