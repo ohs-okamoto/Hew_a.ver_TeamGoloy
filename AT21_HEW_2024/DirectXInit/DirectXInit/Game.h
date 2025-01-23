@@ -8,6 +8,7 @@
 
 enum SceneName {
 	TITLE,
+	STAGE1_LOADING,
 	STAGE_1,
 	STAGE_2,
 	RESULT
@@ -20,6 +21,7 @@ private:
 	Object titlesanta;//タイトル
 	Object title;//タイトル
 
+	Object Stage1_Loading;
 
 
 	Object santa;//サンタオブジェクト
@@ -46,9 +48,14 @@ private:
 
 
 	//ステージ２関連
-	Object Ground_Stge2[image];
-
-
+	Object Ground_Stge2[image];//ステージ２の床
+	Object Tree_Stge2[image];//木
+	Object Block_Stge2[image];//ブロック
+	Object Icicles_Stge2[image];//つらら
+	Object Stairs_Stge2[image];//階段
+	Object Present_Stage2[image];//プレゼント
+	Object Breakrock_Stge2[image];//壊せる岩
+	Object Collectrock_Stage2[image];
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
@@ -56,8 +63,17 @@ private:
 
 	int changescene = TITLE;//シーン
 	int framcount = 0;
+	int framcount2 = 0;
+
+	bool moveFg1 = false;
+	bool moveFg2= false;
+	bool moveFg3 = false;
+	bool moveFg4 = false;
+	bool moveFg5 = false;
 
 	
+
+
 	Input input; //入力
 
 	

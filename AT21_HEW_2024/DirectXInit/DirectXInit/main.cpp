@@ -135,34 +135,34 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 				//ゲーム処理実行
 				game.Update();
 
-//<<<<<<< HEAD
+
 				// コンソールを先頭に戻して新しい情報を表示 ゴロイ
-//=======
+
 				//texture.Load();変更途中
 				// コンソールを先頭に戻して新しい情報を表示
 				// 
-//>>>>>>> e8321b3097c4f2e0599a6db2b02d5b3f315aeefc
-				/*
-				SetConsoleCursorPosition(0, 0);
-				auto santaPos = game.GetSantaPos();
-				std::cout<<"サンタの座標 : (" << game.GetSantaPos().x << ", " << game.GetSantaPos().y << ")\n" << std::endl;
+
 				
+				//SetConsoleCursorPosition(0, 0);
+				//auto santaPos = game.GetSantaPos();
+				//std::cout<<"サンタの座標 : (" << game.GetSantaPos().x << ", " << game.GetSantaPos().y << ")\n" << std::endl;
+				//
+				//
+				//// 地面の座標を出力
+				//for (int i = 0; i < image; ++i) {
+				//	auto groundPos = game.GetGroundPos(i);
+				//	const auto& groundObj = game.GetGround(i);
+				//	const auto& santaObj = game.GetGround(i);
+				//	Collision collision; // 当たり判定オブジェクト
+
+				//	
+
+
+				//	// 地面とサンタの当たり判定チェック
+				//	bool isColliding = collision.ground_santa(groundObj, santaObj, 50.0f, 50.0f);
+				//	std::cout << "Ground[" << i << "]の座標 : (" << groundPos.x << "," << groundPos.y << "," << groundPos.z << ") - Collision : " << (collision.isColliding ? "〇":"×") << " - Direction: " << collision.collisionDirection<< "\n";
+				//}
 				
-				// 地面の座標を出力
-				for (int i = 0; i < image; ++i) {
-					auto groundPos = game.GetGroundPos(i);
-					const auto& groundObj = game.GetGround(i);
-					const auto& santaObj = game.GetGround(i);
-					Collision collision; // 当たり判定オブジェクト
-
-					
-
-
-					// 地面とサンタの当たり判定チェック
-					bool isColliding = collision.ground_santa(groundObj, santaObj, 50.0f, 50.0f);
-					std::cout << "Ground[" << i << "]の座標 : (" << groundPos.x << "," << groundPos.y << "," << groundPos.z << ") - Collision : " << (collision.isColliding ? "〇":"×") << " - Direction: " << collision.collisionDirection<< "\n";
-				}
-				*/
 				game.Draw();
 
 				fpsCounter++;//ゲーム処理を実行したら＋１する
