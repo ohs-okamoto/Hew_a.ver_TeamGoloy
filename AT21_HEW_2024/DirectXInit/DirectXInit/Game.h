@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "input.h"
 #include "Texture.h"
+#include "Item.h"
 
 #define image		(10)
 
@@ -25,6 +26,8 @@ private:
 	Object star;//¯
 	Object sky;//‹ó
 	Object mounten[image];//ƒQ[ƒ€‰æ–Ê‚Ì”wŒi‚É‚ ‚éR
+
+	Object itemUi[9]; // ƒAƒCƒeƒ€“üè‚ÌUI
 
 
 	Object wood[image];//ƒQ[ƒ€‰æ–Ê‚Ì”wŒi‚É‚ ‚é–Ø
@@ -57,7 +60,14 @@ private:
 	
 	Input input; //“ü—Í
 
+	
+
+	int itemID;
+	Item* item; //ƒƒ“ƒo•Ï”
+
+
 public:
+	
 	void Init(HWND hWnd);//‰Šú‰»
 	void Update(void);//XV
 	void Draw();//•`‰æ

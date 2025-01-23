@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Texture.h"
 #include "Collision.h"
+#include "Item.h"
 #include <iostream>
 
 using namespace std;
@@ -8,6 +9,8 @@ using namespace std;
 //2024年12/24 横スクロール 作成　畦内
 
 //2024年12/31  ステージ１作成 　畦内
+
+
 
 void Game::Init(HWND hWnd)
 {
@@ -38,7 +41,67 @@ void Game::Init(HWND hWnd)
 	background.Init(L"asset/background.png",1,1);//プレイヤーを初期化
 	background.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
 	background.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
-	background.SetAngle(0.0f);//角度を設定	    
+	background.SetAngle(0.0f);//角度を設定	 
+
+	
+//====================================================
+// UI
+//====================================================
+
+	// いわ bug1
+	itemUi[0].Init(L"asset/iwa.png", 1, 1); //いわ
+	itemUi[0].SetPos(-600.0f, 300.0f, 0.0f);//位置を特定
+	itemUi[0].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
+	itemUi[0].SetAngle(0.0f);//角度設定
+
+	// いわ bug2
+	itemUi[1].Init(L"asset/iwa.png", 1, 1); //いわ
+	itemUi[1].SetPos(-600.0f, 220.0f, 0.0f);//位置を特定
+	itemUi[1].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
+	itemUi[1].SetAngle(0.0f);//角度設定
+
+	// いわ bud3
+	itemUi[2].Init(L"asset/iwa.png", 1, 1); //いわ
+	itemUi[2].SetPos(-600.0f, 90.0f, 0.0f);//位置を特定
+	itemUi[2].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
+	itemUi[2].SetAngle(0.0f);//角度設定
+
+	// 雪玉 bug1
+	itemUi[3].Init(L"asset/yukidama.png", 1, 1); //雪玉
+	itemUi[3].SetPos(-600.0f, 300.0f, 0.0f);//位置を特定
+	itemUi[3].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	itemUi[3].SetAngle(0.0f);//角度設定
+
+	// 雪玉 bug2
+	itemUi[4].Init(L"asset/yukidama.png", 1, 1); //雪玉
+	itemUi[4].SetPos(-600.0f, 220.0f, 0.0f);//位置を特定
+	itemUi[4].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	itemUi[4].SetAngle(0.0f);//角度設定
+
+	// 雪玉 bug3
+	itemUi[5].Init(L"asset/yukidama.png", 1, 1); //雪玉
+	itemUi[5].SetPos(-600.0f, 90.0f, 0.0f);//位置を特定
+	itemUi[5].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	itemUi[5].SetAngle(0.0f);//角度設定
+
+	// つらら bug1
+	itemUi[6].Init(L"asset/turara.png", 1, 1); //いわ
+	itemUi[6].SetPos(-600.0f, 300.0f, 0.0f);//位置を特定
+	itemUi[6].SetSize(90.0f, 90.0f, 0.0f);//大きさ設定
+	itemUi[6].SetAngle(0.0f);//角度設定
+
+	// つらら bug2
+	itemUi[7].Init(L"asset/turara.png", 1, 1); //いわ
+	itemUi[7].SetPos(-600.0f, 220.0f, 0.0f);//位置を特定
+	itemUi[7].SetSize(90.0f, 90.0f, 0.0f);//大きさ設定
+	itemUi[7].SetAngle(0.0f);//角度設定
+
+	// つらら bug3
+	itemUi[8].Init(L"asset/turara.png", 1, 1); //いわ
+	itemUi[8].SetPos(-600.0f, 120.0f, 0.0f);//位置を特定
+	itemUi[8].SetSize(90.0f, 90.0f, 0.0f);//大きさ設定
+	itemUi[8].SetAngle(0.0f);//角度設定
+
 //====================================================
 //ステージ1
 //====================================================
@@ -252,6 +315,9 @@ void Game::Init(HWND hWnd)
 
 
 	changescene = TITLE;//シーン初期化
+
+	item = new Item(1);
+
 }
 
 void Game::Update(void) {
@@ -260,6 +326,8 @@ void Game::Update(void) {
 	Collision collision; // 宣言
 	collision.canMoveRight = true; // フラグを初期化
 	collision.canMoveLeft = true; // フラグを初期化
+
+	//Item* item;
 	
 
 	//値更新する処理の後に入力処理を記述すること by岡本
@@ -332,6 +400,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 present_pos2 = present[2].GetPos();
 		DirectX::XMFLOAT3 present_pos3 = present[3].GetPos();
 
+		//item->GetItem_1();
 
 		// 一旦仮で重力的なものをを追加します　ゴロイ
 		//santa_pos.y -= 1;
@@ -426,13 +495,32 @@ void Game::Update(void) {
 				goal_pos.x = 5800;
 			}
 
+
 			// サンタがゴールにぶつかった場合
 			/*if (santa_pos.x > goal_pos.x && santa_pos.y < goal_pos.y) {
 				changescene = RESULT;
 			}*/
 		}
 
-		/*
+		// サンタがアイテムに当たった時
+		if (collision.square_square(rock[1], santa))
+		{
+
+				if (input.GetKeyTrigger(VK_S))
+				{
+					/*itemID = 1;*/
+					item->ItemGet(1); // いわを回収
+					
+				}
+			}
+			else {// 当たってない場合
+				if (input.GetKeyTrigger(VK_S))
+				{
+					item->ItemRelease(); // 取り出す
+				}
+		}
+
+		//
 		// 木との当たり判定の追加　ゴロイ
 		if (collision.tree_santa(tree, santa, 200.0f, 0.0f)) {
 
@@ -440,7 +528,8 @@ void Game::Update(void) {
 			if (santa_pos.x < tree_pos.x) {
 
 				collision.canMoveRight = false; // 右に移動中なら移動を停止
-
+				
+				
 			}
 			// サンタが木の左側にぶつかった場合
 			if (santa_pos.x > tree_pos.x) {
@@ -449,8 +538,8 @@ void Game::Update(void) {
 
 			}
 		}
-		*/
-		//
+		
+		
 		// 12/30  サンタの移動アニメーション追加  	畦内　
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
 		{
@@ -820,6 +909,8 @@ void Game::Update(void) {
 		Ground_Stge2[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		Ground_Stge2[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
 
+
+	/*	item.SetItem_1();*/
 	}
 	break;
 
@@ -842,6 +933,7 @@ void Game::Draw(void)
 {
 
 	D3D_StartRender();//描画開始
+	
 
 	switch (changescene)
 	{
@@ -853,8 +945,12 @@ void Game::Draw(void)
 
 	case STAGE_1://ゲーム
 		
+		
+
 		sky.Draw();
 		star.Draw();
+
+		
 
 		//やま
 		for (int i = 1; i < image; i++)
@@ -904,9 +1000,58 @@ void Game::Draw(void)
 		
 		santa.Draw();//プレイヤー描画
 		goal.Draw();
+
+
+		///////// UI  ///////////////////
+
+		// bug1
+		if (item->GetItem_1()==1) // 岩
+		{
+			itemUi[0].Draw();
+		}
+		if (item->GetItem_1() == 2) // 雪玉
+		{
+			itemUi[3].Draw();
+		}
+		if (item->GetItem_1() == 3) // つらら
+		{
+			itemUi[6].Draw();
+		}
+
+		// bug2
+		if (item->GetItem_2()==1) // 岩
+		{
+			itemUi[1].Draw();
+		}
+		if (item->GetItem_2()==2) // 雪玉
+		{
+			itemUi[4].Draw();
+		}
+		if (item->GetItem_2() == 3) // つらら
+		{
+			itemUi[7].Draw();
+		}
+
+		// bug3
+		if (item->GetItem_3()==1) // 岩
+		{
+			itemUi[2].Draw();
+		}
+		if (item->GetItem_3() == 2) // 雪玉
+		{
+			itemUi[5].Draw();
+		}
+		if (item->GetItem_3() == 3) // つらら
+		{
+			itemUi[8].Draw();
+		}
+		
+		/////////////////////////////////
+
 		
 		break;
 	case STAGE_2://ステージ２
+
 
 		sky.Draw();
 		star.Draw();
@@ -939,6 +1084,8 @@ void Game::Draw(void)
 
 void Game::Uninit(void)
 {
+
+	delete item;
 	background.Uninit();//プレイヤー終了
 	titlesanta.Uninit();//終了
 	title.Uninit();//終了
