@@ -1233,11 +1233,11 @@ void Game::Update(void) {
 		//ステージ地面
 		Ground_Stge2[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		Ground_Stge2[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
-<<<<<<< HEAD
+
 
 
 	/*	item.SetItem_1();*/
-=======
+
 		Ground_Stge2[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
 		Ground_Stge2[4].SetPos(ground_pos4.x, ground_pos4.y, ground_pos4.z);
 		Ground_Stge2[5].SetPos(ground_pos5.x, ground_pos5.y, ground_pos5.z);
@@ -1257,7 +1257,7 @@ void Game::Update(void) {
 		Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
 		//つらら上
 		Block_Stge2[1].SetPos(block_pos1.x, block_pos1.y, block_pos1.z);
->>>>>>> 5a0d8beec961da692d0520c801773fd15c4b0063
+
 	}
 	break;
 
