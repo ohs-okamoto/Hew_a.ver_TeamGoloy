@@ -1,6 +1,6 @@
 #include"PhysicalOperationh.h"
-
 /*
+
 // 障害物の衝突をチェック
 bool CheckCollision(double posX, double posY) {
     // シンプルな衝突判定: X, Y座標が特定範囲に入ったら衝突
@@ -40,7 +40,7 @@ void UpdatePlayer(Player& player, const Input& input) {
     // 地面到達時の処理
     if (player.posY <= 0.0) {
         player.posY = 0.0;
-        player.velY = 0.0;
+        player.velY = 0.0; 
         player.state = PlayerState::Normal;
         player.glideCount = 2; // 滑空回数をリセット
         std::cout << "Player landed!" << std::endl;
