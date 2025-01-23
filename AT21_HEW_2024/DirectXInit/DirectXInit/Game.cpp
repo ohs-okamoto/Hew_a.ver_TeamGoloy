@@ -343,7 +343,7 @@ void Game::Init(HWND hWnd)
 	snowman[3].SetAngle(0.0f);             		//角度を設定
 	snowman[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-
+	
 	star_monster.Init(L"asset/star_monster.png", 3, 2);//ほしを初期化
 	star_monster.SetPos(3600.0f, -150.0f, 0.0f);		//位置を設定
 	star_monster.SetSize(200.0f, 110.0f, 0.f);	//大きさを設定
@@ -531,22 +531,41 @@ void Game::Update(void) {
 			}
 		}
 
-		//星の敵（１）
+		//星の敵（１)
+
 		if (moveFg4 == false)
 		{
-			star_monster_pos.x -= 2;
-			if (star_monster_pos.x < ground_pos3.x - 0)//左に行ったら
+				star_monster_pos.x -= 2;
+				if (star_monster_pos.x < ground_pos3.x - 130)//左に行ったら
 			{
-				moveFg4 = true;
+					moveFg4 = true;
 			}
 		}
-
+		
 		if (moveFg4 == true)
 		{
 			star_monster_pos.x += 2;
-			if (star_monster_pos.x > ground_pos3.x + 300)//右端に行ったら
+			if (star_monster_pos.x > ground_pos3.x + 700)//右端に行ったら
 			{
 				moveFg4 = false;
+			}
+		}
+		//トナカイの敵
+		if (moveFg5 == false)
+		{
+			tonakai_pos.x -= 2;
+			if (tonakai_pos.x < ground_pos5.x - 400)//左に行ったら
+			{
+				moveFg5 = true;
+			}
+		}
+
+		if (moveFg5 == true)
+		{
+			tonakai_pos.x += 2;
+			if (tonakai_pos.x > ground_pos5.x +200)//右端に行ったら
+			{
+				moveFg5 = false;
 			}
 		}
 

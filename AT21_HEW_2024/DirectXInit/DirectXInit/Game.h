@@ -66,6 +66,8 @@ private:
 	bool moveFg4 = false;
 	bool moveFg5 = false;
 
+	
+
 
 	Input input; //“ü—Í
 
