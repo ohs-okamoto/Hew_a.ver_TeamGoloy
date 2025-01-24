@@ -257,6 +257,29 @@ void Game::Init(HWND hWnd)
 	present[3].SetPos(4500.0f, -300.0f, 0.0f);////位置を特定
 	present[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	present[3].SetAngle(0.0f);//角度設定
+
+	//雪玉
+	snowball[1].Init(L"asset/yukidama.png", 1, 1);//雪
+	snowball[1].SetPos(1500.0f, -175.0f, 0.0f);////位置を特定
+	snowball[1].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	snowball[1].SetAngle(0.0f);//角度設定
+
+	snowball[2].Init(L"asset/yukidama.png", 1, 1);//雪
+	snowball[2].SetPos(2900.0f, -175.0f, 0.0f);////位置を特定
+	snowball[2].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	snowball[2].SetAngle(0.0f);//角度設定
+
+	snowball[3].Init(L"asset/yukidama.png", 1, 1);//雪
+	snowball[3].SetPos(4000.0f, -175.0f, 0.0f);////位置を特定
+	snowball[3].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	snowball[3].SetAngle(0.0f);//角度設定
+
+	//大きいプレゼント
+	BigPresent[1].Init(L"asset/big_present.png", 1, 1);//いわあ
+	BigPresent[1].SetPos(5400.0f, -25.0f, 0.0f);////位置を特定
+	BigPresent[1].SetSize(105.0f, 100.0f, 0.0f);//大きさ設定
+	BigPresent[1].SetAngle(0.0f);//角度設定
+
 //====================================================
 //ステージ2
 //====================================================
@@ -411,7 +434,7 @@ void Game::Init(HWND hWnd)
 	snowman[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
 	
-	star_monster.Init(L"asset/star_monster.png", 3, 2);//ほしを初期化
+	star_monster.Init(L"asset/Star_Move_v3.png", 6, 2);//ほしを初期化
 	star_monster.SetPos(3600.0f, -150.0f, 0.0f);		//位置を設定
 	star_monster.SetSize(200.0f, 110.0f, 0.f);	//大きさを設定
 	star_monster.SetAngle(0.0f);             		//角度を設定
@@ -425,7 +448,7 @@ void Game::Init(HWND hWnd)
 
 
 	changescene = TITLE;//シーン初期化
-
+	
 	item = new Item(1);
 
 }
@@ -447,7 +470,7 @@ void Game::Update(void) {
 	case TITLE:
 	{
 		//キー入力で本編
-		if (input.GetKeyTrigger(VK_RETURN))
+		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_A))
 		{
 			changescene = STAGE1_LOADING;
 		}
@@ -487,7 +510,6 @@ void Game::Update(void) {
 
 		DirectX::XMFLOAT3 tree_pos = tree.GetPos();
 
-		
 		//地面
 		DirectX::XMFLOAT3 ground_pos1 = ground[1].GetPos();
 		DirectX::XMFLOAT3 ground_pos2 = ground[2].GetPos();
@@ -503,6 +525,11 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 rock_pos5 = rock[5].GetPos();
 		DirectX::XMFLOAT3 rock_pos6 = rock[6].GetPos();
 
+		//雪玉
+		DirectX::XMFLOAT3 snowball_pos1 = snowball[1].GetPos();
+		DirectX::XMFLOAT3 snowball_pos2 = snowball[2].GetPos();
+		DirectX::XMFLOAT3 snowball_pos3 = snowball[3].GetPos();
+
 		//階段
 		DirectX::XMFLOAT3 stairs_pos1 = stairs[1].GetPos();
 		DirectX::XMFLOAT3 stairs_pos2 = stairs[2].GetPos();
@@ -510,18 +537,17 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos4 = stairs[4].GetPos();
 
 		//敵
-		
 		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();          //雪の敵
 		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();		   //雪の敵
 		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();		   //雪の敵
 		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();	   //星の敵
 		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();			   //鹿の敵
-
-
-
+		//プレゼント
 		DirectX::XMFLOAT3 present_pos1 = present[1].GetPos();
 		DirectX::XMFLOAT3 present_pos2 = present[2].GetPos();
 		DirectX::XMFLOAT3 present_pos3 = present[3].GetPos();
+		//プレゼント大
+		DirectX::XMFLOAT3 bigpresent_pos1 = BigPresent[1].GetPos();
 
 		//item->GetItem_1();
 
@@ -544,15 +570,20 @@ void Game::Update(void) {
 			snowman[3].numU++;
 			star_monster.numU++;
 			tonakai.numU++;
-			if (snowman[1].numU >= 4 || snowman[2].numU >= 4 || snowman[3].numU >= 4 || star_monster.numU >= 3 || tonakai.numU >= 4)
+			if (snowman[1].numU >= 4 || snowman[2].numU >= 4 || snowman[3].numU >= 4 ||tonakai.numU >= 4)
 			{
 				snowman[1].numU = 0;
 				snowman[2].numU = 0;
 				snowman[3].numU = 0;
-				star_monster.numU = 0;
-				tonakai.numU = 0;
 				
+				tonakai.numU = 0;
 			}
+			if (star_monster.numU >= 6)
+			{
+				star_monster.numU = 0;
+			}
+
+
 		}
 
 		//-------敵移動--------//
@@ -570,6 +601,7 @@ void Game::Update(void) {
 
 		if (moveFg1 == true)
 		{
+			
 			snowman[1].numV = 1;
 			snowman_pos1.x += 1;
 			if (snowman_pos1.x > ground_pos1.x + 240)//右端に行ったら
@@ -621,24 +653,28 @@ void Game::Update(void) {
 		}
 
 		//星の敵（１)
-
+		
 		if (moveFg4 == false)
 		{
-				star_monster_pos.x -= 2;
-				if (star_monster_pos.x < ground_pos3.x - 130)//左に行ったら
+			star_monster.numV = 0;
+			star_monster_pos.x -= 2;
+			if (star_monster_pos.x < ground_pos3.x - 130)//左に行ったら
 			{
 					moveFg4 = true;
 			}
 		}
-		
+
 		if (moveFg4 == true)
 		{
+			star_monster.numV = 1;
 			star_monster_pos.x += 2;
 			if (star_monster_pos.x > ground_pos3.x + 700)//右端に行ったら
 			{
 				moveFg4 = false;
 			}
 		}
+		
+
 		//トナカイの敵
 		if (moveFg5 == false)
 		{
@@ -695,7 +731,7 @@ void Game::Update(void) {
 			// サンタがゴールの右側にぶつかった場合
 			if (santa_pos.x < goal_pos.x && santa_pos.y < goal_pos.y) 
 			{
-
+				
 				changescene = RESULT;
 				//初期化
 				
@@ -716,6 +752,10 @@ void Game::Update(void) {
 				rock_pos5.x = 2300;
 				rock_pos6.x = 4400;
 
+				snowball_pos1.x = 1500;
+				snowball_pos2.x = 2900;
+				snowball_pos3.x = 4000;
+
 				ground_pos1.x = 0;
 				ground_pos2.x = 1300;
 				ground_pos3.x = 3100;
@@ -730,6 +770,8 @@ void Game::Update(void) {
 				snowman_pos1.x = 30;
 				snowman_pos2.x = 1400;
 				snowman_pos3.x = 2700;
+
+				bigpresent_pos1.x = 5400;
 
 				star_monster_pos.x = 4800;
 				tonakai_pos.x = 3600;
@@ -772,24 +814,26 @@ void Game::Update(void) {
 		// 木との当たり判定の追加　ゴロイ
 		if (collision.tree_santa(tree, santa, 200.0f, 0.0f)) {
 
-			// サンタが木の右側にぶつかった場合
-			if (santa_pos.x < tree_pos.x) {
+			//// サンタが木の右側にぶつかった場合
+			//if (santa_pos.x < tree_pos.x) {
 
-				collision.canMoveRight = false; // 右に移動中なら移動を停止
-				
-				
-			}
-			// サンタが木の左側にぶつかった場合
-			if (santa_pos.x > tree_pos.x) {
+			//	collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//	
+			//	
+			//}
+			//// サンタが木の左側にぶつかった場合
+			//if (santa_pos.x > tree_pos.x) {
 
-				collision.canMoveLeft = false; // 左に移動中なら移動を停止
+			//	collision.canMoveLeft = false; // 左に移動中なら移動を停止
 
-			}
+			//}
 		}
 		
 		
-		// 12/30  サンタの移動アニメーション追加  	畦内　
-		if (collision.canMoveRight && input.GetKeyPress(VK_D))
+		// 12/30  サンタの移動アニメーション追加  	畦内
+
+		speed = 10;//移動速度
+		if (collision.canMoveRight && input.GetKeyPress(VK_D)||input.GetLeftAnalogStick().x>=0.1)
 		{
 			santa_pos.x += 5;//右移動
 			if (changeRight == true)
@@ -819,47 +863,52 @@ void Game::Update(void) {
 				santa_pos.x -= 5;
 
 				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
-				mounten_pos1.x -= 0.5;
-				mounten_pos2.x -= 0.5;
-				mounten_pos3.x -= 0.5;
+				mounten_pos1.x -= speed-4.5;
+				mounten_pos2.x -= speed-4.5;
+				mounten_pos3.x -= speed-4.5;
 
-				wood_pos1.x -= 3;
-				wood_pos2.x -= 3;
-				wood_pos3.x -= 3;
+				wood_pos1.x -= speed-2;
+				wood_pos2.x -= speed-2;
+				wood_pos3.x -= speed-2;
 
-				rock_pos1.x -= 5;
-				rock_pos2.x -= 5;
-				rock_pos3.x -= 5;
-				rock_pos4.x -= 5;
-				rock_pos5.x -= 5;
-				rock_pos6.x -= 5;
+				rock_pos1.x -= speed;
+				rock_pos2.x -= speed;
+				rock_pos3.x -= speed;
+				rock_pos4.x -= speed;
+				rock_pos5.x -= speed;
+				rock_pos6.x -= speed;
 
+				snowball_pos1.x -= speed;
+				snowball_pos2.x -= speed;
+				snowball_pos3.x -= speed;
+
+				ground_pos1.x -= speed;
+				ground_pos2.x -= speed;
+				ground_pos3.x -= speed;
+				ground_pos4.x -= speed;
+				ground_pos5.x -= speed;
+
+				stairs_pos1.x -= speed;
+				stairs_pos2.x -= speed;
+				stairs_pos3.x -= speed;
+				stairs_pos4.x -= speed;
 				
-				ground_pos1.x -= 5;
-				ground_pos2.x -= 5;
-				ground_pos3.x -= 5;
-				ground_pos4.x -= 5;
-				ground_pos5.x -= 5;
+				snowman_pos1.x -= speed;
+				snowman_pos2.x -= speed;
+				snowman_pos3.x -= speed;
 
-				stairs_pos1.x -= 5;
-				stairs_pos2.x -= 5;
-				stairs_pos3.x -= 5;
-				stairs_pos4.x -= 5;
-				
-				snowman_pos1.x -= 5;
-				snowman_pos2.x -= 5;
-				snowman_pos3.x -= 5;
+				star_monster_pos.x -= speed;
+				tonakai_pos.x -= speed;
 
-				star_monster_pos.x -= 5;
-				tonakai_pos.x -= 5;
+				present_pos1.x -= speed;
+				present_pos2.x -= speed;
+				present_pos3.x -= speed;
 
-				present_pos1.x -= 5;
-				present_pos2.x -= 5;
-				present_pos3.x -= 5;
+				bigpresent_pos1.x -= speed;
 
-				tree_pos.x -= 5;
+				tree_pos.x -= speed;
 
-				goal_pos.x -= 5;
+				goal_pos.x -= speed;
 			}
 		}
 		else
@@ -868,8 +917,9 @@ void Game::Update(void) {
 			changeRight = true;
 		}
 
-		if (collision.canMoveLeft && input.GetKeyPress(VK_A))
+		if (collision.canMoveLeft && input.GetKeyPress(VK_A)|| input.GetLeftAnalogStick().x<=-0.1)
 		{
+			
 			santa_pos.x -= 5;//左移動
 			if (changeLeft == true)
 			{
@@ -913,6 +963,10 @@ void Game::Update(void) {
 				rock_pos5.x += 5;
 				rock_pos6.x += 5;
 
+				snowball_pos1.x += 5;
+				snowball_pos2.x += 5;
+				snowball_pos3.x += 5;
+
 				
 				ground_pos1.x += 5;
 				ground_pos2.x += 5;
@@ -938,6 +992,8 @@ void Game::Update(void) {
 				present_pos1.x += 5;
 				present_pos2.x += 5;
 				present_pos3.x += 5;
+
+				bigpresent_pos1.x += 5;
 
 				tree_pos.x += 5;
 
@@ -1013,6 +1069,10 @@ void Game::Update(void) {
 		rock[5].SetPos(rock_pos5.x, rock_pos5.y, rock_pos5.z);
 		rock[6].SetPos(rock_pos6.x, rock_pos6.y, rock_pos6.z);
 
+		snowball[1].SetPos(snowball_pos1.x, snowball_pos1.y, snowball_pos1.z);
+		snowball[2].SetPos(snowball_pos2.x, snowball_pos2.y, snowball_pos2.z);
+		snowball[3].SetPos(snowball_pos3.x, snowball_pos3.y, snowball_pos3.z);
+
 		stairs[1].SetPos(stairs_pos1.x, stairs_pos1.y, stairs_pos1.z);
 		stairs[2].SetPos(stairs_pos2.x, stairs_pos2.y, stairs_pos2.z);
 		stairs[3].SetPos(stairs_pos3.x, stairs_pos3.y, stairs_pos3.z);
@@ -1025,6 +1085,8 @@ void Game::Update(void) {
 		present[1].SetPos(present_pos1.x, present_pos1.y, present_pos1.z);
 		present[2].SetPos(present_pos2.x, present_pos2.y, present_pos2.z);
 		present[3].SetPos(present_pos3.x, present_pos3.y, present_pos3.z);
+
+		BigPresent[1].SetPos(bigpresent_pos1.x, bigpresent_pos1.y, bigpresent_pos1.z);
 
 		tree.SetPos(tree_pos.x, tree_pos.y, tree_pos.z);
 		star_monster.SetPos(star_monster_pos.x, star_monster_pos.y, star_monster_pos.z);
@@ -1316,6 +1378,11 @@ void Game::Draw(void)
 		{
 			rock[i].Draw();
 		}
+		//雪玉
+		for (int i = 1; i < image; i++)
+		{
+			snowball[i].Draw();
+		}
 		//プレゼント
 		for (int i = 1; i < image; i++)
 		{
@@ -1341,6 +1408,8 @@ void Game::Draw(void)
 		{
 			snowman[i].Draw();
 		}
+
+		BigPresent[1].Draw();
 
 		tonakai.Draw();
 		star_monster.Draw();
@@ -1472,7 +1541,8 @@ void Game::Uninit(void)
 		stairs[i].Uninit();
 		snowman[i].Uninit();
 		present[i].Uninit();
-		
+		snowball[i].Uninit();
+
 
 		Ground_Stge2[i].Uninit();
 		Tree_Stge2[i].Uninit();
@@ -1482,6 +1552,9 @@ void Game::Uninit(void)
 
 
 	}
+
+	BigPresent[1].Uninit();
+
 	tree.Uninit();
 	star_monster.Uninit();
 	tonakai.Uninit();
