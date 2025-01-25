@@ -995,16 +995,10 @@ void Game::Update(void) {
 			//}
 		}
 
-
-
-		// 12/30  サンタの移動アニメーション追加  	畦内　
-		if (collision.canMoveRight && input.GetKeyPress(VK_D))
-
-		
-		
+	
 		// 12/30  サンタの移動アニメーション追加  	畦内
 
-		speed = 5;//移動速度
+		speed = 10;//移動速度
 
 		if (collision.canMoveRight && input.GetKeyPress(VK_D)||input.GetLeftAnalogStick().x>=0.1)
 		{
@@ -1051,27 +1045,6 @@ void Game::Update(void) {
 				rock_pos5.x -= speed;
 				rock_pos6.x -= speed;
 
-
-
-				ground_pos1.x -= 5;
-				ground_pos2.x -= 5;
-				ground_pos3.x -= 5;
-				ground_pos4.x -= 5;
-				ground_pos5.x -= 5;
-
-				stairs_pos1.x -= 5;
-				stairs_pos2.x -= 5;
-				stairs_pos3.x -= 5;
-				stairs_pos4.x -= 5;
-
-				snowman_pos1.x -= 5;
-				snowman_pos2.x -= 5;
-				snowman_pos3.x -= 5;
-
-				snowball_pos1.x -= speed;
-				snowball_pos2.x -= speed;
-				snowball_pos3.x -= speed;
-
 				ground_pos1.x -= speed;
 				ground_pos2.x -= speed;
 				ground_pos3.x -= speed;
@@ -1082,10 +1055,14 @@ void Game::Update(void) {
 				stairs_pos2.x -= speed;
 				stairs_pos3.x -= speed;
 				stairs_pos4.x -= speed;
-				
+
 				snowman_pos1.x -= speed;
 				snowman_pos2.x -= speed;
 				snowman_pos3.x -= speed;
+
+				snowball_pos1.x -= speed;
+				snowball_pos2.x -= speed;
+				snowball_pos3.x -= speed;
 
 				star_monster_pos.x -= speed;
 				tonakai_pos.x -= speed;
@@ -1153,14 +1130,9 @@ void Game::Update(void) {
 				rock_pos5.x += 5;
 				rock_pos6.x += 5;
 
-
-
-
 				snowball_pos1.x += 5;
 				snowball_pos2.x += 5;
 				snowball_pos3.x += 5;
-
-				
 
 				ground_pos1.x += 5;
 				ground_pos2.x += 5;
