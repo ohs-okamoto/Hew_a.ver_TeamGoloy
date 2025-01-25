@@ -9,6 +9,8 @@ class Collision :public Object {
 public:
 
 	bool square_square(Object obj1, Object obj2); // 四角形と四角形の当たり判定
+
+	bool item_santa(Object obj1, Object obj2,float bufferX, float bufferY); // アイテムとサンタの当たり判定
 	bool ground_santa(Object obj1, Object obj2, float bufferX, float bufferY); // 地面とサンタの当たり判定
 	bool tree_santa(Object obj1, Object obj2, float bufferX, float bufferY); // 地面とサンタの当たり判定
 	bool goal_santa(Object obj1, Object obj2, float bufferX, float bufferY); // ゴールとサンタの当たり判定

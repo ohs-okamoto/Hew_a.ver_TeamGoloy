@@ -438,7 +438,7 @@ void Game::Update(void) {
 	collision.canMoveLeft = true; // フラグを初期化
 
 	//Item* item;
-	
+
 
 	//値更新する処理の後に入力処理を記述すること by岡本
 
@@ -447,7 +447,7 @@ void Game::Update(void) {
 	case TITLE:
 	{
 		//キー入力で本編
-		if (input.GetKeyTrigger(VK_RETURN))
+		if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonPress(XINPUT_B))
 		{
 			changescene = STAGE1_LOADING;
 		}
@@ -468,7 +468,7 @@ void Game::Update(void) {
 			changescene = STAGE_1;
 		}
 	}
-		break;
+	break;
 	case STAGE_1:
 	{
 		//サンタ
@@ -487,7 +487,7 @@ void Game::Update(void) {
 
 		DirectX::XMFLOAT3 tree_pos = tree.GetPos();
 
-		
+
 		//地面
 		DirectX::XMFLOAT3 ground_pos1 = ground[1].GetPos();
 		DirectX::XMFLOAT3 ground_pos2 = ground[2].GetPos();
@@ -510,7 +510,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos4 = stairs[4].GetPos();
 
 		//敵
-		
+
 		DirectX::XMFLOAT3 snowman_pos1 = snowman[1].GetPos();          //雪の敵
 		DirectX::XMFLOAT3 snowman_pos2 = snowman[2].GetPos();		   //雪の敵
 		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();		   //雪の敵
@@ -527,7 +527,7 @@ void Game::Update(void) {
 
 		// 一旦仮で重力的なものをを追加します　ゴロイ
 		//santa_pos.y -= 1;
-		
+
 		// サンタが下に落ちた時に初期位置に戻る処理　ゴロイ
 		if (santa_pos.y == -250.0f)
 		{
@@ -551,7 +551,7 @@ void Game::Update(void) {
 				snowman[3].numU = 0;
 				star_monster.numU = 0;
 				tonakai.numU = 0;
-				
+
 			}
 		}
 
@@ -562,7 +562,7 @@ void Game::Update(void) {
 		{
 			snowman[1].numV = 0;
 			snowman_pos1.x -= 1;
-			if (snowman_pos1.x < ground_pos1.x-240)//左はしに行ったら
+			if (snowman_pos1.x < ground_pos1.x - 240)//左はしに行ったら
 			{
 				moveFg1 = true;
 			}
@@ -624,13 +624,13 @@ void Game::Update(void) {
 
 		if (moveFg4 == false)
 		{
-				star_monster_pos.x -= 2;
-				if (star_monster_pos.x < ground_pos3.x - 130)//左に行ったら
+			star_monster_pos.x -= 2;
+			if (star_monster_pos.x < ground_pos3.x - 130)//左に行ったら
 			{
-					moveFg4 = true;
+				moveFg4 = true;
 			}
 		}
-		
+
 		if (moveFg4 == true)
 		{
 			star_monster_pos.x += 2;
@@ -654,15 +654,15 @@ void Game::Update(void) {
 		{
 			tonakai.numV = 1;
 			tonakai_pos.x += 2;
-			if (tonakai_pos.x > ground_pos5.x +200)//右端に行ったら
+			if (tonakai_pos.x > ground_pos5.x + 200)//右端に行ったら
 			{
 				moveFg5 = false;
 			}
 		}
 
 
-		
-			// 地面との当たり判定の追加 ゴロイ
+
+		// 地面との当たり判定の追加 ゴロイ
 		for (int i = 0; i < image; i++) {
 			DirectX::XMFLOAT3 ground_pos = GetGroundPos(i);
 
@@ -670,7 +670,7 @@ void Game::Update(void) {
 
 				//// サンタが地面の上にいる場合
 				if (santa_pos.y > ground_pos.y + ground[i].GetSize().y / 2.0f) {
-                    santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
+					santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -691,14 +691,15 @@ void Game::Update(void) {
 		}
 
 		if (collision.goal_santa(goal, santa, 250.0f, 0.0f))
-		{	
+		{
+
 			// サンタがゴールの右側にぶつかった場合
-			if (santa_pos.x < goal_pos.x && santa_pos.y < goal_pos.y) 
+			if (santa_pos.x < goal_pos.x && santa_pos.y < goal_pos.y)
 			{
 
 				changescene = RESULT;
 				//初期化
-				
+
 				santa_pos.x = -400;
 
 				mounten_pos1.x = 0;
@@ -751,22 +752,83 @@ void Game::Update(void) {
 		}
 
 		// サンタがアイテムに当たった時
-		if (collision.square_square(rock[1], santa))
-		{
+		bool itemCollected = false; // アイテムが既に回収されたかどうかのフラグ
 
-				if (input.GetKeyTrigger(VK_S))
-				{
-					/*itemID = 1;*/
-					item->ItemGet(1); // いわを回収
-					
-				}
+		if (collision.item_santa(rock[1], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
 			}
-			else {// 当たってない場合
-				if (input.GetKeyTrigger(VK_S))
-				{
-					item->ItemRelease(); // 取り出す
-				}
 		}
+
+		if (collision.item_santa(rock[2], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(rock[3], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(rock[4], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(rock[5], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(rock[6], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (!itemCollected) {// 当たってない場合
+			if (input.GetKeyTrigger(VK_S))
+			{
+				item->ItemRelease(); // 取り出す
+			}
+		}
+
+
+
 
 		//
 		// 木との当たり判定の追加　ゴロイ
@@ -776,8 +838,8 @@ void Game::Update(void) {
 			if (santa_pos.x < tree_pos.x) {
 
 				collision.canMoveRight = false; // 右に移動中なら移動を停止
-				
-				
+
+
 			}
 			// サンタが木の左側にぶつかった場合
 			if (santa_pos.x > tree_pos.x) {
@@ -786,8 +848,8 @@ void Game::Update(void) {
 
 			}
 		}
-		
-		
+
+
 		// 12/30  サンタの移動アニメーション追加  	畦内　
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
 		{
@@ -834,7 +896,7 @@ void Game::Update(void) {
 				rock_pos5.x -= 5;
 				rock_pos6.x -= 5;
 
-				
+
 				ground_pos1.x -= 5;
 				ground_pos2.x -= 5;
 				ground_pos3.x -= 5;
@@ -845,7 +907,7 @@ void Game::Update(void) {
 				stairs_pos2.x -= 5;
 				stairs_pos3.x -= 5;
 				stairs_pos4.x -= 5;
-				
+
 				snowman_pos1.x -= 5;
 				snowman_pos2.x -= 5;
 				snowman_pos3.x -= 5;
@@ -913,7 +975,7 @@ void Game::Update(void) {
 				rock_pos5.x += 5;
 				rock_pos6.x += 5;
 
-				
+
 				ground_pos1.x += 5;
 				ground_pos2.x += 5;
 				ground_pos3.x += 5;
@@ -932,7 +994,7 @@ void Game::Update(void) {
 				snowman_pos1.x += 5;
 				snowman_pos2.x += 5;
 				snowman_pos3.x += 5;
-				  
+
 
 
 				present_pos1.x += 5;
@@ -990,9 +1052,9 @@ void Game::Update(void) {
 			wood_pos3.x = wood_pos2.x + SCREEN_WIDTH;
 
 		}
-		
-		
-		
+
+
+
 
 		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
 
@@ -1001,7 +1063,7 @@ void Game::Update(void) {
 		mounten[1].SetPos(mounten_pos1.x, mounten_pos1.y, mounten_pos1.z);
 		mounten[2].SetPos(mounten_pos2.x, mounten_pos2.y, mounten_pos2.z);
 		mounten[3].SetPos(mounten_pos3.x, mounten_pos3.y, mounten_pos3.z);
-	
+
 		wood[1].SetPos(wood_pos1.x, wood_pos1.y, wood_pos1.z);
 		wood[2].SetPos(wood_pos2.x, wood_pos2.y, wood_pos2.z);
 		wood[3].SetPos(wood_pos3.x, wood_pos3.y, wood_pos3.z);
@@ -1039,7 +1101,7 @@ void Game::Update(void) {
 
 	}
 	break;
-	
+
 	case STAGE_2:
 	{
 		//サンタ
@@ -1072,6 +1134,85 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 tree_pos1 = Tree_Stge2[1].GetPos();
 		//つららの上
 		DirectX::XMFLOAT3 block_pos1 = Block_Stge2[1].GetPos();
+
+
+
+		// サンタがアイテムに当たった時
+		bool itemCollected = false; // アイテムが既に回収されたかどうかのフラグ
+
+		if (collision.item_santa(Collectrock_Stage2[1], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(Collectrock_Stage2[2], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(Collectrock_Stage2[3], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(Collectrock_Stage2[4], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(Collectrock_Stage2[5], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (collision.item_santa(Collectrock_Stage2[6], santa, 100.0f, 0.0f))
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(1); // いわを回収
+				itemCollected = true;
+
+			}
+		}
+
+		if (!itemCollected) {// 当たってない場合
+			if (input.GetKeyTrigger(VK_S))
+			{
+				item->ItemRelease(); // 取り出す
+			}
+		}
+
 
 		//右移動
 		if (collision.canMoveRight && input.GetKeyPress(VK_D))
@@ -1236,7 +1377,7 @@ void Game::Update(void) {
 
 
 
-	/*	item.SetItem_1();*/
+		/*	item.SetItem_1();*/
 
 		Ground_Stge2[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
 		Ground_Stge2[4].SetPos(ground_pos4.x, ground_pos4.y, ground_pos4.z);
