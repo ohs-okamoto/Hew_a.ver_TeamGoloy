@@ -56,6 +56,7 @@ private:
 	Object Icicles_Stge2[image];//‚Â‚ç‚ç
 	Object Stairs_Stge2[image];//ŠK’i
 	Object Present_Stage2[image];//ƒvƒŒƒ[ƒ“ƒg
+	Object BigPresent_Stage2[image];//ƒvƒŒƒ[ƒ“ƒg
 	Object Breakrock_Stge2[image];//‰ó‚¹‚éŠâ
 	Object Collectrock_Stage2[image];
 
