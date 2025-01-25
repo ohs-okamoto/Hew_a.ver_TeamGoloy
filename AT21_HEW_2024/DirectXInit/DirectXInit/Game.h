@@ -44,6 +44,8 @@ private:
 	Object star_monster;//星野　敵
 	
 	Object present[image];//プレゼント
+	Object BigPresent[image];//プレゼント
+	Object snowball[image];//雪玉
 	Object goal;//ゴール
 
 
@@ -54,14 +56,18 @@ private:
 	Object Icicles_Stge2[image];//つらら
 	Object Stairs_Stge2[image];//階段
 	Object Present_Stage2[image];//プレゼント
+	Object BigPresent_Stage2[image];//プレゼント
 	Object Breakrock_Stge2[image];//壊せる岩
 	Object Collectrock_Stage2[image];
+
+
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
 
 
 	int changescene = TITLE;//シーン
+
 	int framcount = 0;
 	int framcount2 = 0;
 
@@ -71,8 +77,9 @@ private:
 	bool moveFg4 = false;
 	bool moveFg5 = false;
 
-	
+	bool asd = false;
 
+	float speed = 0;
 
 	Input input; //入力
 
