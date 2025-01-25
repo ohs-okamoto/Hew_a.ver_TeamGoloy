@@ -275,7 +275,7 @@ void Game::Init(HWND hWnd)
 	snowball[3].SetAngle(0.0f);//角度設定
 
 	//大きいプレゼント
-	BigPresent[1].Init(L"asset/big_present.png", 1, 1);//いわあ
+	BigPresent[1].Init(L"asset/boxv2.png", 1, 1);//いわあ
 	BigPresent[1].SetPos(5400.0f, -25.0f, 0.0f);////位置を特定
 	BigPresent[1].SetSize(105.0f, 100.0f, 0.0f);//大きさ設定
 	BigPresent[1].SetAngle(0.0f);//角度設定
@@ -424,7 +424,7 @@ void Game::Init(HWND hWnd)
 	Present_Stage2[3].SetAngle(0.0f);//角度設定
 
 	//プレゼント大
-	BigPresent_Stage2[1].Init(L"asset/big_present.png", 1, 1);//プレゼント
+	BigPresent_Stage2[1].Init(L"asset/boxv2.png", 1, 1);//プレゼント
 	BigPresent_Stage2[1].SetPos(4450.0f, -250.0f, 0.0f);////位置を特定
 	BigPresent_Stage2[1].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	BigPresent_Stage2[1].SetAngle(0.0f);//角度設定
@@ -434,6 +434,59 @@ void Game::Init(HWND hWnd)
 	Breakrock_Stge2[1].SetPos(4450.0f, -250.0f, 0.0f);////位置を特定
 	Breakrock_Stge2[1].SetSize(350.0f, 300.0f, 0.0f);//大きさ設定
 	Breakrock_Stge2[1].SetAngle(0.0f);//角度設定
+
+	//====================================================
+	//リザルト
+	//====================================================
+	Result.Init(L"asset/Result_v2.png", 1, 1);//を初期化
+	Result.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
+	Result.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
+	Result.SetAngle(0.0f);//角度を設定	    
+	
+	ResultStar[1].Init(L"asset/ResultStar.png", 1, 1);//を初期化
+	ResultStar[1].SetPos(-180.0f, 100.0f, 0.0f);         //位置を設定
+	ResultStar[1].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	ResultStar[1].SetAngle(0.0f);//角度を設定
+
+	ResultStar[2].Init(L"asset/ResultStar.png", 1, 1);//を初期化
+	ResultStar[2].SetPos(-80.0f, 100.0f, 0.0f);         //位置を設定
+	ResultStar[2].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	ResultStar[2].SetAngle(0.0f);//角度を設定
+
+	ResultStar[3].Init(L"asset/ResultStar.png", 1, 1);//を初期化
+	ResultStar[3].SetPos(20.0f, 100.0f, 0.0f);         //位置を設定
+	ResultStar[3].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	ResultStar[3].SetAngle(0.0f);//角度を設定
+
+	ResultStar[4].Init(L"asset/ResultStar.png", 1, 1);//を初期化
+	ResultStar[4].SetPos(120.0f, 100.0f, 0.0f);         //位置を設定
+	ResultStar[4].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	ResultStar[4].SetAngle(0.0f);//角度を設定
+
+	GrayStar[1].Init(L"asset/ResultStar_Null.png", 1, 1);//を初期化
+	GrayStar[1].SetPos(-180.0f, 100.0f, 0.0f);         //位置を設定
+	GrayStar[1].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	GrayStar[1].SetAngle(0.0f);//角度を設定	  
+
+	GrayStar[2].Init(L"asset/ResultStar_Null.png", 1, 1);//を初期化
+	GrayStar[2].SetPos(-80.0f, 100.0f, 0.0f);         //位置を設定
+	GrayStar[2].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	GrayStar[2].SetAngle(0.0f);//角度を設定	  
+
+	GrayStar[3].Init(L"asset/ResultStar_Null.png", 1, 1);//を初期化
+	GrayStar[3].SetPos(20.0f, 100.0f, 0.0f);         //位置を設定
+	GrayStar[3].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	GrayStar[3].SetAngle(0.0f);//角度を設定	  
+
+	GrayStar[4].Init(L"asset/ResultStar_Null.png", 1, 1);//を初期化
+	GrayStar[4].SetPos(120.0f, 100.0f, 0.0f);         //位置を設定
+	GrayStar[4].SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	GrayStar[4].SetAngle(0.0f);//角度を設定	  
+
+	Number[1].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	Number[1].SetPos(50.0f, 0.0f, 0.0f);         //位置を設定
+	Number[1].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	Number[1].SetAngle(0.0f);//角度を設定	
 
 	//====================================================
 	//てき
@@ -473,6 +526,9 @@ void Game::Init(HWND hWnd)
 
 	changescene = TITLE;//シーン初期化
 	framcount = 0;
+	score = 0;
+	presentcount = 0;
+
 	item = new Item(1);
 
 }
@@ -501,6 +557,7 @@ void Game::Update(void) {
 
 		{
 			changescene = STAGE1_LOADING;
+			//changescene = RESULT;
 		}
 		//２を押すとステージ２へ	
 		if (input.GetKeyTrigger(VK_2))
@@ -977,7 +1034,7 @@ void Game::Update(void) {
 			//// サンタが木の右側にぶつかった場合
 			//if (santa_pos.x < tree_pos.x) {
 
-				collision.canMoveRight = false; // 右に移動中なら移動を停止
+				//collision.canMoveRight = false; // 右に移動中なら移動を停止
 
 
 			}
@@ -1607,9 +1664,11 @@ void Game::Update(void) {
 	break;
 
 	case RESULT:
+		score = 1;
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
+			
 			changescene = TITLE;//タイトルへ
 		}
 		break;
@@ -1802,6 +1861,45 @@ void Game::Draw(void)
 		break;
 
 	case RESULT://リザルト
+		Result.Draw();//リザルト背景
+		Number[1].Draw();//数字
+
+		//一定のスコアを超えていると色付きの星になる処理　  あぜ
+		if (score >= 1)
+		{
+			ResultStar[1].Draw();
+		}
+		else
+		{
+			GrayStar[1].Draw();
+		}
+
+		if (score >= 2)
+		{
+			ResultStar[2].Draw();
+		}
+		else
+		{
+			GrayStar[2].Draw();
+		}
+
+		if (score >= 3)
+		{
+			ResultStar[3].Draw();
+		}
+		else
+		{
+			GrayStar[3].Draw();
+		}
+
+		if (score >= 4)
+		{
+			ResultStar[4].Draw();
+		}
+		else
+		{
+			GrayStar[4].Draw();
+		}
 
 		break;
 	}
@@ -1850,6 +1948,13 @@ void Game::Uninit(void)
 	star_monster.Uninit();
 	tonakai.Uninit();
 	goal.Uninit();
+
+	Result.Uninit();//リザルト背景
+	Number[1].Uninit();//数字
+	ResultStar[1].Uninit();
+	ResultStar[2].Uninit();
+	ResultStar[3].Uninit();
+	ResultStar[4].Uninit();
 
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了

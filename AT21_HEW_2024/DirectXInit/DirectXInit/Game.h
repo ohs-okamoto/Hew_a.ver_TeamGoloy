@@ -60,7 +60,13 @@ private:
 	Object Breakrock_Stge2[image];//壊せる岩
 	Object Collectrock_Stage2[image];
 
-
+	//リザルト関連
+	Object Result;//リザルト背景
+	Object Number[2];//数字
+	Object ResultStar[5];//星
+	Object GrayStar[5];//透明な星
+	Object Result_Bigpresent;//大プレ
+	Object Result_present;//プレぜんと
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
@@ -68,17 +74,21 @@ private:
 
 	int changescene = TITLE;//シーン
 
+	int presentcount=0;//何個プレゼントとったか
+
+	int score = 0;//スコア
+
+	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;
-
+	//敵の移動フラグ
 	bool moveFg1 = false;
 	bool moveFg2= false;
 	bool moveFg3 = false;
 	bool moveFg4 = false;
 	bool moveFg5 = false;
 
-	bool asd = false;
-
+	
 	float speed = 0;
 
 	Input input; //入力
