@@ -997,8 +997,8 @@ void Game::Update(void) {
 
 	
 		// 12/30  サンタの移動アニメーション追加  	畦内
-
-		speed = 10;//移動速度
+		//移動速度
+		speed = 5;
 
 		if (collision.canMoveRight && input.GetKeyPress(VK_D)||input.GetLeftAnalogStick().x>=0.1)
 		{
@@ -1030,51 +1030,53 @@ void Game::Update(void) {
 				santa_pos.x -= 5;
 
 				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
+				//山
 				mounten_pos1.x -= speed-4.5;
 				mounten_pos2.x -= speed-4.5;
 				mounten_pos3.x -= speed-4.5;
-
+				//背景の木
 				wood_pos1.x -= speed-2;
 				wood_pos2.x -= speed-2;
 				wood_pos3.x -= speed-2;
-
+				//拾える石
 				rock_pos1.x -= speed;
 				rock_pos2.x -= speed;
 				rock_pos3.x -= speed;
 				rock_pos4.x -= speed;
 				rock_pos5.x -= speed;
 				rock_pos6.x -= speed;
-
+				//地面
 				ground_pos1.x -= speed;
 				ground_pos2.x -= speed;
 				ground_pos3.x -= speed;
 				ground_pos4.x -= speed;
 				ground_pos5.x -= speed;
-
+				//階段
 				stairs_pos1.x -= speed;
 				stairs_pos2.x -= speed;
 				stairs_pos3.x -= speed;
 				stairs_pos4.x -= speed;
-
+				//雪だるま
 				snowman_pos1.x -= speed;
 				snowman_pos2.x -= speed;
 				snowman_pos3.x -= speed;
-
+				//雪玉
 				snowball_pos1.x -= speed;
 				snowball_pos2.x -= speed;
 				snowball_pos3.x -= speed;
-
+				//星のてき
 				star_monster_pos.x -= speed;
+				//トナカイ
 				tonakai_pos.x -= speed;
-
+				//プレゼント
 				present_pos1.x -= speed;
 				present_pos2.x -= speed;
 				present_pos3.x -= speed;
-
+				//大きいプレゼント
 				bigpresent_pos1.x -= speed;
-
+				//木
 				tree_pos.x -= speed;
-
+				//ゴール
 				goal_pos.x -= speed;
 			}
 		}
@@ -1114,56 +1116,57 @@ void Game::Update(void) {
 			{
 				santa_pos.x += 5;
 
+
+
 				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
-				mounten_pos1.x += 0.5;
-				mounten_pos2.x += 0.5;
-				mounten_pos3.x += 0.5;
-
-				wood_pos1.x += 3;
-				wood_pos2.x += 3;
-				wood_pos3.x += 3;
-
-				rock_pos1.x += 5;
-				rock_pos2.x += 5;
-				rock_pos3.x += 5;
-				rock_pos4.x += 5;
-				rock_pos5.x += 5;
-				rock_pos6.x += 5;
-
-				snowball_pos1.x += 5;
-				snowball_pos2.x += 5;
-				snowball_pos3.x += 5;
-
-				ground_pos1.x += 5;
-				ground_pos2.x += 5;
-				ground_pos3.x += 5;
-				ground_pos4.x += 5;
-				ground_pos5.x += 5;
-
-				stairs_pos1.x += 5;
-				stairs_pos2.x += 5;
-				stairs_pos3.x += 5;
-				stairs_pos4.x += 5;
-
-
-				star_monster_pos.x += 5;
-				tonakai_pos.x += 5;
-
-				snowman_pos1.x += 5;
-				snowman_pos2.x += 5;
-				snowman_pos3.x += 5;
-
-
-
-				present_pos1.x += 5;
-				present_pos2.x += 5;
-				present_pos3.x += 5;
-
-				bigpresent_pos1.x += 5;
-
-				tree_pos.x += 5;
-
-				goal_pos.x += 5;
+				//山
+				mounten_pos1.x += speed - 4.5;
+				mounten_pos2.x += speed - 4.5;
+				mounten_pos3.x += speed - 4.5;
+				//背景の木
+				wood_pos1.x += speed - 2;
+				wood_pos2.x += speed - 2;
+				wood_pos3.x += speed - 2;
+				//拾える石
+				rock_pos1.x += speed;
+				rock_pos2.x += speed;
+				rock_pos3.x += speed;
+				rock_pos4.x += speed;
+				rock_pos5.x += speed;
+				rock_pos6.x += speed;
+				//地面
+				ground_pos1.x += speed;
+				ground_pos2.x += speed;
+				ground_pos3.x += speed;
+				ground_pos4.x += speed;
+				ground_pos5.x += speed;
+				//階段
+				stairs_pos1.x += speed;
+				stairs_pos2.x += speed;
+				stairs_pos3.x += speed;
+				stairs_pos4.x += speed;
+				//雪だるま
+				snowman_pos1.x += speed;
+				snowman_pos2.x += speed;
+				snowman_pos3.x += speed;
+				//雪玉
+				snowball_pos1.x += speed;
+				snowball_pos2.x += speed;
+				snowball_pos3.x += speed;
+				//星のてき
+				star_monster_pos.x += speed;
+				//トナカイ
+				tonakai_pos.x += speed;
+				//プレゼント
+				present_pos1.x += speed;
+				present_pos2.x += speed;
+				present_pos3.x += speed;
+				//大きいプレゼント
+				bigpresent_pos1.x += speed;
+				//木
+				tree_pos.x += speed;
+				//ゴール
+				goal_pos.x += speed;
 			}
 		}
 		else
