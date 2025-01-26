@@ -30,13 +30,13 @@ void Game::Init(HWND hWnd)
 	//====================================================
 	//タイトル
 	//====================================================
-	title.Init(L"asset/title.png", 1, 1);//サンタを初期化
-	title.SetPos(150.0f, 50.0f, 0.0f);		//位置を設定
-	title.SetSize(250.0f, 150.0f, 0.f);	//大きさを設定
+	title.Init(L"asset/Main_Rogo.png", 1, 1);//サンタを初期化
+	title.SetPos(250.0f, 150.0f, 0.0f);		//位置を設定
+	title.SetSize(500.0f, 400.0f, 0.f);	//大きさを設定
 	title.SetAngle(0.0f);             		//角度を設定
 	title.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	titlesanta.Init(L"asset/Hukuro_2.png", 1, 1);//を初期化
+	titlesanta.Init(L"asset/Main_Ilust.png", 1, 1);//を初期化
 	titlesanta.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
 	titlesanta.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
 	titlesanta.SetAngle(0.0f);//角度を設定	    
@@ -53,8 +53,8 @@ void Game::Init(HWND hWnd)
 
 		// いわ bug1
 	itemUi[0].Init(L"asset/iwa.png", 1, 1); //いわ
-	itemUi[0].SetPos(-600.0f, 300.0f, 0.0f);//位置を特定
-	itemUi[0].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
+	itemUi[0].SetPos(-430.0f, 280.0f, 0.0f);//位置を特定
+	itemUi[0].SetSize(150.0f, 150.0f, 0.0f);//大きさ設定
 	itemUi[0].SetAngle(0.0f);//角度設定
 
 	// いわ bug2
@@ -484,9 +484,39 @@ void Game::Init(HWND hWnd)
 	GrayStar[4].SetAngle(0.0f);//角度を設定	  
 
 	Number[1].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
-	Number[1].SetPos(50.0f, 0.0f, 0.0f);         //位置を設定
+	Number[1].SetPos(150.0f, 10.0f, 0.0f);         //位置を設定
 	Number[1].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
 	Number[1].SetAngle(0.0f);//角度を設定	
+	//====================================================
+	//UI
+	//====================================================
+	Time.Init(L"asset/Time.png", 1, 1);//を初期化
+	Time.SetPos(0.0f, 250.0f, 0.0f);         //位置を設定
+	Time.SetSize(350.0f, 200.0f, 0.f);     //大きさ設定
+	Time.SetAngle(0.0f);//角度を設定	
+
+
+	Number_UI[1].Init(L"asset/Number.png", 10, 1);//スコアを初期化
+	Number_UI[1].SetPos(-300.0f, -300.0f, 0.0f);         //位置を設定
+	Number_UI[1].SetSize(50.0f, 50.0f, 0.f);     //大きさ設定
+	Number_UI[1].SetAngle(0.0f);//角度を設定
+
+	Number_UI[2].Init(L"asset/Number.png", 10, 1);//時間を初期化
+	Number_UI[2].SetPos(50.0f, 250.0f, 0.0f);         //位置を設定
+	Number_UI[2].SetSize(50.0f, 50.0f, 0.f);     //大きさ設定
+	Number_UI[2].SetAngle(0.0f);//角度を設定
+
+	ScoreCounter.Init(L"asset/ScoreCounter.png", 1, 1);//を初期化
+	ScoreCounter.SetPos(-550.0f, -300.0f, 0.0f);         //位置を設定
+	ScoreCounter.SetSize(130.0f, 130.0f, 0.f);     //大きさ設定
+	ScoreCounter.SetAngle(0.0f);//角度を設定	
+
+	ItemStock.Init(L"asset/ItemStock.png", 1, 1);//を初期化
+	ItemStock.SetPos(-500.0f, 250.0f, 0.0f);         //位置を設定
+	ItemStock.SetSize(250.0f, 200.0f, 0.f);     //大きさ設定
+	ItemStock.SetAngle(0.0f);//角度を設定	
+	ItemStock.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+
 
 	//====================================================
 	//てき
@@ -523,12 +553,14 @@ void Game::Init(HWND hWnd)
 	tonakai.SetAngle(0.0f);             		//角度を設定
 	tonakai.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-
+	//しょきか
 	changescene = TITLE;//シーン初期化
 	framcount = 0;
+	framcount2 = 0;
 	score = 0;
 	presentcount = 0;
-
+	time = 150;
+	cleartime = 0;
 	item = new Item(1);
 
 }
@@ -551,7 +583,7 @@ void Game::Update(void) {
 	{
 		//キー入力で本編
 
-		if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonPress(XINPUT_B))
+		
 
 		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_A))
 
@@ -579,6 +611,7 @@ void Game::Update(void) {
 	break;
 	case STAGE_1:
 	{
+		
 		//サンタ
 		DirectX::XMFLOAT3 santa_pos = santa.GetPos();
 		//ゴール
@@ -673,6 +706,12 @@ void Game::Update(void) {
 			}
 
 
+		}
+
+		//制限時間
+		if (framcount2 % 60==0)//1秒に一回行われる
+		{
+			time--;
 		}
 
 		//-------敵移動--------//
@@ -871,8 +910,9 @@ void Game::Update(void) {
 				present_pos3.x = 4500;
 
 				tree_pos.x = 1900;
-
 				goal_pos.x = 5800;
+				
+				
 			}
 
 
@@ -1679,7 +1719,14 @@ void Game::Update(void) {
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
-			
+			//初期化
+			time = 150;
+			framcount = 0;
+			framcount2 = 0;
+			score = 0;
+			presentcount = 0;
+			time = 150;
+			cleartime = 0;
 			changescene = TITLE;//タイトルへ
 		}
 		break;
@@ -1696,6 +1743,15 @@ void Game::Draw(void)
 
 	D3D_StartRender();//描画開始
 
+	int keta = 0;//スコア
+	int keta2 = 0;//制限時間
+	int keta3 = 0;//クリア時間
+
+	DirectX::XMFLOAT3 scorepos = Number_UI[1].GetPos();
+	DirectX::XMFLOAT3 scoresize = Number_UI[1].GetSize();
+
+	DirectX::XMFLOAT3 timepos = Number_UI[2].GetPos();
+	DirectX::XMFLOAT3 timesize = Number_UI[2].GetSize();
 
 	switch (changescene)
 	{
@@ -1703,6 +1759,8 @@ void Game::Draw(void)
 		background.Draw();//プレイヤー描画
 		titlesanta.Draw();
 		title.Draw();
+
+		
 		break;
 	case STAGE1_LOADING:
 		Stage1_Loading.Draw();
@@ -1796,7 +1854,7 @@ void Game::Draw(void)
 		santa.Draw();//プレイヤー描画
 		goal.Draw();
 
-
+		ItemStock.Draw();
 		///////// UI  ///////////////////
 
 		// bug1
@@ -1843,7 +1901,30 @@ void Game::Draw(void)
 
 		/////////////////////////////////
 
+		ScoreCounter.Draw();
+		//スコア
+		do {
+			Number_UI[1].numU = score % (int)pow(10, keta + 1) / (int)pow(10, keta);//一桁を切り出す
+			Number_UI[1].SetPos(scorepos.x - scoresize.x * keta, scorepos.y, scoresize.z);//位置を設定
 
+			Number_UI[1].Draw();//スコアを描画
+			keta++;
+		} while (score >= (int)pow(10, keta));
+		Number_UI[1].SetPos(scorepos.x, scorepos.y, scorepos.z);
+
+		Time.Draw();
+		
+		//制限時間
+		do {
+			Number_UI[2].numU = time % (int)pow(10, keta2 + 1) / (int)pow(10, keta2);//一桁を切り出す
+			Number_UI[2].SetPos(timepos.x - timesize.x * keta2, timepos.y, timesize.z);//位置を設定
+
+			Number_UI[2].Draw();//スコアを描画
+			keta2++;
+		} while (time >= (int)pow(10, keta2));
+		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
+
+		
 		break;
 	case STAGE_2://ステージ２
 
@@ -1896,8 +1977,30 @@ void Game::Draw(void)
 		break;
 
 	case RESULT://リザルト
+		DirectX::XMFLOAT3 timepos = Number[1].GetPos();
+		DirectX::XMFLOAT3 timesize = Number[1].GetSize();
+
+
+
 		Result.Draw();//リザルト背景
-		Number[1].Draw();//数字
+		
+		cleartime = 150 - time;
+		do {
+			Number[1].numU = cleartime % (int)pow(10, keta3 + 1) / (int)pow(10, keta3);//一桁を切り出す
+			Number[1].SetPos(timepos.x - timesize.x * keta3, timepos.y, timesize.z);//位置を設定
+
+			Number[1].Draw();//スコアを描画
+			keta3++;
+		} while (cleartime >= (int)pow(10, keta3));
+		Number[1].SetPos(timepos.x, timepos.y, timepos.z);
+
+		//クリアタイムに応じてスコア加算
+		if (cleartime <= 20)
+		{
+			score++;
+		}
+
+
 
 		//一定のスコアを超えていると色付きの星になる処理　  あぜ
 		if (score >= 1)
@@ -1991,6 +2094,12 @@ void Game::Uninit(void)
 	ResultStar[3].Uninit();
 	ResultStar[4].Uninit();
 
+	Number_UI[1].Uninit();
+	Number_UI[2].Uninit();
+
+	ScoreCounter.Uninit();
+	Time.Uninit();
+	ItemStock.Uninit();
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
 }

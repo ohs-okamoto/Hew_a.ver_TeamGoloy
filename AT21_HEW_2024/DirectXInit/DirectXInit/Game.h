@@ -68,6 +68,15 @@ private:
 	Object Result_Bigpresent;//大プレ
 	Object Result_present;//プレぜんと
 
+	//UI関連
+	Object Time;//制限時間
+	Object ItemStock;//持っている岩、雪玉
+	Object Number_UI[3];//数字　1:スコア　2:時間
+	Object UseBag;//現在の袋
+	Object ScoreCounter;
+
+
+
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
 
@@ -78,6 +87,8 @@ private:
 
 	int score = 0;//スコア
 
+	int time = 150;
+	int cleartime = 0;
 	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;
