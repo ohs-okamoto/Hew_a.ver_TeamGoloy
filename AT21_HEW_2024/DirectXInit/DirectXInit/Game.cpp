@@ -19,8 +19,9 @@ void Game::Init(HWND hWnd)
 	//====================================================
 	//プレイヤー関連
 	//====================================================
-
+	
 	santa.Init(L"asset/Santa_Normal_Move_v2.png", 4, 4);//サンタを初期化
+	
 	santa.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
 	santa.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
@@ -35,6 +36,7 @@ void Game::Init(HWND hWnd)
 	title.SetSize(500.0f, 400.0f, 0.f);	//大きさを設定
 	title.SetAngle(0.0f);             		//角度を設定
 	title.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
 
 	titlesanta.Init(L"asset/Main_Ilust.png", 1, 1);//を初期化
 	titlesanta.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
@@ -378,34 +380,51 @@ void Game::Init(HWND hWnd)
 
 	//回収できる岩
 	Collectrock_Stage2[1].Init(L"asset/iwa.png", 1, 1);//プレゼント
-	Collectrock_Stage2[1].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[1].SetPos(-275.0f, -175.0f, 0.0f);//位置を特定
 	Collectrock_Stage2[1].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Collectrock_Stage2[1].SetAngle(0.0f);//角度設定
 
 	Collectrock_Stage2[2].Init(L"asset/iwa.png", 1, 1);//プレゼント
-	Collectrock_Stage2[2].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[2].SetPos(5000.0f, -175.0f, 0.0f);//位置を特定
 	Collectrock_Stage2[2].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Collectrock_Stage2[2].SetAngle(0.0f);//角度設定
 
 	Collectrock_Stage2[3].Init(L"asset/iwa.png", 1, 1);//プレゼント
-	Collectrock_Stage2[3].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[3].SetPos(1400.0f, -175.0f, 0.0f);//位置を特定
 	Collectrock_Stage2[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Collectrock_Stage2[3].SetAngle(0.0f);//角度設定
 
 	Collectrock_Stage2[4].Init(L"asset/iwa.png", 1, 1);//プレゼント
-	Collectrock_Stage2[4].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[4].SetPos(2800.0f, -175.0f, 0.0f);//位置を特定
 	Collectrock_Stage2[4].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Collectrock_Stage2[4].SetAngle(0.0f);//角度設定
 
 	Collectrock_Stage2[5].Init(L"asset/iwa.png", 1, 1);//プレゼント
-	Collectrock_Stage2[5].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[5].SetPos(4000.0f, -175.0f, 0.0f);//位置を特定
 	Collectrock_Stage2[5].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Collectrock_Stage2[5].SetAngle(0.0f);//角度設定
 
 	Collectrock_Stage2[6].Init(L"asset/iwa.png", 1, 1);//プレゼント
-	Collectrock_Stage2[6].SetPos(6300.0f, 100.0f, 0.0f);//位置を特定
+	Collectrock_Stage2[6].SetPos(7500.0f, -175.0f, 0.0f);//位置を特定
 	Collectrock_Stage2[6].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
 	Collectrock_Stage2[6].SetAngle(0.0f);//角度設定
+
+	//回収できる雪玉
+	Snowball_Stage2[1].Init(L"asset/yukidama.png", 1, 1);//プレゼント
+	Snowball_Stage2[1].SetPos(3100.0f, -175.0f, 0.0f);//位置を特定
+	Snowball_Stage2[1].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Snowball_Stage2[1].SetAngle(0.0f);//角度設定
+
+	Snowball_Stage2[2].Init(L"asset/yukidama.png", 1, 1);//プレゼント
+	Snowball_Stage2[2].SetPos(5500.0f, -175.0f, 0.0f);//位置を特定
+	Snowball_Stage2[2].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Snowball_Stage2[2].SetAngle(0.0f);//角度設定
+
+	Snowball_Stage2[3].Init(L"asset/yukidama.png", 1, 1);//プレゼント
+	Snowball_Stage2[3].SetPos(7000.0f, -175.0f, 0.0f);//位置を特定
+	Snowball_Stage2[3].SetSize(75.0f, 70.0f, 0.0f);//大きさ設定
+	Snowball_Stage2[3].SetAngle(0.0f);//角度設定
+
 
 	//プレゼント
 	Present_Stage2[1].Init(L"asset/present.png", 1, 1);//プレゼント
@@ -1004,12 +1023,11 @@ void Game::Update(void) {
 
 		if (collision.item_santa(snowball[1], santa, 100.0f, 0.0f) && snow_visible1 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected&&fg==false)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
-				itemCollected = true;
-
+					
 				snow_visible1 = 1;
 			}
 		}
@@ -1071,7 +1089,14 @@ void Game::Update(void) {
 		if (!itemCollected) {// 当たってない場合
 			if (input.GetKeyTrigger(VK_S))
 			{
+				
 				item->ItemRelease(); // 取り出す
+
+				if (fg == false)
+				{
+
+				}
+
 			}
 		}
 
@@ -1111,6 +1136,7 @@ void Game::Update(void) {
 		if (collision.canMoveRight && input.GetKeyPress(VK_D) || input.GetLeftAnalogStick().x >= 0.1)
 		{
 			santa_pos.x += 5;//右移動
+			
 			if (changeRight == true)
 			{
 				//初期化
@@ -1415,7 +1441,48 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 present_pos1 = Present_Stage2[1].GetPos();
 		DirectX::XMFLOAT3 present_pos2 = Present_Stage2[2].GetPos();
 		DirectX::XMFLOAT3 present_pos3 = Present_Stage2[3].GetPos();
+		DirectX::XMFLOAT3 bigpresent_pos1 = BigPresent_Stage2[1].GetPos();
+		//拾える岩
+		DirectX::XMFLOAT3 rock_pos1 = Collectrock_Stage2[1].GetPos();
+		DirectX::XMFLOAT3 rock_pos2 = Collectrock_Stage2[2].GetPos();
+		DirectX::XMFLOAT3 rock_pos3 = Collectrock_Stage2[3].GetPos();
+		DirectX::XMFLOAT3 rock_pos4 = Collectrock_Stage2[4].GetPos();
+		DirectX::XMFLOAT3 rock_pos5 = Collectrock_Stage2[5].GetPos();
+		DirectX::XMFLOAT3 rock_pos6 = Collectrock_Stage2[6].GetPos();
+		//雪玉
+		DirectX::XMFLOAT3 snowball_pos1 = Snowball_Stage2[1].GetPos();
+		DirectX::XMFLOAT3 snowball_pos2 = Snowball_Stage2[2].GetPos();
+		DirectX::XMFLOAT3 snowball_pos3 = Snowball_Stage2[3].GetPos();
+		//壊せる岩
+		DirectX::XMFLOAT3 breakrock_pos1 = Breakrock_Stge2[1].GetPos();
 
+		// 地面との当たり判定の追加 ゴロイ
+		for (int i = 0; i < image; i++) {
+			DirectX::XMFLOAT3 ground_pos = GetGroundPos(i);
+
+			if (collision.ground_santa(ground[i], santa, 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_pos.y > ground_pos.y + ground[i].GetSize().y / 2.0f) {
+					santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_pos.x < ground_pos.x && santa_pos.y < ground_pos.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_pos.x > ground_pos.x && santa_pos.y < ground_pos.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+		}
 
 
 		// サンタがアイテムに当たった時
@@ -1495,9 +1562,7 @@ void Game::Update(void) {
 		}
 
 
-		DirectX::XMFLOAT3 bigpresent_pos1 = BigPresent_Stage2[1].GetPos();
-		//壊せる岩
-		DirectX::XMFLOAT3 breakrock_pos1 = Breakrock_Stge2[1].GetPos();
+		//速度
 		speed = 10;
 
 		//右移動
@@ -1566,6 +1631,20 @@ void Game::Update(void) {
 				bigpresent_pos1.x -= speed;
 				//壊せる岩
 				breakrock_pos1.x -= speed;
+				//回収岩
+				rock_pos1.x -= speed;
+				rock_pos2.x -= speed;
+				rock_pos3.x -= speed;
+				rock_pos4.x -= speed;
+				rock_pos5.x -= speed;
+				rock_pos6.x -= speed;
+
+				//回収雪玉
+				snowball_pos1.x -= speed;
+				snowball_pos2.x -= speed;
+				snowball_pos3.x -= speed;
+
+
 			}
 		}
 		else
@@ -1605,40 +1684,52 @@ void Game::Update(void) {
 
 				//背景などを左に動かしてプレイヤーが右に動いてるように見せる
 				//山
-				mounten_pos1.x += 0.5;
-				mounten_pos2.x += 0.5;
-				mounten_pos3.x += 0.5;
+				mounten_pos1.x += speed - 4.5;
+				mounten_pos2.x += speed - 4.5;
+				mounten_pos3.x += speed - 4.5;
 				//地面
-				ground_pos1.x += 5;
-				ground_pos2.x += 5;
-				ground_pos3.x += 5;
-				ground_pos4.x += 5;
-				ground_pos5.x += 5;
-				ground_pos6.x += 5;
-				ground_pos7.x += 5;
+				ground_pos1.x += speed;
+				ground_pos2.x += speed;
+				ground_pos3.x += speed;
+				ground_pos4.x += speed;
+				ground_pos5.x += speed;
+				ground_pos6.x += speed;
+				ground_pos7.x += speed;
 				//木
-				tree_pos1.x += 5;
+				tree_pos1.x += speed;
 				//つらら上
-				block_pos1.x += 5;
+				block_pos1.x += speed;
 				//つらら
-				icicle_pos1.x += 5;
-				icicle_pos2.x += 5;
-				icicle_pos3.x += 5;
+				icicle_pos1.x += speed;
+				icicle_pos2.x += speed;
+				icicle_pos3.x += speed;
 				//階段
-				stairs_pos1.x += 5;
-				stairs_pos2.x += 5;
-				stairs_pos3.x += 5;
-				stairs_pos4.x += 5;
-				stairs_pos5.x += 5;
+				stairs_pos1.x += speed;
+				stairs_pos2.x += speed;
+				stairs_pos3.x += speed;
+				stairs_pos4.x += speed;
+				stairs_pos5.x += speed;
 
 				//プレゼント
-				present_pos1.x += 5;
-				present_pos2.x += 5;
-				present_pos3.x += 5;
+				present_pos1.x += speed;
+				present_pos2.x += speed;
+				present_pos3.x += speed;
 
-				bigpresent_pos1.x += 5;
+				bigpresent_pos1.x += speed;
 				//壊せる岩
-				breakrock_pos1.x += 5;
+				breakrock_pos1.x += speed;
+				//回収岩
+				rock_pos1.x += speed;
+				rock_pos2.x += speed;
+				rock_pos3.x += speed;
+				rock_pos4.x += speed;
+				rock_pos5.x += speed;
+				rock_pos6.x += speed;
+
+				//回収雪玉
+				snowball_pos1.x += speed;
+				snowball_pos2.x += speed;
+				snowball_pos3.x += speed;
 			}
 		}
 		else
@@ -1678,11 +1769,6 @@ void Game::Update(void) {
 		//ステージ地面
 		Ground_Stge2[1].SetPos(ground_pos1.x, ground_pos1.y, ground_pos1.z);
 		Ground_Stge2[2].SetPos(ground_pos2.x, ground_pos2.y, ground_pos2.z);
-
-
-
-		/*	item.SetItem_1();*/
-
 		Ground_Stge2[3].SetPos(ground_pos3.x, ground_pos3.y, ground_pos3.z);
 		Ground_Stge2[4].SetPos(ground_pos4.x, ground_pos4.y, ground_pos4.z);
 		Ground_Stge2[5].SetPos(ground_pos5.x, ground_pos5.y, ground_pos5.z);
@@ -1706,11 +1792,20 @@ void Game::Update(void) {
 		Present_Stage2[1].SetPos(present_pos1.x, present_pos1.y, present_pos1.z);
 		Present_Stage2[2].SetPos(present_pos2.x, present_pos2.y, present_pos2.z);
 		Present_Stage2[3].SetPos(present_pos3.x, present_pos3.y, present_pos3.z);
-
 		BigPresent_Stage2[1].SetPos(bigpresent_pos1.x, bigpresent_pos1.y, bigpresent_pos1.z);
-
+		//壊せる岩
 		Breakrock_Stge2[1].SetPos(breakrock_pos1.x, breakrock_pos1.y, breakrock_pos1.z);
-
+		//ステージ地面
+		Collectrock_Stage2[1].SetPos(rock_pos1.x, rock_pos1.y, rock_pos1.z);
+		Collectrock_Stage2[2].SetPos(rock_pos2.x, rock_pos2.y, rock_pos2.z);
+		Collectrock_Stage2[3].SetPos(rock_pos3.x, rock_pos3.y, rock_pos3.z);
+		Collectrock_Stage2[4].SetPos(rock_pos4.x, rock_pos4.y, rock_pos4.z);
+		Collectrock_Stage2[5].SetPos(rock_pos5.x, rock_pos5.y, rock_pos5.z);
+		Collectrock_Stage2[6].SetPos(rock_pos6.x, rock_pos6.y, rock_pos6.z);
+		//雪玉
+		Snowball_Stage2[1].SetPos(snowball_pos1.x, snowball_pos1.y, snowball_pos1.z);
+		Snowball_Stage2[2].SetPos(snowball_pos2.x, snowball_pos2.y, snowball_pos2.z);
+		Snowball_Stage2[3].SetPos(snowball_pos3.x, snowball_pos3.y, snowball_pos3.z);
 	}
 	break;
 
@@ -1970,10 +2065,44 @@ void Game::Draw(void)
 		{
 			Present_Stage2[i].Draw();
 		}
+		//回収いわ
+		for (int i = 1; i < image; i++)
+		{
+			Collectrock_Stage2[i].Draw();
+		}
+		//回収雪玉
+		for (int i = 1; i < image; i++)
+		{
+			Snowball_Stage2[i].Draw();
+		}
+
+		ScoreCounter.Draw();
+		//スコア
+		do {
+			Number_UI[1].numU = score % (int)pow(10, keta + 1) / (int)pow(10, keta);//一桁を切り出す
+			Number_UI[1].SetPos(scorepos.x - scoresize.x * keta, scorepos.y, scoresize.z);//位置を設定
+
+			Number_UI[1].Draw();//スコアを描画
+			keta++;
+		} while (score >= (int)pow(10, keta));
+		Number_UI[1].SetPos(scorepos.x, scorepos.y, scorepos.z);
+
+		Time.Draw();
+
+		//制限時間
+		do {
+			Number_UI[2].numU = time % (int)pow(10, keta2 + 1) / (int)pow(10, keta2);//一桁を切り出す
+			Number_UI[2].SetPos(timepos.x - timesize.x * keta2, timepos.y, timesize.z);//位置を設定
+
+			Number_UI[2].Draw();//スコアを描画
+			keta2++;
+		} while (time >= (int)pow(10, keta2));
+		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
 
 		Breakrock_Stge2[1].Draw();
 		BigPresent_Stage2[1].Draw();
 		santa.Draw();//プレイヤー描画
+		ItemStock.Draw();
 		break;
 
 	case RESULT://リザルト
@@ -2069,14 +2198,15 @@ void Game::Uninit(void)
 		present[i].Uninit();
 		snowball[i].Uninit();
 
-
+		//ステージ2
 		Ground_Stge2[i].Uninit();
 		Tree_Stge2[i].Uninit();
 		Block_Stge2[i].Uninit();
 		Icicles_Stge2[i].Uninit();
 		Stairs_Stge2[i].Uninit();
 		Present_Stage2[i].Uninit();
-
+		Collectrock_Stage2[i].Uninit();
+		Snowball_Stage2[i].Uninit();
 	}
 
 	BigPresent[1].Uninit();

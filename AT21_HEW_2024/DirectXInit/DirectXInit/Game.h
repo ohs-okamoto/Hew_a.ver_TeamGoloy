@@ -59,6 +59,7 @@ private:
 	Object BigPresent_Stage2[image];//プレゼント
 	Object Breakrock_Stge2[image];//壊せる岩
 	Object Collectrock_Stage2[image];
+	Object Snowball_Stage2[image];
 
 	//リザルト関連
 	Object Result;//リザルト背景
@@ -89,6 +90,8 @@ private:
 
 	int time = 150;
 	int cleartime = 0;
+
+	bool fg = false;
 	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;
