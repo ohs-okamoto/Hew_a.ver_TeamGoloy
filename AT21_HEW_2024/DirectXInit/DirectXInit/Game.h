@@ -98,6 +98,19 @@ private:
 	int itemID;
 	Item* item; //メンバ変数
 
+	// アイテムを透明にするかしないかの変数
+	int rock_visible1 = 0;
+	int rock_visible2 = 0;
+	int rock_visible3 = 0;
+	int rock_visible4 = 0;
+	int rock_visible5 = 0;
+	int rock_visible6 = 0;
+	int snow_visible1 = 0;
+	int snow_visible2 = 0;
+	int snow_visible3 = 0;
+	int snow_visible4 = 0;
+	int snow_visible5 = 0;
+	int snow_visible6 = 0;
 
 public:
 	
