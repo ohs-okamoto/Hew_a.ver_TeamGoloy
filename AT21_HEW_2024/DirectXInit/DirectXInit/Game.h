@@ -136,7 +136,7 @@ private:
 	int snow_visible5 = 0;
 	int snow_visible6 = 0;
 
-	// この世界には二つの物がある。石か石以外か。 1:石　2:雪玉
+	// この世界には二つの物がある。石か石以外か。 0:初期値　1:石　2:雪玉
 	int itemID_1 = 0;
 	int itemID_2 = 0;
 	int itemID_3 = 0;
@@ -150,6 +150,9 @@ private:
 	bool itemMove1_M = false;
 	bool itemMove2_M = false;
 	bool itemMove3_M = false;
+
+	// サンタの向き
+	int direction = 0; // 0:右　1:左
 
 public:
 	
