@@ -91,7 +91,7 @@ private:
 	int time = 150;
 	int cleartime = 0;
 
-	bool fg = false;
+	bool HitFg = false;
 	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;

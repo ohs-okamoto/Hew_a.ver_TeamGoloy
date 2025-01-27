@@ -55,38 +55,38 @@ void Game::Init(HWND hWnd)
 
 		// いわ bug1
 	itemUi[0].Init(L"asset/iwa.png", 1, 1); //いわ
-	itemUi[0].SetPos(-430.0f, 280.0f, 0.0f);//位置を特定
-	itemUi[0].SetSize(150.0f, 150.0f, 0.0f);//大きさ設定
+	itemUi[0].SetPos(-440.0f, 260.0f, 0.0f);//位置を特定
+	itemUi[0].SetSize(110.0f, 110.0f, 0.0f);//大きさ設定
 	itemUi[0].SetAngle(0.0f);//角度設定
 
 	// いわ bug2
 	itemUi[1].Init(L"asset/iwa.png", 1, 1); //いわ
-	itemUi[1].SetPos(-600.0f, 220.0f, 0.0f);//位置を特定
-	itemUi[1].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
+	itemUi[1].SetPos(-520.0f, 270.0f, 0.0f);//位置を特定
+	itemUi[1].SetSize(90.0f, 90.0f, 0.0f);//大きさ設定
 	itemUi[1].SetAngle(0.0f);//角度設定
 
 	// いわ bud3
 	itemUi[2].Init(L"asset/iwa.png", 1, 1); //いわ
-	itemUi[2].SetPos(-600.0f, 90.0f, 0.0f);//位置を特定
-	itemUi[2].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
+	itemUi[2].SetPos(-580.0f, 290.0f, 0.0f);//位置を特定
+	itemUi[2].SetSize(60.0f, 60.0f, 0.0f);//大きさ設定
 	itemUi[2].SetAngle(0.0f);//角度設定
 
 	// 雪玉 bug1
 	itemUi[3].Init(L"asset/yukidama.png", 1, 1); //雪玉
-	itemUi[3].SetPos(-600.0f, 300.0f, 0.0f);//位置を特定
-	itemUi[3].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	itemUi[3].SetPos(-440.0f, 260.0f, 0.0f);//位置を特定
+	itemUi[3].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
 	itemUi[3].SetAngle(0.0f);//角度設定
 
 	// 雪玉 bug2
 	itemUi[4].Init(L"asset/yukidama.png", 1, 1); //雪玉
-	itemUi[4].SetPos(-600.0f, 220.0f, 0.0f);//位置を特定
-	itemUi[4].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	itemUi[4].SetPos(-520.0f, 270.0f, 0.0f);//位置を特定
+	itemUi[4].SetSize(80.0f, 80.0f, 0.0f);//大きさ設定
 	itemUi[4].SetAngle(0.0f);//角度設定
 
 	// 雪玉 bug3
 	itemUi[5].Init(L"asset/yukidama.png", 1, 1); //雪玉
-	itemUi[5].SetPos(-600.0f, 90.0f, 0.0f);//位置を特定
-	itemUi[5].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	itemUi[5].SetPos(-580.0f, 290.0f, 0.0f);//位置を特定
+	itemUi[5].SetSize(50.0f, 50.0f, 0.0f);//大きさ設定
 	itemUi[5].SetAngle(0.0f);//角度設定
 
 	// つらら bug1
@@ -209,7 +209,7 @@ void Game::Init(HWND hWnd)
 	rock[3].SetAngle(0.0f);//角度設定
 
 	rock[4].Init(L"asset/iwa.png", 1, 1);//いわあ
-	rock[4].SetPos(1100.0f, -175.0f, 0.0f);////位置を特定
+	rock[4].SetPos(5000.0f, -175.0f, 0.0f);////位置を特定
 	rock[4].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
 	rock[4].SetAngle(0.0f);//角度設定
 
@@ -510,29 +510,29 @@ void Game::Init(HWND hWnd)
 	//UI
 	//====================================================
 	Time.Init(L"asset/Time.png", 1, 1);//を初期化
-	Time.SetPos(0.0f, 250.0f, 0.0f);         //位置を設定
-	Time.SetSize(350.0f, 200.0f, 0.f);     //大きさ設定
+	Time.SetPos(0.0f, 300.0f, 0.0f);         //位置を設定
+	Time.SetSize(250.0f, 150.0f, 0.f);     //大きさ設定
 	Time.SetAngle(0.0f);//角度を設定	
 
 
 	Number_UI[1].Init(L"asset/Number.png", 10, 1);//スコアを初期化
 	Number_UI[1].SetPos(-300.0f, -300.0f, 0.0f);         //位置を設定
-	Number_UI[1].SetSize(50.0f, 50.0f, 0.f);     //大きさ設定
+	Number_UI[1].SetSize(40.0f, 40.0f, 0.f);     //大きさ設定
 	Number_UI[1].SetAngle(0.0f);//角度を設定
 
 	Number_UI[2].Init(L"asset/Number.png", 10, 1);//時間を初期化
-	Number_UI[2].SetPos(50.0f, 250.0f, 0.0f);         //位置を設定
-	Number_UI[2].SetSize(50.0f, 50.0f, 0.f);     //大きさ設定
+	Number_UI[2].SetPos(50.0f, 300.0f, 0.0f);         //位置を設定
+	Number_UI[2].SetSize(40.0f, 40.0f, 0.f);     //大きさ設定
 	Number_UI[2].SetAngle(0.0f);//角度を設定
 
 	ScoreCounter.Init(L"asset/ScoreCounter.png", 1, 1);//を初期化
 	ScoreCounter.SetPos(-550.0f, -300.0f, 0.0f);         //位置を設定
-	ScoreCounter.SetSize(130.0f, 130.0f, 0.f);     //大きさ設定
+	ScoreCounter.SetSize(80.0f, 80.0f, 0.f);     //大きさ設定
 	ScoreCounter.SetAngle(0.0f);//角度を設定	
 
 	ItemStock.Init(L"asset/ItemStock.png", 1, 1);//を初期化
 	ItemStock.SetPos(-500.0f, 250.0f, 0.0f);         //位置を設定
-	ItemStock.SetSize(250.0f, 200.0f, 0.f);     //大きさ設定
+	ItemStock.SetSize(200.0f, 150.0f, 0.f);     //大きさ設定
 	ItemStock.SetAngle(0.0f);//角度を設定	
 	ItemStock.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -843,8 +843,22 @@ void Game::Update(void) {
 			}
 		}
 
+		//敵に当たったら約２秒無敵に
+		if (framcount2 % 120 == 0&&HitFg==true)
+		{
+			HitFg = false;//
+		}
 
-
+		// 雪だるまとの当たり判定追加 
+		for (int i = 0; i < image; i++) 
+		{	
+			if (collision.ground_santa(snowman[i], santa, 50.0f, 0.0f)&&HitFg==false) 
+			{
+				time -= 5;				
+				HitFg = true;
+			}
+		}
+		
 		// 地面との当たり判定の追加 ゴロイ
 		for (int i = 0; i < image; i++) {
 			DirectX::XMFLOAT3 ground_pos = GetGroundPos(i);
@@ -1023,7 +1037,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(snowball[1], santa, 100.0f, 0.0f) && snow_visible1 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected&&fg==false)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
@@ -1091,12 +1105,6 @@ void Game::Update(void) {
 			{
 				
 				item->ItemRelease(); // 取り出す
-
-				if (fg == false)
-				{
-
-				}
-
 			}
 		}
 
