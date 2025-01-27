@@ -140,6 +140,7 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="physicalOperation.cpp" />
     <ClCompile Include="santa.cpp" />
+    <ClCompile Include="sound.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="WICTextureLoader.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="PhysicalOperationh.h" />
     <ClInclude Include="Santa.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="WICTextureLoader.h" />

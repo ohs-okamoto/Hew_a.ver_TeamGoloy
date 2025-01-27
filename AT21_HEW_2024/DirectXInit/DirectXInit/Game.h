@@ -3,6 +3,7 @@
 #include "input.h"
 #include "Texture.h"
 #include "Item.h"
+#include "Sound.h"
 
 #define image		(10)
 
@@ -63,6 +64,7 @@ private:
 	Object BigPresent_Stage2[image];//プレゼント
 	Object Breakrock_Stge2[image];//壊せる岩
 	Object Collectrock_Stage2[image];
+	Object Snowball_Stage2[image];
 
 	//リザルト関連
 	Object Result;//リザルト背景
@@ -93,6 +95,11 @@ private:
 
 	int time = 150;
 	int cleartime = 0;
+
+	bool HitFg = false;
+
+	int hitcooltime=0;//敵と当たった時の無敵時間
+
 	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;
@@ -112,6 +119,8 @@ private:
 
 	
 	Item* item; //メンバ変数
+	Sound sound;
+
 
 	// アイテムを透明にするかしないかの変数
 	int rock_visible1 = 0;
