@@ -844,8 +844,10 @@ void Game::Update(void) {
 			}
 		}
 
+
+		hitcooltime++;
 		//“G‚É“–‚½‚Á‚½‚ç–ñ‚Q•b–³“G‚É
-		if (framcount2 % 120 == 0&&HitFg==true)
+		if (hitcooltime % 120 == 0&&HitFg==true)
 		{
 			HitFg = false;//
 		}
@@ -855,7 +857,8 @@ void Game::Update(void) {
 		{	
 			if (collision.ground_santa(snowman[i], santa, 50.0f, 0.0f)&&HitFg==false) 
 			{
-				time -= 5;				
+				time -= 5;	
+				hitcooltime = 0;
 				HitFg = true;
 			}
 		}

@@ -93,6 +93,9 @@ private:
 	int cleartime = 0;
 
 	bool HitFg = false;
+
+	int hitcooltime=0;//敵と当たった時の無敵時間
+
 	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;
