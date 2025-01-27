@@ -15,7 +15,7 @@ using namespace std;
 void Game::Init(HWND hWnd)
 {
 	D3D_Create(hWnd);//Directxを初期化
-
+	sound.Init();//サウンドを初期化
 	//====================================================
 	//プレイヤー関連
 	//====================================================
@@ -581,7 +581,7 @@ void Game::Init(HWND hWnd)
 	time = 150;
 	cleartime = 0;
 	item = new Item(1);
-
+	
 }
 
 void Game::Update(void) {
@@ -625,6 +625,7 @@ void Game::Update(void) {
 		if (framcount % 100 == 0) //２秒弱ぐらいでシーン切り替え
 		{
 			changescene = STAGE_1;
+			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
 		}
 	}
 	break;
@@ -2238,6 +2239,8 @@ void Game::Uninit(void)
 	ScoreCounter.Uninit();
 	Time.Uninit();
 	ItemStock.Uninit();
+
+	sound.Uninit();//サウンドを終了
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
 }

@@ -3,6 +3,7 @@
 #include "input.h"
 #include "Texture.h"
 #include "Item.h"
+#include "Sound.h"
 
 #define image		(10)
 
@@ -111,6 +112,8 @@ private:
 
 	int itemID;
 	Item* item; //メンバ変数
+	Sound sound;
+
 
 	// アイテムを透明にするかしないかの変数
 	int rock_visible1 = 0;
