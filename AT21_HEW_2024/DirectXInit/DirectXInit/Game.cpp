@@ -855,13 +855,35 @@ void Game::Update(void) {
 		// 雪だるまとの当たり判定追加 
 		for (int i = 0; i < image; i++) 
 		{	
-			if (collision.ground_santa(snowman[i], santa, 50.0f, 0.0f)&&HitFg==false) 
+			if (collision.enemy_santa(snowman[i], santa, 50.0f, 0.0f)&&HitFg==false) 
 			{
 				time -= 5;	
 				hitcooltime = 0;
 				HitFg = true;
 			}
 		}
+		// 星との当たり判定追加 
+		if (collision.enemy_santa(star_monster, santa, 50.0f, 0.0f) && HitFg == false)
+		{
+			time -= 5;
+			hitcooltime = 0;
+			HitFg = true;
+		}
+		//トナカイ との当たり判定追加 
+		if (collision.enemy_santa(tonakai, santa, 50.0f, 0.0f) && HitFg == false)
+		{
+			time -= 5;
+			hitcooltime = 0;
+			HitFg = true;
+		}
+	
+		if (collision.item_santa(present[1], santa, 100.0f, 0.0f))
+		{
+			presentcount += 1;
+			score += 500;
+			present_pos1.y = 100000;
+		}
+		
 		
 		// 地面との当たり判定の追加 ゴロイ
 		for (int i = 0; i < image; i++) {
@@ -1144,7 +1166,7 @@ void Game::Update(void) {
 		// 12/30  サンタの移動アニメーション追加  	畦内
 		//移動速度
 		speed = 5;
-
+		
 		if (collision.canMoveRight && input.GetKeyPress(VK_D) || input.GetLeftAnalogStick().x >= 0.1)
 		{
 			santa_pos.x += 5;//右移動
