@@ -15,7 +15,7 @@ public:
 
 	void ItemGet(int item); // アイテムを取る
 	void ItemRelease(); // アイテムを取り出す
-	void ItemEffect(); // アイテムを効果
+	int ItemEffect(); // アイテムを効果
 	bool QueueFull() const; // キューが満杯がどうかを確認
 	
 	void GetQueue() ; // キューの中身を取得する関数

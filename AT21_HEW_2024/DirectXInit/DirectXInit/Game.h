@@ -31,6 +31,10 @@ private:
 
 	Object itemUi[9]; // アイテム入手時のUI
 
+	Object use_rock[3];     // 投げ物
+	Object use_snowball[3]; // 投げ物
+	Object use_turara[3];   // 投げ物
+
 
 	Object wood[image];//ゲーム画面の背景にある木
 	Object ground[image];//地面
@@ -106,7 +110,7 @@ private:
 
 	
 
-	int itemID;
+	
 	Item* item; //メンバ変数
 
 	// アイテムを透明にするかしないかの変数
@@ -122,6 +126,21 @@ private:
 	int snow_visible4 = 0;
 	int snow_visible5 = 0;
 	int snow_visible6 = 0;
+
+	// この世界には二つの物がある。石か石以外か。 1:石　2:雪玉
+	int itemID_1 = 0;
+	int itemID_2 = 0;
+	int itemID_3 = 0;
+
+	// アイテム使用時の動き
+	bool itemMove1 = false;
+	bool itemMove2 = false;
+	bool itemMove3 = false;
+
+	// アイテム使用中の座標の管理
+	bool itemMove1_M = false;
+	bool itemMove2_M = false;
+	bool itemMove3_M = false;
 
 public:
 	

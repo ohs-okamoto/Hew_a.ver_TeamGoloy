@@ -517,6 +517,45 @@ void Game::Init(HWND hWnd)
 	ItemStock.SetAngle(0.0f);//角度を設定	
 	ItemStock.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+	//====================================================
+	//投げ物
+	//====================================================
+	
+	//いわ1
+	use_rock[0].Init(L"asset/iwa.png", 1, 1);//いわ
+	use_rock[0].SetPos(-2500.0f, -175.0f, 0.0f);//位置を特定
+	use_rock[0].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	use_rock[0].SetAngle(0.0f);//角度設定
+
+	//いわ2
+	use_rock[1].Init(L"asset/iwa.png", 1, 1);//いわ
+	use_rock[1].SetPos(-2500.0f, -175.0f, 0.0f);//位置を特定
+	use_rock[1].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	use_rock[1].SetAngle(0.0f);//角度設定
+
+	//いわ3
+	use_rock[2].Init(L"asset/iwa.png", 1, 1);//いわ
+	use_rock[2].SetPos(-2500.0f, -175.0f, 0.0f);//位置を特定
+	use_rock[2].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	use_rock[2].SetAngle(0.0f);//角度設定
+
+	//雪玉1
+	use_snowball[0].Init(L"asset/yukidama.png", 1, 1);//雪
+	use_snowball[0].SetPos(-2500.0f, -175.0f, 0.0f);////位置を特定
+	use_snowball[0].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	use_snowball[0].SetAngle(0.0f);//角度設定
+
+	//雪玉2
+	use_snowball[1].Init(L"asset/yukidama.png", 1, 1);//雪
+	use_snowball[1].SetPos(-2500.0f, -175.0f, 0.0f);////位置を特定
+	use_snowball[1].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	use_snowball[1].SetAngle(0.0f);//角度設定
+
+	//雪玉3
+	use_snowball[2].Init(L"asset/yukidama.png", 1, 1);//雪
+	use_snowball[2].SetPos(-2500.0f, -175.0f, 0.0f);////位置を特定
+	use_snowball[2].SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	use_snowball[2].SetAngle(0.0f);//角度設定
 
 	//====================================================
 	//てき
@@ -611,7 +650,7 @@ void Game::Update(void) {
 	break;
 	case STAGE_1:
 	{
-		
+
 		//サンタ
 		DirectX::XMFLOAT3 santa_pos = santa.GetPos();
 		//ゴール
@@ -668,6 +707,16 @@ void Game::Update(void) {
 		//プレゼント大
 		DirectX::XMFLOAT3 bigpresent_pos1 = BigPresent[1].GetPos();
 
+		//投げ物　いわ
+		DirectX::XMFLOAT3 use_rock_pos1 = use_rock[0].GetPos();
+		DirectX::XMFLOAT3 use_rock_pos2 = use_rock[1].GetPos();
+		DirectX::XMFLOAT3 use_rock_pos3 = use_rock[2].GetPos();
+
+		//投げ物　雪玉
+		DirectX::XMFLOAT3 use_snowball_pos1 = use_snowball[0].GetPos();
+		DirectX::XMFLOAT3 use_snowball_pos2 = use_snowball[1].GetPos();
+		DirectX::XMFLOAT3 use_snowball_pos3 = use_snowball[2].GetPos();
+
 		//item->GetItem_1();
 
 		// 一旦仮で重力的なものをを追加します　ゴロイ
@@ -709,7 +758,7 @@ void Game::Update(void) {
 		}
 
 		//制限時間
-		if (framcount2 % 60==0)//1秒に一回行われる
+		if (framcount2 % 60 == 0)//1秒に一回行われる
 		{
 			time--;
 		}
@@ -911,8 +960,8 @@ void Game::Update(void) {
 
 				tree_pos.x = 1900;
 				goal_pos.x = 5800;
-				
-				
+
+
 			}
 
 
@@ -927,9 +976,9 @@ void Game::Update(void) {
 
 		const float rightScreen = 670.0f; // 画面の右端
 		const float leftScreen = -670.0f; // 画面の左端
-		
 
-		if (collision.item_santa(rock[1], santa, 100.0f, 0.0f) && rock_visible1==0)
+
+		if (collision.item_santa(rock[1], santa, 100.0f, 0.0f) && rock_visible1 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -938,7 +987,7 @@ void Game::Update(void) {
 				itemCollected = true;
 
 				rock_visible1 = 1;
-				   
+
 			}
 		}
 
@@ -1071,8 +1120,160 @@ void Game::Update(void) {
 		if (!itemCollected) {// 当たってない場合
 			if (input.GetKeyTrigger(VK_S))
 			{
+				if (item->GetItem_3() > 0) {
+
+					if (item->GetItem_3() == 1) {
+						use_rock_pos3.x = santa_pos.x;
+						use_rock_pos3.y = santa_pos.y;
+						itemID_3 = 1;
+						itemMove3 = true;
+					}
+					else if (item->GetItem_3() == 2) {
+						use_snowball_pos3.x = santa_pos.x;
+						use_snowball_pos3.y = santa_pos.y;
+						itemID_3 = 2;
+						itemMove3 = true;
+					}
+
+				}
+				else if (item->GetItem_3() < 0) {
+
+					if (item->GetItem_2() > 0) {
+
+						if (item->GetItem_2() == 1) {
+							use_rock_pos2.x = santa_pos.x;
+							use_rock_pos2.y = santa_pos.y;
+							itemID_2 = 1;
+							itemMove2 = true;
+						}
+						else if (item->GetItem_2() == 2) {
+							use_snowball_pos2.x = santa_pos.x;
+							use_snowball_pos2.y = santa_pos.y;
+							itemID_2 = 2;
+							itemMove2 = true;
+						}
+
+					}
+					else if (item->GetItem_2() < 0) {
+
+						if (item->GetItem_1() > 0) {
+
+							if (item->GetItem_1() == 1) {
+								use_rock_pos1.x = santa_pos.x;
+								use_rock_pos1.y = santa_pos.y;
+								itemID_1 = 1;
+								itemMove1 = true;
+							}
+							else if (item->GetItem_1() == 2) {
+								use_snowball_pos1.x = santa_pos.x;
+								use_snowball_pos1.y = santa_pos.y;
+								itemID_1 = 2;
+								itemMove1 = true;
+							}
+
+						}
+					}
+				}
+				
+				
 				item->ItemRelease(); // 取り出す
 			}
+		}
+
+		// 投げ物の動き　その① 
+		if (itemMove1 == true) {
+			if (itemID_1 == 1) { // 岩
+
+				if (itemMove1_M == true || use_rock_pos1.y >= -100.0f) {
+					itemMove1_M = true;
+					use_rock_pos1.y -= 3.00f;
+					use_rock_pos1.x += 3.00f;
+				}
+				else if (itemMove1_M == false) {
+					use_rock_pos1.y += 3.00f;
+					use_rock_pos1.x += 3.00f;
+				}
+				if (use_rock_pos1.y <= -190.0f && itemMove1_M == true) {
+					itemID_1 = 0;
+					itemMove1_M = false;
+					itemMove1 = false;
+				}
+			}
+			else if (itemID_1 == 2) {
+				if (use_snowball_pos1.x >= rightScreen) {
+					itemID_1 = 0;
+					itemMove1 = false;
+				}
+				else if (use_snowball_pos1.x <= rightScreen) {
+					use_snowball_pos1.x += 20.00f;
+				}
+			}
+			
+
+		}
+
+		// 投げ物の動き　その②
+		if (itemMove2 == true) {
+			if (itemID_2 == 1) { //岩
+
+				if (itemMove2_M == true || use_rock_pos2.y >= -100.0f) {
+					itemMove2_M = true;
+					use_rock_pos2.y -= 3.00f;
+					use_rock_pos2.x += 3.00f;
+				}
+				else if (itemMove2_M == false) {
+					use_rock_pos2.y += 3.00f;
+					use_rock_pos2.x += 3.00f;
+				}
+				if (use_rock_pos2.y <= -190.0f && itemMove2_M == true) {
+					itemID_2 = 0;
+					itemMove2_M = false;
+					itemMove2 = false;
+				}
+			}
+			else if (itemID_2 == 2) {
+				if (use_snowball_pos2.x >= rightScreen) {
+					itemID_2 = 0;
+					itemMove2 = false;
+				}
+				else if (use_snowball_pos2.x <= rightScreen) {
+					use_snowball_pos2.x += 20.00f;
+				}
+			}
+			
+
+		}
+
+		// 投げ物の動き　その③
+		if (itemMove3 == true) {
+			if (itemID_3 == 1) { // 岩
+
+				if (itemMove3_M == true || use_rock_pos3.y >= -100.0f) {
+					itemMove3_M = true;
+					use_rock_pos3.y -= 3.00f;
+					use_rock_pos3.x += 3.00f;
+				}
+				else if (itemMove3_M == false) {
+					use_rock_pos3.y += 3.00f;
+					use_rock_pos3.x += 3.00f;
+				}
+				if (use_rock_pos3.y <= -190.0f && itemMove3_M == true) {
+					itemID_3 = 0;
+					itemMove3_M = false;
+					itemMove3 = false;
+				}
+			}
+			else if (itemID_3 == 2) {
+				if (use_snowball_pos3.x >= rightScreen) {
+					itemID_3 = 0;
+					itemMove3 = false;
+				}
+				else if (use_snowball_pos3.x <= rightScreen) {
+					use_snowball_pos3.x += 20.00f;
+				}
+			}
+			
+			
 		}
 
 
@@ -1186,6 +1387,15 @@ void Game::Update(void) {
 				tree_pos.x -= speed;
 				//ゴール
 				goal_pos.x -= speed;
+
+				//投げアイテム
+				use_rock_pos1.x -= speed;
+				use_rock_pos2.x -= speed;
+				use_rock_pos3.x -= speed;
+				use_snowball_pos1.x -= speed;
+				use_snowball_pos2.x -= speed;
+				use_snowball_pos3.x -= speed;
+
 			}
 		}
 		else
@@ -1275,6 +1485,14 @@ void Game::Update(void) {
 				tree_pos.x += speed;
 				//ゴール
 				goal_pos.x += speed;
+
+				//投げアイテム
+				use_rock_pos1.x += speed;
+				use_rock_pos2.x += speed;
+				use_rock_pos3.x += speed;
+				use_snowball_pos1.x += speed;
+				use_snowball_pos2.x += speed;
+				use_snowball_pos3.x += speed;
 			}
 		}
 		else
@@ -1376,6 +1594,14 @@ void Game::Update(void) {
 		ground[4].SetPos(ground_pos4.x, ground_pos4.y, ground_pos4.z);
 		ground[5].SetPos(ground_pos5.x, ground_pos5.y, ground_pos5.z);
 
+		use_rock[0].SetPos(use_rock_pos1.x, use_rock_pos1.y, use_rock_pos1.z);
+		use_rock[1].SetPos(use_rock_pos2.x, use_rock_pos2.y, use_rock_pos2.z);
+		use_rock[2].SetPos(use_rock_pos3.x, use_rock_pos3.y, use_rock_pos3.z);
+
+		use_snowball[0].SetPos(use_snowball_pos1.x, use_snowball_pos1.y, use_snowball_pos1.z);
+		use_snowball[1].SetPos(use_snowball_pos2.x, use_snowball_pos2.y, use_snowball_pos2.z);
+		use_snowball[2].SetPos(use_snowball_pos3.x, use_snowball_pos3.y, use_snowball_pos3.z);
+		
 	}
 	break;
 
@@ -1855,6 +2081,34 @@ void Game::Draw(void)
 		goal.Draw();
 
 		ItemStock.Draw();
+
+		///////// 投げ物 ///////////////////
+
+		if (itemID_1 == 1) {
+			use_rock[0].Draw();
+		}
+		if (itemID_2 == 1) {
+			use_rock[1].Draw();
+		}
+		if (itemID_3 == 1) {
+			use_rock[2].Draw();
+		}
+			
+		if (itemID_1 == 2) {
+			use_snowball[0].Draw();
+		}
+		if (itemID_2 == 2) {
+			use_snowball[1].Draw();
+		}
+		if (itemID_3 == 2) {
+			use_snowball[2].Draw();
+		}
+		
+			/*use_snowball[0].Draw();
+			use_snowball[1].Draw();
+			use_snowball[2].Draw();*/
+		
+
 		///////// UI  ///////////////////
 
 		// bug1

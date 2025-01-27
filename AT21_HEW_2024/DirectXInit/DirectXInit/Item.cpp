@@ -35,8 +35,23 @@ bool Item::QueueFull() const { // キューが満杯かどうかを確認
 	return itemQueue.size() >= MAX_ITEMS;
 }
 
-void Item::ItemEffect() { // アイテム効果
+int Item::ItemEffect() { // アイテム効果
+	if (bug3 > 0) { // bug3にアイテムがある場合
+		return bug3;
+	}
+	else if (bug3 < 0) { //アイテムがない場合
+		if (bug2 > 0) {
+			return bug2;
+		}
+		else if (bug2 < 0) { // bug2にアイテムがない場合
+			if (bug1 > 0) {
+				return bug1;
+			}
+		}
+	}
+	else {
 
+	}
 }
 
 void Item::GetQueue(){
@@ -50,10 +65,10 @@ void Item::GetQueue(){
 	}
 
 	if (elements.size() >= 1) {
-		bug1 = elements[0];
+		bug3 = elements[0];
 	}
 	else {
-		bug1 = -1; // デフォルト値
+		bug3 = -1; // デフォルト値
 	}
 	if (elements.size() >= 2) {
 		bug2 = elements[1];
@@ -62,10 +77,10 @@ void Item::GetQueue(){
 		bug2 = -1; // デフォルト値
 	}
 	if (elements.size() >= 3) {
-		bug3 = elements[2];
+		bug1 = elements[2];
 	}
 	else {
-		bug3 = -1; // デフォルト値
+		bug1 = -1; // デフォルト値
 	}
 	
 
