@@ -104,6 +104,11 @@ private:
 
 	int hitcooltime=0;//敵と当たった時の無敵時間
 
+	bool Select_MoverightFg = false;
+	bool Select_MoveleftFg = false;
+
+	bool StopCheck =true;
+
 	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;

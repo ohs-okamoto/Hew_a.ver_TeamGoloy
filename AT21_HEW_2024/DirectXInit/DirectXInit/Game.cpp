@@ -21,7 +21,6 @@ void Game::Init(HWND hWnd)
 	//====================================================
 	
 	santa.Init(L"asset/Santa_Normal_Move_v2.png", 4, 4);//サンタを初期化
-	
 	santa.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
 	santa.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	santa.SetAngle(0.0f);             		//角度を設定
@@ -664,51 +663,99 @@ void Game::Update(void) {
 	{
 		DirectX::XMFLOAT3 pos = SantaCursor.GetPos();
 
-		
+
 		if (pos.x == -430) { select = 1; }//ステージ１
 		if (pos.x == 0)    { select = 2; }//ステージ２
 		if (pos.x == 430)  { select = 3; }//ボス
 
-		if (select !=3&&input.GetKeyTrigger(VK_D))
+		if (select !=3&&input.GetKeyTrigger(VK_D)&& Select_MoverightFg == false && Select_MoveleftFg == false)
 		{
-			pos.x += 430;
+			Select_MoverightFg = true;
+			SantaCursor.numU = 0;
+			SantaCursor.numV = 0;
+			StopCheck = false;
 		}
-		if (select != 1&&input.GetKeyTrigger(VK_A))
+		if (select != 1&&input.GetKeyTrigger(VK_A) && Select_MoveleftFg == false && Select_MoverightFg == false)
 		{
-			pos.x -= 430;
+			Select_MoveleftFg = true;
+			SantaCursor.numU = 0;
+			SantaCursor.numV = 3;
+			StopCheck = false;
+		}
+
+		if (Select_MoverightFg == true) 
+		{
+			if(select!=3){ pos.x += 10; }
+			framcount++; //フレームカウント
+			if (framcount % 5 == 0) //１０フレームに一回行われる
+			{
+				SantaCursor.numU++;
+				if (SantaCursor.numU >= 4)
+				{
+					SantaCursor.numU = 0;
+					SantaCursor.numV++;
+					if (SantaCursor.numV >= 2)
+					{
+						SantaCursor.numV = 0;
+					}
+				}
+			}
+			if (pos.x == 0){Select_MoverightFg = false; StopCheck = true;}
+			if (pos.x == 430) { Select_MoverightFg = false; StopCheck = true;}
+		}
+
+		if (Select_MoveleftFg == true)
+		{
+			if (select != 1) { pos.x -= 10; }
+			framcount++; //フレームカウント
+			if (framcount % 5 == 0) //１０フレームに一回行われる
+			{
+				SantaCursor.numU++;
+				if (SantaCursor.numU >= 4)
+				{
+					SantaCursor.numU = 0;
+					SantaCursor.numV++;
+					if (SantaCursor.numV >= 4)
+					{
+						SantaCursor.numV = 2;
+					}
+				}
+			}
+			if (pos.x == 0) { Select_MoveleftFg = false; StopCheck = true;}
+			if (pos.x == -430) { Select_MoveleftFg = false; StopCheck = true;}
+
 		}
 
 		//キーボード入力
 		
 		//キー入力で本編
-		if (input.GetKeyTrigger(VK_RETURN) &&select == 1)
+		if (input.GetKeyTrigger(VK_RETURN) &&select == 1&&StopCheck)
 		{
 			changescene = STAGE1_LOADING;
 		}
 		//ステージ２へ	
-		if (input.GetKeyTrigger(VK_RETURN) && select ==2)
+		if (input.GetKeyTrigger(VK_RETURN) && select ==2 && StopCheck)
 		{
 			changescene = STAGE_2;
 		}
 		//ボスへ	
-		if (input.GetKeyTrigger(VK_RETURN) && select == 3)
+		if (input.GetKeyTrigger(VK_RETURN) && select == 3 && StopCheck)
 		{
 			changescene = BOSS;
 		}
 
-
 		//コントローラー入力
-		if (input.GetButtonTrigger(XINPUT_B) && select == 1)
+		if (input.GetButtonTrigger(XINPUT_B) && select == 1 && StopCheck)
 		{
 			changescene = STAGE1_LOADING;
 		}
 		//ステージ２へ	
-		if (input.GetButtonTrigger(XINPUT_B) && select == 2)
+		if (input.GetButtonTrigger(XINPUT_B) && select == 2 && StopCheck)
 		{
 			changescene = STAGE_2;
 		}
 		//ボスへ	
-		if (input.GetButtonTrigger(XINPUT_B) && select == 3)
+		if (input.GetButtonTrigger(XINPUT_B) && select == 3 && StopCheck)
 		{
 			changescene = BOSS;
 		}
