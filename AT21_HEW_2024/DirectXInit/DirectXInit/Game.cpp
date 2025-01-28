@@ -520,23 +520,23 @@ void Game::Init(HWND hWnd)
 	//====================================================
 	//UI
 	//====================================================
-	Time.Init(L"asset/Time.png", 1, 1);//を初期化
+	Time.Init(L"asset/Time_v2.png", 1, 1);//を初期化
 	Time.SetPos(0.0f, 300.0f, 0.0f);         //位置を設定
 	Time.SetSize(250.0f, 150.0f, 0.f);     //大きさ設定
 	Time.SetAngle(0.0f);//角度を設定	
 
 
-	Number_UI[1].Init(L"asset/Number.png", 10, 1);//スコアを初期化
+	Number_UI[1].Init(L"asset/Number_v2.png", 10, 1);//スコアを初期化
 	Number_UI[1].SetPos(-300.0f, -300.0f, 0.0f);         //位置を設定
 	Number_UI[1].SetSize(40.0f, 40.0f, 0.f);     //大きさ設定
 	Number_UI[1].SetAngle(0.0f);//角度を設定
 
-	Number_UI[2].Init(L"asset/Number.png", 10, 1);//時間を初期化
+	Number_UI[2].Init(L"asset/Number_v2.png", 10, 1);//時間を初期化
 	Number_UI[2].SetPos(50.0f, 300.0f, 0.0f);         //位置を設定
 	Number_UI[2].SetSize(40.0f, 40.0f, 0.f);     //大きさ設定
 	Number_UI[2].SetAngle(0.0f);//角度を設定
 
-	ScoreCounter.Init(L"asset/ScoreCounter.png", 1, 1);//を初期化
+	ScoreCounter.Init(L"asset/ScoreCounter_v2.png", 1, 1);//を初期化
 	ScoreCounter.SetPos(-550.0f, -300.0f, 0.0f);         //位置を設定
 	ScoreCounter.SetSize(80.0f, 80.0f, 0.f);     //大きさ設定
 	ScoreCounter.SetAngle(0.0f);//角度を設定	
