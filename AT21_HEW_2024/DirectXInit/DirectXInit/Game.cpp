@@ -531,8 +531,8 @@ void Game::Init(HWND hWnd)
 	ScoreCounter.SetAngle(0.0f);//Šp“x‚ðÝ’è	
 
 	ItemStock.Init(L"asset/ItemStock.png", 1, 1);//‚ð‰Šú‰»
-	ItemStock.SetPos(-500.0f, 250.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
-	ItemStock.SetSize(200.0f, 150.0f, 0.f);     //‘å‚«‚³Ý’è
+	ItemStock.SetPos(-450.0f, 250.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	ItemStock.SetSize(200.0f, 100.0f, 0.f);     //‘å‚«‚³Ý’è
 	ItemStock.SetAngle(0.0f);//Šp“x‚ðÝ’è	
 	ItemStock.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -1175,14 +1175,16 @@ void Game::Update(void) {
 		}
 
 
-		if (!itemCollected) {// “–‚½‚Á‚Ä‚È‚¢ê‡
+		if (!itemCollected && !changeItem) {// “–‚½‚Á‚Ä‚È‚¢ê‡
 			if (input.GetKeyTrigger(VK_S))
 			{
 				if (item->GetItem_3() > 0) {
+					changeItem = true;
 
 					if (item->GetItem_3() == 1) {
 						use_rock_pos3.x = santa_pos.x;
 						use_rock_pos3.y = santa_pos.y;
+						
 						itemID_3 = 1;
 						itemMove3 = true;
 					}
@@ -1369,6 +1371,7 @@ void Game::Update(void) {
 
 		// “Š‚°•¨‚Ì“®‚«@‚»‚Ì‡B
 		if (itemMove3 == true) {
+			
 			if (direction == 0) { // ‰EŒü‚«
 
 				if (itemID_3 == 1) { // Šâ
@@ -1386,15 +1389,17 @@ void Game::Update(void) {
 						itemID_3 = 0;
 						itemMove3_M = false;
 						itemMove3 = false;
+						changeItem = false;
 					}
 				}
 				else if (itemID_3 == 2) {
 					if (use_snowball_pos3.x >= rightScreen) {
 						itemID_3 = 0;
 						itemMove3 = false;
+						changeItem = false;
 					}
 					else if (use_snowball_pos3.x <= rightScreen) {
-						use_snowball_pos3.x += 20.00f;
+						use_snowball_pos3.x += 30.00f;
 					}
 				}
 			}
@@ -1415,15 +1420,17 @@ void Game::Update(void) {
 						itemID_3 = 0;
 						itemMove3_M = false;
 						itemMove3 = false;
+						changeItem = false;
 					}
 				}
 				else if (itemID_3 == 2) {
 					if (use_snowball_pos3.x <= leftScreen) {
 						itemID_3 = 0;
 						itemMove3 = false;
+						changeItem = false;
 					}
 					else if (use_snowball_pos3.x >= leftScreen) {
-						use_snowball_pos3.x -= 20.00f;
+						use_snowball_pos3.x -= 30.00f;
 					}
 				}
 			}
