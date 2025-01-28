@@ -48,6 +48,18 @@ void Game::Init(HWND hWnd)
 	background.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
 	background.SetAngle(0.0f);//角度を設定	 
 
+	//====================================================
+	// セクレト画面
+	//====================================================
+	StegeSelect.Init(L"asset/Stageselect.png", 1, 1);//を初期化
+	StegeSelect.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
+	StegeSelect.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
+	StegeSelect.SetAngle(0.0f);//角度を設定	    
+
+	SantaCursor.Init(L"asset/Santa_Normal_Pack_Move_v4.png", 4, 4);//を初期化
+	SantaCursor.SetPos(-430.0f, 0.0f, 0.0f);         //位置を設定
+	SantaCursor.SetSize(200.0f, 180.0f, 0.f);     //大きさ設定
+	SantaCursor.SetAngle(0.0f);//角度を設定	   
 
 	//====================================================
 	// UI
@@ -640,20 +652,49 @@ void Game::Update(void) {
 	case TITLE:
 	{
 		//キー入力で本編
-
-		
-
 		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_A))
 
 		{
+			changescene = STAGESELECT;
+			
+		}
+	}
+	break;
+	case STAGESELECT:
+	{
+		DirectX::XMFLOAT3 pos = SantaCursor.GetPos();
+
+		
+		if (pos.x == -430) { a = 1; }//ステージ１
+		if (pos.x == 0) { a = 2; }//ステージ２
+		if (pos.x == 430) { a = 3; }//ボス
+
+		if (a!=3&&input.GetKeyTrigger(VK_D))
+		{
+			pos.x += 430;
+		}
+		if (a != 1&&input.GetKeyTrigger(VK_A))
+		{
+			pos.x -= 430;
+		}
+
+
+		//キー入力で本編
+		if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonPress(XINPUT_B)&&a==1)
+
+		{
 			changescene = STAGE1_LOADING;
-			//changescene = RESULT;
+			
 		}
 		//２を押すとステージ２へ	
-		if (input.GetKeyTrigger(VK_2))
+		if (input.GetKeyTrigger(VK_RETURN)&&a==2)
 		{
 			changescene = STAGE_2;
 		}
+
+
+
+		SantaCursor.SetPos(pos.x,pos.y,pos.z);
 
 	}
 	break;
@@ -2214,6 +2255,10 @@ void Game::Draw(void)
 
 		
 		break;
+	case STAGESELECT:
+		StegeSelect.Draw();
+		SantaCursor.Draw();
+		break;
 	case STAGE1_LOADING:
 		Stage1_Loading.Draw();
 		break;
@@ -2608,10 +2653,12 @@ void Game::Uninit(void)
 	Number_UI[1].Uninit();
 	Number_UI[2].Uninit();
 
+
+	SantaCursor.Uninit();
 	ScoreCounter.Uninit();
 	Time.Uninit();
 	ItemStock.Uninit();
-
+	StegeSelect.Uninit();
 	sound.Uninit();//サウンドを終了
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
