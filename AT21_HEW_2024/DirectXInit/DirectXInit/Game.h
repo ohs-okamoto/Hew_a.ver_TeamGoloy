@@ -160,6 +160,9 @@ private:
 	bool itemMove2_M = false;
 	bool itemMove3_M = false;
 
+	// 次のアイテムが出るまで使えません
+	int changeItem = 0;
+
 	// サンタの向き
 	int direction = 0; // 0:右　1:左
 
