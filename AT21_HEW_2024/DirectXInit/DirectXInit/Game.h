@@ -10,6 +10,8 @@
 enum SceneName {
 	TITLE,
 	STAGE1_LOADING,
+	STAGE2_LOADING,
+	BOSS_LOADING,
 	STAGESELECT,
 	STAGE_1,
 	STAGE_2,
@@ -86,9 +88,19 @@ private:
 	Object UseBag;//現在の袋
 	Object ScoreCounter;
 
+	//ゲームオーバー画面
+	Object Gameover;//背景
+	Object GoodMorning;//おはよう
+	Object Retry;//リトライ
+	Object TitleBack;//タイトルに戻る
+	Object Cursor;
 	//ステージセレクト
 	Object StegeSelect;//ステージセレクト
 	Object SantaCursor;//サンタカーソル
+
+	Object pause;//ポーズ画面オブジェクト
+	bool gameoverFg = false;//ポーズフラグ
+
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
@@ -100,16 +112,24 @@ private:
 
 	int score = 0;//スコア
 
+
+
 	int time = 150;
 	int cleartime = 0;
 
 	bool HitFg = false;
 
+	bool ResettingFg = false;
+
 	int hitcooltime=0;//敵と当たった時の無敵時間
 
+	//セクレト画面での移動フラグ
 	bool Select_MoverightFg = false;
 	bool Select_MoveleftFg = false;
 
+	bool CursorFg = false;
+
+	//動きが止まってるか
 	bool StopCheck =true;
 
 	//フレームカウント
