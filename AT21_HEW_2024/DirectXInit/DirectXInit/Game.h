@@ -13,6 +13,7 @@ enum SceneName {
 	STAGESELECT,
 	STAGE_1,
 	STAGE_2,
+	BOSS,
 	RESULT
 };
 
@@ -118,7 +119,7 @@ private:
 
 	Input input; //“ü—Í
 
-	int a = 0;
+	int select = 1;
 
 	
 	Item* item; //ƒƒ“ƒo•Ï”

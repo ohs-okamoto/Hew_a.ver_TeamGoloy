@@ -632,7 +632,7 @@ void Game::Init(HWND hWnd)
 	time = 150;
 	cleartime = 0;
 	item = new Item(1);
-	
+	select=1;
 }
 
 void Game::Update(void) {
@@ -665,33 +665,53 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 pos = SantaCursor.GetPos();
 
 		
-		if (pos.x == -430) { a = 1; }//ステージ１
-		if (pos.x == 0) { a = 2; }//ステージ２
-		if (pos.x == 430) { a = 3; }//ボス
+		if (pos.x == -430) { select = 1; }//ステージ１
+		if (pos.x == 0)    { select = 2; }//ステージ２
+		if (pos.x == 430)  { select = 3; }//ボス
 
-		if (a!=3&&input.GetKeyTrigger(VK_D))
+		if (select !=3&&input.GetKeyTrigger(VK_D))
 		{
 			pos.x += 430;
 		}
-		if (a != 1&&input.GetKeyTrigger(VK_A))
+		if (select != 1&&input.GetKeyTrigger(VK_A))
 		{
 			pos.x -= 430;
 		}
 
-
+		//キーボード入力
+		
 		//キー入力で本編
-		if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonPress(XINPUT_B)&&a==1)
-
+		if (input.GetKeyTrigger(VK_RETURN) &&select == 1)
 		{
 			changescene = STAGE1_LOADING;
-			
 		}
-		//２を押すとステージ２へ	
-		if (input.GetKeyTrigger(VK_RETURN)&&a==2)
+		//ステージ２へ	
+		if (input.GetKeyTrigger(VK_RETURN) && select ==2)
 		{
 			changescene = STAGE_2;
 		}
+		//ボスへ	
+		if (input.GetKeyTrigger(VK_RETURN) && select == 3)
+		{
+			changescene = BOSS;
+		}
 
+
+		//コントローラー入力
+		if (input.GetButtonTrigger(XINPUT_B) && select == 1)
+		{
+			changescene = STAGE1_LOADING;
+		}
+		//ステージ２へ	
+		if (input.GetButtonTrigger(XINPUT_B) && select == 2)
+		{
+			changescene = STAGE_2;
+		}
+		//ボスへ	
+		if (input.GetButtonTrigger(XINPUT_B) && select == 3)
+		{
+			changescene = BOSS;
+		}
 
 
 		SantaCursor.SetPos(pos.x,pos.y,pos.z);
@@ -2206,6 +2226,16 @@ void Game::Update(void) {
 		Snowball_Stage2[3].SetPos(snowball_pos3.x, snowball_pos3.y, snowball_pos3.z);
 	}
 	break;
+
+	case BOSS:
+		
+		//キー入力でタイトル移動
+		if (input.GetKeyTrigger(VK_RETURN))
+		{
+			changescene = RESULT;//リザルトへ
+		}
+		break;
+
 
 	case RESULT:
 		score = 1;
