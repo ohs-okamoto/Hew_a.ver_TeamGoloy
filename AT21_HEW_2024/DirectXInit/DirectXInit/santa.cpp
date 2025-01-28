@@ -11,9 +11,6 @@ SANTA::~SANTA() { // デストラクタ
 
 }
 
-void SANTA::Init() { // 初期化
-
-}
 
 void SANTA::Updata() { // 更新
 

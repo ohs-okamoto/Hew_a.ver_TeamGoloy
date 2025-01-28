@@ -27,7 +27,10 @@ private:
 	Object Stage1_Loading;
 
 
-	Object santa;//サンタオブジェクト
+	Object santa_Nor[8];  // サンタオブジェクト 通常袋
+	Object santa_Huro[8]; // サンタオブジェクト 風呂敷
+	Object santa_Kin[7];  // サンタオブジェクト 巾着袋
+
 	Object star;//星
 	Object sky;//空
 	Object mounten[image];//ゲーム画面の背景にある山

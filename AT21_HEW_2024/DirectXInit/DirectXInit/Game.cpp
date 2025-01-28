@@ -20,13 +20,147 @@ void Game::Init(HWND hWnd)
 	//プレイヤー関連
 	//====================================================
 	
-	santa.Init(L"asset/Santa_Normal_Move_v2.png", 4, 4);//サンタを初期化
-	santa.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
-	santa.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
-	santa.SetAngle(0.0f);             		//角度を設定
-	santa.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	// 通常袋
+	santa_Nor[0].Init(L"asset/Santa_Normal_Move_v2.png", 4, 4);//サンタを初期化
+	santa_Nor[0].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[0].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[0].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[0].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
+	santa_Nor[1].Init(L"asset/Santa_Normal_Pack_Move_v4.png", 4, 4);//サンタを初期化
+	santa_Nor[1].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[1].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[1].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
+	santa_Nor[2].Init(L"asset/Santa_Normal_Jump_v2.png", 1, 2);//サンタを初期化
+	santa_Nor[2].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[2].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[2].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Nor[3].Init(L"asset/Santa_Normal_Pack_Jump_v2.png", 1, 2);//サンタを初期化
+	santa_Nor[3].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[3].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[3].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Nor[4].Init(L"asset/Santa_Normal_In_v2.png", 5, 2);//サンタを初期化
+	santa_Nor[4].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[4].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[4].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[4].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Nor[5].Init(L"asset/Santa_Normal_Out_v2.png", 5, 2);//サンタを初期化
+	santa_Nor[5].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[5].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[5].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[5].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Nor[6].Init(L"asset/Santa_Normal_SP_v2.png", 5, 2);//サンタを初期化
+	santa_Nor[6].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[6].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[6].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[6].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Nor[7].Init(L"asset/Santa_Normal_Pack_SP_v2.png", 5, 2);//サンタを初期化
+	santa_Nor[7].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Nor[7].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Nor[7].SetAngle(0.0f);             		//角度を設定
+	santa_Nor[7].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	// 風呂敷
+	santa_Huro[0].Init(L"asset/Santa_Huro_Move_v2.png", 4, 4);//サンタを初期化
+	santa_Huro[0].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[0].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[0].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[0].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Huro[1].Init(L"asset/Santa_Huro_Pack_Move_v2.png", 4, 4);//サンタを初期化
+	santa_Huro[1].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[1].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[1].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Huro[2].Init(L"asset/Santa_Huro_Jump_v2.png", 1, 2);//サンタを初期化
+	santa_Huro[2].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[2].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[2].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Huro[3].Init(L"asset/Santa_Huro_Pack_Jump_v2.png", 1, 2);//サンタを初期化
+	santa_Huro[3].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[3].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[3].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Huro[4].Init(L"asset/Santa_Huro_In_v2.png", 5, 2);//サンタを初期化
+	santa_Huro[4].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[4].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[4].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[4].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Huro[5].Init(L"asset/Santa_Huro_Out_v2.png", 5, 2);//サンタを初期化
+	santa_Huro[5].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[5].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[5].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[5].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Huro[6].Init(L"asset/Santa_Huro_SP.png", 5, 2);//サンタを初期化
+	santa_Huro[6].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[6].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[6].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[6].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Huro[7].Init(L"asset/Santa_Huro_Pack_SP.png", 5, 2);//サンタを初期化
+	santa_Huro[7].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Huro[7].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Huro[7].SetAngle(0.0f);             		//角度を設定
+	santa_Huro[7].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	// 巾着袋
+	santa_Kin[0].Init(L"asset/Santa_Kin_Move_v2.png", 4, 4);//サンタを初期化
+	santa_Kin[0].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Kin[0].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Kin[0].SetAngle(0.0f);             		//角度を設定
+	santa_Kin[0].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Kin[1].Init(L"asset/Santa_Kin_Pack_Move_v2.png", 4, 4);//サンタを初期化
+	santa_Kin[1].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Kin[1].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Kin[1].SetAngle(0.0f);             		//角度を設定
+	santa_Kin[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Kin[2].Init(L"asset/Santa_Kin_Jump_v2.png", 1, 2);//サンタを初期化
+	santa_Kin[2].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Kin[2].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Kin[2].SetAngle(0.0f);             		//角度を設定
+	santa_Kin[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Kin[3].Init(L"asset/Santa_Kin_Pack_Jump_v2.png", 1, 2);//サンタを初期化
+	santa_Kin[3].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Kin[3].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Kin[3].SetAngle(0.0f);             		//角度を設定
+	santa_Kin[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Kin[4].Init(L"asset/Santa_Kin_In_v2.png", 5, 2);//サンタを初期化
+	santa_Kin[4].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Kin[4].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Kin[4].SetAngle(0.0f);             		//角度を設定
+	santa_Kin[4].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Kin[5].Init(L"asset/Santa_Kin_Out_v2.png", 5, 2);//サンタを初期化
+	santa_Kin[5].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Kin[5].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Kin[5].SetAngle(0.0f);             		//角度を設定
+	santa_Kin[5].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	santa_Kin[6].Init(L"asset/Santa_Kin_SP.png", 3, 2);//サンタを初期化
+	santa_Kin[6].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	santa_Kin[6].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	santa_Kin[6].SetAngle(0.0f);             		//角度を設定
+	santa_Kin[6].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	
 	//====================================================
 	//タイトル
 	//====================================================
@@ -780,7 +914,7 @@ void Game::Update(void) {
 	{
 
 		//サンタ
-		DirectX::XMFLOAT3 santa_pos = santa.GetPos();
+		DirectX::XMFLOAT3 santa_pos = santa_Nor[0].GetPos();
 		//ゴール
 		DirectX::XMFLOAT3 goal_pos = goal.GetPos();
 		//山
@@ -1012,7 +1146,7 @@ void Game::Update(void) {
 		// 雪だるまとの当たり判定追加 
 		for (int i = 0; i < image; i++) 
 		{	
-			if (collision.enemy_santa(snowman[i], santa, 50.0f, 0.0f)&&HitFg==false) 
+			if (collision.enemy_santa(snowman[i], santa_Nor[0], 50.0f, 0.0f)&&HitFg==false)
 			{
 				time -= 5;	
 				hitcooltime = 0;
@@ -1020,21 +1154,21 @@ void Game::Update(void) {
 			}
 		}
 		// 星との当たり判定追加 
-		if (collision.enemy_santa(star_monster, santa, 50.0f, 0.0f) && HitFg == false)
+		if (collision.enemy_santa(star_monster, santa_Nor[0], 50.0f, 0.0f) && HitFg == false)
 		{
 			time -= 5;
 			hitcooltime = 0;
 			HitFg = true;
 		}
 		//トナカイ との当たり判定追加 
-		if (collision.enemy_santa(tonakai, santa, 50.0f, 0.0f) && HitFg == false)
+		if (collision.enemy_santa(tonakai, santa_Nor[0], 50.0f, 0.0f) && HitFg == false)
 		{
 			time -= 5;
 			hitcooltime = 0;
 			HitFg = true;
 		}
 	
-		if (collision.item_santa(present[1], santa, 100.0f, 0.0f))
+		if (collision.item_santa(present[1], santa_Nor[0], 100.0f, 0.0f))
 		{
 			presentcount += 1;
 			score += 500;
@@ -1046,11 +1180,11 @@ void Game::Update(void) {
 		for (int i = 0; i < image; i++) {
 			DirectX::XMFLOAT3 ground_pos = GetGroundPos(i);
 
-			if (collision.ground_santa(ground[i], santa, 50.0f, 0.0f)) {
+			if (collision.ground_santa(ground[i], santa_Nor[0], 50.0f, 0.0f)) {
 
 				//// サンタが地面の上にいる場合
 				if (santa_pos.y > ground_pos.y + ground[i].GetSize().y / 2.0f) {
-					santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
+					santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -1070,7 +1204,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.goal_santa(goal, santa, 250.0f, 0.0f))
+		if (collision.goal_santa(goal, santa_Nor[0], 250.0f, 0.0f))
 		{
 
 			// サンタがゴールの右側にぶつかった場合
@@ -1145,7 +1279,7 @@ void Game::Update(void) {
 		const float leftScreen = -670.0f; // 画面の左端
 
 
-		if (collision.item_santa(rock[1], santa, 100.0f, 0.0f) && rock_visible1 == 0)
+		if (collision.item_santa(rock[1], santa_Nor[0], 100.0f, 0.0f) && rock_visible1 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1158,7 +1292,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(rock[2], santa, 100.0f, 0.0f) && rock_visible2 == 0)
+		if (collision.item_santa(rock[2], santa_Nor[0], 100.0f, 0.0f) && rock_visible2 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1170,7 +1304,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(rock[3], santa, 100.0f, 0.0f) && rock_visible3 == 0)
+		if (collision.item_santa(rock[3], santa_Nor[0], 100.0f, 0.0f) && rock_visible3 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1182,7 +1316,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(rock[4], santa, 100.0f, 0.0f) && rock_visible4 == 0)
+		if (collision.item_santa(rock[4], santa_Nor[0], 100.0f, 0.0f) && rock_visible4 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1194,7 +1328,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(rock[5], santa, 100.0f, 0.0f) && rock_visible5 == 0)
+		if (collision.item_santa(rock[5], santa_Nor[0], 100.0f, 0.0f) && rock_visible5 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1206,7 +1340,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(rock[6], santa, 100.0f, 0.0f) && rock_visible6 == 0)
+		if (collision.item_santa(rock[6], santa_Nor[0], 100.0f, 0.0f) && rock_visible6 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1218,7 +1352,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(snowball[1], santa, 100.0f, 0.0f) && snow_visible1 == 0)
+		if (collision.item_santa(snowball[1], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1229,7 +1363,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(snowball[2], santa, 100.0f, 0.0f) && snow_visible1 == 0)
+		if (collision.item_santa(snowball[2], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1241,7 +1375,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(snowball[3], santa, 100.0f, 0.0f) && snow_visible1 == 0)
+		if (collision.item_santa(snowball[3], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1551,7 +1685,7 @@ void Game::Update(void) {
 
 		//
 		// 木との当たり判定の追加　ゴロイ
-		if (collision.tree_santa(tree, santa, 200.0f, 0.0f)) {
+		if (collision.tree_santa(tree, santa_Nor[0], 200.0f, 0.0f)) {
 
 			//// サンタが木の右側にぶつかった場合
 			//if (santa_pos.x < tree_pos.x) {
@@ -1587,21 +1721,21 @@ void Game::Update(void) {
 			if (changeRight == true)
 			{
 				//初期化
-				santa.numU = 0;
-				santa.numV = 0;
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 0;
 				changeRight = false;//一旦falseにして一回しか処理されないようにする
 			}
 			framcount++; //フレームカウント
 			if (framcount % 10 == 0) //１０フレームに一回行われる
 			{
-				santa.numU++;
-				if (santa.numU >= 4)
+				santa_Nor[0].numU++;
+				if (santa_Nor[0].numU >= 4)
 				{
-					santa.numU = 0;
-					santa.numV++;
-					if (santa.numV >= 2)
+					santa_Nor[0].numU = 0;
+					santa_Nor[0].numV++;
+					if (santa_Nor[0].numV >= 2)
 					{
-						santa.numV = 0;
+						santa_Nor[0].numV = 0;
 					}
 				}
 			}
@@ -1683,21 +1817,21 @@ void Game::Update(void) {
 			if (changeLeft == true)
 			{
 				//初期化
-				santa.numU = 0;
-				santa.numV = 2;
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 2;
 				changeLeft = false;//一旦falseにして一回しか処理されないようにする
 			}
 			framcount++; //フレームカウント
 			if (framcount % 10 == 0) //１０フレームに一回行われる
 			{
-				santa.numU++;
-				if (santa.numU >= 4)
+				santa_Nor[0].numU++;
+				if (santa_Nor[0].numU >= 4)
 				{
-					santa.numU = 0;
-					santa.numV++;
-					if (santa.numV >= 4)
+					santa_Nor[0].numU = 0;
+					santa_Nor[0].numV++;
+					if (santa_Nor[0].numV >= 4)
 					{
-						santa.numV = 2;
+						santa_Nor[0].numV = 2;
 					}
 				}
 			}
@@ -1817,7 +1951,7 @@ void Game::Update(void) {
 
 
 
-		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+		santa_Nor[0].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
 
 		goal.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
 
@@ -1880,7 +2014,7 @@ void Game::Update(void) {
 	case STAGE_2:
 	{
 		//サンタ
-		DirectX::XMFLOAT3 santa_pos = santa.GetPos();
+		DirectX::XMFLOAT3 santa_pos = santa_Nor[0].GetPos();
 
 		//山
 		DirectX::XMFLOAT3 mounten_pos1 = mounten[1].GetPos();
@@ -1932,11 +2066,11 @@ void Game::Update(void) {
 		for (int i = 0; i < image; i++) {
 			DirectX::XMFLOAT3 ground_pos = GetGroundPos(i);
 
-			if (collision.ground_santa(ground[i], santa, 50.0f, 0.0f)) {
+			if (collision.ground_santa(ground[i], santa_Nor[0], 50.0f, 0.0f)) {
 
 				//// サンタが地面の上にいる場合
 				if (santa_pos.y > ground_pos.y + ground[i].GetSize().y / 2.0f) {
-					santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa.GetSize().y / 2.0f;
+					santa_pos.y = ground_pos.y + ground[i].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -1960,7 +2094,7 @@ void Game::Update(void) {
 		// サンタがアイテムに当たった時
 		bool itemCollected = false; // アイテムが既に回収されたかどうかのフラグ
 
-		if (collision.item_santa(Collectrock_Stage2[1], santa, 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[1], santa_Nor[0], 100.0f, 0.0f))
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1971,7 +2105,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[2], santa, 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[2], santa_Nor[0], 100.0f, 0.0f))
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1982,7 +2116,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[3], santa, 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[3], santa_Nor[0], 100.0f, 0.0f))
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -1993,7 +2127,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[4], santa, 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[4], santa_Nor[0], 100.0f, 0.0f))
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -2004,7 +2138,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[5], santa, 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[5], santa_Nor[0], 100.0f, 0.0f))
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -2015,7 +2149,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[6], santa, 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[6], santa_Nor[0], 100.0f, 0.0f))
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected)
 			{
@@ -2044,21 +2178,21 @@ void Game::Update(void) {
 			if (changeRight == true)
 			{
 				//初期化
-				santa.numU = 0;
-				santa.numV = 0;
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 0;
 				changeRight = false;//一旦falseにして一回しか処理されないようにする
 			}
 			framcount++; //フレームカウント
 			if (framcount % 10 == 0) //１０フレームに一回行われる
 			{
-				santa.numU++;
-				if (santa.numU >= 4)
+				santa_Nor[0].numU++;
+				if (santa_Nor[0].numU >= 4)
 				{
-					santa.numU = 0;
-					santa.numV++;
-					if (santa.numV >= 2)
+					santa_Nor[0].numU = 0;
+					santa_Nor[0].numV++;
+					if (santa_Nor[0].numV >= 2)
 					{
-						santa.numV = 0;
+						santa_Nor[0].numV = 0;
 					}
 				}
 			}
@@ -2131,21 +2265,21 @@ void Game::Update(void) {
 			if (changeLeft == true)
 			{
 				//初期化
-				santa.numU = 0;
-				santa.numV = 2;
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 2;
 				changeLeft = false;//一旦falseにして一回しか処理されないようにする
 			}
 			framcount++; //フレームカウント
 			if (framcount % 10 == 0) //１０フレームに一回行われる
 			{
-				santa.numU++;
-				if (santa.numU >= 4)
+				santa_Nor[0].numU++;
+				if (santa_Nor[0].numU >= 4)
 				{
-					santa.numU = 0;
-					santa.numV++;
-					if (santa.numV >= 4)
+					santa_Nor[0].numU = 0;
+					santa_Nor[0].numV++;
+					if (santa_Nor[0].numV >= 4)
 					{
-						santa.numV = 2;
+						santa_Nor[0].numV = 2;
 					}
 				}
 			}
@@ -2232,7 +2366,7 @@ void Game::Update(void) {
 		}
 
 
-		santa.SetPos(santa_pos.x, santa_pos.y, santa_pos.z);//サンタ
+		santa_Nor[0].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);//サンタ
 
 		//背景　山
 		mounten[1].SetPos(mounten_pos1.x, mounten_pos1.y, mounten_pos1.z);
@@ -2432,7 +2566,7 @@ void Game::Draw(void)
 
 		tree.Draw();
 
-		santa.Draw();//プレイヤー描画
+		santa_Nor[0].Draw();//プレイヤー描画
 		goal.Draw();
 
 		ItemStock.Draw();
@@ -2611,7 +2745,7 @@ void Game::Draw(void)
 
 		Breakrock_Stge2[1].Draw();
 		BigPresent_Stage2[1].Draw();
-		santa.Draw();//プレイヤー描画
+		santa_Nor[0].Draw();//プレイヤー描画
 		ItemStock.Draw();
 		break;
 
@@ -2749,11 +2883,11 @@ void Game::Uninit(void)
 }
 
 DirectX::XMFLOAT3 Game::GetSantaPos() const {
-	return santa.GetPos();
+	return santa_Nor[0].GetPos();
 }
 
 const Object& Game::GetSanta() const {
-	return santa;
+	return santa_Nor[0];
 }
 
 
