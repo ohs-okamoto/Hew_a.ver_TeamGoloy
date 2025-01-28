@@ -588,6 +588,40 @@ void Game::Init(HWND hWnd)
 	use_snowball[2].SetAngle(0.0f);//角度設定
 
 	//====================================================
+	//ゲームオーバー
+	//====================================================
+
+	Gameover.Init(L"asset/MorningFilter.png", 1, 1);//を初期化
+	Gameover.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
+	Gameover.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
+	Gameover.SetAngle(0.0f);//角度を設定
+	Gameover.SetColor(0.8f, 0.8f, 0.8f, 0.8f); //色を設定
+
+	GoodMorning.Init(L"asset/Gameover.png", 1, 1);//を初期化
+	GoodMorning.SetPos(0.0f, 190.0f, 0.0f);         //位置を設定
+	GoodMorning.SetSize(650.0f, 400.0f, 0.f);     //大きさ設定
+	GoodMorning.SetAngle(0.0f);//角度を設定
+
+	Retry.Init(L"asset/Retry.png", 1, 1);//を初期化
+	Retry.SetPos(0.0f, -100.0f, 0.0f);         //位置を設定
+	Retry.SetSize(250.0f, 150.0f, 0.f);     //大きさ設定
+	Retry.SetAngle(0.0f);//角度を設定
+
+	TitleBack.Init(L"asset/TitleBack.png", 1, 1);//を初期化
+	TitleBack.SetPos(0.0f, -200.0f, 0.0f);         //位置を設定
+	TitleBack.SetSize(250.0f, 150.0f, 0.f);     //大きさ設定
+	TitleBack.SetAngle(0.0f);//角度を設定
+
+	Cursor.Init(L"asset/Cursor.png", 1, 1);//を初期化
+	Cursor.SetPos(-150.0f, -100.0f, 0.0f);         //位置を設定
+	Cursor.SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	Cursor.SetAngle(0.0f);//角度を設定
+
+	pause.SetPos(100.0f, 0.0f, 0.0f);//位置を特定
+	pause.SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
+	gameoverFg = false;//ポーズフラグ初期化
+
+	//====================================================
 	//てき
 	//====================================================
 
@@ -655,6 +689,7 @@ void Game::Update(void) {
 
 		{
 			changescene = STAGESELECT;
+			//changescene = GAMEOVER;
 			
 		}
 	}
@@ -671,6 +706,7 @@ void Game::Update(void) {
 		if (select !=3&&input.GetKeyTrigger(VK_D)&& Select_MoverightFg == false && Select_MoveleftFg == false)
 		{
 			Select_MoverightFg = true;
+			//がぞうをみぎ向きに変更
 			SantaCursor.numU = 0;
 			SantaCursor.numV = 0;
 			StopCheck = false;
@@ -678,8 +714,10 @@ void Game::Update(void) {
 		if (select != 1&&input.GetKeyTrigger(VK_A) && Select_MoveleftFg == false && Select_MoverightFg == false)
 		{
 			Select_MoveleftFg = true;
+			//がぞうを左向きに変更
 			SantaCursor.numU = 0;
 			SantaCursor.numV = 3;
+
 			StopCheck = false;
 		}
 
@@ -687,7 +725,7 @@ void Game::Update(void) {
 		{
 			if(select!=3){ pos.x += 10; }
 			framcount++; //フレームカウント
-			if (framcount % 5 == 0) //１０フレームに一回行われる
+			if (framcount % 5 == 0) //5フレームに一回行われる
 			{
 				SantaCursor.numU++;
 				if (SantaCursor.numU >= 4)
@@ -708,7 +746,7 @@ void Game::Update(void) {
 		{
 			if (select != 1) { pos.x -= 10; }
 			framcount++; //フレームカウント
-			if (framcount % 5 == 0) //１０フレームに一回行われる
+			if (framcount % 5 == 0) //5フレームに一回行われる
 			{
 				SantaCursor.numU++;
 				if (SantaCursor.numU >= 4)
@@ -845,10 +883,19 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 use_snowball_pos2 = use_snowball[1].GetPos();
 		DirectX::XMFLOAT3 use_snowball_pos3 = use_snowball[2].GetPos();
 
+		DirectX::XMFLOAT3 cursor_pos = Cursor.GetPos();
+
 		//item->GetItem_1();
 
 		// 一旦仮で重力的なものをを追加します　ゴロイ
 		//santa_pos.y -= 1;
+		if (ResettingFg == true)
+		{
+			
+			ResettingFg = false;
+		}
+		
+		
 
 		// サンタが下に落ちた時に初期位置に戻る処理　ゴロイ
 		if (santa_pos.y == -250.0f)
@@ -885,11 +932,162 @@ void Game::Update(void) {
 
 		}
 
+		
+		
 		//制限時間
 		if (framcount2 % 60 == 0)//1秒に一回行われる
 		{
 			time--;
 		}
+		if (time <= 0)//タイムオーバーになったら
+		{
+			gameoverFg = true;
+		}
+		if (gameoverFg == true)
+		{
+			if (cursor_pos.y == -100)
+			{
+				if (input.GetKeyTrigger(VK_S))
+				{
+					cursor_pos.y = -200;
+				}
+
+				if (input.GetKeyTrigger(VK_RETURN))
+				{
+					changescene = STAGE1_LOADING;//リトライ
+					gameoverFg = false;
+					//初期化
+					time = 150;
+					framcount = 0;
+					framcount2 = 0;
+					score = 0;
+					presentcount = 0;
+					time = 150;
+					cleartime = 0;
+					santa_pos.x = -400;
+
+					mounten_pos1.x = 0;
+					mounten_pos2.x = 1280;
+					mounten_pos3.x = 2560;
+
+					wood_pos1.x = 0;
+					wood_pos2.x = 1280;
+					wood_pos3.x = 2560;
+
+					rock_pos1.x = -250;
+					rock_pos2.x = 300;
+					rock_pos3.x = 1100;
+					rock_pos4.x = 1100;
+					rock_pos5.x = 2300;
+					rock_pos6.x = 4400;
+
+					snowball_pos1.x = 1500;
+					snowball_pos2.x = 2900;
+					snowball_pos3.x = 4000;
+
+					ground_pos1.x = 0;
+					ground_pos2.x = 1300;
+					ground_pos3.x = 3100;
+					ground_pos4.x = 4500;
+					ground_pos5.x = 5300;
+
+					stairs_pos1.x = 540;
+					stairs_pos2.x = 565;
+					stairs_pos3.x = 600;
+					stairs_pos4.x = 2800;
+
+					snowman_pos1.x = 30;
+					snowman_pos2.x = 1400;
+					snowman_pos3.x = 2700;
+
+					bigpresent_pos1.x = 5400;
+
+					star_monster_pos.x = 4800;
+					tonakai_pos.x = 3600;
+
+					present_pos1.x = 800;
+					present_pos2.x = 2800;
+					present_pos3.x = 4500;
+
+					tree_pos.x = 1900;
+					goal_pos.x = 5800;
+
+				}
+			}
+
+			if (cursor_pos.y == -200)
+			{
+				if (input.GetKeyTrigger(VK_W))
+				{
+					cursor_pos.y = -100;
+				}
+
+				if (input.GetKeyTrigger(VK_RETURN))
+				{
+					changescene = TITLE;//タイトル
+					gameoverFg = false;
+					//初期化
+					time = 150;
+					framcount = 0;
+					framcount2 = 0;
+					score = 0;
+					presentcount = 0;
+					time = 150;
+					cleartime = 0;
+					santa_pos.x = -400;
+
+					mounten_pos1.x = 0;
+					mounten_pos2.x = 1280;
+					mounten_pos3.x = 2560;
+
+					wood_pos1.x = 0;
+					wood_pos2.x = 1280;
+					wood_pos3.x = 2560;
+
+					rock_pos1.x = -250;
+					rock_pos2.x = 300;
+					rock_pos3.x = 1100;
+					rock_pos4.x = 1100;
+					rock_pos5.x = 2300;
+					rock_pos6.x = 4400;
+
+					snowball_pos1.x = 1500;
+					snowball_pos2.x = 2900;
+					snowball_pos3.x = 4000;
+
+					ground_pos1.x = 0;
+					ground_pos2.x = 1300;
+					ground_pos3.x = 3100;
+					ground_pos4.x = 4500;
+					ground_pos5.x = 5300;
+
+					stairs_pos1.x = 540;
+					stairs_pos2.x = 565;
+					stairs_pos3.x = 600;
+					stairs_pos4.x = 2800;
+
+					snowman_pos1.x = 30;
+					snowman_pos2.x = 1400;
+					snowman_pos3.x = 2700;
+
+					bigpresent_pos1.x = 5400;
+
+					star_monster_pos.x = 4800;
+					tonakai_pos.x = 3600;
+
+					present_pos1.x = 800;
+					present_pos2.x = 2800;
+					present_pos3.x = 4500;
+
+					tree_pos.x = 1900;
+					goal_pos.x = 5800;
+
+				}
+
+			}
+		}
+
+
 
 		//-------敵移動--------//
 
@@ -1034,12 +1232,35 @@ void Game::Update(void) {
 			HitFg = true;
 		}
 	
+		//プレゼントの当たり判定
 		if (collision.item_santa(present[1], santa, 100.0f, 0.0f))
 		{
 			presentcount += 1;
 			score += 500;
 			present_pos1.y = 100000;
 		}
+
+		if (collision.item_santa(present[2], santa, 100.0f, 0.0f))
+		{
+			presentcount += 1;
+			score += 500;
+			present_pos2.y = 100000;
+		}
+
+		if (collision.item_santa(present[3], santa, 100.0f, 0.0f))
+		{
+			presentcount += 1;
+			score += 500;
+			present_pos3.y = 100000;
+		}
+
+		if (collision.item_santa(BigPresent[1], santa, 100.0f, 0.0f))
+		{
+			presentcount += 1;
+			score += 1000;
+			bigpresent_pos1.y = 100000;
+		}
+
 		
 		
 		// 地面との当たり判定の追加 ゴロイ
@@ -1079,7 +1300,6 @@ void Game::Update(void) {
 
 				changescene = RESULT;
 				//初期化
-
 				santa_pos.x = -400;
 
 				mounten_pos1.x = 0;
@@ -1128,14 +1348,8 @@ void Game::Update(void) {
 				tree_pos.x = 1900;
 				goal_pos.x = 5800;
 
-
 			}
 
-
-			// サンタがゴールにぶつかった場合
-			/*if (santa_pos.x > goal_pos.x && santa_pos.y < goal_pos.y) {
-				changescene = RESULT;
-			}*/
 		}
 
 		// サンタがアイテムに当たった時
@@ -1579,7 +1793,7 @@ void Game::Update(void) {
 		//移動速度
 		speed = 5;
 		
-		if (collision.canMoveRight && input.GetKeyPress(VK_D) || input.GetLeftAnalogStick().x >= 0.1)
+		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) || input.GetLeftAnalogStick().x >= 0.1)
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
@@ -1676,7 +1890,7 @@ void Game::Update(void) {
 			changeRight = true;
 		}
 
-		if (collision.canMoveLeft && input.GetKeyPress(VK_A) || input.GetLeftAnalogStick().x <= -0.1)
+		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) || input.GetLeftAnalogStick().x <= -0.1)
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
@@ -1873,6 +2087,8 @@ void Game::Update(void) {
 		use_snowball[0].SetPos(use_snowball_pos1.x, use_snowball_pos1.y, use_snowball_pos1.z);
 		use_snowball[1].SetPos(use_snowball_pos2.x, use_snowball_pos2.y, use_snowball_pos2.z);
 		use_snowball[2].SetPos(use_snowball_pos3.x, use_snowball_pos3.y, use_snowball_pos3.z);
+
+		Cursor.SetPos(cursor_pos.x, cursor_pos.y, cursor_pos.z);
 		
 	}
 	break;
@@ -2290,7 +2506,6 @@ void Game::Update(void) {
 		}
 		break;
 
-
 	case RESULT:
 		score = 1;
 		//キー入力でタイトル移動
@@ -2304,6 +2519,7 @@ void Game::Update(void) {
 			presentcount = 0;
 			time = 150;
 			cleartime = 0;
+			
 			changescene = TITLE;//タイトルへ
 		}
 		break;
@@ -2529,6 +2745,17 @@ void Game::Draw(void)
 		} while (time >= (int)pow(10, keta2));
 		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
 
+
+		if (gameoverFg == true)
+		{
+			pause.Draw();
+			Gameover.Draw();
+			GoodMorning.Draw();
+			TitleBack.Draw();
+			Retry.Draw();
+			Cursor.Draw();
+		}
+
 		
 		break;
 	case STAGE_2://ステージ２
@@ -2614,7 +2841,7 @@ void Game::Draw(void)
 		santa.Draw();//プレイヤー描画
 		ItemStock.Draw();
 		break;
-
+	
 	case RESULT://リザルト
 		DirectX::XMFLOAT3 timepos = Number[1].GetPos();
 		DirectX::XMFLOAT3 timesize = Number[1].GetSize();
@@ -2639,10 +2866,8 @@ void Game::Draw(void)
 			score++;
 		}
 
-
-
 		//一定のスコアを超えていると色付きの星になる処理　  あぜ
-		if (score >= 1)
+		if (score >= 500)
 		{
 			ResultStar[1].Draw();
 		}
@@ -2651,7 +2876,7 @@ void Game::Draw(void)
 			GrayStar[1].Draw();
 		}
 
-		if (score >= 2)
+		if (score >= 1000)
 		{
 			ResultStar[2].Draw();
 		}
@@ -2660,7 +2885,7 @@ void Game::Draw(void)
 			GrayStar[2].Draw();
 		}
 
-		if (score >= 3)
+		if (score >= 1500)
 		{
 			ResultStar[3].Draw();
 		}
@@ -2669,7 +2894,7 @@ void Game::Draw(void)
 			GrayStar[3].Draw();
 		}
 
-		if (score >= 4)
+		if (score >= 2500)
 		{
 			ResultStar[4].Draw();
 		}
@@ -2737,7 +2962,13 @@ void Game::Uninit(void)
 	Number_UI[1].Uninit();
 	Number_UI[2].Uninit();
 
+	Gameover.Uninit();
+	GoodMorning.Uninit();
+	TitleBack.Uninit();
+	Retry.Uninit();
+	Cursor.Uninit();
 
+	pause.Uninit();
 	SantaCursor.Uninit();
 	ScoreCounter.Uninit();
 	Time.Uninit();
