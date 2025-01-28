@@ -10,8 +10,10 @@
 enum SceneName {
 	TITLE,
 	STAGE1_LOADING,
+	STAGESELECT,
 	STAGE_1,
 	STAGE_2,
+	BOSS,
 	RESULT
 };
 
@@ -81,7 +83,9 @@ private:
 	Object UseBag;//現在の袋
 	Object ScoreCounter;
 
-
+	//ステージセレクト
+	Object StegeSelect;//ステージセレクト
+	Object SantaCursor;//サンタカーソル
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
@@ -115,7 +119,7 @@ private:
 
 	Input input; //入力
 
-	
+	int select = 1;
 
 	
 	Item* item; //メンバ変数

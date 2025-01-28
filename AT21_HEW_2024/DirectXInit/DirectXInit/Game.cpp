@@ -48,6 +48,18 @@ void Game::Init(HWND hWnd)
 	background.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
 	background.SetAngle(0.0f);//角度を設定	 
 
+	//====================================================
+	// セクレト画面
+	//====================================================
+	StegeSelect.Init(L"asset/Stageselect.png", 1, 1);//を初期化
+	StegeSelect.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
+	StegeSelect.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
+	StegeSelect.SetAngle(0.0f);//角度を設定	    
+
+	SantaCursor.Init(L"asset/Santa_Normal_Pack_Move_v4.png", 4, 4);//を初期化
+	SantaCursor.SetPos(-430.0f, 0.0f, 0.0f);         //位置を設定
+	SantaCursor.SetSize(200.0f, 180.0f, 0.f);     //大きさ設定
+	SantaCursor.SetAngle(0.0f);//角度を設定	   
 
 	//====================================================
 	// UI
@@ -620,7 +632,7 @@ void Game::Init(HWND hWnd)
 	time = 150;
 	cleartime = 0;
 	item = new Item(1);
-	
+	select=1;
 }
 
 void Game::Update(void) {
@@ -640,20 +652,69 @@ void Game::Update(void) {
 	case TITLE:
 	{
 		//キー入力で本編
-
-		
-
 		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_A))
 
 		{
-			changescene = STAGE1_LOADING;
-			//changescene = RESULT;
+			changescene = STAGESELECT;
+			
 		}
-		//２を押すとステージ２へ	
-		if (input.GetKeyTrigger(VK_2))
+	}
+	break;
+	case STAGESELECT:
+	{
+		DirectX::XMFLOAT3 pos = SantaCursor.GetPos();
+
+		
+		if (pos.x == -430) { select = 1; }//ステージ１
+		if (pos.x == 0)    { select = 2; }//ステージ２
+		if (pos.x == 430)  { select = 3; }//ボス
+
+		if (select !=3&&input.GetKeyTrigger(VK_D))
+		{
+			pos.x += 430;
+		}
+		if (select != 1&&input.GetKeyTrigger(VK_A))
+		{
+			pos.x -= 430;
+		}
+
+		//キーボード入力
+		
+		//キー入力で本編
+		if (input.GetKeyTrigger(VK_RETURN) &&select == 1)
+		{
+			changescene = STAGE1_LOADING;
+		}
+		//ステージ２へ	
+		if (input.GetKeyTrigger(VK_RETURN) && select ==2)
 		{
 			changescene = STAGE_2;
 		}
+		//ボスへ	
+		if (input.GetKeyTrigger(VK_RETURN) && select == 3)
+		{
+			changescene = BOSS;
+		}
+
+
+		//コントローラー入力
+		if (input.GetButtonTrigger(XINPUT_B) && select == 1)
+		{
+			changescene = STAGE1_LOADING;
+		}
+		//ステージ２へ	
+		if (input.GetButtonTrigger(XINPUT_B) && select == 2)
+		{
+			changescene = STAGE_2;
+		}
+		//ボスへ	
+		if (input.GetButtonTrigger(XINPUT_B) && select == 3)
+		{
+			changescene = BOSS;
+		}
+
+
+		SantaCursor.SetPos(pos.x,pos.y,pos.z);
 
 	}
 	break;
@@ -2173,6 +2234,16 @@ void Game::Update(void) {
 	}
 	break;
 
+	case BOSS:
+		
+		//キー入力でタイトル移動
+		if (input.GetKeyTrigger(VK_RETURN))
+		{
+			changescene = RESULT;//リザルトへ
+		}
+		break;
+
+
 	case RESULT:
 		score = 1;
 		//キー入力でタイトル移動
@@ -2220,6 +2291,10 @@ void Game::Draw(void)
 		title.Draw();
 
 		
+		break;
+	case STAGESELECT:
+		StegeSelect.Draw();
+		SantaCursor.Draw();
 		break;
 	case STAGE1_LOADING:
 		Stage1_Loading.Draw();
@@ -2615,10 +2690,12 @@ void Game::Uninit(void)
 	Number_UI[1].Uninit();
 	Number_UI[2].Uninit();
 
+
+	SantaCursor.Uninit();
 	ScoreCounter.Uninit();
 	Time.Uninit();
 	ItemStock.Uninit();
-
+	StegeSelect.Uninit();
 	sound.Uninit();//サウンドを終了
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了
