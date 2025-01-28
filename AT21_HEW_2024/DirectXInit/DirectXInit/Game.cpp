@@ -676,8 +676,8 @@ void Game::Init(HWND hWnd)
 	ScoreCounter.SetAngle(0.0f);//角度を設定	
 
 	ItemStock.Init(L"asset/ItemStock.png", 1, 1);//を初期化
-	ItemStock.SetPos(-450.0f, 250.0f, 0.0f);         //位置を設定
-	ItemStock.SetSize(200.0f, 100.0f, 0.f);     //大きさ設定
+	ItemStock.SetPos(-500.0f, 280.0f, 0.0f);         //位置を設定
+	ItemStock.SetSize(230.0f, 130.0f, 0.f);     //大きさ設定
 	ItemStock.SetAngle(0.0f);//角度を設定	
 	ItemStock.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
