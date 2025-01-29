@@ -5,7 +5,7 @@
 #include "Item.h"
 #include "Sound.h"
 
-#define image		(10)
+#define image		(8)
 
 enum SceneName {
 	TITLE,
@@ -74,6 +74,10 @@ private:
 	Object Collectrock_Stage2[image];
 	Object Snowball_Stage2[image];
 
+	Object Snowman_Stage2[image];//雪だるま
+	Object Tonakai_Stage2[image];//トナカイ
+	Object Star_Stage2[image];//星野　敵
+	Object Goal_Stage2;
 
 
 	//リザルト関連
@@ -158,7 +162,10 @@ private:
 	bool moveFg3 = false;
 	bool moveFg4 = false;
 	bool moveFg5 = false;
-
+	bool moveFg6 = false;
+	bool moveFg7 = false;
+	bool moveFg8 = false;
+	bool moveFg9 = false;
 
 	bool SantaAttackFg = false;
 	
