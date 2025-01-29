@@ -20,14 +20,12 @@ public:
 	
 	void GetQueue() ; // キューの中身を取得する関数
 
-	void SetItem_1();
-	void SetItem_2(int bug2);
-	void SetItem_3(int bug3);
-
 
 	int GetItem_1() ;
 	int GetItem_2() const;
 	int GetItem_3() const;
+
+	int GetItemCnt() const; // アイテムの個数を返すやつ
 private:
 	int item; // アイテムの種類
 	static const int MAX_ITEMS = 3; // 最大アイテム数
@@ -36,7 +34,7 @@ private:
 	
 	int item1,item2,item3;
 
-	int a;
+	int bugPower; // 袋の力
 
 	int bug1, bug2, bug3; //割り当て
 };

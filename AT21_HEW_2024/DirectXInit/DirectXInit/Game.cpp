@@ -659,7 +659,6 @@ void Game::Init(HWND hWnd)
 	Time.SetSize(250.0f, 150.0f, 0.f);     //大きさ設定
 	Time.SetAngle(0.0f);//角度を設定	
 
-
 	Number_UI[1].Init(L"asset/Number_v2.png", 10, 1);//スコアを初期化
 	Number_UI[1].SetPos(-300.0f, -300.0f, 0.0f);         //位置を設定
 	Number_UI[1].SetSize(40.0f, 40.0f, 0.f);     //大きさ設定
@@ -953,6 +952,13 @@ void Game::Update(void) {
 
 		//サンタ
 		DirectX::XMFLOAT3 santa_pos = santa_Nor[0].GetPos();
+		/*DirectX::XMFLOAT3 santa_pos = santa_Nor[1].GetPos();
+		DirectX::XMFLOAT3 santa_pos = santa_Nor[2].GetPos();
+		DirectX::XMFLOAT3 santa_pos = santa_Nor[3].GetPos();
+		DirectX::XMFLOAT3 santa_pos = santa_Nor[4].GetPos();
+		DirectX::XMFLOAT3 santa_pos = santa_Nor[5].GetPos();
+		DirectX::XMFLOAT3 santa_pos = santa_Nor[6].GetPos();*/
+		DirectX::XMFLOAT3 santa_pos7 = santa_Nor[7].GetPos();
 		//ゴール
 		DirectX::XMFLOAT3 goal_pos = goal.GetPos();
 		//山
@@ -1503,6 +1509,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower=item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				rock_visible1 = 1;
@@ -1516,6 +1523,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				rock_visible2 = 1;
@@ -1528,6 +1536,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				rock_visible3 = 1;
@@ -1540,6 +1549,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				rock_visible4 = 1;
@@ -1552,6 +1562,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				rock_visible5 = 1;
@@ -1564,6 +1575,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				rock_visible6 = 1;
@@ -1576,6 +1588,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 					
 				snow_visible1 = 1;
 			}
@@ -1587,6 +1600,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				snow_visible2 = 1;
@@ -1599,6 +1613,7 @@ void Game::Update(void) {
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
 				snow_visible3 = 1;
@@ -1697,6 +1712,7 @@ void Game::Update(void) {
 				
 				
 				item->ItemRelease(); // 取り出す
+				bugPower=item->GetItemCnt();
 			}
 		}
 
@@ -1930,6 +1946,30 @@ void Game::Update(void) {
 		// 12/30  サンタの移動アニメーション追加  	畦内
 		//移動速度
 		speed = 5;
+
+		// 固有能力発動！！！！！！！
+		if (/*bugPower >= 0 && */input.GetKeyPress(VK_Q) || input.GetButtonPress(XINPUT_X)) { // 袋が空っぽの時
+			santa_pos7.x = santa_pos.x;
+			santa_pos7.y = santa_pos.y;
+			santaImage = 1;
+			if (changeRight_SP == true)
+			{
+				//初期化
+				santa_Nor[7].numU = 0;
+				santa_Nor[7].numV = 0;
+				changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+			}
+			framcount3++; //フレームカウント
+			if (framcount3 % 10 == 0) //１０フレームに一回行われる
+			{
+				santa_Nor[0].numU++;
+				if (santa_Nor[7].numU >= 5)
+				{
+					santa_Nor[7].numU = 0;
+					
+				}
+			}
+		}
 		
 		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) || input.GetLeftAnalogStick().x >= 0.1)
 		{
@@ -2170,6 +2210,13 @@ void Game::Update(void) {
 
 
 		santa_Nor[0].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+	/*	santa_Nor[1].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+		santa_Nor[2].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+		santa_Nor[3].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+		santa_Nor[4].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+		santa_Nor[5].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
+		santa_Nor[6].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);*/
+		santa_Nor[7].SetPos(santa_pos7.x, santa_pos7.y, santa_pos7.z);
 
 		goal.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
 
@@ -2786,7 +2833,13 @@ void Game::Draw(void)
 
 		tree.Draw();
 
-		santa_Nor[0].Draw();//プレイヤー描画
+		if (santaImage == 0) {
+			santa_Nor[0].Draw();//プレイヤー描画
+		}
+		else if (santaImage == 1) {
+			santa_Nor[7].Draw();
+		}
+		
 		goal.Draw();
 
 		ItemStock.Draw();

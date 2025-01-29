@@ -82,9 +82,6 @@ void Item::GetQueue(){
 	else {
 		bug1 = -1; // デフォルト値
 	}
-	
-
-	
 }
 
 //void Item::SetItem_1() {
@@ -108,4 +105,8 @@ int Item::GetItem_2() const{
 
 int Item::GetItem_3() const{
 	return bug3;
+}
+
+int Item::GetItemCnt()const { // アイテムの個数を返します
+	return itemQueue.size();
 }

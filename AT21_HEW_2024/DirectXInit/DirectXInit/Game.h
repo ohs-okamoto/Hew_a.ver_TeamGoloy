@@ -135,6 +135,7 @@ private:
 	//フレームカウント
 	int framcount = 0;
 	int framcount2 = 0;
+	int framcount3 = 0;
 	//敵の移動フラグ
 	bool moveFg1 = false;
 	bool moveFg2= false;
@@ -188,6 +189,15 @@ private:
 
 	// サンタの向き
 	int direction = 0; // 0:右　1:左
+
+	// サンタの画像
+	int santaImage = 0;
+
+	// 袋の力
+	int bugPower = 0; // 0:無し　1:威力弱　2:威力中　3:威力強(最大威力)
+
+	bool changeRight_SP = true;//キャラの
+	bool changeLeft_SP = true;//
 
 public:
 	
