@@ -170,6 +170,11 @@ void Game::Init(HWND hWnd)
 	title.SetAngle(0.0f);             		//角度を設定
 	title.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
+	PressBbotton.Init(L"asset/preb.png", 1, 1);//サンタを初期化
+	PressBbotton.SetPos(250.0f, -200.0f, 0.0f);		//位置を設定
+	PressBbotton.SetSize(550.0f, 400.0f, 0.f);	//大きさを設定
+	PressBbotton.SetAngle(0.0f);             		//角度を設定
+	PressBbotton.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
 	titlesanta.Init(L"asset/Main_Ilust.png", 1, 1);//を初期化
 	titlesanta.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
@@ -725,7 +730,7 @@ void Game::Init(HWND hWnd)
 	//ゲームオーバー
 	//====================================================
 
-	Gameover.Init(L"asset/MorningFilter.png", 1, 1);//を初期化
+	Gameover.Init(L"asset/MorningFilter_v3.png", 1, 1);//を初期化
 	Gameover.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
 	Gameover.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
 	Gameover.SetAngle(0.0f);//角度を設定
@@ -819,7 +824,7 @@ void Game::Update(void) {
 	case TITLE:
 	{
 		//キー入力で本編
-		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_A))
+		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_B))
 
 		{
 			changescene = STAGESELECT;
@@ -837,7 +842,7 @@ void Game::Update(void) {
 		if (pos.x == 0)    { select = 2; }//ステージ２
 		if (pos.x == 430)  { select = 3; }//ボス
 
-		if (select !=3&&input.GetKeyTrigger(VK_D)&& Select_MoverightFg == false && Select_MoveleftFg == false)
+		if (select !=3&&input.GetKeyTrigger(VK_D) || select != 3 && input.GetLeftAnalogStick().x >= 0.5&& Select_MoverightFg == false && Select_MoveleftFg == false)
 		{
 			Select_MoverightFg = true;
 			//がぞうをみぎ向きに変更
@@ -845,7 +850,7 @@ void Game::Update(void) {
 			SantaCursor.numV = 0;
 			StopCheck = false;
 		}
-		if (select != 1&&input.GetKeyTrigger(VK_A) && Select_MoveleftFg == false && Select_MoverightFg == false)
+		if (select != 1&&input.GetKeyTrigger(VK_A) || select != 1 && input.GetLeftAnalogStick().x <= -0.5 && Select_MoveleftFg == false && Select_MoverightFg == false)
 		{
 			Select_MoveleftFg = true;
 			//がぞうを左向きに変更
@@ -854,6 +859,13 @@ void Game::Update(void) {
 
 			StopCheck = false;
 		}
+
+
+
+
+
+
+
 
 		if (Select_MoverightFg == true) 
 		{
@@ -1073,7 +1085,7 @@ void Game::Update(void) {
 		{
 			time--;
 		}
-		if (time <= 0)//タイムオーバーになったら
+		if (time <= 0||input.GetButtonPress(XINPUT_START))//タイムオーバーになったら
 		{
 			gameoverFg = true;
 		}
@@ -1081,12 +1093,12 @@ void Game::Update(void) {
 		{
 			if (cursor_pos.y == -100)
 			{
-				if (input.GetKeyTrigger(VK_S))
+				if (input.GetKeyTrigger(VK_S) ||input.GetLeftAnalogStick().y<-0.5)
 				{
 					cursor_pos.y = -200;
 				}
 
-				if (input.GetKeyTrigger(VK_RETURN))
+				if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_B))
 				{
 					changescene = STAGE1_LOADING;//リトライ
 					gameoverFg = false;
@@ -1151,12 +1163,12 @@ void Game::Update(void) {
 
 			if (cursor_pos.y == -200)
 			{
-				if (input.GetKeyTrigger(VK_W))
+				if (input.GetKeyTrigger(VK_W)||input.GetLeftAnalogStick().y > 0.5)
 				{
 					cursor_pos.y = -100;
 				}
 
-				if (input.GetKeyTrigger(VK_RETURN))
+				if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonPress(XINPUT_B))
 				{
 					changescene = TITLE;//タイトル
 					gameoverFg = false;
@@ -1224,7 +1236,6 @@ void Game::Update(void) {
 
 
 		//-------敵移動--------//
-
 		//雪だるま（１）
 		if (moveFg1 == false)
 		{
@@ -1499,7 +1510,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(rock[1], santa_Nor[0], 100.0f, 0.0f) && rock_visible1 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
@@ -1512,7 +1523,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(rock[2], santa_Nor[0], 100.0f, 0.0f) && rock_visible2 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
@@ -1524,7 +1535,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(rock[3], santa_Nor[0], 100.0f, 0.0f) && rock_visible3 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
@@ -1536,7 +1547,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(rock[4], santa_Nor[0], 100.0f, 0.0f) && rock_visible4 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
@@ -1548,7 +1559,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(rock[5], santa_Nor[0], 100.0f, 0.0f) && rock_visible5 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
@@ -1560,7 +1571,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(rock[6], santa_Nor[0], 100.0f, 0.0f) && rock_visible6 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
@@ -1572,7 +1583,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(snowball[1], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
@@ -1583,7 +1594,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(snowball[2], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
@@ -1595,7 +1606,7 @@ void Game::Update(void) {
 
 		if (collision.item_santa(snowball[3], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected|| input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
@@ -1636,7 +1647,7 @@ void Game::Update(void) {
 
 
 		if (!itemCollected && !changeItem) {// 当たってない場合
-			if (input.GetKeyTrigger(VK_S))
+			if (input.GetKeyTrigger(VK_S)|| input.GetButtonTrigger(XINPUT_B))
 			{
 				if (item->GetItem_3() > 0) {
 					changeItem = true;
@@ -1931,7 +1942,7 @@ void Game::Update(void) {
 		//移動速度
 		speed = 5;
 		
-		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) || input.GetLeftAnalogStick().x >= 0.1)
+		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1)
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
@@ -2028,7 +2039,7 @@ void Game::Update(void) {
 			changeRight = true;
 		}
 
-		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) || input.GetLeftAnalogStick().x <= -0.1)
+		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1)
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
@@ -2690,7 +2701,7 @@ void Game::Draw(void)
 		background.Draw();//プレイヤー描画
 		titlesanta.Draw();
 		title.Draw();
-
+		PressBbotton.Draw();
 		
 		break;
 	case STAGESELECT:
@@ -3105,7 +3116,7 @@ void Game::Uninit(void)
 	TitleBack.Uninit();
 	Retry.Uninit();
 	Cursor.Uninit();
-
+	PressBbotton.Uninit();
 	pause.Uninit();
 	SantaCursor.Uninit();
 	ScoreCounter.Uninit();

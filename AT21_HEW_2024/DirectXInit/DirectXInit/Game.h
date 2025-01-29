@@ -97,7 +97,7 @@ private:
 	//ステージセレクト
 	Object StegeSelect;//ステージセレクト
 	Object SantaCursor;//サンタカーソル
-
+	Object PressBbotton;//A押してね
 	Object pause;//ポーズ画面オブジェクト
 	bool gameoverFg = false;//ポーズフラグ
 
