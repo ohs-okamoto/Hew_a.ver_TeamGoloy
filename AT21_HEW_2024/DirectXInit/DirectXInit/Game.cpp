@@ -763,15 +763,43 @@ void Game::Init(HWND hWnd)
 	Cursor.SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
 	Cursor.SetAngle(0.0f);//角度を設定
 
+	//====================================================
+	//ポーズ画面
+	//====================================================
 	pause.SetPos(100.0f, 0.0f, 0.0f);//位置を特定
 	pause.SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	gameoverFg = false;//ポーズフラグ初期化
 
 	rule.Init(L"asset/Setsumei.png", 1, 1);//を初期化
-	rule.SetPos(-150.0f, 20.0f, 0.0f);         //位置を設定
-	rule.SetSize(1000.0f, 600.0f, 0.f);     //大きさ設定
-	rule.SetAngle(0.0f);//角度を設定
-	
+	rule.SetPos(-200.0f, 20.0f, 0.0f);         //位置を設定
+	rule.SetSize(850.0f, 600.0f, 0.f);     //大きさ設定
+	rule.SetAngle(0.0f);//角度を設定]
+
+	PauseGameback.Init(L"asset/Returntogame.png", 1, 1);//を初期化
+	PauseGameback.SetPos(450.0f, 100.0f, 0.0f);         //位置を設定
+	PauseGameback.SetSize(300.0f, 150.0f, 0.f);     //大きさ設定
+	PauseGameback.SetAngle(0.0f);//角度を設定
+
+	//PauseRetry.Init(L"asset/Retry.png", 1, 1);//を初期化
+	//PauseRetry.SetPos(500.0f, 0.0f, 0.0f);         //位置を設定
+	//PauseRetry.SetSize(200.0f, 150.0f, 0.f);     //大きさ設定
+	//PauseRetry.SetAngle(0.0f);//角度を設定
+
+	PauseTitleBack.Init(L"asset/TitleBack.png", 1, 1);//を初期化
+	PauseTitleBack.SetPos(500.0f, -100.0f, 0.0f);         //位置を設定
+	PauseTitleBack.SetSize(200.0f, 150.0f, 0.f);     //大きさ設定
+	PauseTitleBack.SetAngle(0.0f);//角度を設定
+
+	PauseCursor.Init(L"asset/Cursor.png", 1, 1);//を初期化
+	PauseCursor.SetPos(250.0f, 100.0f, 0.0f);         //位置を設定
+	PauseCursor.SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	PauseCursor.SetAngle(0.0f);//角度を設定
+
+	Pausemoji.Init(L"asset/Pause.png", 1, 1);//を初期化
+	Pausemoji.SetPos(500.0f, 300.0f, 0.0f);         //位置を設定
+	Pausemoji.SetSize(250.0f, 150.0f, 0.f);     //大きさ設定
+	Pausemoji.SetAngle(0.0f);//角度を設定
+
 	//====================================================
 	//てき
 	//====================================================
@@ -817,6 +845,7 @@ void Game::Init(HWND hWnd)
 	cleartime = 0;
 	item = new Item(1);
 	select=1;
+	pauseFg = false;
 }
 
 void Game::Update(void) {
@@ -848,7 +877,7 @@ void Game::Update(void) {
 	case STAGESELECT:
 	{
 		DirectX::XMFLOAT3 pos = SantaCursor.GetPos();
-
+		pauseFg = false;
 
 		if (pos.x == -430) { select = 1; }//ステージ１
 		if (pos.x == 0)    { select = 2; }//ステージ２
@@ -937,6 +966,7 @@ void Game::Update(void) {
 		if (input.GetButtonTrigger(XINPUT_B) && select == 1 && StopCheck)
 		{
 			changescene = STAGE1_LOADING;
+
 		}
 		//ステージ２へ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 2 && StopCheck)
@@ -957,6 +987,7 @@ void Game::Update(void) {
 	//ステージ選択した後に出るやつ
 	case STAGE1_LOADING:
 	{
+		pauseFg = false;
 		framcount++;
 		if (framcount % 100 == 0) //２秒弱ぐらいでシーン切り替え
 		{
@@ -967,7 +998,6 @@ void Game::Update(void) {
 	break;
 	case STAGE_1:
 	{
-
 		//サンタ
 		DirectX::XMFLOAT3 santa_pos = santa_Nor[0].GetPos();
 		/*DirectX::XMFLOAT3 santa_pos = santa_Nor[1].GetPos();
@@ -1042,16 +1072,14 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 use_snowball_pos3 = use_snowball[2].GetPos();
 
 		DirectX::XMFLOAT3 cursor_pos = Cursor.GetPos();
+		DirectX::XMFLOAT3 cursor1_pos = PauseCursor.GetPos();
 
 		//item->GetItem_1();
 
 		// 一旦仮で重力的なものをを追加します　ゴロイ
 		//santa_pos.y -= 1;
-		if (ResettingFg == true)
-		{
-			
-			ResettingFg = false;
-		}
+		
+		
 		
 		
 
@@ -1086,12 +1114,154 @@ void Game::Update(void) {
 			{
 				star_monster.numU = 0;
 			}
-
-
 		}
 
-		
-		
+		//ポーズ画面
+		if (input.GetKeyTrigger(VK_P) && pauseFg == false || input.GetButtonPress(XINPUT_START) && pauseFg == false)
+		{
+			pauseFg = true;
+		}
+
+		if (pauseFg == true)
+		{			
+			sound.Stop(SOUND_LABEL_BGM000);
+			if (cursor1_pos.y == 100)
+			{
+
+				if (input.GetKeyTrigger(VK_S) || input.GetLeftAnalogStick().y < -0.5)
+				{
+					
+					cursor1_pos.y = -100;
+					cursor1_pos.x = 350;
+				}
+				
+				//キー入力
+				if (input.GetKeyTrigger(VK_RETURN)|| input.GetButtonTrigger(XINPUT_B))
+				{
+					sound.Resume(SOUND_LABEL_BGM000);
+					pauseFg = false;
+				}
+			}
+			//if (cursor1_pos.y == 0)
+			//{
+			//	if (input.GetKeyTrigger(VK_S) || input.GetLeftAnalogStick().y < -0.5)
+			//	{
+			//		cursor1_pos.y = -100;
+			//	}
+			//	if (input.GetKeyTrigger(VK_W) || input.GetLeftAnalogStick().y >0.5)
+			//	{
+			//		cursor1_pos.y = 100;
+			//		cursor1_pos.x = 250;
+			//	}
+			//	//キー入力
+			//	if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonTrigger(XINPUT_B))
+			//	{
+			//		changescene = STAGE1_LOADING;
+			//		
+			//		//初期化
+			//		santa_pos.x = -400;
+
+			//		mounten_pos1.x = 0;
+			//		mounten_pos2.x = 1280;
+			//		mounten_pos3.x = 2560;
+
+			//		wood_pos1.x = 0;
+			//		wood_pos2.x = 1280;
+			//		wood_pos3.x = 2560;
+			//		rock_pos1.x = -250;
+			//		rock_pos2.x = 300;
+			//		rock_pos3.x = 1100;
+			//		rock_pos4.x = 1100;
+			//		rock_pos5.x = 2300;
+			//		rock_pos6.x = 4400;
+			//		snowball_pos1.x = 1500;
+			//		snowball_pos2.x = 2900;
+			//		snowball_pos3.x = 4000;
+			//		ground_pos1.x = 0;
+			//		ground_pos2.x = 1300;
+			//		ground_pos3.x = 3100;
+			//		ground_pos4.x = 4500;
+			//		ground_pos5.x = 5300;
+			//		stairs_pos1.x = 540;
+			//		stairs_pos2.x = 565;
+			//		stairs_pos3.x = 600;
+			//		stairs_pos4.x = 2800;
+			//		snowman_pos1.x = 30;
+			//		snowman_pos2.x = 1400;
+			//		snowman_pos3.x = 2700;
+			//		bigpresent_pos1.x = 5400;
+			//		star_monster_pos.x = 4800;
+			//		tonakai_pos.x = 3600;
+			//		present_pos1.x = 800;
+			//		present_pos2.x = 2800;
+			//		present_pos3.x = 4500;
+			//		tree_pos.x = 1900;
+			//		goal_pos.x = 5800;
+			//	}
+			//}
+			if (cursor1_pos.y ==-100)
+			{
+				if (input.GetKeyTrigger(VK_W) || input.GetLeftAnalogStick().y >0.5)
+				{
+					cursor1_pos.y = 100;
+					cursor1_pos.x = 250;
+				}
+				//キー入力
+				if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonTrigger(XINPUT_B))
+				{
+					changescene = TITLE;
+					//初期化
+					santa_pos.x = -400;
+
+					mounten_pos1.x = 0;
+					mounten_pos2.x = 1280;
+					mounten_pos3.x = 2560;
+
+					wood_pos1.x = 0;
+					wood_pos2.x = 1280;
+					wood_pos3.x = 2560;
+
+					rock_pos1.x = -250;
+					rock_pos2.x = 300;
+					rock_pos3.x = 1100;
+					rock_pos4.x = 1100;
+					rock_pos5.x = 2300;
+					rock_pos6.x = 4400;
+
+					snowball_pos1.x = 1500;
+					snowball_pos2.x = 2900;
+					snowball_pos3.x = 4000;
+
+					ground_pos1.x = 0;
+					ground_pos2.x = 1300;
+					ground_pos3.x = 3100;
+					ground_pos4.x = 4500;
+					ground_pos5.x = 5300;
+
+					stairs_pos1.x = 540;
+					stairs_pos2.x = 565;
+					stairs_pos3.x = 600;
+					stairs_pos4.x = 2800;
+
+					snowman_pos1.x = 30;
+					snowman_pos2.x = 1400;
+					snowman_pos3.x = 2700;
+
+					bigpresent_pos1.x = 5400;
+
+					star_monster_pos.x = 4800;
+					tonakai_pos.x = 3600;
+
+					present_pos1.x = 800;
+					present_pos2.x = 2800;
+					present_pos3.x = 4500;
+
+					tree_pos.x = 1900;
+					goal_pos.x = 5800;
+				}
+			}
+		}
+
 		//制限時間
 		if (framcount2 % 60 == 0&&pauseFg==false)//1秒に一回行われる
 		{
@@ -1110,7 +1280,7 @@ void Game::Update(void) {
 					cursor_pos.y = -200;
 				}
 
-				if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_B))
+				if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonTrigger(XINPUT_B))
 				{
 					changescene = STAGE1_LOADING;//リトライ
 					gameoverFg = false;
@@ -1180,7 +1350,7 @@ void Game::Update(void) {
 					cursor_pos.y = -100;
 				}
 
-				if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonPress(XINPUT_B))
+				if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonTrigger(XINPUT_B))
 				{
 					changescene = TITLE;//タイトル
 					gameoverFg = false;
@@ -1245,16 +1415,7 @@ void Game::Update(void) {
 			}
 		}
 
-		//ポーズ画面
-
-		if (input.GetButtonPress(VK_P)||input.GetButtonPress(XINPUT_START)){pauseFg = true;}
-		if (pauseFg == true)
-		{
-			if (input.GetButtonPress(VK_P) || input.GetButtonPress(XINPUT_START))
-			{
-				//pauseFg = false;
-			}
-		}
+		
 
 
 
@@ -1370,7 +1531,7 @@ void Game::Update(void) {
 
 		hitcooltime++;
 		//敵に当たったら約２秒無敵に
-		if (hitcooltime % 120 == 0&&HitFg==true)
+		if (hitcooltime % 80 == 0&&HitFg==true)
 		{
 			HitFg = false;//
 		}
@@ -1378,23 +1539,27 @@ void Game::Update(void) {
 		// 雪だるまとの当たり判定追加 
 		for (int i = 0; i < image; i++) 
 		{	
-			if (collision.enemy_santa(snowman[i], santa_Nor[0], 50.0f, 0.0f)&&HitFg==false && pauseFg == false)
+			if (collision.enemy_santa(snowman[i], santa_Nor[0], 200.0f, 0.0f)&&HitFg==false && pauseFg == false)
 			{
+				
 				time -= 5;	
 				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
 				HitFg = true;
 			}
 		}
 		// 星との当たり判定追加 
-		if (collision.enemy_santa(star_monster, santa_Nor[0], 50.0f, 0.0f) && HitFg == false && pauseFg == false)
+		if (collision.enemy_santa(star_monster, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
 		{
+			sound.Play(SOUND_LABEL_SE001);
 			time -= 5;
 			hitcooltime = 0;
 			HitFg = true;
 		}
 		//トナカイ との当たり判定追加 
-		if (collision.enemy_santa(tonakai, santa_Nor[0], 50.0f, 0.0f) && HitFg == false && pauseFg == false)
+		if (collision.enemy_santa(tonakai, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
 		{
+			sound.Play(SOUND_LABEL_SE001);
 			time -= 5;
 			hitcooltime = 0;
 			HitFg = true;
@@ -1519,7 +1684,7 @@ void Game::Update(void) {
 
 				tree_pos.x = 1900;
 				goal_pos.x = 5800;
-
+				sound.Stop(SOUND_LABEL_BGM000);
 			}
 
 		}
@@ -1976,7 +2141,7 @@ void Game::Update(void) {
 		speed = 5;
 
 		// 固有能力発動！！！！！！！
-		if (/*bugPower >= 0 && */input.GetKeyPress(VK_Q) || input.GetButtonPress(XINPUT_X)) { // 袋が空っぽの時
+		if (/*bugPower >= 0 && */input.GetKeyTrigger(VK_Q) || input.GetButtonTrigger(XINPUT_X)) { // 袋が空っぽの時
 			santa_pos7.x = santa_pos.x;
 			santa_pos7.y = santa_pos.y;
 			santaImage = 1;
@@ -1985,25 +2150,38 @@ void Game::Update(void) {
 				//初期化
 				santa_Nor[7].numU = 0;
 				santa_Nor[7].numV = 0;
+				SantaAttackFg = true;
 				changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
-			}
+			}	
+		}
+
+		if (SantaAttackFg == true)
+		{
 			framcount3++; //フレームカウント
-			if (framcount3 % 10 == 0) //１０フレームに一回行われる
+			if (framcount3 % 5 == 0) //１０フレームに一回行われる
 			{
-				santa_Nor[0].numU++;
+				santa_Nor[7].numU++;
 				if (santa_Nor[7].numU >= 5)
 				{
 					santa_Nor[7].numU = 0;
-					
+					SantaAttackFg = false;
+					changeRight_SP = true;
+					santaImage = 0;
 				}
 			}
 		}
+
+
+
+
 		
 		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
-			
+			sound.Play(SOUND_LABEL_SE002);
+
+
 			if (changeRight == true)
 			{
 				//初期化
@@ -2094,12 +2272,14 @@ void Game::Update(void) {
 		{
 			//キーを離すとtrueに戻る
 			changeRight = true;
+			sound.Stop(SOUND_LABEL_SE002);
 		}
 
 		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
+			sound.Play(SOUND_LABEL_SE002);
 			if (changeLeft == true)
 			{
 				//初期化
@@ -2191,6 +2371,7 @@ void Game::Update(void) {
 		{
 			//キーを離すとtrueに戻る
 			changeLeft = true;
+			sound.Stop(SOUND_LABEL_SE002);
 		}
 
 
@@ -2302,6 +2483,7 @@ void Game::Update(void) {
 		use_snowball[2].SetPos(use_snowball_pos3.x, use_snowball_pos3.y, use_snowball_pos3.z);
 
 		Cursor.SetPos(cursor_pos.x, cursor_pos.y, cursor_pos.z);
+		PauseCursor.SetPos(cursor1_pos.x, cursor1_pos.y, cursor1_pos.z);
 		
 	}
 	break;
@@ -2978,6 +3160,12 @@ void Game::Draw(void)
 			pause.Draw();
 			Gameover.Draw();
 			rule.Draw();
+			Pausemoji.Draw();
+			PauseTitleBack.Draw();
+			///PauseRetry.Draw();
+			PauseCursor.Draw();
+			PauseGameback.Draw();
+
 		}
 
 
@@ -3186,6 +3374,12 @@ void Game::Uninit(void)
 
 	Number_UI[1].Uninit();
 	Number_UI[2].Uninit();
+
+	Pausemoji.Uninit();
+	PauseTitleBack.Uninit();
+	PauseRetry.Uninit();
+	PauseCursor.Uninit();
+	PauseGameback.Uninit();
 
 
 	rule.Uninit();

@@ -101,11 +101,18 @@ private:
 	Object StegeSelect;//ステージセレクト
 	Object SantaCursor;//サンタカーソル
 	Object PressBbotton;//A押してね
+
+	//ポーズ	
 	Object pause;//ポーズ画面オブジェクト
-
-
 	Object rule;//操作方法
-	//Object pause;//ポーズ画面オブジェクト
+	Object PauseRetry;//ポーズ画面オブジェクト
+	Object PauseTitleBack;
+	Object PauseGameback;
+	Object PauseCursor;
+	Object Pausemoji;
+
+
+
 
 	bool gameoverFg = false;//ポーズフラグ
 	bool pauseFg = false;//ポーズフラグ
@@ -120,6 +127,7 @@ private:
 
 	int score = 0;//スコア
 
+	bool kari = false;
 
 
 	int time = 150;
@@ -151,6 +159,8 @@ private:
 	bool moveFg4 = false;
 	bool moveFg5 = false;
 
+
+	bool SantaAttackFg = false;
 	
 	float speed = 0;
 

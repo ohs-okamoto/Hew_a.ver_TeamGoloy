@@ -6,9 +6,10 @@ typedef enum
 {
 	SOUND_LABEL_BGM000 = 0,		// サンプルBGM
 	SOUND_LABEL_BGM001,			// サンプルBGM
-	SOUND_LABEL_SE000 = 0,			// サンプルSE
-	SOUND_LABEL_SE001,			// サンプルSE
-
+	SOUND_LABEL_SE000 = 0,		// サンプルSE
+	SOUND_LABEL_SE001,			// ダメージSE
+	SOUND_LABEL_SE002,		    // 雪玉SE
+	//SOUND_LABEL_SE003,			// サンプルSE
 
 
 	SOUND_LABEL_MAX,
@@ -27,9 +28,9 @@ private:
 	{
 		{"sound/BGM/Christmas.wav", true},	// サンプルBGM（ループさせるのでtrue設定）
 		//{"asset/BGM/○○○.wav", true},	// サンプルBGM
-		//{"sound/SE/jump.wav", false},  		// サンプルSE（ループしないのでfalse設定）
-		//{"asset/SE/○○○.wav", false},		// サンプルSE
-
+		{"sound/SE/damage.wav", false},  		// サンプルSE（ループしないのでfalse設定）
+		{"sound/SE/move.wav", false},		// サンプルSE
+		//{"sound/SE/yukidama.wav", false},		// サンプルSE
 
 
 	};
