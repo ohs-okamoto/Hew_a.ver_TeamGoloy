@@ -60,6 +60,7 @@ private:
 	Object snowball[image];//雪玉
 	Object goal;//ゴール
 
+	Object Returntogame;//ゲームに戻る
 
 	//ステージ２関連
 	Object Ground_Stge2[image];//ステージ２の床
@@ -72,6 +73,8 @@ private:
 	Object Breakrock_Stge2[image];//壊せる岩
 	Object Collectrock_Stage2[image];
 	Object Snowball_Stage2[image];
+
+
 
 	//リザルト関連
 	Object Result;//リザルト背景
@@ -97,10 +100,15 @@ private:
 	//ステージセレクト
 	Object StegeSelect;//ステージセレクト
 	Object SantaCursor;//サンタカーソル
-
+	Object PressBbotton;//A押してね
 	Object pause;//ポーズ画面オブジェクト
-	bool gameoverFg = false;//ポーズフラグ
 
+
+	Object rule;//操作方法
+	//Object pause;//ポーズ画面オブジェクト
+
+	bool gameoverFg = false;//ポーズフラグ
+	bool pauseFg = false;//ポーズフラグ
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
