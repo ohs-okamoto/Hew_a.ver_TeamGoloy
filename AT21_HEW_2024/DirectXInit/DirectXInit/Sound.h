@@ -29,7 +29,7 @@ private:
 		{"sound/BGM/Christmas.wav", true},	// サンプルBGM（ループさせるのでtrue設定）
 		//{"asset/BGM/○○○.wav", true},	// サンプルBGM
 		{"sound/SE/damage.wav", false},  		// サンプルSE（ループしないのでfalse設定）
-		{"sound/SE/move.wav", false},		// サンプルSE
+		{"sound/SE/yukidama.wav", false},		// サンプルSE
 		//{"sound/SE/yukidama.wav", false},		// サンプルSE
 
 
@@ -60,6 +60,9 @@ public:
 
 	// 引数で指定したサウンドの再生を再開する
 	void Resume(SOUND_LABEL label);
+
+	//音量調節
+	void SetVolume(SOUND_LABEL label, float volume);
 
 };
 

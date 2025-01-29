@@ -993,6 +993,8 @@ void Game::Update(void) {
 		{
 			changescene = STAGE_1;
 			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
+			sound.SetVolume(SOUND_LABEL_BGM000, 0.8f);//もとの音量の80パーセントに設定
+		
 		}
 	}
 	break;
@@ -1544,7 +1546,7 @@ void Game::Update(void) {
 				
 				time -= 5;	
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE000);
+				sound.Play(SOUND_LABEL_SE001);
 				HitFg = true;
 			}
 		}
@@ -1846,19 +1848,21 @@ void Game::Update(void) {
 		if (!itemCollected && !changeItem) {// 当たってない場合
 			if (input.GetKeyTrigger(VK_S) && pauseFg == false || input.GetButtonTrigger(XINPUT_B) && pauseFg == false)
 			{
+				
 				if (item->GetItem_3() > 0) {
 					changeItem = true;
 
 					if (item->GetItem_3() == 1) {
 						use_rock_pos3.x = santa_pos.x;
 						use_rock_pos3.y = santa_pos.y;
-						
+						sound.Play(SOUND_LABEL_SE002);
 						itemID_3 = 1;
 						itemMove3 = true;
 					}
 					else if (item->GetItem_3() == 2) {
 						use_snowball_pos3.x = santa_pos.x;
 						use_snowball_pos3.y = santa_pos.y;
+						sound.Play(SOUND_LABEL_SE002);
 						itemID_3 = 2;
 						itemMove3 = true;
 					}
@@ -1871,12 +1875,14 @@ void Game::Update(void) {
 						if (item->GetItem_2() == 1) {
 							use_rock_pos2.x = santa_pos.x;
 							use_rock_pos2.y = santa_pos.y;
+							sound.Play(SOUND_LABEL_SE002);
 							itemID_2 = 1;
 							itemMove2 = true;
 						}
 						else if (item->GetItem_2() == 2) {
 							use_snowball_pos2.x = santa_pos.x;
 							use_snowball_pos2.y = santa_pos.y;
+							sound.Play(SOUND_LABEL_SE002);
 							itemID_2 = 2;
 							itemMove2 = true;
 						}
@@ -2179,8 +2185,7 @@ void Game::Update(void) {
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
-			sound.Play(SOUND_LABEL_SE002);
-
+			
 
 			if (changeRight == true)
 			{
@@ -2272,14 +2277,13 @@ void Game::Update(void) {
 		{
 			//キーを離すとtrueに戻る
 			changeRight = true;
-			sound.Stop(SOUND_LABEL_SE002);
 		}
 
 		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
-			sound.Play(SOUND_LABEL_SE002);
+			
 			if (changeLeft == true)
 			{
 				//初期化
@@ -2371,7 +2375,7 @@ void Game::Update(void) {
 		{
 			//キーを離すとtrueに戻る
 			changeLeft = true;
-			sound.Stop(SOUND_LABEL_SE002);
+			
 		}
 
 

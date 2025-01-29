@@ -169,6 +169,18 @@ void Sound::Resume(SOUND_LABEL label)
 	pSV->Start();
 }
 
+//‰¹—Ê‚ğ’²ß‚·‚éŠÖ”‚ÌÀ‘•
+void Sound::SetVolume(SOUND_LABEL label, float volume)
+{
+	if (volume < 0.0f) volume = 0.0f;         // ‰¹—Ê‚Í0.0‚©‚ç1.0‚Ì”ÍˆÍ‚Æ‚·‚é
+	if (volume > 1.0f) volume = 1.0f;
+
+	IXAudio2SourceVoice*& pSV = m_pSourceVoice[label];
+	if (pSV)
+	{
+		pSV->SetVolume(volume);
+	}
+}
 
 
 //=============================================================================
