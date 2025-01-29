@@ -432,6 +432,8 @@ void Game::Init(HWND hWnd)
 	BigPresent[1].SetSize(105.0f, 100.0f, 0.0f);//大きさ設定
 	BigPresent[1].SetAngle(0.0f);//角度設定
 
+
+
 	//====================================================
 	//ステージ2
 	//====================================================
@@ -686,6 +688,12 @@ void Game::Init(HWND hWnd)
 	ItemStock.SetAngle(0.0f);//角度を設定	
 	ItemStock.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+	//ゲームに戻る
+	Returntogame.Init(L"asset/Returntogame.png", 1, 1);//いわあ
+	Returntogame.SetPos(5400.0f, -25.0f, 0.0f);////位置を特定
+	Returntogame.SetSize(250.0f, 250.0f, 0.0f);//大きさ設定
+	Returntogame.SetAngle(0.0f);//角度設定
+
 	//====================================================
 	//投げ物
 	//====================================================
@@ -760,6 +768,11 @@ void Game::Init(HWND hWnd)
 	pause.SetSize(1280.0f, 720.0f, 0.0f);//大きさ設定
 	gameoverFg = false;//ポーズフラグ初期化
 
+	rule.Init(L"asset/Setsumei.png", 1, 1);//を初期化
+	rule.SetPos(-150.0f, 20.0f, 0.0f);         //位置を設定
+	rule.SetSize(1000.0f, 600.0f, 0.f);     //大きさ設定
+	rule.SetAngle(0.0f);//角度を設定
+	
 	//====================================================
 	//てき
 	//====================================================
@@ -859,13 +872,6 @@ void Game::Update(void) {
 
 			StopCheck = false;
 		}
-
-
-
-
-
-
-
 
 		if (Select_MoverightFg == true) 
 		{
@@ -1081,11 +1087,11 @@ void Game::Update(void) {
 		
 		
 		//制限時間
-		if (framcount2 % 60 == 0)//1秒に一回行われる
+		if (framcount2 % 60 == 0&&pauseFg==false)//1秒に一回行われる
 		{
 			time--;
 		}
-		if (time <= 0||input.GetButtonPress(XINPUT_START))//タイムオーバーになったら
+		if (time <= 0)//タイムオーバーになったら
 		{
 			gameoverFg = true;
 		}
@@ -1233,11 +1239,22 @@ void Game::Update(void) {
 			}
 		}
 
+		//ポーズ画面
+
+		if (input.GetButtonPress(VK_P)||input.GetButtonPress(XINPUT_START)){pauseFg = true;}
+		if (pauseFg == true)
+		{
+			if (input.GetButtonPress(VK_P) || input.GetButtonPress(XINPUT_START))
+			{
+				//pauseFg = false;
+			}
+		}
+
 
 
 		//-------敵移動--------//
 		//雪だるま（１）
-		if (moveFg1 == false)
+		if (moveFg1 == false && pauseFg == false)
 		{
 			snowman[1].numV = 0;
 			snowman_pos1.x -= 1;
@@ -1247,7 +1264,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (moveFg1 == true)
+		if (moveFg1 == true && pauseFg == false)
 		{
 
 			snowman[1].numV = 1;
@@ -1259,7 +1276,7 @@ void Game::Update(void) {
 		}
 
 		//雪だるま（2）
-		if (moveFg2 == false)
+		if (moveFg2 == false && pauseFg == false)
 		{
 			snowman[2].numV = 0;
 			snowman_pos2.x -= 1;
@@ -1269,7 +1286,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (moveFg2 == true)
+		if (moveFg2 == true && pauseFg == false)
 		{
 			snowman[2].numV = 1;
 			snowman_pos2.x += 1;
@@ -1280,7 +1297,7 @@ void Game::Update(void) {
 		}
 
 		//雪だるま（3）
-		if (moveFg3 == false)
+		if (moveFg3 == false && pauseFg == false)
 		{
 			snowman[3].numV = 0;
 			snowman_pos3.x -= 1;
@@ -1290,7 +1307,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (moveFg3 == true)
+		if (moveFg3 == true && pauseFg == false)
 		{
 			snowman[3].numV = 1;
 			snowman_pos3.x += 1;
@@ -1302,7 +1319,7 @@ void Game::Update(void) {
 
 		//星の敵（１)
 
-		if (moveFg4 == false)
+		if (moveFg4 == false && pauseFg == false)
 		{
 			star_monster.numV = 0;
 			star_monster_pos.x -= 2;
@@ -1312,7 +1329,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (moveFg4 == true)
+		if (moveFg4 == true && pauseFg == false)
 		{
 			star_monster.numV = 1;
 			star_monster_pos.x += 2;
@@ -1324,7 +1341,7 @@ void Game::Update(void) {
 
 
 		//トナカイの敵
-		if (moveFg5 == false)
+		if (moveFg5 == false && pauseFg == false)
 		{
 			tonakai.numV = 0;
 			tonakai_pos.x -= 2;
@@ -1334,7 +1351,7 @@ void Game::Update(void) {
 			}
 		}
 
-		if (moveFg5 == true)
+		if (moveFg5 == true && pauseFg == false)
 		{
 			tonakai.numV = 1;
 			tonakai_pos.x += 2;
@@ -1355,7 +1372,7 @@ void Game::Update(void) {
 		// 雪だるまとの当たり判定追加 
 		for (int i = 0; i < image; i++) 
 		{	
-			if (collision.enemy_santa(snowman[i], santa_Nor[0], 50.0f, 0.0f)&&HitFg==false)
+			if (collision.enemy_santa(snowman[i], santa_Nor[0], 50.0f, 0.0f)&&HitFg==false && pauseFg == false)
 			{
 				time -= 5;	
 				hitcooltime = 0;
@@ -1363,14 +1380,14 @@ void Game::Update(void) {
 			}
 		}
 		// 星との当たり判定追加 
-		if (collision.enemy_santa(star_monster, santa_Nor[0], 50.0f, 0.0f) && HitFg == false)
+		if (collision.enemy_santa(star_monster, santa_Nor[0], 50.0f, 0.0f) && HitFg == false && pauseFg == false)
 		{
 			time -= 5;
 			hitcooltime = 0;
 			HitFg = true;
 		}
 		//トナカイ との当たり判定追加 
-		if (collision.enemy_santa(tonakai, santa_Nor[0], 50.0f, 0.0f) && HitFg == false)
+		if (collision.enemy_santa(tonakai, santa_Nor[0], 50.0f, 0.0f) && HitFg == false && pauseFg == false)
 		{
 			time -= 5;
 			hitcooltime = 0;
@@ -1381,7 +1398,7 @@ void Game::Update(void) {
 		if (collision.item_santa(present[1], santa_Nor[0], 100.0f, 0.0f))
 
 		//プレゼントの当たり判定
-		if (collision.item_santa(present[1], santa_Nor[0], 100.0f, 0.0f))
+		if (collision.item_santa(present[1], santa_Nor[0], 100.0f, 0.0f) && pauseFg == false)
 
 		{
 			presentcount += 1;
@@ -1647,7 +1664,7 @@ void Game::Update(void) {
 
 
 		if (!itemCollected && !changeItem) {// 当たってない場合
-			if (input.GetKeyTrigger(VK_S)|| input.GetButtonTrigger(XINPUT_B))
+			if (input.GetKeyTrigger(VK_S) && pauseFg == false || input.GetButtonTrigger(XINPUT_B) && pauseFg == false)
 			{
 				if (item->GetItem_3() > 0) {
 					changeItem = true;
@@ -1942,7 +1959,7 @@ void Game::Update(void) {
 		//移動速度
 		speed = 5;
 		
-		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1)
+		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
@@ -2039,7 +2056,7 @@ void Game::Update(void) {
 			changeRight = true;
 		}
 
-		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1)
+		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
@@ -2658,7 +2675,7 @@ void Game::Update(void) {
 	case RESULT:
 		score = 1;
 		//キー入力でタイトル移動
-		if (input.GetKeyTrigger(VK_RETURN))
+		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_B))
 		{
 			//初期化
 			time = 150;
@@ -2717,8 +2734,6 @@ void Game::Draw(void)
 
 		sky.Draw();
 		star.Draw();
-
-
 
 		//やま
 		for (int i = 1; i < image; i++)
@@ -2904,6 +2919,14 @@ void Game::Draw(void)
 			Retry.Draw();
 			Cursor.Draw();
 		}
+
+		if (pauseFg == true)
+		{
+			pause.Draw();
+			Gameover.Draw();
+			rule.Draw();
+		}
+
 
 		
 		break;
@@ -3111,6 +3134,8 @@ void Game::Uninit(void)
 	Number_UI[1].Uninit();
 	Number_UI[2].Uninit();
 
+
+	rule.Uninit();
 	Gameover.Uninit();
 	GoodMorning.Uninit();
 	TitleBack.Uninit();
