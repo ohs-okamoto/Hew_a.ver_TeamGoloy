@@ -57,7 +57,7 @@ void Game::Init(HWND hWnd)
 	santa_Nor[5].SetAngle(0.0f);             		//角度を設定
 	santa_Nor[5].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	santa_Nor[6].Init(L"asset/Santa_Normal_SP_v2.png", 5, 2);//サンタを初期化
+	santa_Nor[6].Init(L"asset/Santa_Normal_SP_v2.png", 4, 2);//サンタを初期化
 	santa_Nor[6].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
 	santa_Nor[6].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	santa_Nor[6].SetAngle(0.0f);             		//角度を設定
@@ -970,12 +970,12 @@ void Game::Update(void) {
 
 		//サンタ
 		DirectX::XMFLOAT3 santa_pos = santa_Nor[0].GetPos();
-		/*DirectX::XMFLOAT3 santa_pos = santa_Nor[1].GetPos();
-		DirectX::XMFLOAT3 santa_pos = santa_Nor[2].GetPos();
-		DirectX::XMFLOAT3 santa_pos = santa_Nor[3].GetPos();
-		DirectX::XMFLOAT3 santa_pos = santa_Nor[4].GetPos();
-		DirectX::XMFLOAT3 santa_pos = santa_Nor[5].GetPos();
-		DirectX::XMFLOAT3 santa_pos = santa_Nor[6].GetPos();*/
+		DirectX::XMFLOAT3 santa_pos1 = santa_Nor[1].GetPos();
+		DirectX::XMFLOAT3 santa_pos2 = santa_Nor[2].GetPos();
+		DirectX::XMFLOAT3 santa_pos3 = santa_Nor[3].GetPos();
+		DirectX::XMFLOAT3 santa_pos4 = santa_Nor[4].GetPos();
+		DirectX::XMFLOAT3 santa_pos5 = santa_Nor[5].GetPos();
+		DirectX::XMFLOAT3 santa_pos6 = santa_Nor[6].GetPos();
 		DirectX::XMFLOAT3 santa_pos7 = santa_Nor[7].GetPos();
 		//ゴール
 		DirectX::XMFLOAT3 goal_pos = goal.GetPos();
@@ -1970,60 +1970,226 @@ void Game::Update(void) {
 			//}
 		}
 
+		santa_pos6.x = santa_pos.x;
+		santa_pos6.y = santa_pos.y;
+		santa_pos7.x = santa_pos.x;
+		santa_pos7.y = santa_pos.y;
+
 
 		// 12/30  サンタの移動アニメーション追加  	畦内
 		//移動速度
-		speed = 5;
-
-		// 固有能力発動！！！！！！！
-		if (/*bugPower >= 0 && */input.GetKeyPress(VK_Q) || input.GetButtonPress(XINPUT_X)) { // 袋が空っぽの時
-			santa_pos7.x = santa_pos.x;
-			santa_pos7.y = santa_pos.y;
-			santaImage = 1;
-			if (changeRight_SP == true)
-			{
-				//初期化
-				santa_Nor[7].numU = 0;
-				santa_Nor[7].numV = 0;
-				changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
-			}
-			framcount3++; //フレームカウント
-			if (framcount3 % 10 == 0) //１０フレームに一回行われる
-			{
-				santa_Nor[0].numU++;
-				if (santa_Nor[7].numU >= 5)
-				{
-					santa_Nor[7].numU = 0;
-					
-				}
-			}
+		if (bugPower == 0) { // 袋が空の時
+			
+			speed = 7;
+		}
+		else {
+			
+			speed = 5;
 		}
 		
-		if (gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+
+		
+
+		// 固有能力発動！！！！！！！
+		if (bugPower > 0 && sp_ani == false&&input.GetKeyPress(VK_Q) || input.GetButtonTrigger(XINPUT_X)) { // 袋が空っぽの時
+			sp_ani = true;
+		}/*else if()*/
+
+		if (sp_ani == true) {
+
+			santaImage = 7;
+			
+			if (direction == 0) {
+
+				// 威力弱
+				if (bugPower == 1) {
+					if (changeRight_SP == true)
+					{
+						//初期化
+						santa_Nor[7].numU = 0;
+						santa_Nor[7].numV = 0;
+						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount3++; //フレームカウント
+					if (framcount3 % 4 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[7].numU++;
+						if (santa_Nor[7].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 0;
+							santa_Nor[7].numU = 0;
+
+						}
+					}
+				}
+				// 威力中
+				else if (bugPower == 2) {
+					if (changeRight_SP == true)
+					{
+						//初期化
+						santa_Nor[7].numU = 0;
+						santa_Nor[7].numV = 0;
+						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount3++; //フレームカウント
+					if (framcount3 % 7 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[7].numU++;
+						if (santa_Nor[7].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 0;
+							santa_Nor[7].numU = 0;
+
+						}
+					}
+				}
+				// 威力強
+				else if (bugPower == 3) {
+					if (changeRight_SP == true)
+					{
+						//初期化
+						santa_Nor[7].numU = 0;
+						santa_Nor[7].numV = 0;
+						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount3++; //フレームカウント
+					if (framcount3 % 10 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[7].numU++;
+						if (santa_Nor[7].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 0;
+							santa_Nor[7].numU = 0;
+
+						}
+					}
+				}
+			}
+			if (direction == 1) {
+
+				// 威力弱
+				if (bugPower == 1) {
+					if (changeRight_SP == true)
+					{
+						//初期化
+						santa_Nor[7].numU = 0;
+						santa_Nor[7].numV = 1;
+						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount3++; //フレームカウント
+					if (framcount3 % 4 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[7].numU++;
+						if (santa_Nor[7].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 0;
+							santa_Nor[7].numU = 0;
+
+						}
+					}
+				}
+				// 威力中
+				else if (bugPower == 2) {
+					if (changeRight_SP == true)
+					{
+						//初期化
+						santa_Nor[7].numU = 0;
+						santa_Nor[7].numV = 1;
+						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount3++; //フレームカウント
+					if (framcount3 % 7 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[7].numU++;
+						if (santa_Nor[7].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 0;
+							santa_Nor[7].numU = 0;
+
+						}
+					}
+				}
+				// 威力強
+				else if (bugPower == 3) {
+					if (changeRight_SP == true)
+					{
+						//初期化
+						santa_Nor[7].numU = 0;
+						santa_Nor[7].numV = 1;
+						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount3++; //フレームカウント
+					if (framcount3 % 10 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[7].numU++;
+						if (santa_Nor[7].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 0;
+							santa_Nor[7].numU = 0;
+
+						}
+					}
+				}
+			}
+			
+		}
+		
+		// 右移動
+		if (sp_ani==false && gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
-			
-			if (changeRight == true)
-			{
-				//初期化
-				santa_Nor[0].numU = 0;
-				santa_Nor[0].numV = 0;
-				changeRight = false;//一旦falseにして一回しか処理されないようにする
-			}
-			framcount++; //フレームカウント
-			if (framcount % 10 == 0) //１０フレームに一回行われる
-			{
-				santa_Nor[0].numU++;
-				if (santa_Nor[0].numU >= 4)
+
+			if (bugPower == 0) {
+				santaImage = 6;
+				if (changeRight_SP_1 == true)
 				{
-					santa_Nor[0].numU = 0;
-					santa_Nor[0].numV++;
-					if (santa_Nor[0].numV >= 2)
+					//初期化
+					santa_Nor[6].numU = 0;
+					santa_Nor[6].numV = 0;
+					changeRight_SP_1 = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount4++; //フレームカウント
+				if (framcount4 % 4 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[6].numU++;
+					if (santa_Nor[6].numU >= 4)
 					{
-						santa_Nor[0].numV = 0;
+						santa_Nor[6].numU = 0;
+
 					}
 				}
+			}
+			else if (bugPower > 0) {
+				santaImage = 0;
+				if (changeRight == true)
+				{
+					//初期化
+					santa_Nor[0].numU = 0;
+					santa_Nor[0].numV = 0;
+					changeRight = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount++; //フレームカウント
+				if (framcount % 10 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[0].numU++;
+					if (santa_Nor[0].numU >= 4)
+					{
+						santa_Nor[0].numU = 0;
+						santa_Nor[0].numV++;
+						if (santa_Nor[0].numV >= 2)
+						{
+							santa_Nor[0].numV = 0;
+						}
+					}
+			}
+		
 			}
 
 			if (santa_pos.x >= 0) //プレイヤーが画面真ん中に行ったとき
@@ -2093,34 +2259,70 @@ void Game::Update(void) {
 		else
 		{
 			//キーを離すとtrueに戻る
+			if (sp_ani == false && changeRight_SP_1 == false) {
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 0;
+				santaImage = 0;
+			}
+			
 			changeRight = true;
+			changeRight_SP_1 = true;
 		}
 
-		if (gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+		// 左移動
+		if (sp_ani == false && gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
-			if (changeLeft == true)
-			{
-				//初期化
-				santa_Nor[0].numU = 0;
-				santa_Nor[0].numV = 2;
-				changeLeft = false;//一旦falseにして一回しか処理されないようにする
-			}
-			framcount++; //フレームカウント
-			if (framcount % 10 == 0) //１０フレームに一回行われる
-			{
-				santa_Nor[0].numU++;
-				if (santa_Nor[0].numU >= 4)
+
+			if (bugPower == 0) {
+
+				santaImage = 6;
+				if (changeLeft_SP_1 == true)
 				{
-					santa_Nor[0].numU = 0;
-					santa_Nor[0].numV++;
-					if (santa_Nor[0].numV >= 4)
+					//初期化
+					santa_Nor[6].numU = 0;
+					santa_Nor[6].numV = 1;
+					changeLeft_SP_1 = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount4++; //フレームカウント
+				if (framcount4 % 4 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[6].numU++;
+					if (santa_Nor[6].numU >= 4)
 					{
-						santa_Nor[0].numV = 2;
+				
+						santa_Nor[6].numU = 0;
+
 					}
 				}
 			}
+			else if (bugPower > 0) {
+
+				if (changeLeft == true)
+				{
+					//初期化
+					santa_Nor[0].numU = 0;
+					santa_Nor[0].numV = 2;
+					changeLeft = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount++; //フレームカウント
+				if (framcount % 10 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[0].numU++;
+					if (santa_Nor[0].numU >= 4)
+					{
+						santa_Nor[0].numU = 0;
+						santa_Nor[0].numV++;
+						if (santa_Nor[0].numV >= 4)
+						{
+							santa_Nor[0].numV = 2;
+						}
+					}
+				}
+			}
+			
+			
 
 			if (santa_pos.x <= 0) //プレイヤーが画面真ん中に行ったとき
 			{
@@ -2190,7 +2392,15 @@ void Game::Update(void) {
 		else
 		{
 			//キーを離すとtrueに戻る
+
+			
+			if (sp_ani == false && changeLeft_SP_1 == false) {
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 2;
+				santaImage = 0;
+			}
 			changeLeft = true;
+			changeLeft_SP_1 = true;
 		}
 
 
@@ -2238,12 +2448,12 @@ void Game::Update(void) {
 
 
 		santa_Nor[0].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
-	/*	santa_Nor[1].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
-		santa_Nor[2].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
-		santa_Nor[3].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
-		santa_Nor[4].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
-		santa_Nor[5].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);
-		santa_Nor[6].SetPos(santa_pos.x, santa_pos.y, santa_pos.z);*/
+		santa_Nor[1].SetPos(santa_pos1.x, santa_pos1.y, santa_pos1.z);
+		santa_Nor[2].SetPos(santa_pos2.x, santa_pos2.y, santa_pos2.z);
+		santa_Nor[3].SetPos(santa_pos3.x, santa_pos3.y, santa_pos3.z);
+		santa_Nor[4].SetPos(santa_pos4.x, santa_pos4.y, santa_pos4.z);
+		santa_Nor[5].SetPos(santa_pos5.x, santa_pos5.y, santa_pos5.z);
+		santa_Nor[6].SetPos(santa_pos6.x, santa_pos6.y, santa_pos6.z);
 		santa_Nor[7].SetPos(santa_pos7.x, santa_pos7.y, santa_pos7.z);
 
 		goal.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
@@ -2862,7 +3072,10 @@ void Game::Draw(void)
 		if (santaImage == 0) {
 			santa_Nor[0].Draw();//プレイヤー描画
 		}
-		else if (santaImage == 1) {
+		else if(santaImage==6){
+			santa_Nor[6].Draw();
+		}
+		else if (santaImage == 7) {
 			santa_Nor[7].Draw();
 		}
 		

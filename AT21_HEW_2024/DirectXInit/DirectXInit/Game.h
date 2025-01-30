@@ -144,6 +144,8 @@ private:
 	int framcount = 0;
 	int framcount2 = 0;
 	int framcount3 = 0;
+	int framcount4 = 0;
+	int framcount5 = 0;
 	//敵の移動フラグ
 	bool moveFg1 = false;
 	bool moveFg2= false;
@@ -204,6 +206,11 @@ private:
 	// 袋の力
 	int bugPower = 0; // 0:無し　1:威力弱　2:威力中　3:威力強(最大威力)
 
+	// 固有能力変数
+	bool sp_ani = false; 
+
+	bool changeRight_SP_1 = true;//キャラの
+	bool changeLeft_SP_1 = true;//
 	bool changeRight_SP = true;//キャラの
 	bool changeLeft_SP = true;//
 
