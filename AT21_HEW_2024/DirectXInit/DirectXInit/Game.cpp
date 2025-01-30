@@ -2318,7 +2318,7 @@ void Game::Update(void) {
 						if (santa_Nor[7].numU >= 5)
 						{
 							sp_ani = false;
-							santaImage = 0;
+							santaImage = 1;
 							santa_Nor[7].numU = 0;
 
 						}
@@ -2340,7 +2340,7 @@ void Game::Update(void) {
 						if (santa_Nor[7].numU >= 5)
 						{
 							sp_ani = false;
-							santaImage = 0;
+							santaImage = 1;
 							santa_Nor[7].numU = 0;
 
 						}
@@ -2362,7 +2362,7 @@ void Game::Update(void) {
 						if (santa_Nor[7].numU >= 5)
 						{
 							sp_ani = false;
-							santaImage = 0;
+							santaImage = 1;
 							santa_Nor[7].numU = 0;
 
 						}
@@ -2387,7 +2387,7 @@ void Game::Update(void) {
 						if (santa_Nor[7].numU >= 5)
 						{
 							sp_ani = false;
-							santaImage = 0;
+							santaImage = 1;
 							santa_Nor[7].numU = 0;
 
 						}
@@ -2409,7 +2409,7 @@ void Game::Update(void) {
 						if (santa_Nor[7].numU >= 5)
 						{
 							sp_ani = false;
-							santaImage = 0;
+							santaImage = 1;
 							santa_Nor[7].numU = 0;
 
 						}
@@ -2431,7 +2431,7 @@ void Game::Update(void) {
 						if (santa_Nor[7].numU >= 5)
 						{
 							sp_ani = false;
-							santaImage = 0;
+							santaImage = 1;
 							santa_Nor[7].numU = 0;
 
 						}
@@ -2565,7 +2565,7 @@ void Game::Update(void) {
 			if (sp_ani == false && changeRight_SP_1 == false) {
 				santa_Nor[1].numU = 0;
 				santa_Nor[1].numV = 0;
-				santaImage = 0;
+				santaImage = 1;
 			}
 			
 			changeRight = true;
