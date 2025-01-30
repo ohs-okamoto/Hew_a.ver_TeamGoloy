@@ -2290,7 +2290,8 @@ void Game::Update(void) {
 		
 
 		// 固有能力発動！！！！！！！
-		if (bugPower > 0 && sp_ani == false&&input.GetKeyPress(VK_Q) || input.GetButtonTrigger(XINPUT_X)) { // 袋が空っぽの時
+		if (bugPower > 0 && sp_ani == false&&input.GetKeyPress(VK_Q) 
+			|| input.GetButtonTrigger(XINPUT_X)&&bugPower > 0 && sp_ani == false) { // 袋が空っぽの時
 
 			sp_ani = true;
 		}
@@ -2441,7 +2442,8 @@ void Game::Update(void) {
 		}
 		
 		// 右移動
-		if (sp_ani==false && gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+		if (sp_ani==false && gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false 
+			|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
@@ -2571,7 +2573,8 @@ void Game::Update(void) {
 		}
 
 		// 左移動
-		if (sp_ani == false && gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+		if (sp_ani == false && gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false 
+			|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
@@ -3718,10 +3721,11 @@ void Game::Update(void) {
 
 
 		//速度
-		speed = 10;
+		speed = 5;
 
 		//右移動
-		if (collision.canMoveRight && input.GetKeyPress(VK_D))
+		if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
+			|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 		{
 			santa_pos.x += 5;//右移動
 			if (changeRight == true)
@@ -3823,7 +3827,8 @@ void Game::Update(void) {
 			changeRight = true;
 		}
 		//左移動
-		if (collision.canMoveLeft && input.GetKeyPress(VK_A))
+		if (sp_ani == false && gameoverFg == false && collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false
+			|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 		{
 			santa_pos.x -= 5;//左移動
 			if (changeLeft == true)
