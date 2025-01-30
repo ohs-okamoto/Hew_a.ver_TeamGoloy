@@ -4517,6 +4517,30 @@ void Game::Update(void) {
 				}
 			}
 	
+			if (collision.ground_santa(Block_Stge2[1], santa_Nor[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_pos.y > block_pos1.y + Block_Stge2[1].GetSize().y / 2.0f) {
+					santa_pos.y = block_pos1.y + Block_Stge2[1].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_pos.x < block_pos1.x && santa_pos.y < block_pos1.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_pos.x > block_pos1.x && santa_pos.y < block_pos1.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+
 
 		//ゴール当たり判定
 		if (collision.goal_santa(Goal_Stage2, santa_Nor[0], 250.0f, 0.0f))
