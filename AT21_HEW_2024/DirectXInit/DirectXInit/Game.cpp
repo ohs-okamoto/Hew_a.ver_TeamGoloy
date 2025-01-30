@@ -507,6 +507,11 @@ void Game::Init(HWND hWnd)
 	Tree_Stge2[1].SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
 	Tree_Stge2[1].SetAngle(0.0f);//角度設定
 
+	Tree_Stge2[2].Init(L"asset/tree3.png", 1, 1);//木
+	Tree_Stge2[2].SetPos(3450.0f, -70.0f, 0.0f);//位置を特定
+	Tree_Stge2[2].SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
+	Tree_Stge2[2].SetAngle(0.0f);//角度設定
+
 	//kaidan
 	Stairs_Stge2[1].Init(L"asset/block2.png", 1, 1);//いわ
 	Stairs_Stge2[1].SetPos(5720.0f, -170.0f, 0.0f);//位置を特定
@@ -3013,6 +3018,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 stairs_pos5 = Stairs_Stge2[5].GetPos();
 		//木
 		DirectX::XMFLOAT3 tree_pos1 = Tree_Stge2[1].GetPos();
+		DirectX::XMFLOAT3 tree_pos2 = Tree_Stge2[2].GetPos();
 		//つららの上
 		DirectX::XMFLOAT3 block_pos1 = Block_Stge2[1].GetPos();
 		//プレゼント
@@ -3397,7 +3403,12 @@ void Game::Update(void) {
 					icicle_pos2.x = 2000;
 					icicle_pos3.x = 2200;
 
+					icicle_pos1.y = 100;
+					icicle_pos2.y = 100;
+					icicle_pos3.y = 100;
+
 					tree_pos1.x = 900;
+					tree_pos2.x = 3450;
 
 
 					stairs_pos1.x = 5720;
@@ -3492,8 +3503,12 @@ void Game::Update(void) {
 					icicle_pos2.x = 2000;
 					icicle_pos3.x = 2200;
 
-					tree_pos1.x = 900;
+					icicle_pos1.y = 100;
+					icicle_pos2.y = 100;
+					icicle_pos3.y = 100;
 
+					tree_pos1.x = 900;
+					tree_pos2.x = 3450;
 
 					stairs_pos1.x = 5720;
 					stairs_pos2.x = 5755;
@@ -3730,7 +3745,7 @@ void Game::Update(void) {
 				}
 			}
 		}
-
+		//ゴール当たり判定
 		if (collision.goal_santa(Goal_Stage2, santa_Nor[0], 250.0f, 0.0f))
 		{
 			changescene = RESULT;
@@ -3767,8 +3782,12 @@ void Game::Update(void) {
 			icicle_pos2.x = 2000;
 			icicle_pos3.x = 2200;
 
-			tree_pos1.x = 900;
+			icicle_pos1.y = 100;
+			icicle_pos2.y = 100;
+			icicle_pos3.y = 100;
 
+			tree_pos1.x = 900;
+			tree_pos2.x = 3450;
 
 			stairs_pos1.x = 5720;
 			stairs_pos2.x = 5755;
@@ -4024,6 +4043,69 @@ void Game::Update(void) {
 			}
 		}
 
+		if (icicle_pos1.x <= 0&&santa_pos.y<0)
+		{
+			turarafall1 = true;
+		}
+
+
+		if (icicle_pos2.x <= 0 && santa_pos.y < 0)
+		{
+			turarafall2 = true;
+		}
+
+
+		if (icicle_pos3.x <= 0 && santa_pos.y < 0)
+		{
+			turarafall3 = true;
+		}
+
+		if (turarafall1 == true)
+		{
+			icicle_pos1.y -= 6;
+			if (icicle_pos1.y <= -800)
+			{
+				turarafall1 = false;
+			}
+		}
+
+		if (turarafall2 == true)
+		{
+			icicle_pos2.y -= 6;
+			if (icicle_pos2.y <= -800)
+			{
+				turarafall2 = false;
+			}
+		}
+
+		if (turarafall3 == true)
+		{
+			icicle_pos3.y -= 6;
+			if (icicle_pos3.y <= -800)
+			{
+				turarafall3 = false;
+			}
+		}
+
+
+			if (collision.enemy_santa(Icicles_Stge2[1], santa_Nor[0], 200.0f, 0.0f)&& HitFg == false&&turarafall1==true)
+			{
+				time -= 5;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Icicles_Stge2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
+			{
+				time -= 5;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Icicles_Stge2[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
+			{
+				time -= 5;
+				HitFg = true;
+			}
+
 		// 投げ物の動き　その① 
 		if (itemMove1 == true) {
 			if (direction == 0) { // 右向き
@@ -4273,6 +4355,7 @@ void Game::Update(void) {
 				ground_pos7.x -= speed;
 				//木
 				tree_pos1.x -= speed;
+				tree_pos2.x -= speed;
 				//つらら上
 				block_pos1.x -= speed;
 				//つらら
@@ -4376,6 +4459,7 @@ void Game::Update(void) {
 				ground_pos7.x += speed;
 				//木
 				tree_pos1.x += speed;
+				tree_pos2.x += speed;
 				//つらら上
 				block_pos1.x += speed;
 				//つらら
@@ -4423,6 +4507,7 @@ void Game::Update(void) {
 				tonakai_pos2.x += speed;
 
 				goal_pos.x += speed;
+
 			}
 		}
 		else
@@ -4480,6 +4565,7 @@ void Game::Update(void) {
 		Stairs_Stge2[5].SetPos(stairs_pos5.x, stairs_pos5.y, stairs_pos5.z);
 		//木
 		Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
+		Tree_Stge2[2].SetPos(tree_pos2.x, tree_pos2.y, tree_pos2.z);
 		//つらら上
 		Block_Stge2[1].SetPos(block_pos1.x, block_pos1.y, block_pos1.z);
 		//プレゼント

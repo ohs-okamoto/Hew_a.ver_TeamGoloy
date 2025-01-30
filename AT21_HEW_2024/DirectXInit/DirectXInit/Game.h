@@ -127,6 +127,10 @@ private:
 	bool changeRight = true;//ƒLƒƒƒ‰‚Ì
 	bool changeLeft = true;//
 
+	bool turarafall1 = false;
+	bool turarafall2 = false;
+	bool turarafall3 = false;
+
 
 	int changescene = TITLE;//ƒV[ƒ“
 
