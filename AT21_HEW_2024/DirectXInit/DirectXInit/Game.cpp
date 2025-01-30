@@ -1781,10 +1781,11 @@ void Game::Update(void) {
 		{
 			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
-				/*itemID = 1;*/
+				
 				item->ItemGet(1); // いわを回収
 				bugPower=item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				rock_visible1 = 1;
 
@@ -1799,6 +1800,7 @@ void Game::Update(void) {
 				item->ItemGet(1); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				rock_visible2 = 1;
 			}
@@ -1812,6 +1814,7 @@ void Game::Update(void) {
 				item->ItemGet(1); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				rock_visible3 = 1;
 			}
@@ -1825,6 +1828,7 @@ void Game::Update(void) {
 				item->ItemGet(1); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				rock_visible4 = 1;
 			}
@@ -1838,6 +1842,7 @@ void Game::Update(void) {
 				item->ItemGet(1); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				rock_visible5 = 1;
 			}
@@ -1851,6 +1856,7 @@ void Game::Update(void) {
 				item->ItemGet(1); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				rock_visible6 = 1;
 			}
@@ -1863,6 +1869,8 @@ void Game::Update(void) {
 				/*itemID = 1;*/
 				item->ItemGet(2); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+				itemCollected = true;
+				santaImage = 4;
 					
 				snow_visible1 = 1;
 			}
@@ -1876,6 +1884,7 @@ void Game::Update(void) {
 				item->ItemGet(2); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				snow_visible2 = 1;
 			}
@@ -1889,6 +1898,7 @@ void Game::Update(void) {
 				item->ItemGet(2); // いわを回収
 				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+				santaImage = 4;
 
 				snow_visible3 = 1;
 			}
@@ -1988,9 +1998,125 @@ void Game::Update(void) {
 					}
 				}
 				
-				
+				santaImage = 5;
 				item->ItemRelease(); // 取り出す
 				bugPower=item->GetItemCnt();
+			}
+		}
+
+		// 回収アニメーション
+		if (santaImage == 4) {
+
+			if (direction == 0) { // 右向き
+				if (changeRight_get == true)
+				{
+					//初期化
+					santa_Nor[4].numU = 0;
+					santa_Nor[4].numV = 0;
+					changeRight_get = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount4++; //フレームカウント
+				if (framcount4 % 4 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[4].numU++;
+					if (santa_Nor[4].numU >= 5)
+					{
+						sp_ani = false;
+						if (bugPower > 0) {
+							santaImage = 1;
+						}
+						else if (bugPower == 0) {
+							santaImage = 0;
+						}
+						
+						santa_Nor[4].numU = 0;
+
+					}
+				}
+			}
+			else if (direction == 1) {
+				if (changeLeft_get == true)
+				{
+					//初期化
+					santa_Nor[4].numU = 0;
+					santa_Nor[4].numV = 1;
+					changeRight_get = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount4++; //フレームカウント
+				if (framcount4 % 4 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[4].numU++;
+					if (santa_Nor[4].numU >= 5)
+					{
+						sp_ani = false;
+						if (bugPower > 0) {
+							santaImage = 1;
+						}
+						else if (bugPower == 0) {
+							santaImage = 0;
+						}
+						santa_Nor[4].numU = 0;
+
+					}
+				}
+			}
+		}
+
+		// 取出アニメーション
+		if (santaImage == 5) {
+
+			if (direction == 0) { // 右向き
+				if (changeRight_out == true)
+				{
+					//初期化
+					santa_Nor[5].numU = 0;
+					santa_Nor[5].numV = 0;
+					changeRight_out = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount5++; //フレームカウント
+				if (framcount5 % 4 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[5].numU++;
+					if (santa_Nor[5].numU >= 5)
+					{
+						sp_ani = false;
+						if (bugPower > 0) {
+							santaImage = 1;
+						}
+						else if (bugPower == 0) {
+							santaImage = 0;
+						}
+
+						santa_Nor[5].numU = 0;
+
+					}
+				}
+			}
+			else if (direction == 1) {
+				if (changeLeft_out == true)
+				{
+					//初期化
+					santa_Nor[5].numU = 0;
+					santa_Nor[5].numV = 1;
+					changeRight_out = false;//一旦falseにして一回しか処理されないようにする
+				}
+				framcount5++; //フレームカウント
+				if (framcount5 % 4 == 0) //１０フレームに一回行われる
+				{
+					santa_Nor[5].numU++;
+					if (santa_Nor[5].numU >= 5)
+					{
+						sp_ani = false;
+						if (bugPower > 0) {
+							santaImage = 1;
+						}
+						else if (bugPower == 0) {
+							santaImage = 0;
+						}
+						santa_Nor[5].numU = 0;
+
+					}
+				}
 			}
 		}
 
@@ -2311,8 +2437,8 @@ void Game::Update(void) {
 						santa_Nor[7].numV = 0;
 						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 					}
-					framcount3++; //フレームカウント
-					if (framcount3 % 4 == 0) //１０フレームに一回行われる
+					framcount7++; //フレームカウント
+					if (framcount7 % 4 == 0) //１０フレームに一回行われる
 					{
 						santa_Nor[7].numU++;
 						if (santa_Nor[7].numU >= 5)
@@ -2333,8 +2459,8 @@ void Game::Update(void) {
 						santa_Nor[7].numV = 0;
 						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 					}
-					framcount3++; //フレームカウント
-					if (framcount3 % 7 == 0) //１０フレームに一回行われる
+					framcount7++; //フレームカウント
+					if (framcount7 % 7 == 0) //１０フレームに一回行われる
 					{
 						santa_Nor[7].numU++;
 						if (santa_Nor[7].numU >= 5)
@@ -2355,8 +2481,8 @@ void Game::Update(void) {
 						santa_Nor[7].numV = 0;
 						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 					}
-					framcount3++; //フレームカウント
-					if (framcount3 % 10 == 0) //１０フレームに一回行われる
+					framcount7++; //フレームカウント
+					if (framcount7 % 10 == 0) //１０フレームに一回行われる
 					{
 						santa_Nor[7].numU++;
 						if (santa_Nor[7].numU >= 5)
@@ -2380,8 +2506,8 @@ void Game::Update(void) {
 						santa_Nor[7].numV = 1;
 						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 					}
-					framcount3++; //フレームカウント
-					if (framcount3 % 4 == 0) //１０フレームに一回行われる
+					framcount7++; //フレームカウント
+					if (framcount7 % 4 == 0) //１０フレームに一回行われる
 					{
 						santa_Nor[7].numU++;
 						if (santa_Nor[7].numU >= 5)
@@ -2402,8 +2528,8 @@ void Game::Update(void) {
 						santa_Nor[7].numV = 1;
 						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 					}
-					framcount3++; //フレームカウント
-					if (framcount3 % 7 == 0) //１０フレームに一回行われる
+					framcount7++; //フレームカウント
+					if (framcount7 % 7 == 0) //１０フレームに一回行われる
 					{
 						santa_Nor[7].numU++;
 						if (santa_Nor[7].numU >= 5)
@@ -2424,8 +2550,8 @@ void Game::Update(void) {
 						santa_Nor[7].numV = 1;
 						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 					}
-					framcount3++; //フレームカウント
-					if (framcount3 % 10 == 0) //１０フレームに一回行われる
+					framcount7++; //フレームカウント
+					if (framcount7 % 10 == 0) //１０フレームに一回行われる
 					{
 						santa_Nor[7].numU++;
 						if (santa_Nor[7].numU >= 5)
@@ -2458,8 +2584,8 @@ void Game::Update(void) {
 					santa_Nor[6].numV = 0;
 					changeRight_SP_1 = false;//一旦falseにして一回しか処理されないようにする
 				}
-				framcount4++; //フレームカウント
-				if (framcount4 % 4 == 0) //１０フレームに一回行われる
+				framcount6++; //フレームカウント
+				if (framcount6 % 4 == 0) //１０フレームに一回行われる
 				{
 					santa_Nor[6].numU++;
 					if (santa_Nor[6].numU >= 4)
@@ -2590,8 +2716,8 @@ void Game::Update(void) {
 					santa_Nor[6].numV = 1;
 					changeLeft_SP_1 = false;//一旦falseにして一回しか処理されないようにする
 				}
-				framcount4++; //フレームカウント
-				if (framcount4 % 4 == 0) //１０フレームに一回行われる
+				framcount6++; //フレームカウント
+				if (framcount6 % 4 == 0) //１０フレームに一回行われる
 				{
 					santa_Nor[6].numU++;
 					if (santa_Nor[6].numU >= 4)

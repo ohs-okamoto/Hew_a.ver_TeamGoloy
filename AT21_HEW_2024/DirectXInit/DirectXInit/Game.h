@@ -154,10 +154,13 @@ private:
 
 	//フレームカウント
 	int framcount = 0;
+	int framcount1 = 0;
 	int framcount2 = 0;
 	int framcount3 = 0;
 	int framcount4 = 0;
 	int framcount5 = 0;
+	int framcount6 = 0;
+	int framcount7 = 0;
 	//敵の移動フラグ
 	bool moveFg1 = false;
 	bool moveFg2= false;
@@ -233,6 +236,10 @@ private:
 	bool changeLeft_SP_1 = true;//
 	bool changeRight_SP = true;//キャラの
 	bool changeLeft_SP = true;//
+	bool changeRight_get = true;//キャラの
+	bool changeLeft_get = true;//
+	bool changeRight_out = true;//キャラの
+	bool changeLeft_out = true;//
 
 public:
 	
