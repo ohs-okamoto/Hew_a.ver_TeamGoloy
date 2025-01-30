@@ -205,22 +205,23 @@ void Game::Init(HWND hWnd)
 
 		// いわ bug1
 	itemUi[0].Init(L"asset/iwa.png", 1, 1); //いわ
-	itemUi[0].SetPos(-440.0f, 260.0f, 0.0f);//位置を特定
-	itemUi[0].SetSize(110.0f, 110.0f, 0.0f);//大きさ設定
+	itemUi[0].SetPos(-590.0f, 320.0f, 0.0f);//位置を特定
+	itemUi[0].SetSize(60.0f, 60.0f, 0.0f);//大きさ設定
 	itemUi[0].SetAngle(0.0f);//角度設定
 
 	// いわ bug2
 	itemUi[1].Init(L"asset/iwa.png", 1, 1); //いわ
-	itemUi[1].SetPos(-520.0f, 270.0f, 0.0f);//位置を特定
+	itemUi[1].SetPos(-520.0f, 300.0f, 0.0f);//位置を特定
 	itemUi[1].SetSize(90.0f, 90.0f, 0.0f);//大きさ設定
 	itemUi[1].SetAngle(0.0f);//角度設定
 
 	// いわ bud3
 	itemUi[2].Init(L"asset/iwa.png", 1, 1); //いわ
-	itemUi[2].SetPos(-580.0f, 290.0f, 0.0f);//位置を特定
-	itemUi[2].SetSize(60.0f, 60.0f, 0.0f);//大きさ設定
+	itemUi[2].SetPos(-440.0f, 290.0f, 0.0f);//位置を特定
+	itemUi[2].SetSize(110.0f, 110.0f, 0.0f);//大きさ設定
 	itemUi[2].SetAngle(0.0f);//角度設定
 
+	
 	// 雪玉 bug1
 	itemUi[3].Init(L"asset/yukidama.png", 1, 1); //雪玉
 	itemUi[3].SetPos(-440.0f, 260.0f, 0.0f);//位置を特定
