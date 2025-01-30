@@ -2025,7 +2025,7 @@ void Game::Update(void) {
 
 		// 回収アニメーション
 		if (santaImage == 4) {
-
+			getItem = 1;
 			if (direction == 0) { // 右向き
 				if (changeRight_get == true)
 				{
@@ -2041,13 +2041,8 @@ void Game::Update(void) {
 					if (santa_Nor[4].numU >= 5)
 					{
 						sp_ani = false;
-						if (bugPower > 0) {
-							santaImage = 1;
-						}
-						else if (bugPower == 0) {
-							santaImage = 0;
-						}
-						
+						santaImage = 1;
+						getItem = 0;
 						santa_Nor[4].numU = 0;
 
 					}
@@ -2059,7 +2054,7 @@ void Game::Update(void) {
 					//初期化
 					santa_Nor[4].numU = 0;
 					santa_Nor[4].numV = 1;
-					changeRight_get = false;//一旦falseにして一回しか処理されないようにする
+					changeLeft_get = false;//一旦falseにして一回しか処理されないようにする
 				}
 				framcount4++; //フレームカウント
 				if (framcount4 % 4 == 0) //１０フレームに一回行われる
@@ -2067,13 +2062,9 @@ void Game::Update(void) {
 					santa_Nor[4].numU++;
 					if (santa_Nor[4].numU >= 5)
 					{
-						sp_ani = false;
-						if (bugPower > 0) {
-							santaImage = 1;
-						}
-						else if (bugPower == 0) {
-							santaImage = 0;
-						}
+						sp_ani = false;	
+						santaImage = 1;
+						getItem = 0;
 						santa_Nor[4].numU = 0;
 
 					}
@@ -2117,7 +2108,7 @@ void Game::Update(void) {
 					//初期化
 					santa_Nor[5].numU = 0;
 					santa_Nor[5].numV = 1;
-					changeRight_out = false;//一旦falseにして一回しか処理されないようにする
+					changeLeft_out = false;//一旦falseにして一回しか処理されないようにする
 				}
 				framcount5++; //フレームカウント
 				if (framcount5 % 4 == 0) //１０フレームに一回行われる
@@ -2588,7 +2579,7 @@ void Game::Update(void) {
 		
 		// 右移動
 		if (sp_ani==false && gameoverFg==false&&collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false 
-			|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+			|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false )
 		{
 			direction = 0; // 方向
 			santa_pos.x += 5;//右移動
@@ -2710,7 +2701,13 @@ void Game::Update(void) {
 			if (sp_ani == false && changeRight_SP_1 == false) {
 				santa_Nor[1].numU = 0;
 				santa_Nor[1].numV = 0;
-				santaImage = 1;
+				if (bugPower > 0) {
+					santaImage = 1;
+				}
+				else if (bugPower == 0) {
+					santaImage = 0;
+				}
+				
 			}
 			
 			changeRight = true;
@@ -2719,7 +2716,7 @@ void Game::Update(void) {
 
 		// 左移動
 		if (sp_ani == false && gameoverFg == false&&collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false 
-			|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+			|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false )
 		{
 			direction = 1; // 方向
 			santa_pos.x -= 5;//左移動
@@ -2847,7 +2844,12 @@ void Game::Update(void) {
 			if (sp_ani == false && changeLeft_SP_1 == false) {
 				santa_Nor[1].numU = 0;
 				santa_Nor[1].numV = 2;
-				santaImage = 1;
+				if (bugPower > 0) {
+					santaImage = 1;
+				}
+				else if (bugPower == 0) {
+					santaImage = 0;
+				}
 			}
 			changeLeft = true;
 			changeLeft_SP_1 = true;

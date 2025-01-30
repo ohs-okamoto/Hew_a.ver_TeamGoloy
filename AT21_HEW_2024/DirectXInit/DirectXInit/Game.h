@@ -220,6 +220,9 @@ private:
 	// 次のアイテムが出るまで使えません
 	int changeItem = 0;
 
+	// 
+	int getItem = 0;
+
 	// サンタの向き
 	int direction = 0; // 0:右　1:左
 
