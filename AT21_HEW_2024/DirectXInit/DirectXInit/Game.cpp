@@ -2612,6 +2612,7 @@ void Game::Update(void) {
 
 					}
 				}
+
 			}
 			else if (bugPower > 0) {
 				santaImage = 1;
@@ -2707,6 +2708,9 @@ void Game::Update(void) {
 		{
 			//キーを離すとtrueに戻る
 			if (sp_ani == false && changeRight_SP_1 == false) {
+
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 0;
 				santa_Nor[1].numU = 0;
 				santa_Nor[1].numV = 0;
 				if (bugPower > 0) {
@@ -2847,9 +2851,9 @@ void Game::Update(void) {
 		else
 		{
 			//キーを離すとtrueに戻る
-
-			
 			if (sp_ani == false && changeLeft_SP_1 == false) {
+				santa_Nor[0].numU = 0;
+				santa_Nor[0].numV = 2;
 				santa_Nor[1].numU = 0;
 				santa_Nor[1].numV = 2;
 				if (bugPower > 0) {
