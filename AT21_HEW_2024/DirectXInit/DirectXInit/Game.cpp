@@ -3676,80 +3676,6 @@ void Game::Update(void) {
 		// サンタがアイテムに当たった時
 		bool itemCollected = false; // アイテムが既に回収されたかどうかのフラグ
 
-		//if (collision.item_santa(Collectrock_Stage2[1], santa_Nor[0], 100.0f, 0.0f))
-		//{
-		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
-		//	{
-		//		/*itemID = 1;*/
-		//		item->ItemGet(1); // いわを回収
-		//		itemCollected = true;
-
-		//	}
-		//}
-
-		//if (collision.item_santa(Collectrock_Stage2[2], santa_Nor[0], 100.0f, 0.0f))
-		//{
-		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
-		//	{
-		//		/*itemID = 1;*/
-		//		item->ItemGet(1); // いわを回収
-		//		itemCollected = true;
-
-		//	}
-		//}
-
-		//if (collision.item_santa(Collectrock_Stage2[3], santa_Nor[0], 100.0f, 0.0f))
-		//{
-		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
-		//	{
-		//		/*itemID = 1;*/
-		//		item->ItemGet(1); // いわを回収
-		//		itemCollected = true;
-
-		//	}
-		//}
-
-		//if (collision.item_santa(Collectrock_Stage2[4], santa_Nor[0], 100.0f, 0.0f))
-		//{
-		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
-		//	{
-		//		/*itemID = 1;*/
-		//		item->ItemGet(1); // いわを回収
-		//		itemCollected = true;
-
-		//	}
-		//}
-
-		//if (collision.item_santa(Collectrock_Stage2[5], santa_Nor[0], 100.0f, 0.0f))
-		//{
-		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
-		//	{
-		//		/*itemID = 1;*/
-		//		item->ItemGet(1); // いわを回収
-		//		itemCollected = true;
-
-		//	}
-		//}
-
-		//if (collision.item_santa(Collectrock_Stage2[6], santa_Nor[0], 100.0f, 0.0f))
-		//{
-		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
-		//	{
-		//		/*itemID = 1;*/
-		//		item->ItemGet(1); // いわを回収
-		//		itemCollected = true;
-
-		//	}
-		//}
-
-		//if (!itemCollected) {// 当たってない場合
-		//	if (input.GetKeyTrigger(VK_S))
-		//	{
-		//		item->ItemRelease(); // 取り出す
-		//	}
-		//}
-
-		
 
 		const float rightScreen = 670.0f; // 画面の右端
 		const float leftScreen = -670.0f; // 画面の左端
@@ -4868,16 +4794,7 @@ void Game::Draw(void)
 		{
 			Present_Stage2[i].Draw();
 		}
-		//回収いわ
-		for (int i = 1; i < image; i++)
-		{
-			Collectrock_Stage2[i].Draw();
-		}
-		//回収雪玉
-		for (int i = 1; i < image; i++)
-		{
-			Snowball_Stage2[i].Draw();
-		}
+		
 		//敵
 		for (int i = 1; i < image; i++)
 		{
@@ -4893,6 +4810,41 @@ void Game::Draw(void)
 		{
 			Tonakai_Stage2[i].Draw();
 		}
+
+		//いわ
+		if (rock_visible1 == 0) {
+			Collectrock_Stage2[1].Draw();
+		}
+		if (rock_visible2 == 0) {
+			Collectrock_Stage2[2].Draw();
+		}
+		if (rock_visible3 == 0) {
+			Collectrock_Stage2[3].Draw();
+		}
+		if (rock_visible4 == 0) {
+			Collectrock_Stage2[4].Draw();
+		}
+		if (rock_visible5 == 0) {
+			Collectrock_Stage2[5].Draw();
+		}
+		if (rock_visible6 == 0) {
+			Collectrock_Stage2[6].Draw();
+		}
+
+		//雪玉
+		if (snow_visible1 == 0)
+		{
+			Snowball_Stage2[1].Draw();
+		}
+		if (snow_visible2 == 0)
+		{
+			Snowball_Stage2[2].Draw();
+		}
+		if (snow_visible3 == 0)
+		{
+			Snowball_Stage2[3].Draw();
+		}
+
 
 
 		ScoreCounter.Draw();
@@ -4946,6 +4898,74 @@ void Game::Draw(void)
 
 		}
 
+		///////// 投げ物 ///////////////////
+
+		if (itemID_1 == 1) {
+			use_rock[0].Draw();
+		}
+		if (itemID_2 == 1) {
+			use_rock[1].Draw();
+		}
+		if (itemID_3 == 1) {
+			use_rock[2].Draw();
+		}
+
+		if (itemID_1 == 2) {
+			use_snowball[0].Draw();
+		}
+		if (itemID_2 == 2) {
+			use_snowball[1].Draw();
+		}
+		if (itemID_3 == 2) {
+			use_snowball[2].Draw();
+		}
+
+
+		///////// UI  ///////////////////
+
+		// bug1
+		if (item->GetItem_1() == 1) // 岩
+		{
+			itemUi[0].Draw();
+		}
+		if (item->GetItem_1() == 2) // 雪玉
+		{
+			itemUi[3].Draw();
+		}
+		if (item->GetItem_1() == 3) // つらら
+		{
+			itemUi[6].Draw();
+		}
+
+		// bug2
+		if (item->GetItem_2() == 1) // 岩
+		{
+			itemUi[1].Draw();
+		}
+		if (item->GetItem_2() == 2) // 雪玉
+		{
+			itemUi[4].Draw();
+		}
+		if (item->GetItem_2() == 3) // つらら
+		{
+			itemUi[7].Draw();
+		}
+
+		// bug3
+		if (item->GetItem_3() == 1) // 岩
+		{
+			itemUi[2].Draw();
+		}
+		if (item->GetItem_3() == 2) // 雪玉
+		{
+			itemUi[5].Draw();
+		}
+		if (item->GetItem_3() == 3) // つらら
+		{
+			itemUi[8].Draw();
+		}
+
+		/////////////////////////////////
 
 
 		break;
