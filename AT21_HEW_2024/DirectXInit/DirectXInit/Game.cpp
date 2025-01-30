@@ -1062,7 +1062,7 @@ void Game::Update(void) {
 	break;
 	case STAGE_1:
 	{
-		//サンタ
+		//サンタ 通常袋
 		DirectX::XMFLOAT3 santa_pos = santa_Nor[0].GetPos();
 		DirectX::XMFLOAT3 santa_pos1 = santa_Nor[1].GetPos();
 		DirectX::XMFLOAT3 santa_pos2 = santa_Nor[2].GetPos();
@@ -1071,6 +1071,23 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 santa_pos5 = santa_Nor[5].GetPos();
 		DirectX::XMFLOAT3 santa_pos6 = santa_Nor[6].GetPos();
 		DirectX::XMFLOAT3 santa_pos7 = santa_Nor[7].GetPos();
+		//サンタ 風呂敷
+		DirectX::XMFLOAT3 santa_huro_pos = santa_Huro[0].GetPos();
+		DirectX::XMFLOAT3 santa_huro_pos1 = santa_Huro[1].GetPos();
+		DirectX::XMFLOAT3 santa_huro_pos2 = santa_Huro[2].GetPos();
+		DirectX::XMFLOAT3 santa_huro_pos3 = santa_Huro[3].GetPos();
+		DirectX::XMFLOAT3 santa_huro_pos4 = santa_Huro[4].GetPos();
+		DirectX::XMFLOAT3 santa_huro_pos5 = santa_Huro[5].GetPos();
+		DirectX::XMFLOAT3 santa_huro_pos6 = santa_Huro[6].GetPos();
+		DirectX::XMFLOAT3 santa_huro_pos7 = santa_Huro[7].GetPos();
+		//サンタ 巾着袋
+		DirectX::XMFLOAT3 santa_kin_pos = santa_Kin[0].GetPos();
+		DirectX::XMFLOAT3 santa_kin_pos1 = santa_Kin[1].GetPos();
+		DirectX::XMFLOAT3 santa_kin_pos2 = santa_Kin[2].GetPos();
+		DirectX::XMFLOAT3 santa_kin_pos3 = santa_Kin[3].GetPos();
+		DirectX::XMFLOAT3 santa_kin_pos4 = santa_Kin[4].GetPos();
+		DirectX::XMFLOAT3 santa_kin_pos5 = santa_Kin[5].GetPos();
+		DirectX::XMFLOAT3 santa_kin_pos6 = santa_Kin[6].GetPos();
 		//ゴール
 		DirectX::XMFLOAT3 goal_pos = goal.GetPos();
 		//山
@@ -2203,6 +2220,16 @@ void Game::Update(void) {
 			//}
 		}
 
+		santa_pos1.x = santa_pos.x;
+		santa_pos1.y = santa_pos.y;
+		santa_pos2.x = santa_pos.x;
+		santa_pos2.y = santa_pos.y;
+		santa_pos3.x = santa_pos.x;
+		santa_pos3.y = santa_pos.y;
+		santa_pos4.x = santa_pos.x;
+		santa_pos4.y = santa_pos.y;
+		santa_pos5.x = santa_pos.x;
+		santa_pos5.y = santa_pos.y;
 		santa_pos6.x = santa_pos.x;
 		santa_pos6.y = santa_pos.y;
 		santa_pos7.x = santa_pos.x;
@@ -2441,25 +2468,25 @@ void Game::Update(void) {
 				}
 			}
 			else if (bugPower > 0) {
-				santaImage = 0;
+				santaImage = 1;
 				if (changeRight == true)
 				{
 					//初期化
-					santa_Nor[0].numU = 0;
-					santa_Nor[0].numV = 0;
+					santa_Nor[1].numU = 0;
+					santa_Nor[1].numV = 0;
 					changeRight = false;//一旦falseにして一回しか処理されないようにする
 				}
 				framcount++; //フレームカウント
 				if (framcount % 10 == 0) //１０フレームに一回行われる
 				{
-					santa_Nor[0].numU++;
-					if (santa_Nor[0].numU >= 4)
+					santa_Nor[1].numU++;
+					if (santa_Nor[1].numU >= 4)
 					{
-						santa_Nor[0].numU = 0;
-						santa_Nor[0].numV++;
-						if (santa_Nor[0].numV >= 2)
+						santa_Nor[1].numU = 0;
+						santa_Nor[1].numV++;
+						if (santa_Nor[1].numV >= 2)
 						{
-							santa_Nor[0].numV = 0;
+							santa_Nor[1].numV = 0;
 						}
 					}
 			}
@@ -2534,8 +2561,8 @@ void Game::Update(void) {
 		{
 			//キーを離すとtrueに戻る
 			if (sp_ani == false && changeRight_SP_1 == false) {
-				santa_Nor[0].numU = 0;
-				santa_Nor[0].numV = 0;
+				santa_Nor[1].numU = 0;
+				santa_Nor[1].numV = 0;
 				santaImage = 0;
 			}
 			
@@ -2577,21 +2604,21 @@ void Game::Update(void) {
 				if (changeLeft == true)
 				{
 					//初期化
-					santa_Nor[0].numU = 0;
-					santa_Nor[0].numV = 2;
+					santa_Nor[1].numU = 0;
+					santa_Nor[1].numV = 2;
 					changeLeft = false;//一旦falseにして一回しか処理されないようにする
 				}
 				framcount++; //フレームカウント
 				if (framcount % 10 == 0) //１０フレームに一回行われる
 				{
-					santa_Nor[0].numU++;
-					if (santa_Nor[0].numU >= 4)
+					santa_Nor[1].numU++;
+					if (santa_Nor[1].numU >= 4)
 					{
-						santa_Nor[0].numU = 0;
-						santa_Nor[0].numV++;
-						if (santa_Nor[0].numV >= 4)
+						santa_Nor[1].numU = 0;
+						santa_Nor[1].numV++;
+						if (santa_Nor[1].numV >= 4)
 						{
-							santa_Nor[0].numV = 2;
+							santa_Nor[1].numV = 2;
 						}
 					}
 				}
@@ -2670,9 +2697,9 @@ void Game::Update(void) {
 
 			
 			if (sp_ani == false && changeLeft_SP_1 == false) {
-				santa_Nor[0].numU = 0;
-				santa_Nor[0].numV = 2;
-				santaImage = 0;
+				santa_Nor[1].numU = 0;
+				santa_Nor[1].numV = 2;
+				santaImage = 1;
 			}
 			changeLeft = true;
 			changeLeft_SP_1 = true;
@@ -2730,6 +2757,21 @@ void Game::Update(void) {
 		santa_Nor[5].SetPos(santa_pos5.x, santa_pos5.y, santa_pos5.z);
 		santa_Nor[6].SetPos(santa_pos6.x, santa_pos6.y, santa_pos6.z);
 		santa_Nor[7].SetPos(santa_pos7.x, santa_pos7.y, santa_pos7.z);
+		santa_Huro[0].SetPos(santa_huro_pos.x, santa_huro_pos.y, santa_huro_pos.z);
+		santa_Huro[1].SetPos(santa_huro_pos1.x, santa_huro_pos1.y, santa_huro_pos1.z);
+		santa_Huro[2].SetPos(santa_huro_pos2.x, santa_huro_pos2.y, santa_huro_pos2.z);
+		santa_Huro[3].SetPos(santa_huro_pos3.x, santa_huro_pos3.y, santa_huro_pos3.z);
+		santa_Huro[4].SetPos(santa_huro_pos4.x, santa_huro_pos4.y, santa_huro_pos4.z);
+		santa_Huro[5].SetPos(santa_huro_pos5.x, santa_huro_pos5.y, santa_huro_pos5.z);
+		santa_Huro[6].SetPos(santa_huro_pos6.x, santa_huro_pos6.y, santa_huro_pos6.z);
+		santa_Huro[7].SetPos(santa_huro_pos7.x, santa_huro_pos7.y, santa_huro_pos7.z);
+		santa_Kin[0].SetPos(santa_kin_pos.x, santa_kin_pos.y, santa_kin_pos.z);
+		santa_Kin[1].SetPos(santa_kin_pos1.x, santa_kin_pos1.y, santa_kin_pos1.z);
+		santa_Kin[2].SetPos(santa_kin_pos2.x, santa_kin_pos2.y, santa_kin_pos2.z);
+		santa_Kin[3].SetPos(santa_kin_pos3.x, santa_kin_pos3.y, santa_kin_pos3.z);
+		santa_Kin[4].SetPos(santa_kin_pos4.x, santa_kin_pos4.y, santa_kin_pos4.z);
+		santa_Kin[5].SetPos(santa_kin_pos5.x, santa_kin_pos5.y, santa_kin_pos5.z);
+		santa_Kin[6].SetPos(santa_kin_pos6.x, santa_kin_pos6.y, santa_kin_pos6.z);
 
 		goal.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
 
@@ -4119,15 +4161,81 @@ void Game::Draw(void)
 
 		tree.Draw();
 
+		// 通常袋
 		if (santaImage == 0) {
 			santa_Nor[0].Draw();//プレイヤー描画
 		}
-		else if(santaImage==6){
+		else if (santaImage == 1) {
+			santa_Nor[1].Draw();
+		}
+		else if (santaImage == 2) {
+			santa_Nor[2].Draw();
+		}
+		else if (santaImage == 3) {
+			santa_Nor[3].Draw();
+		}
+		else if (santaImage == 4) {
+			santa_Nor[4].Draw();
+		}
+		else if (santaImage == 5) {
+			santa_Nor[5].Draw();
+		}
+		else if (santaImage == 6) {
 			santa_Nor[6].Draw();
 		}
 		else if (santaImage == 7) {
 			santa_Nor[7].Draw();
 		}
+
+		// 風呂敷
+		if (santaImage == 8) {
+			santa_Huro[0].Draw();//プレイヤー描画
+		}
+		else if (santaImage == 9) {
+			santa_Huro[1].Draw();
+		}
+		else if (santaImage == 10) {
+			santa_Huro[2].Draw();
+		}
+		else if (santaImage == 12) {
+			santa_Huro[3].Draw();
+		}
+		else if (santaImage == 13) {
+			santa_Huro[4].Draw();
+		}
+		else if (santaImage == 14) {
+			santa_Huro[5].Draw();
+		}
+		else if (santaImage == 15) {
+			santa_Huro[6].Draw();
+		}
+		else if (santaImage == 16) {
+			santa_Huro[7].Draw();
+		}
+
+		// 巾着袋
+		if (santaImage == 17) {
+			santa_Kin[0].Draw();//プレイヤー描画
+		}
+		else if (santaImage == 18) {
+			santa_Kin[1].Draw();
+		}
+		else if (santaImage == 19) {
+			santa_Kin[2].Draw();
+		}
+		else if (santaImage == 20) {
+			santa_Kin[3].Draw();
+		}
+		else if (santaImage == 21) {
+			santa_Kin[4].Draw();
+		}
+		else if (santaImage == 22) {
+			santa_Kin[5].Draw();
+		}
+		else if (santaImage == 23) {
+			santa_Kin[6].Draw();
+		}
+		
 		
 		goal.Draw();
 
