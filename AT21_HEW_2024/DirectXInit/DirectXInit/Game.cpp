@@ -443,6 +443,12 @@ void Game::Init(HWND hWnd)
 	//ステージ2
 	//====================================================
 
+	Stage2_Loading.Init(L"asset/Stage2.png", 1, 1);//を初期化
+	Stage2_Loading.SetPos(0.0f, 0.0f, 0.0f);         //位置を設定
+	Stage2_Loading.SetSize(1280.0f, 720.0f, 0.f);     //大きさ設定
+	Stage2_Loading.SetAngle(0.0f);//角度を設定	
+
+
 		//地面
 	Ground_Stge2[1].Init(L"asset/Stage.png", 1, 1);//地面
 	Ground_Stge2[1].SetPos(0.0f, -300.0f, 0.0f);//位置を特定
@@ -616,6 +622,12 @@ void Game::Init(HWND hWnd)
 	Breakrock_Stge2[1].SetSize(350.0f, 300.0f, 0.0f);//大きさ設定
 	Breakrock_Stge2[1].SetAngle(0.0f);//角度設定
 
+	Breakmoji.Init(L"asset/Break2_another.png", 1, 1);//プレゼント
+	Breakmoji.SetPos(4450.0f, -150.0f, 0.0f);////位置を特定
+	Breakmoji.SetSize(200.0f, 100.0f, 0.0f);//大きさ設定
+	Breakmoji.SetAngle(0.0f);//角度設定
+
+
 	Goal_Stage2.Init(L"asset/house.png", 1, 1);//ゴール
 	Goal_Stage2.SetPos(7900.0f, -70.0f, 0.0f);//位置を特定
 	Goal_Stage2.SetSize(240.0f, 250.0f, 0.0f);//大きさ設定
@@ -671,9 +683,57 @@ void Game::Init(HWND hWnd)
 	GrayStar[4].SetAngle(0.0f);//角度を設定	  
 
 	Number[1].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
-	Number[1].SetPos(150.0f, 10.0f, 0.0f);         //位置を設定
+	Number[1].SetPos(100.0f, 0.0f, 0.0f);         //位置を設定
 	Number[1].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
 	Number[1].SetAngle(0.0f);//角度を設定	
+
+	Number[2].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	Number[2].SetPos(450.0f, -245.0f, 0.0f);         //位置を設定
+	Number[2].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	Number[2].SetAngle(0.0f);//角度を設定
+
+	Number[3].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	Number[3].SetPos(30.0f, -70.0f, 0.0f);         //位置を設定
+	Number[3].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	Number[3].SetAngle(0.0f);//角度を設定
+
+	Number[4].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	Number[4].SetPos(30.0f, -130.0f, 0.0f);         //位置を設定
+	Number[4].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	Number[4].SetAngle(0.0f);//角度を設定
+
+	Number[5].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	Number[5].SetPos(450.0f, -70.0f, 0.0f);         //位置を設定
+	Number[5].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	Number[5].SetAngle(0.0f);//角度を設定
+
+	Number[6].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	Number[6].SetPos(450.0f, -130.0f, 0.0f);         //位置を設定
+	Number[6].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	Number[6].SetAngle(0.0f);//角度を設定
+
+	X[1].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	X[1].SetPos(120.0f, -70.0f, 0.0f);         //位置を設定
+	X[1].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	X[1].SetAngle(0.0f);//角度を設定	
+
+	X[2].Init(L"asset/Nunber_Result.png", 11, 1);//を初期化
+	X[2].SetPos(120.0f, -130.0f, 0.0f);         //位置を設定
+	X[2].SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	X[2].SetAngle(0.0f);//角度を設定
+
+	Result_present.Init(L"asset/present.png", 1, 1);//プレゼント
+	Result_present.SetPos(-100.0f, -70.0f, 0.0f);////位置を特定
+	Result_present.SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	Result_present.SetAngle(0.0f);//角度設定
+
+	//プレゼント大
+	Result_Bigpresent.Init(L"asset/boxv2.png", 1, 1);//プレゼント
+	Result_Bigpresent.SetPos(-100.0f, -130.0f, 0.0f);////位置を特定
+	Result_Bigpresent.SetSize(70.0f, 70.0f, 0.0f);//大きさ設定
+	Result_Bigpresent.SetAngle(0.0f);//角度設定
+
+
 	//====================================================
 	//UI
 	//====================================================
@@ -956,7 +1016,7 @@ void Game::Update(void) {
 		{
 			changescene = STAGESELECT;
 			//changescene = GAMEOVER;
-			
+			//changescene = RESULT;
 		}
 	}
 	break;
@@ -1040,7 +1100,7 @@ void Game::Update(void) {
 		//ステージ２へ	
 		if (input.GetKeyTrigger(VK_RETURN) && select ==2 && StopCheck)
 		{
-			changescene = STAGE_2;
+			changescene = STAGE2_LOADING;
 		}
 		//ボスへ	
 		if (input.GetKeyTrigger(VK_RETURN) && select == 3 && StopCheck)
@@ -1057,7 +1117,7 @@ void Game::Update(void) {
 		//ステージ２へ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 2 && StopCheck)
 		{
-			changescene = STAGE_2;
+			changescene = STAGE2_LOADING;
 		}
 		//ボスへ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 3 && StopCheck)
@@ -1077,6 +1137,15 @@ void Game::Update(void) {
 		framcount++;
 		if (framcount % 100 == 0) //２秒弱ぐらいでシーン切り替え
 		{
+			//初期化
+			time = 150;
+			framcount = 0;
+			framcount2 = 0;
+			score = 0;
+			presentcount = 0;
+			bigpresentcount = 0;
+			time = 150;
+			cleartime = 0;
 			changescene = STAGE_1;
 			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
 			sound.SetVolume(SOUND_LABEL_BGM000, 0.8f);//もとの音量の80パーセントに設定
@@ -1084,6 +1153,30 @@ void Game::Update(void) {
 		}
 	}
 	break;
+	case STAGE2_LOADING:
+	{
+		pauseFg = false;
+		framcount++;
+		if (framcount % 100 == 0) //２秒弱ぐらいでシーン切り替え
+		{
+			//初期化
+			time = 150;
+			framcount = 0;
+			framcount2 = 0;
+			score = 0;
+			presentcount = 0;
+			bigpresentcount = 0;
+			time = 150;
+			cleartime = 0;
+			changescene = STAGE_2;
+			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
+			sound.SetVolume(SOUND_LABEL_BGM000, 0.8f);//もとの音量の80パーセントに設定
+
+		}
+	}
+	break;
+
+
 	case STAGE_1:
 	{
 		//サンタ 通常袋
@@ -1353,6 +1446,7 @@ void Game::Update(void) {
 					snowman_pos3.x = 2700;
 
 					bigpresent_pos1.x = 5400;
+					bigpresent_pos1.y = -25;
 
 					star_monster_pos.x = 4800;
 					tonakai_pos.x = 3600;
@@ -1360,6 +1454,10 @@ void Game::Update(void) {
 					present_pos1.x = 800;
 					present_pos2.x = 2800;
 					present_pos3.x = 4500;
+
+					present_pos1.y = -25;
+					present_pos2.y = 160;
+					present_pos3.y= -300;
 
 					tree_pos.x = 1900;
 					goal_pos.x = 5800;
@@ -1442,6 +1540,11 @@ void Game::Update(void) {
 					present_pos2.x = 2800;
 					present_pos3.x = 4500;
 
+					present_pos1.y = -25;
+					present_pos2.y = 160;
+					present_pos3.y = -300;
+					bigpresent_pos1.y = -25;
+
 					tree_pos.x = 1900;
 					goal_pos.x = 5800;
 
@@ -1511,6 +1614,11 @@ void Game::Update(void) {
 					present_pos1.x = 800;
 					present_pos2.x = 2800;
 					present_pos3.x = 4500;
+
+					present_pos1.y = -25;
+					present_pos2.y = 160;
+					present_pos3.y = -300;
+					bigpresent_pos1.y = -25;
 
 					tree_pos.x = 1900;
 					goal_pos.x = 5800;
@@ -1678,28 +1786,28 @@ void Game::Update(void) {
 
 		{
 			presentcount += 1;
-			score += 500;
+			score += 5000;
 			present_pos1.y = 100000;
 		}
 
 		if (collision.item_santa(present[2], santa_Nor[0], 100.0f, 0.0f))
 		{
 			presentcount += 1;
-			score += 500;
+			score += 5000;
 			present_pos2.y = 100000;
 		}
 
 		if (collision.item_santa(present[3], santa_Nor[0], 100.0f, 0.0f))
 		{
 			presentcount += 1;
-			score += 500;
+			score += 5000;
 			present_pos3.y = 100000;
 		}
 
 		if (collision.item_santa(BigPresent[1], santa_Nor[0], 100.0f, 0.0f))
 		{
-			presentcount += 1;
-			score += 1000;
+			bigpresentcount += 1;
+			score += 10000;
 			bigpresent_pos1.y = 100000;
 		}
 
@@ -1786,6 +1894,11 @@ void Game::Update(void) {
 				present_pos1.x = 800;
 				present_pos2.x = 2800;
 				present_pos3.x = 4500;
+
+				present_pos1.y = -25;
+				present_pos2.y = 160;
+				present_pos3.y = -300;
+				bigpresent_pos1.y = -25;
 
 				tree_pos.x = 1900;
 				goal_pos.x = 5800;
@@ -2381,7 +2494,6 @@ void Game::Update(void) {
 
 		// 12/30  サンタの移動アニメーション追加  	畦内
 		//移動速度
-
 		if (bugPower == 0) { // 袋が空の時
 			
 			speed = 7;
@@ -3075,6 +3187,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 cursor_pos = Cursor.GetPos();
 		DirectX::XMFLOAT3 cursor1_pos = PauseCursor.GetPos();
 		DirectX::XMFLOAT3 goal_pos = Goal_Stage2.GetPos();
+		DirectX::XMFLOAT3 moji_pos = Breakmoji.GetPos();
 
 		framcount2++;
 		if (framcount2 % 10 == 0) //１０フレームに一回行われる
@@ -3443,6 +3556,13 @@ void Game::Update(void) {
 					present_pos2.x = 6300;
 					present_pos3.x = 2000;
 
+					bigpresent_pos1.y = -250;
+					present_pos1.y = -265;
+					present_pos2.y = 100;
+					present_pos3.y = 280;
+
+
+
 					breakrock_pos1.x = 4450;
 
 					goal_pos.x = 7900;
@@ -3471,7 +3591,7 @@ void Game::Update(void) {
 
 				if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonTrigger(XINPUT_B))
 				{
-					changescene = STAGE1_LOADING;//リトライ
+					changescene = STAGE2_LOADING;//リトライ
 					gameoverFg = false;
 					//初期化
 					time = 150;
@@ -3535,13 +3655,19 @@ void Game::Update(void) {
 
 					tonakai_pos1.x = 26000;
 					tonakai_pos2.x = 7500;
+
 					bigpresent_pos1.x = 4450;
 					present_pos1.x = 3300;
 					present_pos2.x = 6300;
 					present_pos3.x = 2000;
 
-					breakrock_pos1.x = 4450;
+					bigpresent_pos1.y = -250;
+					present_pos1.y = -265;
+					present_pos2.y = 100;
+					present_pos3.y = 280;
 
+					breakrock_pos1.x = 4450;
+					moji_pos.x = 4450;
 					goal_pos.x = 7900;
 
 				}
@@ -3616,13 +3742,19 @@ void Game::Update(void) {
 
 					tonakai_pos1.x = 26000;
 					tonakai_pos2.x = 7500;
+
 					bigpresent_pos1.x = 4450;
 					present_pos1.x = 3300;
 					present_pos2.x = 6300;
 					present_pos3.x = 2000;
 
-					breakrock_pos1.x = 4450;
+					bigpresent_pos1.y = -250;
+					present_pos1.y = -265;
+					present_pos2.y = 100;
+					present_pos3.y = 280;
 
+					breakrock_pos1.x = 4450;
+					moji_pos.x = 4450;
 					goal_pos.x = 7900;
 
 
@@ -3703,28 +3835,28 @@ void Game::Update(void) {
 
 		{
 			presentcount += 1;
-			score += 500;
+			score += 5000;
 			present_pos1.y = 100000;
 		}
 
 		if (collision.item_santa(present[2], santa_Nor[0], 100.0f, 0.0f))
 		{
 			presentcount += 1;
-			score += 500;
+			score += 5000;
 			present_pos2.y = 100000;
 		}
 
 		if (collision.item_santa(present[3], santa_Nor[0], 100.0f, 0.0f))
 		{
 			presentcount += 1;
-			score += 500;
+			score += 5000;
 			present_pos3.y = 100000;
 		}
 
 		if (collision.item_santa(BigPresent[1], santa_Nor[0], 100.0f, 0.0f))
 		{
-			presentcount += 1;
-			score += 1000;
+			bigpresentcount += 1;
+			score += 10000;
 			bigpresent_pos1.y = 100000;
 		}
 		// 地面との当たり判定の追加 ゴロイ
@@ -3820,6 +3952,7 @@ void Game::Update(void) {
 			present_pos3.x = 2000;
 
 			breakrock_pos1.x = 4450;
+			moji_pos.x = 4450;
 
 			goal_pos.x = 7900;
 
@@ -4100,18 +4233,21 @@ void Game::Update(void) {
 			if (collision.enemy_santa(Icicles_Stge2[1], santa_Nor[0], 200.0f, 0.0f)&& HitFg == false&&turarafall1==true)
 			{
 				time -= 5;
+				sound.Play(SOUND_LABEL_SE001);
 				HitFg = true;
 			}
 
 			if (collision.enemy_santa(Icicles_Stge2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
 			{
 				time -= 5;
+				sound.Play(SOUND_LABEL_SE001);
 				HitFg = true;
 			}
 
 			if (collision.enemy_santa(Icicles_Stge2[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
 			{
 				time -= 5;
+				sound.Play(SOUND_LABEL_SE001);
 				HitFg = true;
 			}
 
@@ -4386,6 +4522,7 @@ void Game::Update(void) {
 				bigpresent_pos1.x -= speed;
 				//壊せる岩
 				breakrock_pos1.x -= speed;
+				moji_pos.x -= speed;
 				//回収岩
 				rock_pos1.x -= speed;
 				rock_pos2.x -= speed;
@@ -4490,6 +4627,7 @@ void Game::Update(void) {
 				bigpresent_pos1.x += speed;
 				//壊せる岩
 				breakrock_pos1.x += speed;
+				moji_pos.x += speed;
 				//回収岩
 				rock_pos1.x += speed;
 				rock_pos2.x += speed;
@@ -4610,6 +4748,7 @@ void Game::Update(void) {
 		Cursor.SetPos(cursor_pos.x, cursor_pos.y, cursor_pos.z);
 		PauseCursor.SetPos(cursor1_pos.x, cursor1_pos.y, cursor1_pos.z);
 		Goal_Stage2.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
+		Breakmoji.SetPos(moji_pos.x, moji_pos.y, moji_pos.z);
 
 		use_rock[0].SetPos(use_rock_pos1.x, use_rock_pos1.y, use_rock_pos1.z);
 		use_rock[1].SetPos(use_rock_pos2.x, use_rock_pos2.y, use_rock_pos2.z);
@@ -4643,6 +4782,7 @@ void Game::Update(void) {
 			framcount2 = 0;
 			score = 0;
 			presentcount = 0;
+			bigpresentcount = 0;
 			time = 150;
 			cleartime = 0;
 			
@@ -4665,12 +4805,22 @@ void Game::Draw(void)
 	int keta = 0;//スコア
 	int keta2 = 0;//制限時間
 	int keta3 = 0;//クリア時間
+	int keta4 = 0;//ｐれ個数
+	int keta5 = 0;//大ｐ個数
+	int keta6 = 0;//制限時間
+	int keta7 = 0;//クリア時間
+	int keta8 = 0;//制限時間
+	int keta9 = 0;//クリア時間
+
 
 	DirectX::XMFLOAT3 scorepos = Number_UI[1].GetPos();
 	DirectX::XMFLOAT3 scoresize = Number_UI[1].GetSize();
 
 	DirectX::XMFLOAT3 timepos = Number_UI[2].GetPos();
 	DirectX::XMFLOAT3 timesize = Number_UI[2].GetSize();
+
+	
+	
 
 	switch (changescene)
 	{
@@ -4687,6 +4837,9 @@ void Game::Draw(void)
 		break;
 	case STAGE1_LOADING:
 		Stage1_Loading.Draw();
+		break;
+	case STAGE2_LOADING:
+		Stage2_Loading.Draw();
 		break;
 	case STAGE_1://ゲーム
 
@@ -5068,28 +5221,7 @@ void Game::Draw(void)
 
 
 
-		ScoreCounter.Draw();
-		//スコア
-		do {
-			Number_UI[1].numU = score % (int)pow(10, keta + 1) / (int)pow(10, keta);//一桁を切り出す
-			Number_UI[1].SetPos(scorepos.x - scoresize.x * keta, scorepos.y, scoresize.z);//位置を設定
-
-			Number_UI[1].Draw();//スコアを描画
-			keta++;
-		} while (score >= (int)pow(10, keta));
-		Number_UI[1].SetPos(scorepos.x, scorepos.y, scorepos.z);
-
-		Time.Draw();
-
-		//制限時間
-		do {
-			Number_UI[2].numU = time % (int)pow(10, keta2 + 1) / (int)pow(10, keta2);//一桁を切り出す
-			Number_UI[2].SetPos(timepos.x - timesize.x * keta2, timepos.y, timesize.z);//位置を設定
-
-			Number_UI[2].Draw();//スコアを描画
-			keta2++;
-		} while (time >= (int)pow(10, keta2));
-		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
+		
 
 		Breakrock_Stge2[1].Draw();
 		BigPresent_Stage2[1].Draw();
@@ -5141,6 +5273,7 @@ void Game::Draw(void)
 			use_snowball[2].Draw();
 		}
 
+		Breakmoji.Draw();
 
 		///////// UI  ///////////////////
 
@@ -5187,7 +5320,28 @@ void Game::Draw(void)
 		}
 
 		/////////////////////////////////
+		ScoreCounter.Draw();
+		//スコア
+		do {
+			Number_UI[1].numU = score % (int)pow(10, keta + 1) / (int)pow(10, keta);//一桁を切り出す
+			Number_UI[1].SetPos(scorepos.x - scoresize.x * keta, scorepos.y, scoresize.z);//位置を設定
 
+			Number_UI[1].Draw();//スコアを描画
+			keta++;
+		} while (score >= (int)pow(10, keta));
+		Number_UI[1].SetPos(scorepos.x, scorepos.y, scorepos.z);
+
+		Time.Draw();
+
+		//制限時間
+		do {
+			Number_UI[2].numU = time % (int)pow(10, keta2 + 1) / (int)pow(10, keta2);//一桁を切り出す
+			Number_UI[2].SetPos(timepos.x - timesize.x * keta2, timepos.y, timesize.z);//位置を設定
+
+			Number_UI[2].Draw();//スコアを描画
+			keta2++;
+		} while (time >= (int)pow(10, keta2));
+		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
 
 		break;
 	case BOSS:
@@ -5200,7 +5354,22 @@ void Game::Draw(void)
 		DirectX::XMFLOAT3 timepos = Number[1].GetPos();
 		DirectX::XMFLOAT3 timesize = Number[1].GetSize();
 
+		DirectX::XMFLOAT3 maxscorepos = Number[2].GetPos();
+		DirectX::XMFLOAT3 maxscoresize = Number[2].GetSize();
 
+		DirectX::XMFLOAT3 scorepos2 = Number[3].GetPos();
+		DirectX::XMFLOAT3 scoresize2 = Number[3].GetSize();
+
+		DirectX::XMFLOAT3 scorepos3 = Number[4].GetPos();
+		DirectX::XMFLOAT3 scoresize3 = Number[4].GetSize();
+
+		DirectX::XMFLOAT3 scorepos4 = Number[5].GetPos();
+		DirectX::XMFLOAT3 scoresize4 = Number[5].GetSize();
+
+		DirectX::XMFLOAT3 scorepos5 = Number[6].GetPos();
+		DirectX::XMFLOAT3 scoresize5 = Number[6].GetSize();
+
+		
 
 		Result.Draw();//リザルト背景
 		
@@ -5209,19 +5378,74 @@ void Game::Draw(void)
 			Number[1].numU = cleartime % (int)pow(10, keta3 + 1) / (int)pow(10, keta3);//一桁を切り出す
 			Number[1].SetPos(timepos.x - timesize.x * keta3, timepos.y, timesize.z);//位置を設定
 
-			Number[1].Draw();//スコアを描画
+			Number[1].Draw();//クリアタイムを描画
 			keta3++;
 		} while (cleartime >= (int)pow(10, keta3));
 		Number[1].SetPos(timepos.x, timepos.y, timepos.z);
 
-		//クリアタイムに応じてスコア加算
-		if (cleartime <= 20)
-		{
-			score++;
-		}
+
+		
+		//とったプレゼントの数
+		
+		do {
+			Number[3].numU = presentcount % (int)pow(10, keta4 + 1) / (int)pow(10, keta4);//一桁を切り出す
+			Number[3].SetPos(scorepos2.x - scoresize2.x * keta4, scorepos2.y, scoresize2.z);//位置を設定
+
+			Number[3].Draw();//クリアタイムを描画
+			keta4++;
+		} while (presentcount >= (int)pow(10, keta4));
+		Number[3].SetPos(scorepos2.x, scorepos2.y, scorepos2.z);
+
+		//とった大プレゼントの数
+		
+		do {
+			Number[4].numU = bigpresentcount % (int)pow(10, keta5 + 1) / (int)pow(10, keta5);//一桁を切り出す
+			Number[4].SetPos(scorepos3.x - scoresize3.x * keta5, scorepos3.y, scoresize3.z);//位置を設定
+
+			Number[4].Draw();//クリアタイムを描画
+			keta5++;
+		} while (bigpresentcount >= (int)pow(10, keta5));
+		Number[4].SetPos(scorepos3.x, scorepos3.y, scorepos3.z);
+
+		//プレゼントの合計スコア
+		presentscore = 5000 * presentcount;
+		do {
+			Number[5].numU = presentscore % (int)pow(10, keta6 + 1) / (int)pow(10, keta6);//一桁を切り出す
+			Number[5].SetPos(scorepos4.x - scoresize4.x * keta6, scorepos4.y, scoresize4.z);//位置を設定
+			
+			Number[5].Draw();//クリアタイムを描画
+			if (presentscore <= 0) { scorepos4.x = 300; }
+
+			keta6++;
+		} while (presentscore >= (int)pow(10, keta6));
+		Number[5].SetPos(scorepos4.x, scorepos4.y, scorepos4.z);
+
+		//プレゼント大の合計スコア
+		bigpresentscore = 10000 * bigpresentcount;
+		
+		do {
+			Number[6].numU = bigpresentscore % (int)pow(10, keta7 + 1) / (int)pow(10, keta7);//一桁を切り出す
+			Number[6].SetPos(scorepos5.x - scoresize5.x * keta7, scorepos5.y, scoresize5.z);//位置を設定
+
+			Number[6].Draw();//クリアタイムを描画
+			if (bigpresentscore <= 0) { scorepos5.x = 300; }
+			keta7++;
+		} while (bigpresentscore >= (int)pow(10, keta7));
+		Number[6].SetPos(scorepos5.x, scorepos5.y, scorepos5.z);
+
+
+		X[1].numU = 10;
+		X[2].numU = 10;
+		X[1].Draw();
+		X[2].Draw();
+
+
+
+		//クリアタイムに応じてスコア加算(仮)
+		score = cleartime * 2;
 
 		//一定のスコアを超えていると色付きの星になる処理　  あぜ
-		if (score >= 500)
+		if (score >= 5000)
 		{
 			ResultStar[1].Draw();
 		}
@@ -5230,7 +5454,7 @@ void Game::Draw(void)
 			GrayStar[1].Draw();
 		}
 
-		if (score >= 1000)
+		if (score >= 10000)
 		{
 			ResultStar[2].Draw();
 		}
@@ -5239,7 +5463,7 @@ void Game::Draw(void)
 			GrayStar[2].Draw();
 		}
 
-		if (score >= 1500)
+		if (score >= 15000)
 		{
 			ResultStar[3].Draw();
 		}
@@ -5248,7 +5472,7 @@ void Game::Draw(void)
 			GrayStar[3].Draw();
 		}
 
-		if (score >= 2500)
+		if (score >= 25000)
 		{
 			ResultStar[4].Draw();
 		}
@@ -5256,6 +5480,18 @@ void Game::Draw(void)
 		{
 			GrayStar[4].Draw();
 		}
+
+		do {
+			Number[2].numU = score % (int)pow(10, keta8 + 1) / (int)pow(10, keta8);//一桁を切り出す
+			Number[2].SetPos(maxscorepos.x - maxscoresize.x * keta8, maxscorepos.y, maxscoresize.z);//位置を設定
+
+			Number[2].Draw();//クリアタイムを描画
+			keta8++;
+		} while (score >= (int)pow(10, keta8));
+		Number[2].SetPos(maxscorepos.x, maxscorepos.y, maxscorepos.z);
+
+		Result_present.Draw();
+		Result_Bigpresent.Draw();
 
 		break;
 	}
@@ -5276,6 +5512,7 @@ void Game::Uninit(void)
 	sky.Uninit();//終了
 	star.Uninit();//終了
 	Stage1_Loading.Uninit();
+	Stage2_Loading.Uninit();
 	for (int i = 1; i < image; i++)
 	{
 		ground[i].Uninit();
@@ -5311,6 +5548,11 @@ void Game::Uninit(void)
 
 	Result.Uninit();//リザルト背景
 	Number[1].Uninit();//数字
+	Number[2].Uninit();//数字
+	Number[3].Uninit();//数字
+	Number[4].Uninit();//数字
+	Number[5].Uninit();//数字
+	Number[6].Uninit();//数字
 	ResultStar[1].Uninit();
 	ResultStar[2].Uninit();
 	ResultStar[3].Uninit();
@@ -5318,6 +5560,11 @@ void Game::Uninit(void)
 
 	Number_UI[1].Uninit();
 	Number_UI[2].Uninit();
+	
+	Breakmoji.Uninit();
+
+	X[1].Uninit();
+	X[2].Uninit();
 
 	Pausemoji.Uninit();
 	PauseTitleBack.Uninit();
@@ -5344,7 +5591,8 @@ void Game::Uninit(void)
 	BOSSBACK.Uninit();
 	Bossground.Uninit();
 	
-
+	Result_present.Uninit();
+	Result_Bigpresent.Uninit();
 	sound.Uninit();//サウンドを終了
 	// DirectXの解放処理
 	D3D_Release();//DirextXを終了

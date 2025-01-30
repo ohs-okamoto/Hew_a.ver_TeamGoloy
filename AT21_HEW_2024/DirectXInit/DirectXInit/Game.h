@@ -27,6 +27,8 @@ private:
 	Object title;//タイトル
 
 	Object Stage1_Loading;
+	Object Stage2_Loading;
+	Object BOSS_Loading;
 
 
 	Object santa_Nor[8];  // サンタオブジェクト 通常袋
@@ -78,15 +80,18 @@ private:
 	Object Tonakai_Stage2[image];//トナカイ
 	Object Star_Stage2[image];//星野　敵
 	Object Goal_Stage2;
-
+	Object Breakmoji;
 
 	//リザルト関連
 	Object Result;//リザルト背景
-	Object Number[2];//数字
+	Object Number[10];//数字
 	Object ResultStar[5];//星
 	Object GrayStar[5];//透明な星
 	Object Result_Bigpresent;//大プレ
 	Object Result_present;//プレぜんと
+	Object X[3];
+	
+
 
 	//UI関連
 	Object Time;//制限時間
@@ -135,6 +140,12 @@ private:
 	int changescene = TITLE;//シーン
 
 	int presentcount=0;//何個プレゼントとったか
+	int bigpresentcount = 0;//何個大プレゼントとったか
+
+	int presentscore = 0;
+	int bigpresentscore = 0;
+
+
 
 	int score = 0;//スコア
 
