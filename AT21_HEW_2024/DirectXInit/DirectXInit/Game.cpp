@@ -2103,6 +2103,7 @@ void Game::Update(void) {
 						}
 
 						santa_Nor[5].numU = 0;
+						changeRight_out = true;
 
 					}
 				}
@@ -2129,6 +2130,7 @@ void Game::Update(void) {
 							santaImage = 0;
 						}
 						santa_Nor[5].numU = 0;
+						changeLeft_out = true;
 
 					}
 				}
@@ -2461,7 +2463,7 @@ void Game::Update(void) {
 							sp_ani = false;
 							santaImage = 1;
 							santa_Nor[7].numU = 0;
-
+							changeLeft_SP = true;
 						}
 					}
 				}
@@ -2483,7 +2485,7 @@ void Game::Update(void) {
 							sp_ani = false;
 							santaImage = 1;
 							santa_Nor[7].numU = 0;
-
+							changeLeft_SP = true;
 						}
 					}
 				}
@@ -2505,7 +2507,7 @@ void Game::Update(void) {
 							sp_ani = false;
 							santaImage = 1;
 							santa_Nor[7].numU = 0;
-
+							changeLeft_SP = true;
 						}
 					}
 				}
@@ -2530,6 +2532,7 @@ void Game::Update(void) {
 							sp_ani = false;
 							santaImage = 1;
 							santa_Nor[7].numU = 0;
+							changeRight_SP = true;
 
 						}
 					}
@@ -2552,7 +2555,7 @@ void Game::Update(void) {
 							sp_ani = false;
 							santaImage = 1;
 							santa_Nor[7].numU = 0;
-
+							changeRight_SP = true;
 						}
 					}
 				}
@@ -2574,7 +2577,7 @@ void Game::Update(void) {
 							sp_ani = false;
 							santaImage = 1;
 							santa_Nor[7].numU = 0;
-
+							changeRight_SP = true;
 						}
 					}
 				}
