@@ -1,14 +1,17 @@
 #pragma once
+
 #include <xaudio2.h>
 
 // サウンドファイル
 typedef enum
 {
 	SOUND_LABEL_BGM000 = 0,		// サンプルBGM
-	SOUND_LABEL_BGM001,			// サンプルBGM
+	SOUND_LABEL_BGM001,	
 	SOUND_LABEL_SE000 = 0,		// サンプルSE
-	SOUND_LABEL_SE001,			// ダメージSE
-	SOUND_LABEL_SE002,		    // 雪玉SE
+	SOUND_LABEL_SE001,			// SE
+	SOUND_LABEL_SE002,		    // ダメージSE
+	SOUND_LABEL_SE003,// 雪玉SE
+	SOUND_LABEL_SE004,// ジャンプSE
 	//SOUND_LABEL_SE003,			// サンプルSE
 
 
@@ -24,12 +27,13 @@ private:
 		bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
 	} PARAM;
 
-	PARAM m_param[SOUND_LABEL_MAX] =
+	PARAM m_param[100] =
 	{
 		{"sound/BGM/Christmas.wav", true},	// サンプルBGM（ループさせるのでtrue設定）
-		//{"asset/BGM/○○○.wav", true},	// サンプルBGM
+		{"sound/BGM/gameover.wav", false},	    // サンプルBGM
 		{"sound/SE/damage.wav", false},  		// サンプルSE（ループしないのでfalse設定）
 		{"sound/SE/yukidama.wav", false},		// サンプルSE
+		{"sound/SE/jump.wav", false},		// サンプルSE
 		//{"sound/SE/yukidama.wav", false},		// サンプルSE
 
 

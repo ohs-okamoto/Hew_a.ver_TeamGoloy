@@ -1037,8 +1037,8 @@ void Game::Update(void) {
 
 		{
 			changescene = STAGESELECT;
-			//changescene = GAMEOVER;
 			//changescene = RESULT;
+			
 		}
 	}
 	break;
@@ -1178,13 +1178,14 @@ void Game::Update(void) {
 	break;
 	case STAGE2_LOADING:
 	{
+
 		kari = false;
 		pauseFg = false;
 		framcount++;
 		if (framcount % 100 == 0) //２秒弱ぐらいでシーン切り替え
 		{
 			//初期化
-			time = 150;
+			
 			framcount = 0;
 			framcount2 = 0;
 			score = 0;
@@ -1195,7 +1196,7 @@ void Game::Update(void) {
 			changescene = STAGE_2;
 			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
 			sound.SetVolume(SOUND_LABEL_BGM000, 0.8f);//もとの音量の80パーセントに設定
-
+			
 		}
 	}
 	break;
@@ -1501,13 +1502,17 @@ void Game::Update(void) {
 		if (framcount2 % 60 == 0&&pauseFg==false)//1秒に一回行われる
 		{
 			time--;
+
 		}
-		if (time <= 0)//タイムオーバーになったら
+		if (time <= 0&& gameoverFg == false)//タイムオーバーになったら
 		{
 			gameoverFg = true;
+			sound.Play(SOUND_LABEL_BGM001);//BGMを再生
 		}
 		if (gameoverFg == true)
 		{
+			sound.Stop(SOUND_LABEL_BGM000);
+
 			if (cursor_pos.y == -100)
 			{
 				if (input.GetKeyTrigger(VK_S) ||input.GetLeftAnalogStick().y<-0.5)
@@ -1789,42 +1794,42 @@ void Game::Update(void) {
 
 		// 雪だるまとの当たり判定追加 
 			
-		if (collision.enemy_santa(snowman[1], santa_Nor[0], 200.0f, 0.0f)&&HitFg==false && pauseFg == false)
+		if (collision.enemy_santa(snowman[1], santa_Nor[0], 200.0f, 0.0f)&&HitFg==false && pauseFg == false && gameoverFg == false)
 		{	
 			time -= 5;	
 			hitcooltime = 0;
-			sound.Play(SOUND_LABEL_SE001);
+			sound.Play(SOUND_LABEL_SE002);
 			HitFg = true;
 		}
 
-		if (collision.enemy_santa(snowman[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+		if (collision.enemy_santa(snowman[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 		{
 			time -= 5;
 			hitcooltime = 0;
-			sound.Play(SOUND_LABEL_SE001);
+			sound.Play(SOUND_LABEL_SE002);
 			HitFg = true;
 		}
 
-		if (collision.enemy_santa(snowman[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+		if (collision.enemy_santa(snowman[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 		{
 			time -= 5;
 			hitcooltime = 0;
-			sound.Play(SOUND_LABEL_SE001);
+			sound.Play(SOUND_LABEL_SE002);
 			HitFg = true;
 		}
 		
 		// 星との当たり判定追加 
-		if (collision.enemy_santa(star_monster, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+		if (collision.enemy_santa(star_monster, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 		{
-			sound.Play(SOUND_LABEL_SE001);
+			sound.Play(SOUND_LABEL_SE002);
 			time -= 5;
 			hitcooltime = 0;
 			HitFg = true;
 		}
 		//トナカイ との当たり判定追加 
-		if (collision.enemy_santa(tonakai, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+		if (collision.enemy_santa(tonakai, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 		{
-			sound.Play(SOUND_LABEL_SE001);
+			sound.Play(SOUND_LABEL_SE002);
 			time -= 5;
 			hitcooltime = 0;
 			HitFg = true;
@@ -2310,14 +2315,14 @@ void Game::Update(void) {
 					if (item->GetItem_3() == 1) {
 						use_rock_pos3.x = santa_pos.x;
 						use_rock_pos3.y = santa_pos.y;
-						sound.Play(SOUND_LABEL_SE002);
+						sound.Play(SOUND_LABEL_SE003);
 						itemID_3 = 1;
 						itemMove3 = true;
 					}
 					else if (item->GetItem_3() == 2) {
 						use_snowball_pos3.x = santa_pos.x;
 						use_snowball_pos3.y = santa_pos.y;
-						sound.Play(SOUND_LABEL_SE002);
+						sound.Play(SOUND_LABEL_SE003);
 						itemID_3 = 2;
 						itemMove3 = true;
 					}
@@ -2330,14 +2335,14 @@ void Game::Update(void) {
 						if (item->GetItem_2() == 1) {
 							use_rock_pos2.x = santa_pos.x;
 							use_rock_pos2.y = santa_pos.y;
-							sound.Play(SOUND_LABEL_SE002);
+							sound.Play(SOUND_LABEL_SE003);
 							itemID_2 = 1;
 							itemMove2 = true;
 						}
 						else if (item->GetItem_2() == 2) {
 							use_snowball_pos2.x = santa_pos.x;
 							use_snowball_pos2.y = santa_pos.y;
-							sound.Play(SOUND_LABEL_SE002);
+							sound.Play(SOUND_LABEL_SE003);
 							itemID_2 = 2;
 							itemMove2 = true;
 						}
@@ -3859,12 +3864,17 @@ void Game::Update(void) {
 		{
 			time--;
 		}
-		if (time <= 0)//タイムオーバーになったら
+		if (time <= 0&& gameoverFg == false)//タイムオーバーになったら
 		{
+			sound.Play(SOUND_LABEL_BGM001);
 			gameoverFg = true;
 		}
 		if (gameoverFg == true)
 		{
+			
+			sound.Stop(SOUND_LABEL_BGM000);
+			
+
 			if (cursor_pos.y == -100)
 			{
 				if (input.GetKeyTrigger(VK_S) || input.GetLeftAnalogStick().y < -0.5)
@@ -4063,54 +4073,54 @@ void Game::Update(void) {
 
 		// 雪だるまとの当たり判定追加 
 		
-			if (collision.enemy_santa(Snowman_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Snowman_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				HitFg = true;
 			}
 
-			if (collision.enemy_santa(Snowman_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Snowman_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false&& gameoverFg == false)
 			{
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				HitFg = true;
 			}
 
-			if (collision.enemy_santa(Snowman_Stage2[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Snowman_Stage2[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				HitFg = true;
 			}
 
-			if (collision.enemy_santa(Snowman_Stage2[4], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Snowman_Stage2[4], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				HitFg = true;
 			}
 		
 		// 星との当たり判定追加 
-			if (collision.enemy_santa(Star_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Star_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
 			}
 
-			if (collision.enemy_santa(Star_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Star_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
@@ -4118,17 +4128,17 @@ void Game::Update(void) {
 		
 		//トナカイ との当たり判定追加 
 		
-			if (collision.enemy_santa(Tonakai_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Tonakai_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
 			}
 
-			if (collision.enemy_santa(Tonakai_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false)
+			if (collision.enemy_santa(Tonakai_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
@@ -4147,14 +4157,9 @@ void Game::Update(void) {
 				// サンタが木の左側にぶつかった場合
 				if (santa_pos.x > tree_pos1.x) 
 				{
-					
 
 					collision.canMoveLeft = false; // 左に移動中なら移動を停止
-
-				
 				}
-
-
 		}
 
 		if (collision.tree_santa(Tree_Stge2[2], santa_Nor[0], 200.0f, 0.0f))
@@ -4754,7 +4759,7 @@ void Game::Update(void) {
 					if (item->GetItem_3() == 1) {
 						use_rock_pos3.x = santa_pos.x;
 						use_rock_pos3.y = santa_pos.y;
-						sound.Play(SOUND_LABEL_SE002);
+						sound.Play(SOUND_LABEL_SE003);
 						itemID_3 = 1;
 						itemMove3 = true;
 					}
@@ -4862,21 +4867,21 @@ void Game::Update(void) {
 			if (collision.enemy_santa(Icicles_Stge2[1], santa_Nor[0], 200.0f, 0.0f)&& HitFg == false&&turarafall1==true)
 			{
 				time -= 5;
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				HitFg = true;
 			}
 
 			if (collision.enemy_santa(Icicles_Stge2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
 			{
 				time -= 5;
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				HitFg = true;
 			}
 
 			if (collision.enemy_santa(Icicles_Stge2[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
 			{
 				time -= 5;
-				sound.Play(SOUND_LABEL_SE001);
+				sound.Play(SOUND_LABEL_SE002);
 				HitFg = true;
 			}
 
@@ -5086,6 +5091,7 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_SPACE))
 		{
 			santa_pos.y += 200;
+			sound.Play(SOUND_LABEL_SE004);
 		}
 
 		//右移動
@@ -5418,6 +5424,7 @@ void Game::Update(void) {
 		break;
 
 	case RESULT:
+		sound.Stop(SOUND_LABEL_BGM000);
 		
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_B))
@@ -5431,6 +5438,8 @@ void Game::Update(void) {
 			bigpresentcount = 0;
 			time = 150;
 			cleartime = 0;
+			sound.Stop(SOUND_LABEL_BGM001);
+
 			
 			changescene = TITLE;//タイトルへ
 		}
