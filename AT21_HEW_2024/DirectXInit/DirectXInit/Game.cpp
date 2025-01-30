@@ -812,6 +812,29 @@ void Game::Init(HWND hWnd)
 	Pausemoji.SetAngle(0.0f);//角度を設定
 
 	//====================================================
+	//ボス
+	//====================================================
+
+	BOSSBACK.Init(L"asset/Background_Stage_3_oku.png", 1, 1);//雪だるまを初期化
+	BOSSBACK.SetPos(0.0f, 0.0f, 0.0f);		//位置を設定
+	BOSSBACK.SetSize(1280.0f, 720.0f, 0.f);	//大きさを設定
+	BOSSBACK.SetAngle(0.0f);             		//角度を設定
+	BOSSBACK.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	Bossground.Init(L"asset/Background_Stage_3_stage.png", 1, 1);//雪だるまを初期化
+	Bossground.SetPos(0.0f, -250.0f, 0.0f);		//位置を設定
+	Bossground.SetSize(1280.0f, 200.0f, 0.f);	//大きさを設定
+	Bossground.SetAngle(0.0f);             		//角度を設定
+	Bossground.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	togetoge.Init(L"asset/Background_Stage_3_temae.png", 1, 1);//雪だるまを初期化
+	togetoge.SetPos(0.0f, 0.0f, 0.0f);		//位置を設定
+	togetoge.SetSize(1280.0f, 720.0f, 0.f);	//大きさを設定
+	togetoge.SetAngle(0.0f);             		//角度を設定
+	togetoge.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+
+	//====================================================
 	//てき
 	//====================================================
 
@@ -2901,6 +2924,17 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 tonakai_pos1 = Tonakai_Stage2[1].GetPos();
 		DirectX::XMFLOAT3 tonakai_pos2 = Tonakai_Stage2[2].GetPos();
 
+		//投げ物　いわ
+		DirectX::XMFLOAT3 use_rock_pos1 = use_rock[0].GetPos();
+		DirectX::XMFLOAT3 use_rock_pos2 = use_rock[1].GetPos();
+		DirectX::XMFLOAT3 use_rock_pos3 = use_rock[2].GetPos();
+
+		//投げ物　雪玉
+		DirectX::XMFLOAT3 use_snowball_pos1 = use_snowball[0].GetPos();
+		DirectX::XMFLOAT3 use_snowball_pos2 = use_snowball[1].GetPos();
+		DirectX::XMFLOAT3 use_snowball_pos3 = use_snowball[2].GetPos();
+
+
 		DirectX::XMFLOAT3 cursor_pos = Cursor.GetPos();
 		DirectX::XMFLOAT3 cursor1_pos = PauseCursor.GetPos();
 		DirectX::XMFLOAT3 goal_pos = Goal_Stage2.GetPos();
@@ -3646,77 +3680,498 @@ void Game::Update(void) {
 		// サンタがアイテムに当たった時
 		bool itemCollected = false; // アイテムが既に回収されたかどうかのフラグ
 
-		if (collision.item_santa(Collectrock_Stage2[1], santa_Nor[0], 100.0f, 0.0f))
+		//if (collision.item_santa(Collectrock_Stage2[1], santa_Nor[0], 100.0f, 0.0f))
+		//{
+		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
+		//	{
+		//		/*itemID = 1;*/
+		//		item->ItemGet(1); // いわを回収
+		//		itemCollected = true;
+
+		//	}
+		//}
+
+		//if (collision.item_santa(Collectrock_Stage2[2], santa_Nor[0], 100.0f, 0.0f))
+		//{
+		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
+		//	{
+		//		/*itemID = 1;*/
+		//		item->ItemGet(1); // いわを回収
+		//		itemCollected = true;
+
+		//	}
+		//}
+
+		//if (collision.item_santa(Collectrock_Stage2[3], santa_Nor[0], 100.0f, 0.0f))
+		//{
+		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
+		//	{
+		//		/*itemID = 1;*/
+		//		item->ItemGet(1); // いわを回収
+		//		itemCollected = true;
+
+		//	}
+		//}
+
+		//if (collision.item_santa(Collectrock_Stage2[4], santa_Nor[0], 100.0f, 0.0f))
+		//{
+		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
+		//	{
+		//		/*itemID = 1;*/
+		//		item->ItemGet(1); // いわを回収
+		//		itemCollected = true;
+
+		//	}
+		//}
+
+		//if (collision.item_santa(Collectrock_Stage2[5], santa_Nor[0], 100.0f, 0.0f))
+		//{
+		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
+		//	{
+		//		/*itemID = 1;*/
+		//		item->ItemGet(1); // いわを回収
+		//		itemCollected = true;
+
+		//	}
+		//}
+
+		//if (collision.item_santa(Collectrock_Stage2[6], santa_Nor[0], 100.0f, 0.0f))
+		//{
+		//	if (input.GetKeyTrigger(VK_S) && !itemCollected)
+		//	{
+		//		/*itemID = 1;*/
+		//		item->ItemGet(1); // いわを回収
+		//		itemCollected = true;
+
+		//	}
+		//}
+
+		//if (!itemCollected) {// 当たってない場合
+		//	if (input.GetKeyTrigger(VK_S))
+		//	{
+		//		item->ItemRelease(); // 取り出す
+		//	}
+		//}
+
+		
+
+		const float rightScreen = 670.0f; // 画面の右端
+		const float leftScreen = -670.0f; // 画面の左端
+
+
+		if (collision.item_santa(Collectrock_Stage2[1], santa_Nor[0], 100.0f, 0.0f) && rock_visible1 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
+
+				rock_visible1 = 1;
 
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[2], santa_Nor[0], 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[2], santa_Nor[0], 100.0f, 0.0f) && rock_visible2 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
+				rock_visible2 = 1;
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[3], santa_Nor[0], 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[3], santa_Nor[0], 100.0f, 0.0f) && rock_visible3 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
+				rock_visible3 = 1;
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[4], santa_Nor[0], 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[4], santa_Nor[0], 100.0f, 0.0f) && rock_visible4 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
+				rock_visible4 = 1;
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[5], santa_Nor[0], 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[5], santa_Nor[0], 100.0f, 0.0f) && rock_visible5 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
+				rock_visible5 = 1;
 			}
 		}
 
-		if (collision.item_santa(Collectrock_Stage2[6], santa_Nor[0], 100.0f, 0.0f))
+		if (collision.item_santa(Collectrock_Stage2[6], santa_Nor[0], 100.0f, 0.0f) && rock_visible6 == 0)
 		{
-			if (input.GetKeyTrigger(VK_S) && !itemCollected)
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
 				/*itemID = 1;*/
 				item->ItemGet(1); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
 				itemCollected = true;
 
+				rock_visible6 = 1;
 			}
 		}
 
-		if (!itemCollected) {// 当たってない場合
-			if (input.GetKeyTrigger(VK_S))
+		if (collision.item_santa(Snowball_Stage2[1], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
 			{
+				/*itemID = 1;*/
+				item->ItemGet(2); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+
+				snow_visible1 = 1;
+			}
+		}
+
+		if (collision.item_santa(Snowball_Stage2[2], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(2); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+				itemCollected = true;
+
+				snow_visible2 = 1;
+			}
+		}
+
+		if (collision.item_santa(Snowball_Stage2[3], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
+		{
+			if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+			{
+				/*itemID = 1;*/
+				item->ItemGet(2); // いわを回収
+				bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+				itemCollected = true;
+
+				snow_visible3 = 1;
+			}
+		}
+
+		// 画面外に行くと、アイテムが再スポーンする処理
+		if (leftScreen > rock_pos1.x || rock_pos1.x > rightScreen) {
+			rock_visible1 = 0;
+		}
+		if (leftScreen > rock_pos2.x || rock_pos2.x > rightScreen) {
+			rock_visible2 = 0;
+		}
+		if (leftScreen > rock_pos3.x || rock_pos3.x > rightScreen) {
+			rock_visible3 = 0;
+		}
+		if (leftScreen > rock_pos4.x || rock_pos4.x > rightScreen) {
+			rock_visible4 = 0;
+		}
+		if (leftScreen > rock_pos5.x || rock_pos5.x > rightScreen) {
+			rock_visible5 = 0;
+		}
+		if (leftScreen > rock_pos6.x || rock_pos6.x > rightScreen) {
+			rock_visible6 = 0;
+		}
+		if (leftScreen > snowball_pos1.x || snowball_pos1.x > rightScreen) {
+			snow_visible1 = 0;
+		}
+		if (leftScreen > snowball_pos2.x || snowball_pos2.x > rightScreen) {
+			snow_visible2 = 0;
+		}
+		if (leftScreen > snowball_pos3.x || snowball_pos3.x > rightScreen) {
+			snow_visible3 = 0;
+		}
+
+
+		if (!itemCollected && !changeItem) {// 当たってない場合
+			if (input.GetKeyTrigger(VK_S) && pauseFg == false || input.GetButtonTrigger(XINPUT_B) && pauseFg == false)
+			{
+
+				if (item->GetItem_3() > 0) {
+					changeItem = true;
+
+					if (item->GetItem_3() == 1) {
+						use_rock_pos3.x = santa_pos.x;
+						use_rock_pos3.y = santa_pos.y;
+						sound.Play(SOUND_LABEL_SE002);
+						itemID_3 = 1;
+						itemMove3 = true;
+					}
+					else if (item->GetItem_3() == 2) {
+						use_snowball_pos3.x = santa_pos.x;
+						use_snowball_pos3.y = santa_pos.y;
+						sound.Play(SOUND_LABEL_SE002);
+						itemID_3 = 2;
+						itemMove3 = true;
+					}
+
+				}
+				else if (item->GetItem_3() < 0) {
+
+					if (item->GetItem_2() > 0) {
+
+						if (item->GetItem_2() == 1) {
+							use_rock_pos2.x = santa_pos.x;
+							use_rock_pos2.y = santa_pos.y;
+							sound.Play(SOUND_LABEL_SE002);
+							itemID_2 = 1;
+							itemMove2 = true;
+						}
+						else if (item->GetItem_2() == 2) {
+							use_snowball_pos2.x = santa_pos.x;
+							use_snowball_pos2.y = santa_pos.y;
+							sound.Play(SOUND_LABEL_SE002);
+							itemID_2 = 2;
+							itemMove2 = true;
+						}
+
+					}
+					else if (item->GetItem_2() < 0) {
+
+						if (item->GetItem_1() > 0) {
+
+							if (item->GetItem_1() == 1) {
+								use_rock_pos1.x = santa_pos.x;
+								use_rock_pos1.y = santa_pos.y;
+								itemID_1 = 1;
+								itemMove1 = true;
+							}
+							else if (item->GetItem_1() == 2) {
+								use_snowball_pos1.x = santa_pos.x;
+								use_snowball_pos1.y = santa_pos.y;
+								itemID_1 = 2;
+								itemMove1 = true;
+							}
+
+						}
+					}
+				}
+
+
 				item->ItemRelease(); // 取り出す
+				bugPower = item->GetItemCnt();
 			}
+		}
+
+		// 投げ物の動き　その① 
+		if (itemMove1 == true) {
+			if (direction == 0) { // 右向き
+
+				if (itemID_1 == 1) { // 岩
+
+					if (itemMove1_M == true || use_rock_pos1.y >= -100.0f) {
+						itemMove1_M = true;
+						use_rock_pos1.y -= 3.00f;
+						use_rock_pos1.x += 3.00f;
+					}
+					else if (itemMove1_M == false) {
+						use_rock_pos1.y += 3.00f;
+						use_rock_pos1.x += 3.00f;
+					}
+					if (use_rock_pos1.y <= -190.0f && itemMove1_M == true) {
+						itemID_1 = 0;
+						itemMove1_M = false;
+						itemMove1 = false;
+					}
+				}
+				else if (itemID_1 == 2) {
+					if (use_snowball_pos1.x >= rightScreen) {
+						itemID_1 = 0;
+						itemMove1 = false;
+					}
+					else if (use_snowball_pos1.x <= rightScreen) {
+						use_snowball_pos1.x += 20.00f;
+					}
+				}
+			}
+			else if (direction == 1) { // 左向き
+
+				if (itemID_1 == 1) { // 岩
+
+					if (itemMove1_M == true || use_rock_pos1.y >= -100.0f) {
+						itemMove1_M = true;
+						use_rock_pos1.y -= 3.00f;
+						use_rock_pos1.x -= 3.00f;
+					}
+					else if (itemMove1_M == false) {
+						use_rock_pos1.y += 3.00f;
+						use_rock_pos1.x -= 3.00f;
+					}
+					if (use_rock_pos1.y <= -190.0f && itemMove1_M == true) {
+						itemID_1 = 0;
+						itemMove1_M = false;
+						itemMove1 = false;
+					}
+				}
+				else if (itemID_1 == 2) {
+					if (use_snowball_pos1.x <= leftScreen) {
+						itemID_1 = 0;
+						itemMove1 = false;
+					}
+					else if (use_snowball_pos1.x >= leftScreen) {
+						use_snowball_pos1.x -= 20.00f;
+					}
+				}
+			}
+
+
+
+		}
+
+		// 投げ物の動き　その②
+		if (itemMove2 == true) {
+			if (direction == 0) { // 右向き
+
+				if (itemID_2 == 1) { //岩
+
+					if (itemMove2_M == true || use_rock_pos2.y >= -100.0f) {
+						itemMove2_M = true;
+						use_rock_pos2.y -= 3.00f;
+						use_rock_pos2.x += 3.00f;
+					}
+					else if (itemMove2_M == false) {
+						use_rock_pos2.y += 3.00f;
+						use_rock_pos2.x += 3.00f;
+					}
+					if (use_rock_pos2.y <= -190.0f && itemMove2_M == true) {
+						itemID_2 = 0;
+						itemMove2_M = false;
+						itemMove2 = false;
+					}
+				}
+				else if (itemID_2 == 2) {
+					if (use_snowball_pos2.x >= rightScreen) {
+						itemID_2 = 0;
+						itemMove2 = false;
+					}
+					else if (use_snowball_pos2.x <= rightScreen) {
+						use_snowball_pos2.x += 20.00f;
+					}
+				}
+			}
+			else if (direction == 1) { // 左向き
+
+				if (itemID_2 == 1) { //岩
+
+					if (itemMove2_M == true || use_rock_pos2.y >= -100.0f) {
+						itemMove2_M = true;
+						use_rock_pos2.y -= 3.00f;
+						use_rock_pos2.x -= 3.00f;
+					}
+					else if (itemMove2_M == false) {
+						use_rock_pos2.y += 3.00f;
+						use_rock_pos2.x -= 3.00f;
+					}
+					if (use_rock_pos2.y <= -190.0f && itemMove2_M == true) {
+						itemID_2 = 0;
+						itemMove2_M = false;
+						itemMove2 = false;
+					}
+				}
+				else if (itemID_2 == 2) {
+					if (use_snowball_pos2.x <= leftScreen) {
+						itemID_2 = 0;
+						itemMove2 = false;
+					}
+					else if (use_snowball_pos2.x >= leftScreen) {
+						use_snowball_pos2.x -= 20.00f;
+					}
+				}
+			}
+
+
+		}
+
+		// 投げ物の動き　その③
+		if (itemMove3 == true) {
+
+			if (direction == 0) { // 右向き
+
+				if (itemID_3 == 1) { // 岩
+
+					if (itemMove3_M == true || use_rock_pos3.y >= -100.0f) {
+						itemMove3_M = true;
+						use_rock_pos3.y -= 3.00f;
+						use_rock_pos3.x += 3.00f;
+					}
+					else if (itemMove3_M == false) {
+						use_rock_pos3.y += 3.00f;
+						use_rock_pos3.x += 3.00f;
+					}
+					if (use_rock_pos3.y <= -190.0f && itemMove3_M == true) {
+						itemID_3 = 0;
+						itemMove3_M = false;
+						itemMove3 = false;
+						changeItem = false;
+					}
+				}
+				else if (itemID_3 == 2) {
+					if (use_snowball_pos3.x >= rightScreen) {
+						itemID_3 = 0;
+						itemMove3 = false;
+						changeItem = false;
+					}
+					else if (use_snowball_pos3.x <= rightScreen) {
+						use_snowball_pos3.x += 30.00f;
+					}
+				}
+			}
+			else if (direction == 1) { // 左向き
+
+				if (itemID_3 == 1) { // 岩
+
+					if (itemMove3_M == true || use_rock_pos3.y >= -100.0f) {
+						itemMove3_M = true;
+						use_rock_pos3.y -= 3.00f;
+						use_rock_pos3.x -= 3.00f;
+					}
+					else if (itemMove3_M == false) {
+						use_rock_pos3.y += 3.00f;
+						use_rock_pos3.x -= 3.00f;
+					}
+					if (use_rock_pos3.y <= -190.0f && itemMove3_M == true) {
+						itemID_3 = 0;
+						itemMove3_M = false;
+						itemMove3 = false;
+						changeItem = false;
+					}
+				}
+				else if (itemID_3 == 2) {
+					if (use_snowball_pos3.x <= leftScreen) {
+						itemID_3 = 0;
+						itemMove3 = false;
+						changeItem = false;
+					}
+					else if (use_snowball_pos3.x >= leftScreen) {
+						use_snowball_pos3.x -= 30.00f;
+					}
+				}
+			}
+
+
 		}
 
 
@@ -4012,6 +4467,14 @@ void Game::Update(void) {
 		Cursor.SetPos(cursor_pos.x, cursor_pos.y, cursor_pos.z);
 		PauseCursor.SetPos(cursor1_pos.x, cursor1_pos.y, cursor1_pos.z);
 		Goal_Stage2.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
+
+		use_rock[0].SetPos(use_rock_pos1.x, use_rock_pos1.y, use_rock_pos1.z);
+		use_rock[1].SetPos(use_rock_pos2.x, use_rock_pos2.y, use_rock_pos2.z);
+		use_rock[2].SetPos(use_rock_pos3.x, use_rock_pos3.y, use_rock_pos3.z);
+
+		use_snowball[0].SetPos(use_snowball_pos1.x, use_snowball_pos1.y, use_snowball_pos1.z);
+		use_snowball[1].SetPos(use_snowball_pos2.x, use_snowball_pos2.y, use_snowball_pos2.z);
+		use_snowball[2].SetPos(use_snowball_pos3.x, use_snowball_pos3.y, use_snowball_pos3.z);
 
 
 	}
@@ -4490,7 +4953,12 @@ void Game::Draw(void)
 
 
 		break;
-	
+	case BOSS:
+		BOSSBACK.Draw();
+		Bossground.Draw();
+		togetoge.Draw();
+
+		break;
 	case RESULT://リザルト
 		DirectX::XMFLOAT3 timepos = Number[1].GetPos();
 		DirectX::XMFLOAT3 timesize = Number[1].GetSize();
@@ -4634,6 +5102,11 @@ void Game::Uninit(void)
 	Time.Uninit();
 	ItemStock.Uninit();
 	StegeSelect.Uninit();
+
+
+	BOSSBACK.Uninit();
+	Bossground.Uninit();
+	togetoge.Uninit();
 
 	sound.Uninit();//サウンドを終了
 	// DirectXの解放処理
