@@ -815,23 +815,19 @@ void Game::Init(HWND hWnd)
 	//ボス
 	//====================================================
 
-	BOSSBACK.Init(L"asset/Background_Stage_3_oku.png", 1, 1);//雪だるまを初期化
+	BOSSBACK.Init(L"asset/Background_Stage_3.png", 1, 1);//雪だるまを初期化
 	BOSSBACK.SetPos(0.0f, 0.0f, 0.0f);		//位置を設定
 	BOSSBACK.SetSize(1280.0f, 720.0f, 0.f);	//大きさを設定
 	BOSSBACK.SetAngle(0.0f);             		//角度を設定
 	BOSSBACK.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	Bossground.Init(L"asset/Background_Stage_3_stage.png", 1, 1);//雪だるまを初期化
-	Bossground.SetPos(0.0f, -250.0f, 0.0f);		//位置を設定
-	Bossground.SetSize(1280.0f, 200.0f, 0.f);	//大きさを設定
+	Bossground.Init(L"asset/Stage.png", 1, 1);//雪だるまを初期化
+	Bossground.SetPos(0.0f, -455.0f, 0.0f);		//位置を設定
+	Bossground.SetSize(1280.0f, 250.0f, 0.f);	//大きさを設定
 	Bossground.SetAngle(0.0f);             		//角度を設定
 	Bossground.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-	togetoge.Init(L"asset/Background_Stage_3_temae.png", 1, 1);//雪だるまを初期化
-	togetoge.SetPos(0.0f, 0.0f, 0.0f);		//位置を設定
-	togetoge.SetSize(1280.0f, 720.0f, 0.f);	//大きさを設定
-	togetoge.SetAngle(0.0f);             		//角度を設定
-	togetoge.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
 
 
 	//====================================================
@@ -4955,8 +4951,8 @@ void Game::Draw(void)
 		break;
 	case BOSS:
 		BOSSBACK.Draw();
-		Bossground.Draw();
-		togetoge.Draw();
+		//Bossground.Draw();
+		
 
 		break;
 	case RESULT://リザルト
@@ -5106,7 +5102,7 @@ void Game::Uninit(void)
 
 	BOSSBACK.Uninit();
 	Bossground.Uninit();
-	togetoge.Uninit();
+	
 
 	sound.Uninit();//サウンドを終了
 	// DirectXの解放処理
