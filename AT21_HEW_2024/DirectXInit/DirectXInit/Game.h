@@ -115,7 +115,10 @@ private:
 	Object PauseCursor;
 	Object Pausemoji;
 
-
+	//ボス
+	Object BOSSBACK;
+	Object Bossground;
+	Object togetoge;
 
 
 	bool gameoverFg = false;//ポーズフラグ
