@@ -62,6 +62,8 @@ private:
 	Object snowball[image];//雪玉
 	Object goal;//ゴール
 
+	Object invisiblewall[6];
+
 	Object Returntogame;//ゲームに戻る
 
 	//ステージ２関連
@@ -197,7 +199,7 @@ private:
 	Input input; //入力
 
 	int select = 1;
-
+	
 	
 	Item* item; //メンバ変数
 	Sound sound;

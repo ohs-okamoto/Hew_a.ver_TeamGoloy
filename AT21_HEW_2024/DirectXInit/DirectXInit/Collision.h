@@ -15,6 +15,8 @@ public:
 	bool tree_santa(Object obj1, Object obj2, float bufferX, float bufferY); // 地面とサンタの当たり判定
 	bool goal_santa(Object obj1, Object obj2, float bufferX, float bufferY); // ゴールとサンタの当たり判定
 	bool enemy_santa(Object obj1, Object obj2, float bufferX, float bufferY); // 敵とサンタの当たり判定
+	bool block_santa(Object obj1, Object obj2, float bufferX, float bufferY); // ブロックとサンタの当たり判定
+
 
 	bool circle_circle(Object obj1, Object obj2); // 円と円の当たり判定
 	
