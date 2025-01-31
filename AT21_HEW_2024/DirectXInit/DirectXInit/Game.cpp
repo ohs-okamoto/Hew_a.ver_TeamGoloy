@@ -1822,7 +1822,7 @@ void Game::Update(void) {
 
 		
 
-
+		santa_bug = 1;
 		// 通常袋
 		if (santa_bug == 0){
 			// 雪だるまとの当たり判定追加 
@@ -2767,7 +2767,8 @@ void Game::Update(void) {
 					collision.ground_santa(ground[2], santa_Nor[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[3], santa_Nor[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[4], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[5], santa_Nor[0], 50.0f, 0.0f) == true) {
+					collision.ground_santa(ground[5], santa_Nor[0], 50.0f, 0.0f) == true) 
+				{
 					jump = 0;
 				}
 			}
@@ -3929,7 +3930,7 @@ void Game::Update(void) {
 						}
 					}
 
-					santaImage = 5;
+					santaImage = 14;
 					item->ItemRelease(); // 取り出す
 					bugPower = item->GetItemCnt();
 				}
@@ -4020,7 +4021,7 @@ void Game::Update(void) {
 					{
 						//初期化
 						santa_Huro[5].numU = 0;
-						santa_Huro[5].numV = 2;
+						santa_Huro[5].numV = 1;
 						changeLeft_out = false;//一旦falseにして一回しか処理されないようにする
 					}
 					framcount5++; //フレームカウント
@@ -4275,19 +4276,16 @@ void Game::Update(void) {
 
 			}
 
+
+			santa_huro_pos.y -= 5.50f;
 			//ジャンプ処理
-			if (jump == 1 || jump == 2) {
-
-				if (santa_huro_pos.y >= santa_huro_pos.y && jump == 1 || santa_huro_pos.y >= 0 && jump == 2) {
-					jump = 3;
-				}
-				else if (santa_huro_pos.y <= 0 && jump == 1 || santa_huro_pos.y <= 0 && jump == 2) {
-					santa_huro_pos.y += 5;
-				}
-
+			if (input.GetKeyTrigger(VK_W) && jumpFg == false || input.GetButtonTrigger(XINPUT_A) && jumpFg == false)
+			{
+				
+				jumpFg = true;
+				santa_huro_pos.y += 150;
 			}
-			if (jump == 3) {
-				santa_huro_pos.y -= 2.50f;
+			
 				if (collision.ground_santa(ground[1], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[2], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[3], santa_Huro[0], 50.0f, 0.0f) == true ||
@@ -4296,14 +4294,13 @@ void Game::Update(void) {
 					collision.block_santa(stairs[1], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.block_santa(stairs[2], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.block_santa(stairs[3], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[4], santa_Huro[0], 50.0f, 0.0f) == true
-					) {
+					collision.block_santa(stairs[4], santa_Huro[0], 50.0f, 0.0f) == true)
+				{
 					jump = 0;
+					jumpFg = false;
 				}
-			}
-
-
-
+			
+			
 			// 木との当たり判定の追加　ゴロイ
 			if (collision.tree_santa(tree, santa_Huro[0], 200.0f, 0.0f))
 			{
@@ -6023,7 +6020,8 @@ void Game::Update(void) {
 				direction = 0; // 方向
 				santa_pos.x += 5;//右移動
 
-				if (bugPower == 0) {
+				if (bugPower == 0) 
+				{
 					santaImage = 17;
 					if (changeRight == true)
 					{
@@ -6145,7 +6143,8 @@ void Game::Update(void) {
 			else
 			{
 				//キーを離すとtrueに戻る
-				if (sp_ani == false) {
+				if (sp_ani == false) 
+				{
 
 					santa_Kin[0].numU = 0;
 					santa_Kin[0].numV = 0;
@@ -6174,8 +6173,9 @@ void Game::Update(void) {
 				direction = 1; // 方向
 				santa_pos.x -= 5;//左移動
 
-				if (bugPower == 0) {
-					/*santaImage = 17;*/
+				if (bugPower == 0)
+				{
+					santaImage = 17;
 
 					if (changeLeft == true)
 					{
@@ -6192,7 +6192,7 @@ void Game::Update(void) {
 						{
 							santa_Kin[0].numU = 0;
 							santa_Kin[0].numV++;
-							if (santa_Kin[0].numV >= 4)
+							if (santa_Kin[0].numV >= 2)
 							{
 								santa_Kin[0].numV = 2;
 							}

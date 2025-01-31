@@ -171,6 +171,8 @@ private:
 	bool Select_MoveleftFg = false;
 
 	bool CursorFg = false;
+	bool jumpFg = false;
+
 
 	//“®‚«‚ªŽ~‚Ü‚Á‚Ä‚é‚©
 	bool StopCheck =true;
