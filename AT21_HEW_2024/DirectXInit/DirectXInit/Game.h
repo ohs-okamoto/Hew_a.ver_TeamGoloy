@@ -267,6 +267,9 @@ private:
 	bool changeRight_out = true;//ƒLƒƒƒ‰‚Ì
 	bool changeLeft_out = true;//
 
+	bool changeRight_Kin = true;//ƒLƒƒƒ‰‚Ì
+	bool changeLeft_Kin = true;//
+
 public:
 	
 	void Init(HWND hWnd);//‰Šú‰»
