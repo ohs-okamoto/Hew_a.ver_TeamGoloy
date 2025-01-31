@@ -8763,6 +8763,20 @@ void Game::Draw(void)
 		else if (santaImage == 23) {
 			santa_Kin[6].Draw();
 		}
+
+		// ‹Ð’…‘Ü‚Ì‘Ü‚Æ•R
+		if (sp_ani == true) {
+			himo.Draw();
+		}
+
+		if (sp_ani == true) {
+			if (bugPower == 0) {
+				kintyaku[0].Draw();
+			}
+			else if (bugPower > 0) {
+				kintyaku[1].Draw();
+			}
+		}
 		
 		
 		goal.Draw();
