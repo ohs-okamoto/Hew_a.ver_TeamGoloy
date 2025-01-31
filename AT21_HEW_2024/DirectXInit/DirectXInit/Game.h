@@ -56,6 +56,9 @@ private:
 	Object snowman[image];//雪だるま
 	Object tonakai;//トナカイ
 	Object star_monster;//星野　敵
+	Object boss_monster;//ボス
+	Object boss_punch;//ボスのパンチ
+	Object boss_toujou; //ボスの登場
 	
 	Object present[image];//プレゼント
 	Object BigPresent[image];//プレゼント
@@ -181,6 +184,9 @@ private:
 	int framcount5 = 0;
 	int framcount6 = 0;
 	int framcount7 = 0;
+	int framcount8 = 0;
+	int framcount9 = 0;
+	int framcount10 = 0;
 	//敵の移動フラグ
 	bool moveFg1 = false;
 	bool moveFg2= false;
