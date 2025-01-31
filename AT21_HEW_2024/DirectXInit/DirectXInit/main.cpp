@@ -194,7 +194,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 //ウィンドウプロシージャ　　※作成者　岡本穂高
 //--------------------------------------------------------------------------------------
 
-//以下のコードいじるなら岡本まで連絡
+//以下のコードいじるなら岡本まで
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {

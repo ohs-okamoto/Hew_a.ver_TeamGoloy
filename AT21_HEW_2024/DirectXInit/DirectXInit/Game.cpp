@@ -915,7 +915,7 @@ void Game::Init(HWND hWnd)
 	Bossground.SetAngle(0.0f);             		//角度を設定
 	Bossground.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-
+	
 
 
 	//====================================================
@@ -1001,7 +1001,12 @@ void Game::Init(HWND hWnd)
 	Tonakai_Stage2[2].SetAngle(0.0f);             		//角度を設定
 	Tonakai_Stage2[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
-
+	boss_monster.Init(L"asset/Boss_Taiki.png", 6, 1);//雪だるまボスを初期化
+	boss_monster.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
+	boss_monster.SetSize(500.0f, 350.0f, 0.0f);	//大きさを設定
+	boss_monster.SetAngle(0.0f);             		//角度を設定
+	boss_monster.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	
 
 
 	//しょきか
@@ -1288,6 +1293,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 snowman_pos3 = snowman[3].GetPos();		   //雪の敵
 		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();	   //星の敵
 		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();			   //鹿の敵
+	
 		//プレゼント
 		DirectX::XMFLOAT3 present_pos1 = present[1].GetPos();
 		DirectX::XMFLOAT3 present_pos2 = present[2].GetPos();
@@ -1656,6 +1662,7 @@ void Game::Update(void) {
 					snowman_pos1.x = 30;
 					snowman_pos2.x = 1400;
 					snowman_pos3.x = 2700;
+					
 
 					bigpresent_pos1.x = 5400;
 
@@ -2139,6 +2146,8 @@ void Game::Update(void) {
 
 					star_monster_pos.x = 4800;
 					tonakai_pos.x = 3600;
+
+					
 
 					present_pos1.x = 800;
 					present_pos2.x = 2800;
@@ -5518,7 +5527,18 @@ void Game::Update(void) {
 	break;
 
 	case BOSS:
-		
+		DirectX::XMFLOAT3 boss_monster_pos = boss_monster.GetPos();    //ボス
+		framcount8++;
+		if (framcount8 % 10 == 0) //１０フレームに一回行われる
+		{
+			boss_monster.numU++;
+
+			if (boss_monster.numU >= 6)
+			{
+				boss_monster.numU = 0;
+
+			};
+		};
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
@@ -6111,6 +6131,8 @@ void Game::Draw(void)
 		break;
 	case BOSS:
 		BOSSBACK.Draw();
+		boss_monster.Draw();
+		
 		//Bossground.Draw();
 		
 
