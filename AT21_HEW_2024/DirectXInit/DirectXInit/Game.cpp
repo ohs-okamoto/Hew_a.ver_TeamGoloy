@@ -2693,6 +2693,61 @@ void Game::Update(void) {
 			
 		}
 
+		// ジャンプ
+		if (input.GetKeyTrigger(VK_W) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
+			if (direction == 0) { // 右向き
+				if (bugPower == 0) {
+					santaImage = 2;
+					jump = 1;
+					santa_Nor[2].numU = 0;
+					santa_Nor[2].numV = 0;
+				}
+				else if (bugPower > 0) {
+					santaImage = 3;
+					jump = 2;
+					santa_Nor[3].numU = 0;
+					santa_Nor[3].numV = 0;
+				}
+			}
+			else if (direction == 1) { // 右向き
+				if (bugPower == 0) {
+					santaImage = 2;
+					jump = 1;
+					santa_Nor[2].numU = 0;
+					santa_Nor[2].numV = 1;
+				}
+				else if (bugPower > 0) {
+					santaImage = 3;
+					jump = 2;
+					santa_Nor[3].numU = 0;
+					santa_Nor[3].numV = 1;
+				}
+			}
+
+		}
+
+		//ジャンプ処理
+		if (jump == 1 || jump == 2) {
+
+			if (santa_pos.y >= 0 && jump == 1 || santa_pos.y >= 0 && jump == 2) {
+				jump = 3;
+			}
+			else if (santa_pos.y <= 0 && jump == 1 || santa_pos.y <= 0 && jump == 2) {
+				santa_pos.y += 5;
+			}
+
+		}
+		if (jump == 3) {
+			santa_pos.y -= 2.50f;
+			if (collision.ground_santa(ground[1], santa_Nor[0], 50.0f, 0.0f) == true ||
+				collision.ground_santa(ground[2], santa_Nor[0], 50.0f, 0.0f) == true ||
+				collision.ground_santa(ground[3], santa_Nor[0], 50.0f, 0.0f) == true ||
+				collision.ground_santa(ground[4], santa_Nor[0], 50.0f, 0.0f) == true ||
+				collision.ground_santa(ground[5], santa_Nor[0], 50.0f, 0.0f) == true) {
+				jump = 0;
+			}
+		}
+
 
 
 
