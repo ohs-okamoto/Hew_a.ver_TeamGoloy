@@ -266,6 +266,9 @@ private:
 	// 袋の力
 	int bugPower = 0; // 0:無し　1:威力弱　2:威力中　3:威力強(最大威力)
 
+	// 巾着袋
+	bool kintyaku_go = false;
+
 	// 固有能力変数
 	bool sp_ani = false; 
 
@@ -285,6 +288,8 @@ private:
 	bool jump_now = false;
 	float get_jump_old = 0;
 	float get_jump_new = 0;
+
+	bool ani_stop = false;
 
 public:
 	

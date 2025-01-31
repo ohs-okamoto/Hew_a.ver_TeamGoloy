@@ -164,19 +164,19 @@ void Game::Init(HWND hWnd)
 	//====================================================
 	//風呂敷のやつ
 	//====================================================
-	kintyaku[0].Init(L"asset/Kintyaku_SP.png", 4, 4);//サンタを初期化
+	kintyaku[0].Init(L"asset/Kintyaku_SP.png", 1, 2);//サンタを初期化
 	kintyaku[0].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
-	kintyaku[0].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	kintyaku[0].SetSize(50.0f, 25.0f, 0.f);	//大きさを設定
 	kintyaku[0].SetAngle(0.0f);             		//角度を設定
 
-	kintyaku[1].Init(L"asset/Kintyaku_Pack_SP.png", 4, 4);//サンタを初期化
+	kintyaku[1].Init(L"asset/Kintyaku_Pack_SP.png", 1, 2);//サンタを初期化
 	kintyaku[1].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
 	kintyaku[1].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	kintyaku[1].SetAngle(0.0f);
 
-	himo.Init(L"asset/Kintyaku_Himo.png", 4, 4);//サンタを初期化
+	himo.Init(L"asset/Kintyaku_Himo.png",1,1);//サンタを初期化
 	himo.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
-	himo.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	himo.SetSize(10.0f, 120.0f, 0.f);	//大きさを設定
 	himo.SetAngle(0.0f);
 	
 	//====================================================
@@ -5955,40 +5955,49 @@ void Game::Update(void) {
 
 
 
-
+				
+				himo_pos.x = santa_kin_pos.x;
+				himo_pos.y = santa_kin_pos.y;
 
 
 				// 固有能力発動！！！！！！！
-				if (bugPower > 0 && sp_ani == false && input.GetKeyPress(VK_Q)
-					|| input.GetButtonTrigger(XINPUT_X) && bugPower > 0 && sp_ani == false) { // 袋が空っぽの時
+				if (bugPower >= 0 && sp_ani == false && input.GetKeyPress(VK_Q)
+					|| input.GetButtonTrigger(XINPUT_X) && bugPower >= 0 && sp_ani == false) { // 袋が空っぽの時
 
+					kintyaku_pos.x = santa_kin_pos.x;
+					kintyaku_pos.y = santa_kin_pos.y;
+					kintyaku_pos1.x = santa_kin_pos.x;
+					kintyaku_pos1.y = santa_kin_pos.y;
 					sp_ani = true;
+					kintyaku_go = true;
 				}
 
 				if (sp_ani == true) {
 
-					santaImage = 7;
+					
+					santaImage = 23;
 
 					if (direction == 0)
 					{
 
-						if (changeRight_SP == true)
+						if (changeRight_SP == true && ani_stop==false)
 						{
 							//初期化
-							santa_Nor[7].numU = 0;
-							santa_Nor[7].numV = 0;
+							santa_Kin[6].numU = 0;
+							santa_Kin[6].numV = 0;
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+						}
+						if (ani_stop == true) {
+
 						}
 						framcount7++; //フレームカウント
 						if (framcount7 % 4 == 0) //１０フレームに一回行われる
 						{
-							santa_Nor[7].numU++;
-							if (santa_Nor[7].numU >= 5)
+							santa_Kin[6].numU++;
+							if (santa_Kin[6].numU == 2)
 							{
-								sp_ani = false;
-								santaImage = 16;
-								santa_Nor[7].numU = 0;
-								changeLeft_SP = true;
+								santaImage = 23;
+								
 							}
 						}
 
@@ -5997,28 +6006,43 @@ void Game::Update(void) {
 					if (direction == 1)
 					{
 
-						if (changeRight_SP == true)
+						if (changeLeft_SP == true)
 						{
 							//初期化
-							santa_Nor[7].numU = 0;
-							santa_Nor[7].numV = 1;
-							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+							santa_Kin[6].numU = 0;
+							santa_Kin[6].numV = 1;
+							changeLeft_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						framcount7++; //フレームカウント
 						if (framcount7 % 4 == 0) //１０フレームに一回行われる
 						{
-							santa_Nor[7].numU++;
-							if (santa_Nor[7].numU >= 5)
+							santa_Kin[6].numU++;
+							if (santa_Kin[6].numU >= 3)
 							{
-								sp_ani = false;
-								santaImage = 16;
+								
+								santaImage = 17;
 								santa_Nor[7].numU = 0;
-								changeRight_SP = true;
+								changeLeft_SP = true;
 
 							}
 						}
 					}
 
+				}
+
+				if (kintyaku_go == true) {
+					if (direction == 0) {
+						if (kintyaku_pos.x >= rightScreen) {
+							changeRight_SP = true;
+							santaImage = 17;
+							santa_Kin[6].numU = 0;
+							sp_ani = false;
+							kintyaku_go = false;
+						}
+
+						kintyaku_pos.x += 5;
+					}
+					
 				}
 
 
