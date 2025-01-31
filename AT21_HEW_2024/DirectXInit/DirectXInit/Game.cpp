@@ -946,21 +946,21 @@ void Game::Init(HWND hWnd)
 	snowman[1].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[1].SetAngle(0.0f);             		//角度を設定
 	snowman[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
-	snowman[1].SetHP(2);
+	snowman[1].SetHP(20);
 
 	snowman[2].Init(L"asset/Snowman_Move_v3.png", 4, 2);//雪だるまを初期化
 	snowman[2].SetPos(1600.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[2].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[2].SetAngle(0.0f);             		//角度を設定
 	snowman[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
-	snowman[1].SetHP(2);
+	snowman[2].SetHP(20);
 
 	snowman[3].Init(L"asset/Snowman_Move_v3.png", 4, 2);//ゆきを初期化
 	snowman[3].SetPos(2000.0f, -160.0f, 0.0f);		//位置を設定
 	snowman[3].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	snowman[3].SetAngle(0.0f);             		//角度を設定
 	snowman[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
-	snowman[1].SetHP(2);
+	snowman[3].SetHP(20);
 
 	star_monster.Init(L"asset/Star_Move_v3.png", 6, 2);//ほしを初期化
 	star_monster.SetPos(3600.0f, -150.0f, 0.0f);		//位置を設定
@@ -2822,7 +2822,7 @@ void Game::Update(void) {
 			}
 
 			// ジャンプ
-			if (input.GetKeyTrigger(VK_W) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
+			if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
 				if (direction == 0) { // 右向き
 					if (bugPower == 0) {
 						santaImage = 2;
@@ -3049,7 +3049,7 @@ void Game::Update(void) {
 								santaImage = 1;
 								santa_Nor[7].numU = 0;
 								changeLeft_SP = true;
-								santaatack = 100;
+								santaatack = 0;
 								
 							}
 						}
@@ -3175,11 +3175,13 @@ void Game::Update(void) {
 			if (collision.enemy_santa(snowman[1], santa_Nor[7], santaatack, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
 				snowman_hp1 -= santa_atk;
-
+				
 				if (snowman_hp1 < 0)
 				{
+					snowman[1].SetColor(2.0f, 0.0f, 0.0f, 1.0f);
 					enemylive1 = false;
 					snowman_pos1.x = 400000000;
+				
 				}
 
 			}
@@ -4398,7 +4400,7 @@ void Game::Update(void) {
 			}
 
 			// ジャンプ
-			if (input.GetKeyTrigger(VK_W) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
+			if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
 				if (direction == 0) { // 右向き
 					if (bugPower == 0) {
 						santaImage = 10;
@@ -4581,7 +4583,7 @@ void Game::Update(void) {
 						santa_Huro[6].numU = 0;
 						SantaAttackFg = false;
 						changeRight_SP = true;
-						santaImage = 0;
+						santaImage = 15;
 						ui = true;
 
 					}
@@ -4591,7 +4593,7 @@ void Game::Update(void) {
 			if (ui==true&&glideFg==false)
 			{
 				santa_huro_pos.y += 20;
-				if (santa_huro_pos1.y >= 400&&glideFg==false)
+				if (santa_huro_pos1.y >= 200&&glideFg==false)
 				{
 					ui = false;
 				}
@@ -5869,7 +5871,7 @@ void Game::Update(void) {
 				}
 
 				// ジャンプ
-				if (input.GetKeyTrigger(VK_W) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
+				if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
 					if (direction == 0) { // 右向き
 						if (bugPower == 0) {
 							santaImage = 19;
@@ -5904,7 +5906,7 @@ void Game::Update(void) {
 
 				santa_huro_pos.y -= 5.50f;
 				//ジャンプ処理
-				if (input.GetKeyTrigger(VK_W) && jumpFg == false || input.GetButtonTrigger(XINPUT_A) && jumpFg == false)
+				if (input.GetKeyTrigger(VK_SPACE) && jumpFg == false || input.GetButtonTrigger(XINPUT_A) && jumpFg == false)
 				{
 
 					jumpFg = true;
