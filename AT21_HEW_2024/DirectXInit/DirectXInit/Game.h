@@ -278,6 +278,11 @@ private:
 	bool changeRight_Kin = true;//ƒLƒƒƒ‰‚Ì
 	bool changeLeft_Kin = true;//
 
+
+	bool jump_now = false;
+	float get_jump_old = 0;
+	float get_jump_new = 0;
+
 public:
 	
 	void Init(HWND hWnd);//‰Šú‰»

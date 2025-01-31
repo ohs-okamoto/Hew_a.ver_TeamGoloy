@@ -1822,7 +1822,7 @@ void Game::Update(void) {
 
 		
 
-		santa_bug = 2;
+		santa_bug = 0;
 		// 通常袋
 		if (santa_bug == 0){
 			// 雪だるまとの当たり判定追加 
@@ -2732,6 +2732,7 @@ void Game::Update(void) {
 						santa_Nor[3].numU = 0;
 						santa_Nor[3].numV = 0;
 					}
+					get_jump_old = santa_pos.y;
 				}
 				else if (direction == 1) { // 右向き
 					if (bugPower == 0) {
@@ -2747,17 +2748,20 @@ void Game::Update(void) {
 						santa_Nor[3].numV = 1;
 					}
 				}
-
+				get_jump_old = santa_pos.y;
 			}
 
+			// 重力
+			santa_pos.y -= 2.50;
+			
 			//ジャンプ処理
 			if (jump == 1 || jump == 2) {
 
-				if (santa_pos.y >= 0 && jump == 1 || santa_pos.y >= 0 && jump == 2) {
+				if (santa_pos.y >= get_jump_old + 175.0f && jump == 1 || santa_pos.y >= get_jump_old + 175.0f && jump == 2) {
 					jump = 3;
 				}
-				else if (santa_pos.y <= 0 && jump == 1 || santa_pos.y <= 0 && jump == 2) {
-					santa_pos.y += 5;
+				else if (santa_pos.y <= get_jump_old+175.0f && jump == 1 || santa_pos.y <= get_jump_old + 175.0f && jump == 2) {
+					santa_pos.y += 7.50;
 				}
 
 			}
@@ -2767,14 +2771,35 @@ void Game::Update(void) {
 					collision.ground_santa(ground[2], santa_Nor[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[3], santa_Nor[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[4], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[5], santa_Nor[0], 50.0f, 0.0f) == true) 
+					collision.ground_santa(ground[5], santa_Nor[0], 50.0f, 0.0f) == true||
+					collision.block_santa(stairs[1], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(stairs[2], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(stairs[3], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(stairs[4], santa_Nor[0], 50.0f, 0.0f) == true)
 				{
 					jump = 0;
 				}
+				
 			}
 
+			
 
-
+			// 実験
+			//if (jump_now == true && jump == 0) {
+			//	get_jump_new = santa_pos.y;
+			//	santa_pos.y += (santa_pos.y - get_jump_old) + 1;
+			//	get_jump_old = get_jump_new;
+			//	if (santa_pos.y >= 0) {
+			//		/*jump = 3;*/
+			//		jump_now = false;
+			//	}
+			//}
+			//if (input.GetKeyTrigger(VK_W) && jump_now == false || input.GetButtonTrigger(XINPUT_A) && jump_now == false)
+			//{
+			//	jump_now = true;
+			//	get_jump_old = santa_pos.y;
+			//	santa_pos.y = santa_pos.y - 10;
+			//}
 
 			//
 			// 木との当たり判定の追加　ゴロイ
@@ -4276,30 +4301,38 @@ void Game::Update(void) {
 
 			}
 
+			// 重力
+			santa_huro_pos.y -= 2.50;
 
-			santa_huro_pos.y -= 5.50f;
 			//ジャンプ処理
-			if (input.GetKeyTrigger(VK_W) && jumpFg == false || input.GetButtonTrigger(XINPUT_A) && jumpFg == false)
-			{
-				
-				jumpFg = true;
-				santa_huro_pos.y += 150;
+			if (jump == 1 || jump == 2) {
+
+				if (santa_huro_pos.y >= get_jump_old + 175.0f && jump == 1 || santa_huro_pos.y >= get_jump_old + 175.0f && jump == 2) {
+					jump = 3;
+				}
+				else if (santa_pos.y <= get_jump_old + 175.0f && jump == 1 || santa_huro_pos.y <= get_jump_old + 175.0f && jump == 2) {
+					santa_huro_pos.y += 7.50;
+				}
+
 			}
-			
-				if (collision.ground_santa(ground[1], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[2], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[3], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[4], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[5], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[1], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[2], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[3], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[4], santa_Huro[0], 50.0f, 0.0f) == true)
+			if (jump == 3) {
+				santa_huro_pos.y -= 2.50f;
+				if (collision.ground_santa(ground[1], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(ground[2], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(ground[3], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(ground[4], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(ground[5], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(stairs[1], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(stairs[2], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(stairs[3], santa_Nor[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(stairs[4], santa_Nor[0], 50.0f, 0.0f) == true)
 				{
 					jump = 0;
-					jumpFg = false;
 				}
-			
+
+			}
+
+
 			
 			// 木との当たり判定の追加　ゴロイ
 			if (collision.tree_santa(tree, santa_Huro[0], 200.0f, 0.0f))
