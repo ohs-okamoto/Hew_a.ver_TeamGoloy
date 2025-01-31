@@ -8893,7 +8893,7 @@ void Game::Draw(void)
 		}
 
 		// ‹Ð’…‘Ü‚Ì‘Ü‚Æ•R
-		if (sp_ani == true) {
+		/*if (sp_ani == true) {
 			himo.Draw();
 		}
 
@@ -8904,7 +8904,7 @@ void Game::Draw(void)
 			else if (bugPower > 0) {
 				kintyaku[1].Draw();
 			}
-		}
+		}*/
 		
 		
 		goal.Draw();
