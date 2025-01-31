@@ -35,6 +35,9 @@ private:
 	Object santa_Huro[8]; // サンタオブジェクト 風呂敷
 	Object santa_Kin[7];  // サンタオブジェクト 巾着袋
 
+	Object kintyaku[2];
+	Object himo;
+
 	Object star;//星
 	Object sky;//空
 	Object mounten[image];//ゲーム画面の背景にある山
