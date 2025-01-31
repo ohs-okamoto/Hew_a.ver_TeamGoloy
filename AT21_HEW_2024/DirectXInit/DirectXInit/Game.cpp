@@ -1820,11 +1820,78 @@ void Game::Update(void) {
 		const float leftScreen = -670.0f; // 画面の左端
 
 
+		if (input.GetKeyTrigger(VK_UP)||input.GetButtonTrigger(XINPUT_UP))
+		{
+			santa_bug = 0;
+		}
+
+		if (input.GetKeyTrigger(VK_LEFT) || input.GetButtonTrigger(XINPUT_LEFT))
+		{
+			santa_bug = 1;
+		}
+
+		if (input.GetKeyTrigger(VK_RIGHT) || input.GetButtonTrigger(XINPUT_RIGHT))
+		{
+			santa_bug = 2;
+		}
 		
 
-		santa_bug = 0;
+		santa_pos1.x = santa_pos.x;
+		santa_pos1.y = santa_pos.y;
+		santa_pos2.x = santa_pos.x;
+		santa_pos2.y = santa_pos.y;
+		santa_pos3.x = santa_pos.x;
+		santa_pos3.y = santa_pos.y;
+		santa_pos4.x = santa_pos.x;
+		santa_pos4.y = santa_pos.y;
+		santa_pos5.x = santa_pos.x;
+		santa_pos5.y = santa_pos.y;
+		santa_pos6.x = santa_pos.x;
+		santa_pos6.y = santa_pos.y;
+		santa_pos7.x = santa_pos.x;
+		santa_pos7.y = santa_pos.y;
+
+		santa_huro_pos1.x = santa_huro_pos.x;
+		santa_huro_pos1.y = santa_huro_pos.y;
+		santa_huro_pos2.x = santa_huro_pos.x;
+		santa_huro_pos2.y = santa_huro_pos.y;
+		santa_huro_pos3.x = santa_huro_pos.x;
+		santa_huro_pos3.y = santa_huro_pos.y;
+		santa_huro_pos4.x = santa_huro_pos.x;
+		santa_huro_pos4.y = santa_huro_pos.y;
+		santa_huro_pos5.x = santa_huro_pos.x;
+		santa_huro_pos5.y = santa_huro_pos.y;
+		santa_huro_pos6.x = santa_huro_pos.x;
+		santa_huro_pos6.y = santa_huro_pos.y;
+		santa_huro_pos7.x = santa_huro_pos.x;
+		santa_huro_pos7.y = santa_huro_pos.y;
+
+		santa_kin_pos1.x = santa_kin_pos.x;
+		santa_kin_pos1.y = santa_kin_pos.y;
+		santa_kin_pos2.x = santa_kin_pos.x;
+		santa_kin_pos2.y = santa_kin_pos.y;
+		santa_kin_pos3.x = santa_kin_pos.x;
+		santa_kin_pos3.y = santa_kin_pos.y;
+		santa_kin_pos4.x = santa_kin_pos.x;
+		santa_kin_pos4.y = santa_kin_pos.y;
+		santa_kin_pos5.x = santa_kin_pos.x;
+		santa_kin_pos5.y = santa_kin_pos.y;
+		santa_kin_pos6.x = santa_kin_pos.x;
+		santa_kin_pos6.y = santa_kin_pos.y;
+
+		
+
 		// 通常袋
 		if (santa_bug == 0){
+
+
+			santa_huro_pos.x = santa_pos.x;
+			santa_kin_pos.x = santa_pos.x;
+
+			santa_huro_pos.y = santa_pos.y;
+			santa_kin_pos.y = santa_pos.y;
+
+
 			// 雪だるまとの当たり判定追加 
 
 			if (collision.enemy_santa(snowman[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
@@ -2863,20 +2930,7 @@ void Game::Update(void) {
 
 			}
 
-			santa_pos1.x = santa_pos.x;
-			santa_pos1.y = santa_pos.y;
-			santa_pos2.x = santa_pos.x;
-			santa_pos2.y = santa_pos.y;
-			santa_pos3.x = santa_pos.x;
-			santa_pos3.y = santa_pos.y;
-			santa_pos4.x = santa_pos.x;
-			santa_pos4.y = santa_pos.y;
-			santa_pos5.x = santa_pos.x;
-			santa_pos5.y = santa_pos.y;
-			santa_pos6.x = santa_pos.x;
-			santa_pos6.y = santa_pos.y;
-			santa_pos7.x = santa_pos.x;
-			santa_pos7.y = santa_pos.y;
+			
 
 
 			// 12/30  サンタの移動アニメーション追加  	畦内
@@ -3377,6 +3431,13 @@ void Game::Update(void) {
 		}
 		else if (santa_bug == 1) 
 		{
+			santa_pos.x = santa_huro_pos.x;
+			santa_kin_pos.x = santa_huro_pos.x;
+
+			santa_pos.y = santa_huro_pos.y;
+			santa_kin_pos.y = santa_huro_pos.y;
+
+
 			// 雪だるまとの当たり判定追加 
 
 			if (collision.enemy_santa(snowman[1], santa_Huro[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
@@ -4395,21 +4456,6 @@ void Game::Update(void) {
 
 			}
 
-			santa_huro_pos1.x = santa_huro_pos.x;
-			santa_huro_pos1.y = santa_huro_pos.y;
-			santa_huro_pos2.x = santa_huro_pos.x;
-			santa_huro_pos2.y = santa_huro_pos.y;
-			santa_huro_pos3.x = santa_huro_pos.x;
-			santa_huro_pos3.y = santa_huro_pos.y;
-			santa_huro_pos4.x = santa_huro_pos.x;
-			santa_huro_pos4.y = santa_huro_pos.y;
-			santa_huro_pos5.x = santa_huro_pos.x;
-			santa_huro_pos5.y = santa_huro_pos.y;
-			santa_huro_pos6.x = santa_huro_pos.x;
-			santa_huro_pos6.y = santa_huro_pos.y;
-			santa_huro_pos7.x = santa_huro_pos.x;
-			santa_huro_pos7.y = santa_huro_pos.y;
-
 
 			// 12/30  サンタの移動アニメーション追加  	畦内
 			//移動速度
@@ -4821,7 +4867,11 @@ void Game::Update(void) {
 		}
 		else if (santa_bug == 2)
 		{
+			santa_huro_pos.x = santa_kin_pos.x;
+			santa_pos.x = santa_kin_pos.x;
 
+			santa_huro_pos.y = santa_kin_pos.y;
+			santa_pos.y = santa_kin_pos.y;
 			
 				// 雪だるまとの当たり判定追加 
 
@@ -5834,18 +5884,6 @@ void Game::Update(void) {
 
 				}
 
-				santa_kin_pos1.x = santa_kin_pos.x;
-				santa_kin_pos1.y = santa_kin_pos.y;
-				santa_kin_pos2.x = santa_kin_pos.x;
-				santa_kin_pos2.y = santa_kin_pos.y;
-				santa_kin_pos3.x = santa_kin_pos.x;
-				santa_kin_pos3.y = santa_kin_pos.y;
-				santa_kin_pos4.x = santa_kin_pos.x;
-				santa_kin_pos4.y = santa_kin_pos.y;
-				santa_kin_pos5.x = santa_kin_pos.x;
-				santa_kin_pos5.y = santa_kin_pos.y;
-				santa_kin_pos6.x = santa_kin_pos.x;
-				santa_kin_pos6.y = santa_kin_pos.y;
 				
 
 
