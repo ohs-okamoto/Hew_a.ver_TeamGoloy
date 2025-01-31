@@ -284,12 +284,24 @@ private:
 	bool changeRight_Kin = true;//キャラの
 	bool changeLeft_Kin = true;//
 
-
+	bool glideFg = false;
 	bool jump_now = false;
 	float get_jump_old = 0;
 	float get_jump_new = 0;
 
+
 	bool ani_stop = false;
+
+	float GRAVITY = 9.81;      // 重力加速度 (m/s^2)
+	float DELTA_TIME = 0.016;  // 1フレームの時間 (約60FPS)
+
+	bool ui = false;
+	float santaatack = 200.0;
+
+	bool enemylive1 = true;
+	bool enemylive2 = true;
+	bool enemylive3 = true;
+
 
 public:
 	

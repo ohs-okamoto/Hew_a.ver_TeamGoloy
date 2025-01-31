@@ -107,6 +107,16 @@ void Object::SetAngle(float a) {
 	angle = a;
 }
 
+void Object::SetHP(float hp)
+{
+	HP = hp;
+}
+
+void Object::SetATK(float atk)
+{
+	ATK = atk;
+}
+
 void Object::SetColor(float r, float g, float b, float a) {
 	color.x = r;
 	color.y = g;
@@ -127,4 +137,14 @@ DirectX::XMFLOAT4 Object::GetColor(void) {
 }
 float Object::GetAngle(void) {
 	return angle; //Šp“x‚ðƒQƒbƒg
+}
+
+float Object::GetHP(void)
+{
+	return HP;
+}
+
+float Object::GetATK(void)
+{
+	return ATK;
 }

@@ -19,6 +19,10 @@ private:
 	DirectX::XMFLOAT3 size = { 100.0f,0.0f,0.0f };
 	//角度
 	float angle = 0.0f;
+
+	int HP = 0;
+	int ATK = 0;
+
 	//色
 	DirectX::XMFLOAT4 color = { 1.0f,1.0f,1.0f,1.0f };
 	//頂点バッファ
@@ -44,11 +48,17 @@ public:
 	void SetPos(float x, float y, float z);//座標セット
 	void SetSize(float x, float y, float z);//大きさセット
 	void SetAngle(float a);//角度セット
+	void SetHP(float hp);//HP
+	void SetATK(float atk);
 	void SetColor(float r, float g, float b, float a); //色をセット
 	DirectX::XMFLOAT3 GetPos(void) const;   //座標をゲット
 	DirectX::XMFLOAT3 GetSize(void);  //大きさをセット
 	DirectX::XMFLOAT4 GetColor(void); //いろをセット
 	float GetAngle(void);			  //角度をセット
+	float GetHP(void);
+	float GetATK(void);
+
+
 
 	// コンストラクタ
 	//Object();
