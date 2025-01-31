@@ -1857,7 +1857,8 @@ void Game::Update(void) {
 		const float leftScreen = -670.0f; // âÊñ ÇÃç∂í[
 
 
-		if (input.GetKeyTrigger(VK_UP)||input.GetButtonTrigger(XINPUT_UP))
+		// ë‹ÇÃêÿÇËë÷Ç¶
+		/*if (input.GetKeyTrigger(VK_UP)||input.GetButtonTrigger(XINPUT_UP))
 		{
 			santa_bug = 0;
 		}
@@ -1870,7 +1871,7 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_RIGHT) || input.GetButtonTrigger(XINPUT_RIGHT))
 		{
 			santa_bug = 2;
-		}
+		}*/
 		
 
 		santa_pos1.x = santa_pos.x;
