@@ -278,10 +278,15 @@ private:
 	bool changeRight_Kin = true;//キャラの
 	bool changeLeft_Kin = true;//
 
-
+	bool glideFg = false;
 	bool jump_now = false;
 	float get_jump_old = 0;
 	float get_jump_new = 0;
+
+	float GRAVITY = 9.81;      // 重力加速度 (m/s^2)
+	float DELTA_TIME = 0.016;  // 1フレームの時間 (約60FPS)
+
+	bool ui=false;
 
 public:
 	

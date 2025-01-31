@@ -4376,8 +4376,24 @@ void Game::Update(void) {
 				}
 
 			}
-			if (jump == 3) {
-				santa_huro_pos.y -= 2.50f;
+			if (jump == 3) 
+			{
+				glideFg = true;
+				if (input.GetKeyPress(VK_Q)&&bugPower <= 0||input.GetButtonPress(XINPUT_X) && bugPower <= 0)
+				{
+
+					glideFg = true;
+					santaImage = 16;
+					santa_Huro[7].numU = 0;
+					santa_Huro[7].numV = 0;
+					santa_huro_pos.y -= 0.01f;
+				}
+				else
+				{
+					santa_huro_pos.y -= 6.5;
+					glideFg = false;
+				}
+			
 				if (collision.ground_santa(ground[1], santa_Nor[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[2], santa_Nor[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(ground[3], santa_Nor[0], 50.0f, 0.0f) == true ||
@@ -4389,12 +4405,17 @@ void Game::Update(void) {
 					collision.block_santa(stairs[4], santa_Nor[0], 50.0f, 0.0f) == true)
 				{
 					jump = 0;
+					glideFg = false;
+					if (bugPower > 0) {
+						santaImage = 9;
+					}
+					else if (bugPower == 0) {
+						santaImage = 8;
+					}
 				}
 
 			}
 
-
-			
 			// 木との当たり判定の追加　ゴロイ
 			if (collision.tree_santa(tree, santa_Huro[0], 200.0f, 0.0f))
 			{
@@ -4468,106 +4489,126 @@ void Game::Update(void) {
 
 
 			// 固有能力発動！！！！！！！
-			//if (/*bugPower >= 0 && */input.GetKeyTrigger(VK_Q) || input.GetButtonTrigger(XINPUT_X)) { // 袋が空っぽの時
-			//	santa_pos7.x = santa_pos.x;
-			//	santa_pos7.y = santa_pos.y;
-			//	santaImage = 1;
-			//	if (changeRight_SP == true)
-			//	{
-			//		//初期化
-			//		santa_Nor[7].numU = 0;
-			//		santa_Nor[7].numV = 0;
-			//		SantaAttackFg = true;
-			//		changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
-			//	}	
+			if (bugPower >= 0 && input.GetKeyTrigger(VK_Q)&&glideFg==false|| bugPower >= 0 && input.GetButtonTrigger(XINPUT_X) && glideFg == false) { // 袋が空っぽの時
+				
+				santaImage = 15;
+				if (changeRight_SP == true)
+				{
+					//初期化
+					santa_Kin[6].numU = 0;
+					santa_Kin[6].numV = 0;
+					SantaAttackFg = true;
+					changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+				}	
+			}
+
+			if (SantaAttackFg == true)
+			{
+				framcount3++; //フレームカウント
+				if (framcount3 % 10== 0) //１０フレームに一回行われる
+				{
+					santa_Huro[6].numU++;
+					if (santa_Huro[6].numU >= 5)
+					{
+						santa_Huro[6].numU = 0;
+						SantaAttackFg = false;
+						changeRight_SP = true;
+						santaImage = 0;
+						ui = true;
+
+					}
+				}
+
+			}
+			if (ui==true&&glideFg==false)
+			{
+				santa_huro_pos.y += 20;
+				if (santa_huro_pos1.y >= 400&&glideFg==false)
+				{
+					ui = false;
+				}
+			}
+
+
+
+
+
+
+
+
+			//// 固有能力発動！！！！！！！
+			//if (bugPower > 0 && sp_ani == false && input.GetKeyPress(VK_Q)
+			//	|| input.GetButtonTrigger(XINPUT_X) && bugPower > 0 && sp_ani == false) { // 袋が空っぽの時
+
+			//	sp_ani = true;
 			//}
 
-			//if (SantaAttackFg == true)
-			//{
-			//	framcount3++; //フレームカウント
-			//	if (framcount3 % 5 == 0) //１０フレームに一回行われる
+			//if (sp_ani == true) {
+
+			//	if (bugPower > 0) 
 			//	{
-			//		santa_Nor[7].numU++;
-			//		if (santa_Nor[7].numU >= 5)
+			//		
+			//		if (direction == 0)
 			//		{
-			//			santa_Nor[7].numU = 0;
-			//			SantaAttackFg = false;
+
+			//			if (changeRight_SP == true)
+			//			{
+			//				//初期化
+			//				santa_Huro[7].numU = 0;
+			//				santa_Huro[7].numV = 0;
+			//				glideFg = true;
+			//				changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+			//			}
+			//			
+
+			//			framcount7++; //フレームカウント
+			//			if (framcount7 % 4 == 0) //１０フレームに一回行われる
+			//			{
+			//				santa_Huro[7].numU++;
+			//				if (santa_Huro[7].numU >= 5)
+			//				{
+			//					sp_ani = false;
+			//					santaImage = 16;
+			//					santa_Nor[7].numU = 0;
+			//					changeLeft_SP = true;
+			//				}
+			//			}
+			//		}
+			//		else
+			//		{
 			//			changeRight_SP = true;
-			//			santaImage = 0;
+			//		}
+
+			//	}
+			//	else if (bugPower == 0) {
+			//		santaImage = 16;
+			//	}
+			//	if (direction == 1)
+			//	{
+
+			//		if (changeRight_SP == true)
+			//		{
+			//			//初期化
+			//			santa_Huro[7].numU = 0;
+			//			santa_Huro[7].numV = 1;
+			//			changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+			//		}
+			//		framcount7++; //フレームカウント
+			//		if (framcount7 % 4 == 0) //１０フレームに一回行われる
+			//		{
+			//			santa_Huro[7].numU++;
+			//			if (santa_Huro[7].numU >= 5)
+			//			{
+			//				sp_ani = false;
+			//				santaImage = 16;
+			//				santa_Nor[7].numU = 0;
+			//				changeRight_SP = true;
+
+			//			}
 			//		}
 			//	}
 
 			//}
-
-
-
-
-
-
-
-
-			// 固有能力発動！！！！！！！
-			if (bugPower > 0 && sp_ani == false && input.GetKeyPress(VK_Q)
-				|| input.GetButtonTrigger(XINPUT_X) && bugPower > 0 && sp_ani == false) { // 袋が空っぽの時
-
-				sp_ani = true;
-			}
-
-			if (sp_ani == true) {
-
-				santaImage = 7;
-
-				if (direction == 0)
-				{
-
-					if (changeRight_SP == true)
-					{
-						//初期化
-						santa_Nor[7].numU = 0;
-						santa_Nor[7].numV = 0;
-						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
-					}
-					framcount7++; //フレームカウント
-					if (framcount7 % 4 == 0) //１０フレームに一回行われる
-					{
-						santa_Nor[7].numU++;
-						if (santa_Nor[7].numU >= 5)
-						{
-							sp_ani = false;
-							santaImage = 16;
-							santa_Nor[7].numU = 0;
-							changeLeft_SP = true;
-						}
-					}
-
-
-				}
-				if (direction == 1)
-				{
-
-					if (changeRight_SP == true)
-					{
-						//初期化
-						santa_Nor[7].numU = 0;
-						santa_Nor[7].numV = 1;
-						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
-					}
-					framcount7++; //フレームカウント
-					if (framcount7 % 4 == 0) //１０フレームに一回行われる
-					{
-						santa_Nor[7].numU++;
-						if (santa_Nor[7].numU >= 5)
-						{
-							sp_ani = false;
-							santaImage = 16;
-							santa_Nor[7].numU = 0;
-							changeRight_SP = true;
-
-						}
-					}
-				}
-
-			}
 
 
 
@@ -4581,9 +4622,9 @@ void Game::Update(void) {
 				santa_pos.x += 5;*/
 
 
-				if (bugPower == 0) {
+				if (bugPower == 0 && glideFg == false) {
 					santaImage = 8;
-					if (changeRight_SP_1 == true)
+					if (changeRight_SP_1 == true&&glideFg==false)
 					{
 						//初期化
 						santa_Huro[0].numU = 0;
@@ -4591,7 +4632,7 @@ void Game::Update(void) {
 						changeRight_SP_1 = false;//一旦falseにして一回しか処理されないようにする
 					}
 					framcount6++; //フレームカウント
-					if (framcount6 % 10 == 0) //１０フレームに一回行われる
+					if (framcount6 % 10 == 0 && glideFg == false) //１０フレームに一回行われる
 					{
 						santa_Huro[0].numU++;
 						if (santa_Huro[0].numU >= 4)
@@ -4605,10 +4646,11 @@ void Game::Update(void) {
 						}
 					}
 
+
 				}
-				else if (bugPower > 0) {
+				else if (bugPower > 0 && glideFg == false) {
 					santaImage = 9;
-					if (changeRight == true)
+					if (changeRight == true && glideFg == false)
 					{
 						//初期化
 						santa_Huro[1].numU = 0;
@@ -4616,7 +4658,7 @@ void Game::Update(void) {
 						changeRight = false;//一旦falseにして一回しか処理されないようにする
 					}
 					framcount++; //フレームカウント
-					if (framcount % 10 == 0) //１０フレームに一回行われる
+					if (framcount % 10 == 0 && glideFg == false) //１０フレームに一回行われる
 					{
 						santa_Huro[1].numU++;
 						if (santa_Huro[1].numU >= 4)
@@ -4702,7 +4744,7 @@ void Game::Update(void) {
 			else
 			{
 				//キーを離すとtrueに戻る
-				if (sp_ani == false && changeRight_SP_1 == false) {
+				if (sp_ani == false && changeRight_SP_1 == false && glideFg == false) {
 
 					santa_Huro[0].numU = 0;
 					santa_Huro[0].numV = 0;
@@ -4729,7 +4771,7 @@ void Game::Update(void) {
 				santa_huro_pos.x -= 5;//左移動
 
 
-				if (bugPower == 0) {
+				if (bugPower == 0 && glideFg == false) {
 
 					santaImage = 8;
 					if (changeLeft_SP_1 == true)
@@ -4751,7 +4793,7 @@ void Game::Update(void) {
 						}
 					}
 				}
-				else if (bugPower > 0) {
+				else if (bugPower > 0&&glideFg == false) {
 
 					if (changeLeft == true)
 					{
