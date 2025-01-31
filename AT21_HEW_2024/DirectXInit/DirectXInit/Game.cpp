@@ -160,6 +160,24 @@ void Game::Init(HWND hWnd)
 	santa_Kin[6].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
 	santa_Kin[6].SetAngle(0.0f);             		//角度を設定
 	santa_Kin[6].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	//====================================================
+	//風呂敷のやつ
+	//====================================================
+	kintyaku[0].Init(L"asset/Kintyaku_SP.png", 4, 4);//サンタを初期化
+	kintyaku[0].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	kintyaku[0].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	kintyaku[0].SetAngle(0.0f);             		//角度を設定
+
+	kintyaku[1].Init(L"asset/Kintyaku_Pack_SP.png", 4, 4);//サンタを初期化
+	kintyaku[1].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	kintyaku[1].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	kintyaku[1].SetAngle(0.0f);
+
+	himo.Init(L"asset/Kintyaku_Himo.png", 4, 4);//サンタを初期化
+	himo.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	himo.SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	himo.SetAngle(0.0f);
 	
 	//====================================================
 	//タイトル
@@ -1246,6 +1264,10 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 santa_kin_pos4 = santa_Kin[4].GetPos();
 		DirectX::XMFLOAT3 santa_kin_pos5 = santa_Kin[5].GetPos();
 		DirectX::XMFLOAT3 santa_kin_pos6 = santa_Kin[6].GetPos();
+		//巾着袋
+		DirectX::XMFLOAT3 kintyaku_pos = kintyaku[0].GetPos();
+		DirectX::XMFLOAT3 kintyaku_pos1 = kintyaku[1].GetPos();
+		DirectX::XMFLOAT3 himo_pos = himo.GetPos();
 		//ゴール
 		DirectX::XMFLOAT3 goal_pos = goal.GetPos();
 		//山
@@ -6412,6 +6434,11 @@ void Game::Update(void) {
 		santa_Kin[5].SetPos(santa_kin_pos5.x, santa_kin_pos5.y, santa_kin_pos5.z);
 		santa_Kin[6].SetPos(santa_kin_pos6.x, santa_kin_pos6.y, santa_kin_pos6.z);
 
+		kintyaku[0].SetPos(kintyaku_pos.x, kintyaku_pos.y, kintyaku_pos.z);
+		kintyaku[1].SetPos(kintyaku_pos1.x, kintyaku_pos1.y, kintyaku_pos1.z);
+
+		himo.SetPos(himo_pos.x, himo_pos.y, himo_pos.z);
+
 		goal.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
 
 		mounten[1].SetPos(mounten_pos1.x, mounten_pos1.y, mounten_pos1.z);
@@ -8777,6 +8804,20 @@ void Game::Draw(void)
 		}
 		else if (santaImage == 23) {
 			santa_Kin[6].Draw();
+		}
+
+		// 巾着袋の袋と紐
+		if (sp_ani == true) {
+			himo.Draw();
+		}
+
+		if (sp_ani == true) {
+			if (bugPower == 0) {
+				kintyaku[0].Draw();
+			}
+			else if (bugPower > 0) {
+				kintyaku[1].Draw();
+			}
 		}
 		
 		
