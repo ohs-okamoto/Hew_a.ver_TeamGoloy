@@ -224,20 +224,20 @@ void Game::Init(HWND hWnd)
 	
 	// 雪玉 bug1
 	itemUi[3].Init(L"asset/yukidama.png", 1, 1); //雪玉
-	itemUi[3].SetPos(-440.0f, 260.0f, 0.0f);//位置を特定
-	itemUi[3].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
+	itemUi[3].SetPos(-590.0f, 320.0f, 0.0f);//位置を特定
+	itemUi[3].SetSize(50.0f, 50.0f, 0.0f);//大きさ設定
 	itemUi[3].SetAngle(0.0f);//角度設定
 
 	// 雪玉 bug2
 	itemUi[4].Init(L"asset/yukidama.png", 1, 1); //雪玉
-	itemUi[4].SetPos(-520.0f, 270.0f, 0.0f);//位置を特定
+	itemUi[4].SetPos(-520.0f, 300.0f, 0.0f);//位置を特定
 	itemUi[4].SetSize(80.0f, 80.0f, 0.0f);//大きさ設定
 	itemUi[4].SetAngle(0.0f);//角度設定
 
 	// 雪玉 bug3
 	itemUi[5].Init(L"asset/yukidama.png", 1, 1); //雪玉
-	itemUi[5].SetPos(-580.0f, 290.0f, 0.0f);//位置を特定
-	itemUi[5].SetSize(50.0f, 50.0f, 0.0f);//大きさ設定
+	itemUi[5].SetPos(-590.0f, 320.0f, 0.0f);//位置を特定
+	itemUi[5].SetSize(100.0f, 100.0f, 0.0f);//大きさ設定
 	itemUi[5].SetAngle(0.0f);//角度設定
 
 	// つらら bug1
@@ -1033,6 +1033,8 @@ void Game::Update(void) {
 	{
 	case TITLE:
 	{
+
+		sound.Play(SOUND_LABEL_BGM002);//BGMを再生
 		//キー入力で本編
 		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_B))
 
@@ -1055,6 +1057,7 @@ void Game::Update(void) {
 		if (select !=3&&input.GetKeyTrigger(VK_D) || select != 3 && input.GetLeftAnalogStick().x >= 0.5&& Select_MoverightFg == false && Select_MoveleftFg == false)
 		{
 			Select_MoverightFg = true;
+			//sound.Play(SOUND_LABEL_SE005);
 			//がぞうをみぎ向きに変更
 			SantaCursor.numU = 0;
 			SantaCursor.numV = 0;
@@ -1066,7 +1069,7 @@ void Game::Update(void) {
 			//がぞうを左向きに変更
 			SantaCursor.numU = 0;
 			SantaCursor.numV = 3;
-
+			//sound.Play(SOUND_LABEL_SE005);
 			StopCheck = false;
 		}
 
@@ -1119,33 +1122,39 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_RETURN) &&select == 1&&StopCheck)
 		{
 			changescene = STAGE1_LOADING;
+			sound.Play(SOUND_LABEL_SE006);
 		}
 		//ステージ２へ	
 		if (input.GetKeyTrigger(VK_RETURN) && select ==2 && StopCheck)
 		{
 			changescene = STAGE2_LOADING;
+			sound.Play(SOUND_LABEL_SE006);
 		}
 		//ボスへ	
 		if (input.GetKeyTrigger(VK_RETURN) && select == 3 && StopCheck)
 		{
 			changescene = BOSS;
+			sound.Play(SOUND_LABEL_SE006);
 		}
 
 		//コントローラー入力
 		if (input.GetButtonTrigger(XINPUT_B) && select == 1 && StopCheck)
 		{
 			changescene = STAGE1_LOADING;
+			sound.Play(SOUND_LABEL_SE006);
 
 		}
 		//ステージ２へ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 2 && StopCheck)
 		{
 			changescene = STAGE2_LOADING;
+			sound.Play(SOUND_LABEL_SE006);
 		}
 		//ボスへ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 3 && StopCheck)
 		{
 			changescene = BOSS;
+			sound.Play(SOUND_LABEL_SE006);
 		}
 
 
@@ -1156,6 +1165,7 @@ void Game::Update(void) {
 	//ステージ選択した後に出るやつ
 	case STAGE1_LOADING:
 	{
+		sound.Stop(SOUND_LABEL_BGM002);
 		kari = false;
 		pauseFg = false;
 		framcount++;
@@ -1179,7 +1189,7 @@ void Game::Update(void) {
 	break;
 	case STAGE2_LOADING:
 	{
-
+		sound.Stop(SOUND_LABEL_BGM002);
 		kari = false;
 		pauseFg = false;
 		framcount++;
@@ -4079,7 +4089,7 @@ void Game::Update(void) {
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				HitFg = true;
 			}
 
@@ -4088,7 +4098,7 @@ void Game::Update(void) {
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				HitFg = true;
 			}
 
@@ -4097,7 +4107,7 @@ void Game::Update(void) {
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				HitFg = true;
 			}
 
@@ -4106,14 +4116,14 @@ void Game::Update(void) {
 
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				HitFg = true;
 			}
 		
 		// 星との当たり判定追加 
 			if (collision.enemy_santa(Star_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
@@ -4121,7 +4131,7 @@ void Game::Update(void) {
 
 			if (collision.enemy_santa(Star_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
@@ -4131,7 +4141,7 @@ void Game::Update(void) {
 		
 			if (collision.enemy_santa(Tonakai_Stage2[1], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
@@ -4139,7 +4149,7 @@ void Game::Update(void) {
 
 			if (collision.enemy_santa(Tonakai_Stage2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				time -= 5;
 				hitcooltime = 0;
 				HitFg = true;
@@ -4784,7 +4794,7 @@ void Game::Update(void) {
 					if (item->GetItem_3() == 1) {
 						use_rock_pos3.x = santa_pos.x;
 						use_rock_pos3.y = santa_pos.y;
-						sound.Play(SOUND_LABEL_SE003);
+						sound.Play(SOUND_LABEL_SE004);
 						itemID_3 = 1;
 						itemMove3 = true;
 					}
@@ -4804,14 +4814,14 @@ void Game::Update(void) {
 						if (item->GetItem_2() == 1) {
 							use_rock_pos2.x = santa_pos.x;
 							use_rock_pos2.y = santa_pos.y;
-							sound.Play(SOUND_LABEL_SE002);
+							sound.Play(SOUND_LABEL_SE004);
 							itemID_2 = 1;
 							itemMove2 = true;
 						}
 						else if (item->GetItem_2() == 2) {
 							use_snowball_pos2.x = santa_pos.x;
 							use_snowball_pos2.y = santa_pos.y;
-							sound.Play(SOUND_LABEL_SE002);
+							sound.Play(SOUND_LABEL_SE004);
 							itemID_2 = 2;
 							itemMove2 = true;
 						}
@@ -4892,21 +4902,21 @@ void Game::Update(void) {
 			if (collision.enemy_santa(Icicles_Stge2[1], santa_Nor[0], 200.0f, 0.0f)&& HitFg == false&&turarafall1==true)
 			{
 				time -= 5;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				HitFg = true;
 			}
 
 			if (collision.enemy_santa(Icicles_Stge2[2], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
 			{
 				time -= 5;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				HitFg = true;
 			}
 
 			if (collision.enemy_santa(Icicles_Stge2[3], santa_Nor[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
 			{
 				time -= 5;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				HitFg = true;
 			}
 
@@ -5116,7 +5126,7 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_SPACE))
 		{
 			santa_pos.y += 200;
-			sound.Play(SOUND_LABEL_SE004);
+			sound.Play(SOUND_LABEL_SE005);
 		}
 
 		//右移動
