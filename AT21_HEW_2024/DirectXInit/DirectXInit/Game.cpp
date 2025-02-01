@@ -2908,18 +2908,18 @@ void Game::Update(void) {
 
 			//
 			// 木との当たり判定の追加　ゴロイ
-			if (collision.tree_santa(tree, santa_Nor[0], 200.0f, 0.0f))
-			{
+			//if (collision.tree_santa(tree, santa_Nor[0], 200.0f, 0.0f))
+			//{
 
-				//// サンタが木の右側にぶつかった場合
-				if (santa_pos.x < tree_pos.x)
-				{
+			//	// サンタが木の右側にぶつかった場合
+			//	if (santa_pos.x < tree_pos.x)
+			//	{
 
-					collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
 
-				}
+			//	}
 
-			}
+			//}
 			// サンタが木の左側にぶつかった場合
 			if (santa_pos.x > tree_pos.x) {
 				//	collision.canMoveRight = false; // 右に移動中なら移動を停止
@@ -2975,11 +2975,11 @@ void Game::Update(void) {
 			//移動速度
 			if (bugPower == 0) { // 袋が空の時
 
-				speed = 7;
+				speed = 9;
 			}
 			else {
 
-				speed = 5;
+				speed = 7;
 			}
 
 
@@ -3176,6 +3176,13 @@ void Game::Update(void) {
 			if (collision.enemy_santa(snowman[1], santa_Nor[7], santaatack, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
 				snowman_hp1 -= santa_atk;
+				if (direction == 0) {
+					snowman_pos1.x -= 5;
+				}
+				else if (direction == 1) {
+					snowman_pos1.x += 5;
+				}
+				
 				
 				if (snowman_hp1 < 0)
 				{
