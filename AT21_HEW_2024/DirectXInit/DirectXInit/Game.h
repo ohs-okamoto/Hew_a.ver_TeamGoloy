@@ -107,6 +107,7 @@ private:
 	Object Number_UI[3];//数字　1:スコア　2:時間
 	Object UseBag;//現在の袋
 	Object ScoreCounter;
+	Object damage;
 
 	//ゲームオーバー画面
 	Object Gameover;//背景
@@ -301,6 +302,9 @@ private:
 	bool enemylive1 = true;
 	bool enemylive2 = true;
 	bool enemylive3 = true;
+
+	bool damage5 = false;
+	
 
 
 public:

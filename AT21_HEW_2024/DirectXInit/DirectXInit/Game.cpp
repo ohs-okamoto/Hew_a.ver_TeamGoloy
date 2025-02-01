@@ -811,6 +811,12 @@ void Game::Init(HWND hWnd)
 	Returntogame.SetSize(250.0f, 250.0f, 0.0f);//大きさ設定
 	Returntogame.SetAngle(0.0f);//角度設定
 
+	damage.Init(L"asset/damage5.png", 1, 1);//を初期化
+	damage.SetPos(100.0f, 330.0f, 0.0f);         //位置を設定
+	damage.SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
+	damage.SetAngle(-20.0f);//角度を設定	
+
+
 	//====================================================
 	//投げ物
 	//====================================================
@@ -1936,7 +1942,8 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -1944,7 +1951,8 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -1952,24 +1960,27 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
+				damage5 = true;
 				HitFg = true;
 			}
 
 			// 星との当たり判定追加 
 			if (collision.enemy_santa(star_monster, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				time -= 5;
 				hitcooltime = 0;
+				damage5 = true;
 				HitFg = true;
 			}
 			//トナカイ との当たり判定追加 
 			if (collision.enemy_santa(tonakai, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE003);
 				time -= 5;
 				hitcooltime = 0;
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -8918,6 +8929,16 @@ void Game::Draw(void)
 
 		ItemStock.Draw();
 
+		if (damage5 == true)
+		{
+			damage.Draw();
+			framcount++;
+			if (framcount%60==0)
+			{
+				damage5 = false;
+			}
+		}
+	
 		///////// 投げ物 ///////////////////
 
 		if (itemID_1 == 1) {
