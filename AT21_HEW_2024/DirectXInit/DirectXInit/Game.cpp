@@ -1864,7 +1864,7 @@ void Game::Update(void) {
 
 
 		// 袋の切り替え
-		/*if (input.GetKeyTrigger(VK_UP)||input.GetButtonTrigger(XINPUT_UP))
+		if (input.GetKeyTrigger(VK_UP)||input.GetButtonTrigger(XINPUT_UP))
 		{
 			santa_bug = 0;
 		}
@@ -1877,7 +1877,7 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_RIGHT) || input.GetButtonTrigger(XINPUT_RIGHT))
 		{
 			santa_bug = 2;
-		}*/
+		}
 		
 
 		santa_pos1.x = santa_pos.x;
@@ -6074,34 +6074,50 @@ void Game::Update(void) {
 					kintyaku_go = true;
 				}
 
+
+				// 風呂敷のアニメーション関係
 				if (sp_ani == true) {
 
-					
-					santaImage = 23;
-
-					if (direction == 0)
+				
+					if (direction == 0) // もし右向きなら
 					{
 
-						if (changeRight_SP == true && ani_stop==false)
+						if (changeRight_SP == true)
 						{
-							//初期化
-							santa_Kin[6].numU = 0;
-							santa_Kin[6].numV = 0;
+							if (ani_stop == true) { // ここでアニメーションを固定する
+								santa_Kin[6].numU = 2;
+								santa_Kin[6].numV = 0;
+								
+							}
+							else if (ani_stop == false) { // falseの場合は、初期化する（最初はここにくる）
+
+								//初期化
+								santaImage = 23;
+								santa_Kin[6].numU = 0;
+								santa_Kin[6].numV = 0;
+								
+							}
+
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						if (ani_stop == true) {
 
 						}
-						framcount7++; //フレームカウント
-						if (framcount7 % 4 == 0) //１０フレームに一回行われる
-						{
-							santa_Kin[6].numU++;
-							if (santa_Kin[6].numU == 2)
+						else if (ani_stop == false) {
+
+							framcount7++; //フレームカウント
+							if (framcount7 % 4 == 0) //１０フレームに一回行われる
 							{
-								santaImage = 23;
-								
+								santa_Kin[6].numU++;
+								if (santa_Kin[6].numU >= 3)
+								{
+									changeRight_SP = true;
+									ani_stop = true;
+
+								}
 							}
 						}
+						
 
 
 					}
@@ -6132,6 +6148,7 @@ void Game::Update(void) {
 
 				}
 
+				// 巾着袋の移動
 				if (kintyaku_go == true) {
 					if (direction == 0) {
 						if (kintyaku_pos.x >= rightScreen) {
@@ -6140,9 +6157,10 @@ void Game::Update(void) {
 							santa_Kin[6].numU = 0;
 							sp_ani = false;
 							kintyaku_go = false;
+							ani_stop = false;
 						}
 
-						kintyaku_pos.x += 5;
+						kintyaku_pos.x += 15;
 					}
 					
 				}
@@ -8911,7 +8929,7 @@ void Game::Draw(void)
 		}
 
 		// 巾着袋の袋と紐
-		/*if (sp_ani == true) {
+		if (sp_ani == true) {
 			himo.Draw();
 		}
 
@@ -8922,7 +8940,7 @@ void Game::Draw(void)
 			else if (bugPower > 0) {
 				kintyaku[1].Draw();
 			}
-		}*/
+		}
 		
 		
 		goal.Draw();
