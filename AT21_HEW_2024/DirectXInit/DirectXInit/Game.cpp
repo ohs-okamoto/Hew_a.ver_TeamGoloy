@@ -291,7 +291,7 @@ void Game::Init(HWND hWnd)
 	invisiblewall[1].SetAngle(0.0f);//角度を設定
 
 	invisiblewall[2].Init(L"asset/tree.png", 1, 1);//を初期化
-	invisiblewall[2].SetPos(5750.0f, 500.0f, 0.0f);         //位置を設定
+	invisiblewall[2].SetPos(5850.0f, 500.0f, 0.0f);         //位置を設定
 	invisiblewall[2].SetSize(240.0f, 1000.0f, 0.f);     //大きさ設定
 	invisiblewall[2].SetAngle(0.0f);//角度を設定
 
@@ -1549,7 +1549,7 @@ void Game::Update(void) {
 					present_pos3.y= -300;
 
 					wall_pos1.x = -600;
-					wall_pos1.x = 5750;
+					wall_pos2.x = 5750;
 
 
 					tree_pos.x = 1900;
@@ -1643,7 +1643,7 @@ void Game::Update(void) {
 					bigpresent_pos1.y = -25;
 
 					wall_pos1.x = -600;
-					wall_pos1.x = 5750;
+					wall_pos2.x = 5750;
 
 					tree_pos.x = 1900;
 					goal_pos.x = 5800;
@@ -2241,7 +2241,7 @@ void Game::Update(void) {
 					wood_pos3.x = 2560;
 
 					wall_pos1.x = -600;
-					wall_pos1.x = 5750;
+					wall_pos2.x = 5750;
 
 					rock_pos1.x = -250;
 					rock_pos2.x = 300;
@@ -3831,7 +3831,7 @@ void Game::Update(void) {
 					wood_pos3.x = 2560;
 
 					wall_pos1.x = -600;
-					wall_pos1.x = 5750;
+					wall_pos2.x = 5750;
 
 					rock_pos1.x = -250;
 					rock_pos2.x = 300;
@@ -5302,7 +5302,7 @@ void Game::Update(void) {
 						wood_pos3.x = 2560;
 
 						wall_pos1.x = -600;
-						wall_pos1.x = 5750;
+						wall_pos2.x = 5750;
 
 						rock_pos1.x = -250;
 						rock_pos2.x = 300;
@@ -5923,27 +5923,33 @@ void Game::Update(void) {
 				}
 
 
-				santa_huro_pos.y -= 5.50f;
+			
 				//ジャンプ処理
-				if (input.GetKeyTrigger(VK_SPACE) && jumpFg == false || input.GetButtonTrigger(XINPUT_A) && jumpFg == false)
-				{
+				if (jump == 1 || jump == 2) {
 
-					jumpFg = true;
-					santa_kin_pos.y += 150;
+					if (santa_pos.y >= get_jump_old + 175.0f && jump == 1 || santa_kin_pos.y >= get_jump_old + 175.0f && jump == 2) {
+						jump = 3;
+					}
+					else if (santa_pos.y <= get_jump_old + 175.0f && jump == 1 || santa_kin_pos.y <= get_jump_old + 175.0f && jump == 2) {
+						santa_kin_pos.y += 7.50;
+					}
+
 				}
+				if (jump == 3) {
+					santa_kin_pos.y -= 2.50f;
+					if (collision.ground_santa(ground[1], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.ground_santa(ground[2], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.ground_santa(ground[3], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.ground_santa(ground[4], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.ground_santa(ground[5], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.block_santa(stairs[1], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.block_santa(stairs[2], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.block_santa(stairs[3], santa_Kin[0], 50.0f, 0.0f) == true ||
+						collision.block_santa(stairs[4], santa_Kin[0], 50.0f, 0.0f) == true)
+					{
+						jump = 0;
+					}
 
-				if (collision.ground_santa(ground[1], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[2], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[3], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[4], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[5], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[1], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[2], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[3], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[4], santa_Huro[0], 50.0f, 0.0f) == true)
-				{
-					jump = 0;
-					jumpFg = false;
 				}
 
 
