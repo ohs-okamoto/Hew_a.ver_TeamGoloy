@@ -1283,6 +1283,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 kintyaku_pos = kintyaku[0].GetPos();
 		DirectX::XMFLOAT3 kintyaku_pos1 = kintyaku[1].GetPos();
 		DirectX::XMFLOAT3 himo_pos = himo.GetPos();
+		DirectX::XMFLOAT3 himo_size = himo.GetSize();
 		//ゴール
 		DirectX::XMFLOAT3 goal_pos = goal.GetPos();
 		//山
@@ -6058,8 +6059,7 @@ void Game::Update(void) {
 
 
 				
-				himo_pos.x = santa_kin_pos.x;
-				himo_pos.y = santa_kin_pos.y;
+				
 
 
 				// 固有能力発動！！！！！！！
@@ -6070,6 +6070,8 @@ void Game::Update(void) {
 					kintyaku_pos.y = santa_kin_pos.y;
 					kintyaku_pos1.x = santa_kin_pos.x;
 					kintyaku_pos1.y = santa_kin_pos.y;
+					himo_pos.x = santa_kin_pos.x+40;
+					himo_pos.y = santa_kin_pos.y;
 					sp_ani = true;
 					kintyaku_go = true;
 				}
@@ -6158,9 +6160,13 @@ void Game::Update(void) {
 							sp_ani = false;
 							kintyaku_go = false;
 							ani_stop = false;
+							himo_size.x = 10.0f;
 						}
 
-						kintyaku_pos.x += 15;
+						kintyaku_pos.x += 15.0f;
+						himo_pos.x += 6.5f;
+						himo_size.x += 13.0f;
+						
 					}
 					
 				}
@@ -6540,6 +6546,7 @@ void Game::Update(void) {
 		kintyaku[1].SetPos(kintyaku_pos1.x, kintyaku_pos1.y, kintyaku_pos1.z);
 
 		himo.SetPos(himo_pos.x, himo_pos.y, himo_pos.z);
+		himo.SetSize(himo_size.x, himo_size.y, himo_size.z);
 
 		goal.SetPos(goal_pos.x, goal_pos.y, goal_pos.z);
 
