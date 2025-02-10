@@ -1867,6 +1867,7 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_UP)||input.GetButtonTrigger(XINPUT_UP))
 		{
 			santa_bug = 0;
+
 		}
 
 		if (input.GetKeyTrigger(VK_LEFT) || input.GetButtonTrigger(XINPUT_LEFT))
