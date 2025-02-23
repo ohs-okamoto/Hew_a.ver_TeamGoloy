@@ -1047,6 +1047,8 @@ void Game::Init(HWND hWnd)
 	item = new Item(1);
 	select=1;
 	pauseFg = false;
+
+	sound.Play(SOUND_LABEL_BGM002);//BGMを再生
 }
 
 void Game::Update(void) {
@@ -1066,7 +1068,7 @@ void Game::Update(void) {
 	case TITLE:
 	{
 
-		sound.Play(SOUND_LABEL_BGM002);//BGMを再生
+		
 		//キー入力で本編
 		if (input.GetKeyTrigger(VK_RETURN)||input.GetButtonPress(XINPUT_B))
 
@@ -1090,6 +1092,7 @@ void Game::Update(void) {
 		{
 			Select_MoverightFg = true;
 			//sound.Play(SOUND_LABEL_SE005);
+			// sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
 			//がぞうをみぎ向きに変更
 			SantaCursor.numU = 0;
 			SantaCursor.numV = 0;
@@ -1154,39 +1157,45 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_RETURN) &&select == 1&&StopCheck)
 		{
 			changescene = STAGE1_LOADING;
-			sound.Play(SOUND_LABEL_SE006);
+			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
+			sound.Play(SOUND_LABEL_SE003);
 		}
 		//ステージ２へ	
 		if (input.GetKeyTrigger(VK_RETURN) && select ==2 && StopCheck)
 		{
 			changescene = STAGE2_LOADING;
-			sound.Play(SOUND_LABEL_SE006);
+			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
+			sound.Play(SOUND_LABEL_SE003);
 		}
 		//ボスへ	
 		if (input.GetKeyTrigger(VK_RETURN) && select == 3 && StopCheck)
 		{
 			changescene = BOSS;
-			sound.Play(SOUND_LABEL_SE006);
+			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
+			sound.Play(SOUND_LABEL_SE003);
 		}
 
 		//コントローラー入力
 		if (input.GetButtonTrigger(XINPUT_B) && select == 1 && StopCheck)
 		{
 			changescene = STAGE1_LOADING;
-			sound.Play(SOUND_LABEL_SE006);
+			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
+			sound.Play(SOUND_LABEL_SE003);
 
 		}
 		//ステージ２へ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 2 && StopCheck)
 		{
 			changescene = STAGE2_LOADING;
-			sound.Play(SOUND_LABEL_SE006);
+			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
+			sound.Play(SOUND_LABEL_SE003);
 		}
 		//ボスへ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 3 && StopCheck)
 		{
 			changescene = BOSS;
-			sound.Play(SOUND_LABEL_SE006);
+			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
+			sound.Play(SOUND_LABEL_SE003);
 		}
 
 
@@ -1197,7 +1206,7 @@ void Game::Update(void) {
 	//ステージ選択した後に出るやつ
 	case STAGE1_LOADING:
 	{
-		sound.Stop(SOUND_LABEL_BGM002);
+		//sound.Stop(SOUND_LABEL_BGM000);
 		kari = false;
 		pauseFg = false;
 		framcount++;
@@ -1218,7 +1227,7 @@ void Game::Update(void) {
 			cleartime = 0;
 			changescene = STAGE_1;
 			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
-			sound.SetVolume(SOUND_LABEL_BGM000, 0.8f);//もとの音量の80パーセントに設定
+			sound.SetVolume(SOUND_LABEL_BGM000, 5.0f);//もとの音量の80パーセントに設定
 		
 		}
 	}
@@ -1944,7 +1953,7 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE003);
+				sound.Play(SOUND_LABEL_SE000);
 				damage5 = true;
 				HitFg = true;
 			}
@@ -1953,7 +1962,7 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE003);
+				sound.Play(SOUND_LABEL_SE000);
 				damage5 = true;
 				HitFg = true;
 			}
@@ -1962,7 +1971,7 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE003);
+				sound.Play(SOUND_LABEL_SE000);
 				damage5 = true;
 				HitFg = true;
 			}
@@ -1970,7 +1979,7 @@ void Game::Update(void) {
 			// 星との当たり判定追加 
 			if (collision.enemy_santa(star_monster, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE003);
+				sound.Play(SOUND_LABEL_SE000);
 				time -= 5;
 				hitcooltime = 0;
 				damage5 = true;
@@ -1979,7 +1988,7 @@ void Game::Update(void) {
 			//トナカイ との当たり判定追加 
 			if (collision.enemy_santa(tonakai, santa_Nor[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE003);
+				sound.Play(SOUND_LABEL_SE000);
 				time -= 5;
 				hitcooltime = 0;
 				damage5 = true;
@@ -8351,7 +8360,7 @@ void Game::Update(void) {
 		if (input.GetKeyTrigger(VK_SPACE))
 		{
 			santa_pos.y += 200;
-			sound.Play(SOUND_LABEL_SE005);
+			sound.Play(SOUND_LABEL_SE002);
 		}
 
 		//右移動
