@@ -8876,8 +8876,86 @@ void Game::Draw(void)
 
 		tree.Draw();
 
+		//switch (santaImage)
+		//{
+		//	//通常
+		//	case 0:
+		//		santa_Nor[0].Draw();
+		//		break;
+		//	case 1:
+		//		santa_Nor[1].Draw();
+		//		break;
+		//	case 2:
+		//		santa_Nor[2].Draw();
+		//		break;
+		//	case 3:
+		//		santa_Nor[3].Draw();
+		//		break;
+		//	case 4:
+		//		santa_Nor[4].Draw();
+		//		break;
+		//	case 5:
+		//		santa_Nor[5].Draw();
+		//		break;
+		//	case 6:
+		//		santa_Nor[6].Draw();
+		//		break;
+		//	case 7:
+		//		santa_Nor[7].Draw();
+		//		break;
+		//	//huro
+		//	case 8:
+		//		santa_Huro[0].Draw();//プレイヤー描画
+		//		break;
+		//	case 9:
+		//		santa_Huro[1].Draw();//プレイヤー描画
+		//		break;
+		//	case 10:
+		//		santa_Huro[2].Draw();//プレイヤー描画
+		//		break;
+		//	case 12:
+		//		santa_Huro[3].Draw();//プレイヤー描画
+		//		break;
+		//	case 13:
+		//		santa_Huro[4].Draw();//プレイヤー描画
+		//		break;
+		//	case 14:
+		//		santa_Huro[5].Draw();//プレイヤー描画
+		//		break;
+		//	case 15:
+		//		santa_Huro[6].Draw();//プレイヤー描画
+		//		break;
+		//	case 16:
+		//		santa_Huro[7].Draw();//プレイヤー描画
+		//		break;
+		//	//kin
+		//	case 17:
+		//		santa_Kin[0].Draw();//プレイヤー描画
+		//		break;
+		//	case 18:
+		//		santa_Kin[1].Draw();//プレイヤー描画
+		//		break;
+		//	case 19:
+		//		santa_Kin[2].Draw();//プレイヤー描画
+		//		break;
+		//	case 20:
+		//		santa_Kin[3].Draw();//プレイヤー描画
+		//		break;
+		//	case 21:
+		//		santa_Kin[4].Draw();//プレイヤー描画
+		//		break;
+		//	case 22:
+		//		santa_Kin[5].Draw();//プレイヤー描画
+		//		break;
+		//	case 23:
+		//		santa_Kin[6].Draw();//プレイヤー描画
+		//		break;
+		//default:
+		//	break;
+		//}
+
 		// 通常袋
-		if (santaImage == 0) {
+		if(santaImage == 0) {
 			santa_Nor[0].Draw();//プレイヤー描画
 		}
 		else if (santaImage == 1) {
