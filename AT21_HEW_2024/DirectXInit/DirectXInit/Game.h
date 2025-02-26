@@ -68,6 +68,8 @@ private:
 	Object snowball[image];//á‹Ê
 	Object goal;//ƒS[ƒ‹
 
+	Object hitbox;
+
 	Object invisiblewall[6];
 
 	Object Returntogame;//ƒQ[ƒ€‚É–ß‚é
@@ -212,7 +214,8 @@ private:
 
 	int select = 1;
 	
-	
+	bool attackhit = false;
+
 	Item* item; //ƒƒ“ƒo•Ï”
 	Sound sound;
 
@@ -302,6 +305,8 @@ private:
 	bool enemylive1 = true;
 	bool enemylive2 = true;
 	bool enemylive3 = true;
+	bool enemylive4 = true;
+	bool enemylive5 = true;
 
 	bool damage5 = false;
 	

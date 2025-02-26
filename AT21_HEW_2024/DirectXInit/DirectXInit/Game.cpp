@@ -162,6 +162,11 @@ void Game::Init(HWND hWnd)
 	santa_Kin[6].SetAngle(0.0f);             		//角度を設定
 	santa_Kin[6].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
+	hitbox.Init(L"asset/yukidama.png", 1, 1);//サンタを初期化
+	hitbox.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	hitbox.SetSize(70.0f, 70.0f, 0.f);	//大きさを設定
+	hitbox.SetAngle(0.0f);
+
 	//====================================================
 	//風呂敷のやつ
 	//====================================================
@@ -973,60 +978,74 @@ void Game::Init(HWND hWnd)
 	star_monster.SetSize(200.0f, 110.0f, 0.f);	//大きさを設定
 	star_monster.SetAngle(0.0f);             		//角度を設定
 	star_monster.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	star_monster.SetHP(40);
+
+
 
 	tonakai.Init(L"asset/Tonakai_Move_v3.png", 4, 2);//となかいを初期化
 	tonakai.SetPos(4800.0f, -140.0f, 0.0f);		//位置を設定
 	tonakai.SetSize(220.0f, 130.0f, 0.f);	//大きさを設定
 	tonakai.SetAngle(0.0f);             		//角度を設定
 	tonakai.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	tonakai.SetHP(60);
 
 	Snowman_Stage2[1].Init(L"asset/Snowman_Move_v3.png", 4, 2);//雪だるまを初期化
 	Snowman_Stage2[1].SetPos(30.0f, -160.0f, 0.0f);		//位置を設定
 	Snowman_Stage2[1].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Snowman_Stage2[1].SetAngle(0.0f);             		//角度を設定
 	Snowman_Stage2[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Snowman_Stage2[1].SetHP(40);
 
 	Snowman_Stage2[2].Init(L"asset/Snowman_Move_v3.png", 4, 2);//雪だるまを初期化
 	Snowman_Stage2[2].SetPos(1400.0f, -160.0f, 0.0f);		//位置を設定
 	Snowman_Stage2[2].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Snowman_Stage2[2].SetAngle(0.0f);             		//角度を設定
 	Snowman_Stage2[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Snowman_Stage2[2].SetHP(20);
 
 	Snowman_Stage2[3].Init(L"asset/Snowman_Move_v3.png", 4, 2);//雪だるまを初期化
 	Snowman_Stage2[3].SetPos(3800.0f, -160.0f, 0.0f);		//位置を設定
 	Snowman_Stage2[3].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Snowman_Stage2[3].SetAngle(0.0f);             		//角度を設定
 	Snowman_Stage2[3].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Snowman_Stage2[3].SetHP(20);
 
 	Snowman_Stage2[4].Init(L"asset/Snowman_Move_v3.png", 4, 2);//雪だるまを初期化
 	Snowman_Stage2[4].SetPos(7000.0f, -160.0f, 0.0f);		//位置を設定
 	Snowman_Stage2[4].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Snowman_Stage2[4].SetAngle(0.0f);             		//角度を設定
 	Snowman_Stage2[4].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Snowman_Stage2[4].SetHP(20);
 
 	Star_Stage2[1].Init(L"asset/Star_Move_v3.png", 6, 2);//雪だるまを初期化
 	Star_Stage2[1].SetPos(2000.0f, -160.0f, 0.0f);		//位置を設定
 	Star_Stage2[1].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Star_Stage2[1].SetAngle(0.0f);             		//角度を設定
 	Star_Stage2[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Star_Stage2[1].SetHP(40);
+
 
 	Star_Stage2[2].Init(L"asset/Star_Move_v3.png", 6, 2);//雪だるまを初期化
 	Star_Stage2[2].SetPos(5000.0f, -160.0f, 0.0f);		//位置を設定
 	Star_Stage2[2].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Star_Stage2[2].SetAngle(0.0f);             		//角度を設定
 	Star_Stage2[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Star_Stage2[2].SetHP(40);
 
 	Tonakai_Stage2[1].Init(L"asset/Tonakai_Move_v3.png", 4, 2);//雪だるまを初期化
 	Tonakai_Stage2[1].SetPos(2600.0f, -160.0f, 0.0f);		//位置を設定
 	Tonakai_Stage2[1].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Tonakai_Stage2[1].SetAngle(0.0f);             		//角度を設定
 	Tonakai_Stage2[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Tonakai_Stage2[1].SetHP(60);
+
 
 	Tonakai_Stage2[2].Init(L"asset/Tonakai_Move_v3.png", 4, 2);//雪だるまを初期化
 	Tonakai_Stage2[2].SetPos(7500.0f, -160.0f, 0.0f);		//位置を設定
 	Tonakai_Stage2[2].SetSize(180.0f, 90.0f, 0.f);	//大きさを設定
 	Tonakai_Stage2[2].SetAngle(0.0f);             		//角度を設定
 	Tonakai_Stage2[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	Tonakai_Stage2[2].SetHP(60);
 
 	boss_monster.Init(L"asset/Boss_Taiki.png", 6, 1);//雪だるまボスを初期化
 	boss_monster.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
@@ -1217,6 +1236,11 @@ void Game::Update(void) {
 			enemylive1 = true;
 			enemylive2 = true;
 			enemylive3 = true;
+			enemylive4 = true;
+			enemylive5 = true;
+
+
+			attackhit = false;
 			time = 150;
 			framcount = 0;
 			framcount2 = 0;
@@ -1227,7 +1251,7 @@ void Game::Update(void) {
 			cleartime = 0;
 			changescene = STAGE_1;
 			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
-			sound.SetVolume(SOUND_LABEL_BGM000, 5.0f);//もとの音量の80パーセントに設定
+			sound.SetVolume(SOUND_LABEL_BGM000, 0.5f);//もとの音量の80パーセントに設定
 		
 		}
 	}
@@ -1341,6 +1365,10 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 star_monster_pos = star_monster.GetPos();	   //星の敵
 		DirectX::XMFLOAT3 tonakai_pos = tonakai.GetPos();			   //鹿の敵
 	
+		//攻撃の当たり判定
+		DirectX::XMFLOAT3 hitboxpos = hitbox.GetPos();
+
+
 
 		int snowman_hp1 = snowman[1].GetHP();          //雪の敵
 		int snowman_hp2 = snowman[2].GetHP();		   //雪の敵
@@ -1376,8 +1404,17 @@ void Game::Update(void) {
 		// 一旦仮で重力的なものをを追加します　ゴロイ
 		//santa_pos.y -= 1;
 		
-		
-		
+		if (direction == 0)
+		{
+			hitboxpos.x = santa_pos.x + 60;
+			hitboxpos.y = santa_pos.y;
+		}
+		if (direction == 1)
+		{
+			hitboxpos.x = santa_pos.x - 60;
+			hitboxpos.y = santa_pos.y;
+		}
+
 		
 
 		// サンタが下に落ちた時に初期位置に戻る処理　ゴロイ
@@ -1510,6 +1547,8 @@ void Game::Update(void) {
 					//初期化
 					santa_pos.x = -400;
 
+					attackhit = false;
+
 					mounten_pos1.x = 0;
 					mounten_pos2.x = 1280;
 					mounten_pos3.x = 2560;
@@ -1595,6 +1634,8 @@ void Game::Update(void) {
 					changescene = STAGE1_LOADING;//リトライ
 					gameoverFg = false;
 					//初期化
+
+					attackhit = false;
 					time = 150;
 					framcount = 0;
 					framcount2 = 0;
@@ -2312,7 +2353,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(rock[1], santa_Nor[0], 100.0f, 0.0f) && rock_visible1 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 
 					item->ItemGet(1); // いわを回収
@@ -2327,7 +2368,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(rock[2], santa_Nor[0], 100.0f, 0.0f) && rock_visible2 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(1); // いわを回収
@@ -2341,7 +2382,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(rock[3], santa_Nor[0], 100.0f, 0.0f) && rock_visible3 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(1); // いわを回収
@@ -2355,7 +2396,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(rock[4], santa_Nor[0], 100.0f, 0.0f) && rock_visible4 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(1); // いわを回収
@@ -2369,7 +2410,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(rock[5], santa_Nor[0], 100.0f, 0.0f) && rock_visible5 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(1); // いわを回収
@@ -2383,7 +2424,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(rock[6], santa_Nor[0], 100.0f, 0.0f) && rock_visible6 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(1); // いわを回収
@@ -2397,7 +2438,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(snowball[1], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(2); // いわを回収
@@ -2411,7 +2452,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(snowball[2], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(2); // いわを回収
@@ -2425,7 +2466,7 @@ void Game::Update(void) {
 
 			if (collision.item_santa(snowball[3], santa_Nor[0], 100.0f, 0.0f) && snow_visible1 == 0)
 			{
-				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani|| input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
 				{
 					/*itemID = 1;*/
 					item->ItemGet(2); // いわを回収
@@ -2468,7 +2509,7 @@ void Game::Update(void) {
 
 
 			if (!itemCollected && !changeItem) {// 当たってない場合
-				if (input.GetKeyTrigger(VK_S) && pauseFg == false || input.GetButtonTrigger(XINPUT_B) && pauseFg == false)
+				if (input.GetKeyTrigger(VK_S) && pauseFg == false && !sp_ani || input.GetButtonTrigger(XINPUT_B) && pauseFg == false && !sp_ani)
 				{
 
 					if (item->GetItem_3() > 0) {
@@ -3045,6 +3086,7 @@ void Game::Update(void) {
 				|| input.GetButtonTrigger(XINPUT_X) && bugPower > 0 && sp_ani == false) { // 袋が空っぽの時
 
 				sp_ani = true;
+				
 			}
 
 			if (sp_ani == true) {
@@ -3060,6 +3102,7 @@ void Game::Update(void) {
 							//初期化
 							santa_Nor[7].numU = 0;
 							santa_Nor[7].numV = 0;
+							attackhit = false;
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						framcount7++; //フレームカウント
@@ -3073,6 +3116,7 @@ void Game::Update(void) {
 								santa_Nor[7].numU = 0;
 								changeLeft_SP = true;
 								santaatack = 0;
+								attackhit = true;
 								
 							}
 						}
@@ -3084,6 +3128,7 @@ void Game::Update(void) {
 							//初期化
 							santa_Nor[7].numU = 0;
 							santa_Nor[7].numV = 0;
+							attackhit = false;
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						framcount7++; //フレームカウント
@@ -3095,6 +3140,7 @@ void Game::Update(void) {
 								sp_ani = false;
 								santaImage = 1;
 								santa_Nor[7].numU = 0;
+								attackhit = true;
 								changeLeft_SP = true;
 							}
 						}
@@ -3106,6 +3152,7 @@ void Game::Update(void) {
 							//初期化
 							santa_Nor[7].numU = 0;
 							santa_Nor[7].numV = 0;
+							attackhit = false;
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						framcount7++; //フレームカウント
@@ -3117,6 +3164,7 @@ void Game::Update(void) {
 								sp_ani = false;
 								santaImage = 1;
 								santa_Nor[7].numU = 0;
+								attackhit = true;
 								changeLeft_SP = true;
 							}
 						}
@@ -3131,6 +3179,7 @@ void Game::Update(void) {
 							//初期化
 							santa_Nor[7].numU = 0;
 							santa_Nor[7].numV = 1;
+							attackhit = false;
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						framcount7++; //フレームカウント
@@ -3142,6 +3191,7 @@ void Game::Update(void) {
 								sp_ani = false;
 								santaImage = 1;
 								santa_Nor[7].numU = 0;
+								attackhit = false;
 								changeRight_SP = true;
 
 							}
@@ -3154,6 +3204,7 @@ void Game::Update(void) {
 							//初期化
 							santa_Nor[7].numU = 0;
 							santa_Nor[7].numV = 1;
+							attackhit = false;
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						framcount7++; //フレームカウント
@@ -3165,6 +3216,7 @@ void Game::Update(void) {
 								sp_ani = false;
 								santaImage = 1;
 								santa_Nor[7].numU = 0;
+								attackhit = true;
 								changeRight_SP = true;
 							}
 						}
@@ -3176,6 +3228,7 @@ void Game::Update(void) {
 							//初期化
 							santa_Nor[7].numU = 0;
 							santa_Nor[7].numV = 1;
+							attackhit = false;
 							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
 						}
 						framcount7++; //フレームカウント
@@ -3187,6 +3240,7 @@ void Game::Update(void) {
 								sp_ani = false;
 								santaImage = 1;
 								santa_Nor[7].numU = 0;
+								attackhit = true;
 								changeRight_SP = true;
 							}
 						}
@@ -3194,51 +3248,60 @@ void Game::Update(void) {
 				}
 
 			}
-
-			if (collision.enemy_santa(snowman[1], santa_Nor[7], santaatack, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			else
 			{
-				snowman_hp1 -= santa_atk;
-				if (direction == 0) {
-					snowman_pos1.x -= 5;
-				}
-				else if (direction == 1) {
-					snowman_pos1.x += 5;
-				}
-				
-				
-				if (snowman_hp1 < 0)
-				{
-					snowman[1].SetColor(2.0f, 0.0f, 0.0f, 1.0f);
-					enemylive1 = false;
-					snowman_pos1.x = 400000000;
-				
-				}
-
+				attackhit = false;
 			}
 
-			if (collision.enemy_santa(snowman[2], santa_Nor[7], santaatack, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
-			{
-				snowman_hp1 -= santa_atk;
 
-				if (snowman_hp2 < 0)
+			if (attackhit)
+			{
+				if (collision.enemy_santa(snowman[1], hitbox, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 				{
-					enemylive2 = false;
-					snowman_pos2.x = 400000000;
+					sound.Play(SOUND_LABEL_SE002);
+					snowman_hp1 -= santa_atk;
+
+					/*if (direction == 0) {
+						snowman_pos1.x -= 5;
+					}
+					else if (direction == 1) {
+						snowman_pos1.x += 5;
+					}*/
+					if (snowman_hp1 < 0)
+					{
+						enemylive1 = false;
+						snowman_pos1.x = 400000000;
+					}
 				}
 
-			}
-
-			if (collision.enemy_santa(snowman[3], santa_Nor[7], santaatack, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
-			{
-				snowman_hp2 -= santa_atk;
-
-				if (snowman_hp2 < 0)
+				if (collision.enemy_santa(snowman[2], hitbox, 50.f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 				{
-					enemylive2 = false;
-					snowman_pos3.x = 400000000;
+					snowman_hp2 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE002);
+					if (snowman_hp2 < 0)
+					{
+
+						enemylive2 = false;
+						snowman_pos2.x = 400000000;
+					}
+
 				}
 
+				if (collision.enemy_santa(snowman[3], hitbox, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					snowman_hp3 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE002);
+					if (snowman_hp3 < 0)
+					{
+						enemylive3 = false;
+						snowman_pos3.x = 400000000;
+					}
+
+				}
 			}
+			
+
+			
 
 			// 右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
@@ -3438,9 +3501,6 @@ void Game::Update(void) {
 						}
 					}
 				}
-
-
-
 				if (santa_pos.x <= 0) //プレイヤーが画面真ん中に行ったとき
 				{
 					santa_pos.x += 5;
@@ -6626,6 +6686,8 @@ void Game::Update(void) {
 		invisiblewall[1].SetPos(wall_pos1.x, wall_pos1.y, wall_pos1.z);
 		invisiblewall[2].SetPos(wall_pos2.x, wall_pos2.y, wall_pos2.z);
 
+		hitbox.SetPos(hitboxpos.x, hitboxpos.y, hitboxpos.z);
+
 		snowman[1].SetHP(snowman_hp1);
 		snowman[2].SetHP(snowman_hp2);
 		snowman[3].SetHP(snowman_hp3);
@@ -8786,7 +8848,7 @@ void Game::Draw(void)
 		star.Draw();
 
 
-
+		
 
 		//やま
 		for (int i = 1; i < image; i++)
@@ -8858,11 +8920,11 @@ void Game::Draw(void)
 		{
 			snowman[1].Draw();
 		}
-		if (enemylive1 == true)
+		if (enemylive2 == true)
 		{
 			snowman[2].Draw();
 		}
-		if (enemylive1 == true)
+		if (enemylive3 == true)
 		{
 			snowman[3].Draw();
 		}
@@ -9102,7 +9164,7 @@ void Game::Draw(void)
 
 		}
 
-
+		hitbox.Draw();
 		
 		break;
 	case STAGE_2://ステージ２
