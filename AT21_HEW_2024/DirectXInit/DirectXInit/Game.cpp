@@ -5962,42 +5962,65 @@ void Game::Update(void) {
 				}
 
 				// ジャンプ
-				if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
-					if (direction == 0) { // 右向き
-						if (bugPower == 0) {
-							santaImage = 19;
-							jump = 1;
-							santa_Kin[2].numU = 0;
-							santa_Kin[2].numV = 0;
-						}
-						else if (bugPower > 0) {
-							santaImage = 20;
-							jump = 2;
-							santa_Kin[3].numU = 0;
-							santa_Kin[3].numV = 0;
-						}
-					}
-					else if (direction == 1) { // 右向き
-						if (bugPower == 0) {
-							santaImage = 19;
-							jump = 1;
-							santa_Kin[2].numU = 0;
-							santa_Kin[2].numV = 1;
-						}
-						else if (bugPower > 0) {
-							santaImage = 20;
-							jump = 2;
-							santa_Kin[3].numU = 0;
-							santa_Kin[3].numV = 1;
-						}
-					}
-
+				if (input.GetKeyTrigger(VK_SPACE) && jump_now == false || input.GetButtonTrigger(XINPUT_A) && jump_now == false) {
+					jumpVelocity = 10.0f;
+					jump_now = true;
 				}
+
+				// ジャンプ処理
+				if (jump_now == true) {
+					// 速度を適用してY座標を更新
+					santa_kin_pos.y += jumpVelocity;
+					// 重力を速度に適用
+					jumpVelocity += gravity;
+
+					/*if()*/
+					// 地面に達した場合
+					if (santa_pos.y <= groundY) {
+						santa_pos.y = groundY;
+						jump_now = false; // ジャンプ中フラグをリセット
+						jumpVelocity = 0.0f; // ジャンプ速度リセット
+						/*isOnGround = true;*/
+					}
+				}
+
+				// ジャンプ
+				//if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
+				//	if (direction == 0) { // 右向き
+				//		if (bugPower == 0) {
+				//			santaImage = 19;
+				//			jump = 1;
+				//			santa_Kin[2].numU = 0;
+				//			santa_Kin[2].numV = 0;
+				//		}
+				//		else if (bugPower > 0) {
+				//			santaImage = 20;
+				//			jump = 2;
+				//			santa_Kin[3].numU = 0;
+				//			santa_Kin[3].numV = 0;
+				//		}
+				//	}
+				//	else if (direction == 1) { // 右向き
+				//		if (bugPower == 0) {
+				//			santaImage = 19;
+				//			jump = 1;
+				//			santa_Kin[2].numU = 0;
+				//			santa_Kin[2].numV = 1;
+				//		}
+				//		else if (bugPower > 0) {
+				//			santaImage = 20;
+				//			jump = 2;
+				//			santa_Kin[3].numU = 0;
+				//			santa_Kin[3].numV = 1;
+				//		}
+				//	}
+
+				//}
 
 
 			
 				//ジャンプ処理
-				if (jump == 1 || jump == 2) {
+				/*if (jump == 1 || jump == 2) {
 
 					if (santa_pos.y >= get_jump_old + 175.0f && jump == 1 || santa_kin_pos.y >= get_jump_old + 175.0f && jump == 2) {
 						jump = 3;
@@ -6022,7 +6045,7 @@ void Game::Update(void) {
 						jump = 0;
 					}
 
-				}
+				}*/
 
 
 				// 木との当たり判定の追加　ゴロイ

@@ -293,6 +293,10 @@ private:
 	float get_jump_old = 0;
 	float get_jump_new = 0;
 
+	float jumpVelocity = 0.0f;
+	float gravity = -0.5f;
+	const float groundY = -147.0f; // ’n–Ê‚ÌYÀ•W
+
 
 	bool ani_stop = false;
 
