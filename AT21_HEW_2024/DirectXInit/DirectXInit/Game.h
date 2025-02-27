@@ -30,6 +30,7 @@ private:
 	Object Stage2_Loading;
 	Object BOSS_Loading;
 
+	Object particle;//パーティクル
 
 	Object santa_Nor[8];  // サンタオブジェクト 通常袋
 	Object santa_Huro[8]; // サンタオブジェクト 風呂敷
