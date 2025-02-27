@@ -3254,6 +3254,7 @@ void Game::Update(void) {
 			}
 
 
+
 			if (attackhit)
 			{
 				if (collision.enemy_santa(snowman[1], hitbox, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
