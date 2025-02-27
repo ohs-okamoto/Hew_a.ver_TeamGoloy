@@ -10,10 +10,10 @@ typedef enum
 	SOUND_LABEL_BGM002,
 	SOUND_LABEL_SE000,		// サンプルSE
 	SOUND_LABEL_SE001,			// SE
-	SOUND_LABEL_SE002,		    // ダメージSE
-	SOUND_LABEL_SE003,// 決定SE
-	SOUND_LABEL_SE004,// ジャンプSE
-	
+	SOUND_LABEL_SE002,		    // ジャンプSE
+	SOUND_LABEL_SE003,          // 決定SE
+	SOUND_LABEL_SE004,          // 攻撃SE
+	SOUND_LABEL_BGM003,         //ボス戦
 	//SOUND_LABEL_SE003,			// サンプルSE
 
 
@@ -38,8 +38,8 @@ private:
 		{"sound/SE/yukidama.wav", false},		// サンプルSE
 		{"sound/SE/jump.wav", false},		// サンプルSE
 		{"sound/SE/kettei.wav", false},		// サンプルSE
-		//{"sound/SE/yukidama.wav", false},		// サンプルSE
-
+		{"sound/SE/重いパンチ1.wav", false},		// 攻撃SE
+		{"sound/BGM/Christmasboss.wav", true},
 
 	};
 

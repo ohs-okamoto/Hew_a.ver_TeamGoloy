@@ -140,6 +140,8 @@ private:
 
 	bool gameoverFg = false;//ポーズフラグ
 	bool pauseFg = false;//ポーズフラグ
+	bool particleFg=false;
+
 
 	bool changeRight = true;//キャラの
 	bool changeLeft = true;//
@@ -153,6 +155,8 @@ private:
 
 	int presentcount=0;//何個プレゼントとったか
 	int bigpresentcount = 0;//何個大プレゼントとったか
+
+	int particlecount = 0;//パーティクル
 
 	int presentscore = 0;
 	int bigpresentscore = 0;
