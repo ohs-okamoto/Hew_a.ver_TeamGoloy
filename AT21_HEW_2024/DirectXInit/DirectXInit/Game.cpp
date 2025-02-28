@@ -2068,11 +2068,12 @@ void Game::Update(void) {
 			}
 
 
-
+			// 階段の当たり判定　畦内
 			if (collision.block_santa(stairs[1], santa_Nor[0], 50.0f, 0.0f))
 			{
 				if (santa_pos.y > stairs_pos1.y + stairs[1].GetSize().y / 2.0f) {
 					santa_pos.y = stairs_pos1.y + stairs[1].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
+					
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -5158,13 +5159,13 @@ void Game::Update(void) {
 
 					if (santa_kin_pos.x < stairs_pos1.x)
 					{
-						//collision.canMoveRight = false; // 右に移動中なら移動を停止
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
 					}
 
 					// サンタがぶつかった場合
 					if (santa_kin_pos.x > stairs_pos1.x)
 					{
-						//collision.canMoveLeft = false; // 左に移動中なら移動を停止
+						collision.canMoveLeft = false; // 左に移動中なら移動を停止
 					}
 				}
 
@@ -5974,7 +5975,7 @@ void Game::Update(void) {
 					// 重力を速度に適用
 					jumpVelocity += gravity;
 
-					/*if()*/
+					
 					// 地面に達した場合
 					if (santa_pos.y <= groundY) {
 						santa_pos.y = groundY;
@@ -5982,6 +5983,11 @@ void Game::Update(void) {
 						jumpVelocity = 0.0f; // ジャンプ速度リセット
 						/*isOnGround = true;*/
 					}
+
+					//if()
+					//	jump_now = false; // ジャンプ中フラグをリセット
+					//	jumpVelocity = 0.0f; // ジャンプ速度リセット
+					//}
 				}
 
 				// ジャンプ
