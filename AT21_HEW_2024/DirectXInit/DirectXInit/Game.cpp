@@ -168,16 +168,16 @@ void Game::Init(HWND hWnd)
 	hitbox.SetAngle(0.0f);
 
 	//====================================================
-	//風呂敷のやつ
+	//巾着のやつ
 	//====================================================
 	kintyaku[0].Init(L"asset/Kintyaku_SP.png", 1, 2);//サンタを初期化
 	kintyaku[0].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
-	kintyaku[0].SetSize(50.0f, 25.0f, 0.f);	//大きさを設定
+	kintyaku[0].SetSize(100.0f, 25.0f, 0.f);	//大きさを設定
 	kintyaku[0].SetAngle(0.0f);             		//角度を設定
 
 	kintyaku[1].Init(L"asset/Kintyaku_Pack_SP.png", 1, 2);//サンタを初期化
 	kintyaku[1].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
-	kintyaku[1].SetSize(150.0f, 120.0f, 0.f);	//大きさを設定
+	kintyaku[1].SetSize(100.0f, 120.0f, 0.f);	//大きさを設定
 	kintyaku[1].SetAngle(0.0f);
 
 	himo.Init(L"asset/Kintyaku_Himo.png",1,1);//サンタを初期化
@@ -5066,17 +5066,19 @@ void Game::Update(void) {
 					bigpresent_pos1.y = 100000;
 				}
 
+				
+				
 
-
-				if (collision.block_santa(stairs[1], santa_Kin[0], 50.0f, 0.0f))
+				if (collision.block_santa(stairs[1], santa_Kin[0], 100.0f, 10.0f))
 				{
 
 					if (santa_kin_pos.y > stairs_pos1.y + stairs[1].GetSize().y / 2.0f) {
 						santa_kin_pos.y = stairs_pos1.y + stairs[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+						
 						/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 					}
 					else {
-						/*std::cout << "\nSanta is falling." << std::endl;*/
+						
 					}
 
 					if (santa_kin_pos.x < stairs_pos1.x)
@@ -5089,6 +5091,9 @@ void Game::Update(void) {
 					{
 						collision.canMoveLeft = false; // 左に移動中なら移動を停止
 					}
+				}
+				else {
+				
 				}
 
 				if (collision.block_santa(stairs[2], santa_Kin[0], 100.0f, 0.0f))
@@ -5884,11 +5889,52 @@ void Game::Update(void) {
 
 				}
 
+				// 重力
+				//if (OnGround == false && jump_now == false && stairs_Fg==false)
+				//{
+				//	// 速度を適用してY座標を更新
+				//	santa_kin_pos.y += jumpVelocity;
+				//	// 重力を速度に適用
+				//	jumpVelocity += gravity;
+
+				//	// 地面に達した場合
+				//	if (santa_pos.y <= groundY) {
+				//		santa_pos.y = groundY;
+				//		jumpVelocity = 0.0f; // ジャンプ速度リセット
+				//		OnGround = true;
+
+				//	}
+				//}
+
 				// ジャンプ
-				if (input.GetKeyTrigger(VK_SPACE) && jump_now == false || input.GetButtonTrigger(XINPUT_A) && jump_now == false) {
+				if (input.GetKeyTrigger(VK_SPACE) && jump_now == false && OnGround == true || input.GetButtonTrigger(XINPUT_A) && jump_now == false && OnGround == true) {
 					jumpVelocity = 10.0f;
+					OnGround = false;
 					jump_now = true;
 				}
+
+				// 落下
+				/*if (OnGround == false && jump_now == false) {
+ 					jumpVelocity = 0.0f;
+					falling = true;
+				}*/
+
+				// 落下処理
+				//if (falling == true) {
+				//	// 速度を適用してY座標を更新
+				//	santa_kin_pos.y += jumpVelocity;
+				//	// 重力を速度に適用
+				//	jumpVelocity += gravity;
+
+				//	// 地面に達した場合
+				//	if (santa_pos.y <= groundY && falling == true) {
+				//		santa_pos.y = groundY;
+				//		falling = false; // ジャンプ中フラグをリセット
+				//		jumpVelocity = 0.0f; // ジャンプ速度リセット
+				//		OnGround = true;
+				//		
+				//	}
+				//}
 
 				// ジャンプ処理
 				if (jump_now == true) {
@@ -5897,20 +5943,35 @@ void Game::Update(void) {
 					// 重力を速度に適用
 					jumpVelocity += gravity;
 
-					
+					if (collision.block_santa(stairs[1], santa_Kin[0], 50.0f, 0.0f) == true) {
+						{
+							if (santa_kin_pos.y >= stairs_pos1.y) {
+								jump_now = false; // ジャンプ中フラグをリセット
+								jumpVelocity = 0.0f; // ジャンプ速度リセット
+								OnGround = true;
+							}
+							
+						}
+						
+					}
+					       
 					// 地面に達した場合
-					if (santa_pos.y <= groundY) {
-						santa_pos.y = groundY;
+					if (santa_pos.y <= groundY && jump_now==true) {
+ 						santa_pos.y = groundY;
 						jump_now = false; // ジャンプ中フラグをリセット
 						jumpVelocity = 0.0f; // ジャンプ速度リセット
-						/*isOnGround = true;*/
+						OnGround = true;
 					}
+
+
 
 					//if()
 					//	jump_now = false; // ジャンプ中フラグをリセット
 					//	jumpVelocity = 0.0f; // ジャンプ速度リセット
 					//}
 				}
+
+
 
 				// ジャンプ
 				//if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
@@ -6095,22 +6156,27 @@ void Game::Update(void) {
 					|| input.GetButtonTrigger(XINPUT_X) && bugPower >= 0 && sp_ani == false) { // 袋が空っぽの時
 
 					kintyaku_pos.x = santa_kin_pos.x;
-					kintyaku_pos.y = santa_kin_pos.y;
+					kintyaku_pos.y = santa_kin_pos.y - 25.0f;;
 					kintyaku_pos1.x = santa_kin_pos.x;
 					kintyaku_pos1.y = santa_kin_pos.y;
 					himo_pos.x = santa_kin_pos.x+40;
 					himo_pos.y = santa_kin_pos.y;
+
+					
+
 					sp_ani = true;
 					kintyaku_go = true;
 				}
 
 
-				// 風呂敷のアニメーション関係
+				//	巾着のアニメーション関係
 				if (sp_ani == true) {
 
 				
 					if (direction == 0) // もし右向きなら
 					{
+						kintyaku[0].numU = 0;
+						kintyaku[0].numV = 0;
 
 						if (changeRight_SP == true)
 						{
@@ -6147,41 +6213,92 @@ void Game::Update(void) {
 								}
 							}
 						}
-						
-
 
 					}
-					if (direction == 1)
+					else if (direction == 1) // 左向き
 					{
 
+						kintyaku[0].numU = 0;
+						kintyaku[0].numV = 1;
+
 						if (changeLeft_SP == true)
-						{
-							//初期化
-							santa_Kin[6].numU = 0;
-							santa_Kin[6].numV = 1;
-							changeLeft_SP = false;//一旦falseにして一回しか処理されないようにする
-						}
-						framcount7++; //フレームカウント
-						if (framcount7 % 4 == 0) //１０フレームに一回行われる
-						{
-							santa_Kin[6].numU++;
-							if (santa_Kin[6].numU >= 3)
-							{
-								
-								santaImage = 17;
-								santa_Nor[7].numU = 0;
-								changeLeft_SP = true;
+
+							if (ani_stop == true) { // ここでアニメーションを固定する
+								santa_Kin[6].numU = 2;
+								santa_Kin[6].numV = 1;
 
 							}
-						}
+							else if (ani_stop == false) {
+								//初期化
+								santa_Kin[6].numU = 0;
+								santa_Kin[6].numV = 1;
+							}
+							changeLeft_SP = false;//一旦falseにして一回しか処理されないようにする
+
+							if (ani_stop == true) {
+
+							}
+							else if (ani_stop == false) {
+								framcount7++; //フレームカウント
+								if (framcount7 % 4 == 0) //１０フレームに一回行われる
+								{
+									santa_Kin[6].numU++;
+									if (santa_Kin[6].numU >= 3)
+									{
+
+										changeLeft_SP = true;
+										ani_stop = true;
+
+									}
+								}
+							}
 					}
 
 				}
 
 				// 巾着袋の移動
 				if (kintyaku_go == true) {
-					if (direction == 0) {
-						if (kintyaku_pos.x >= rightScreen) {
+
+					if (kintyaku_Fg == true) {
+
+						get_Kintyaku -= 15.0f;
+						kintyaku_pos.x -= 15.0f;
+
+						himo_pos.x -= 6.5f;
+						himo_size.x -= 13.0f;
+					}
+					else {
+						get_Kintyaku += 15.0f;
+						kintyaku_pos.x += 15.0f;
+
+						himo_pos.x += 6.5f;
+						himo_size.x += 13.0f;
+					}
+					
+
+
+					if (direction == 0) { // 右向き
+
+						if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+							get_Kintyaku -= 15.0f;
+							kintyaku_pos.x -= 15.0f;
+
+							himo_pos.x -= 6.5f;
+							himo_size.x -= 13.0f;
+						}
+						else {                     // 袋を飛ばす処理
+							get_Kintyaku += 15.0f;
+							kintyaku_pos.x += 15.0f;
+
+							himo_pos.x += 6.5f;
+							himo_size.x += 13.0f;
+						}
+
+						if (get_Kintyaku >= 300.0f && kintyaku_Fg==false) { // 袋が最大距離まで移動した場合
+							kintyaku_Fg = true;
+						}
+						else if (get_Kintyaku <= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
 							changeRight_SP = true;
 							santaImage = 17;
 							santa_Kin[6].numU = 0;
@@ -6189,15 +6306,49 @@ void Game::Update(void) {
 							kintyaku_go = false;
 							ani_stop = false;
 							himo_size.x = 10.0f;
+
+							get_Kintyaku = 0.0f;
+							kintyaku_Fg = false;
+						}
+					}
+					else if (direction == 1) { // 右向き
+
+						if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+							get_Kintyaku += 15.0f;
+							kintyaku_pos.x += 15.0f;
+
+							himo_pos.x += 6.5f;
+							himo_size.x += 13.0f;
+						}
+						else {                     // 袋を飛ばす処理
+							get_Kintyaku -= 15.0f;
+							kintyaku_pos.x -= 15.0f;
+
+							himo_pos.x -= 6.5f;
+							himo_size.x -= 13.0f;
 						}
 
-						kintyaku_pos.x += 15.0f;
-						himo_pos.x += 6.5f;
-						himo_size.x += 13.0f;
-						
+						if (get_Kintyaku <= -300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+							kintyaku_Fg = true;
+						}
+						else if (get_Kintyaku >= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+							changeRight_SP = true;
+							santaImage = 17;
+							santa_Kin[6].numU = 0;
+							sp_ani = false;
+							kintyaku_go = false;
+							ani_stop = false;
+							himo_size.x = 10.0f;
+
+							get_Kintyaku = 0.0f;
+							kintyaku_Fg = false;
+						}
 					}
 					
 				}
+
+				
 
 
 

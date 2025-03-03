@@ -277,6 +277,13 @@ private:
 
 	// 巾着袋
 	bool kintyaku_go = false;
+	float kintyaku_long = 40.0f;
+	float himo_long = 20.1f;
+	float himo_big = 20.0f;
+
+	float get_Kintyaku = 0.0f; // 巾着袋が移動するたびに追加される値を蓄積するもの。これで移動距離を制限する。
+	bool kintyaku_Fg = false;
+
 
 	// 固有能力変数
 	bool sp_ani = false; 
@@ -301,6 +308,9 @@ private:
 	float jumpVelocity = 0.0f;
 	float gravity = -0.5f;
 	const float groundY = -147.0f; // 地面のY座標
+	bool OnGround = true;
+	bool falling = false;
+	bool stairs_Fg = false;
 
 
 	bool ani_stop = false;
