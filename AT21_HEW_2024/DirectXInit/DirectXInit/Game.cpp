@@ -2955,30 +2955,19 @@ void Game::Update(void) {
 
 			//
 			// 木との当たり判定の追加　ゴロイ
-			//if (collision.tree_santa(tree, santa_Nor[0], 200.0f, 0.0f))
-			//{
+			if (collision.tree_santa(tree, santa_Nor[0], 200.0f, 0.0f))
+			{
 
-			//	// サンタが木の右側にぶつかった場合
-			//	if (santa_pos.x < tree_pos.x)
-			//	{
+			// サンタが木の右側にぶつかった場合
+				if (santa_pos.x > tree_pos.x) {
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+				// サンタが木の左側にぶつかった場合
+				if (santa_pos.x	< tree_pos.x) {
 
-			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
 
-			//	}
-
-			//}
-			// サンタが木の左側にぶつかった場合
-			if (santa_pos.x > tree_pos.x) {
-				//	collision.canMoveRight = false; // 右に移動中なら移動を停止
-				//	
-				//	
-				//}
-				//// サンタが木の左側にぶつかった場合
-				//if (santa_pos.x > tree_pos.x) {
-
-				//	collision.canMoveLeft = false; // 左に移動中なら移動を停止
-
-				//}
+				}
 			}
 
 
@@ -6281,8 +6270,8 @@ void Game::Update(void) {
 							himo_size.x += 13.0f;
 						}
 
-						if (collision.square_square(kintyaku[0], tree) == true) {
-							tree_Ground = true;
+						if (collision.square_square(kintyaku[0], tree) == true && tree_Ground==1) {
+							tree_Ground = 2;
 						}
 
 						if (get_Kintyaku >= 300.0f && kintyaku_Fg==false) { // 袋が最大距離まで移動した場合
@@ -6338,25 +6327,25 @@ void Game::Update(void) {
 					
 				}
 
-				
+				//　巾着袋と木の当たり判定
 				if (collision.square_square(kintyaku[0], tree)==true ) {
-					if (tree_Ground == true && tree_Fg==false) {
+					if (tree_Ground == 2 && tree_Fg==false) {
 						tree_x = tree_pos.x;
 						tree_y = tree_pos.y;
 						
 						tree_Fg = true;
 					}
 					
-					if (tree_angle == 90.0f) {
-						tree_Ground = false;
-						tree_pos.y = tree_x + 10;
-						
-					}
 					if (tree_Fg == true) {
 						tree_angle = 90.0f;
-						tree_pos.y = tree_y + (-30.0f);
-						tree_pos.x = tree_x + (-21.0f);
+						tree_pos.y = tree_y + (-180.0f);
+						tree_pos.x = tree_x + (-170.0f);
 						tree_Fg = false;
+					}
+					if (tree_angle == 90.0f) {
+						tree_Ground = 3;
+						/*tree_pos.y = tree_x + 10;*/
+
 					}
 				}
 

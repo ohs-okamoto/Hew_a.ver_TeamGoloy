@@ -284,7 +284,7 @@ private:
 	float get_Kintyaku = 0.0f; // ‹Ğ’…‘Ü‚ªˆÚ“®‚·‚é‚½‚Ñ‚É’Ç‰Á‚³‚ê‚é’l‚ğ’~Ï‚·‚é‚à‚ÌB‚±‚ê‚ÅˆÚ“®‹——£‚ğ§ŒÀ‚·‚éB
 	bool kintyaku_Fg = false;
 
-	bool tree_Ground = false;
+	int tree_Ground = 1;
 
 	bool tree_Fg = false;
 
