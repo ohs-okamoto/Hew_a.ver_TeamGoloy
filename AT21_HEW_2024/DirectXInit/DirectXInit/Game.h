@@ -187,7 +187,7 @@ private:
 
 	//動きが止まってるか
 	bool StopCheck =true;
-
+	
 	//フレームカウント
 	int framcount = 0;
 	int framcount1 = 0;
