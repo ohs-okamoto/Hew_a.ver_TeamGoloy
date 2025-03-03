@@ -1053,7 +1053,7 @@ void Game::Init(HWND hWnd)
 	boss_monster.SetAngle(0.0f);             		//角度を設定
 	boss_monster.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 	
-	particle.Init(L"asset/4.png", 1, 1);//パーティクルを初期化
+	particle.Init(L"asset/X-removebg-preview.png", 7, 1);//パーティクルを初期化
 	particle.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
 	particle.SetSize(100.0f, 100.0f, 0.0f);	//大きさを設定
 	particle.SetAngle(0.0f);             		//角度を設定
@@ -3301,21 +3301,21 @@ void Game::Update(void) {
 						tonakai_pos.x = 400000000;
 					}
 				}
-
+				
 			}
 			//パーティクルアニメーション
 			if (particleFg)
 			{
 				particlecount++;
-				if (particlecount % 10 == 0)
+				if (particlecount % 5 == 0)
 				{
-					particleFg = false;
-					/*particle.numU++;
-					if (particle.numU > 20)
+					//particleFg = false;
+					particle.numU++;
+					if (particle.numU > 7)
 					{
 						particle.numU=0;
 						particleFg = false;
-					}*/
+					}
 				}
 				
 			}
