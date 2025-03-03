@@ -1283,6 +1283,7 @@ void Game::Update(void) {
 			time = 150;
 			cleartime = 0;
 			changescene = STAGE_2;
+
 			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
 			sound.SetVolume(SOUND_LABEL_BGM000, 0.8f);//もとの音量の80パーセントに設定
 			
@@ -1428,11 +1429,11 @@ void Game::Update(void) {
 		
 
 		// サンタが下に落ちた時に初期位置に戻る処理　ゴロイ
-		if (santa_pos.y == -250.0f)
+	/*	if (santa_pos.y == -250.0f)
 		{
 			santa_pos.x = -400.0f;
 			santa_pos.y = -175.0f;
-		}
+		}*/
 
 
 		framcount2++;
@@ -1567,7 +1568,10 @@ void Game::Update(void) {
 			time--;
 
 		}
-		if (time <= 0&& gameoverFg == false)//タイムオーバーになったら
+
+		
+
+		if (time <= 0&& gameoverFg == false|| santa_pos.y < -250 && !gameoverFg)//タイムオーバーになったら
 		{
 			gameoverFg = true;
 			sound.Play(SOUND_LABEL_BGM001);//BGMを再生
@@ -1597,7 +1601,10 @@ void Game::Update(void) {
 					presentcount = 0;
 					time = 150;
 					cleartime = 0;
+
 					santa_pos.x = -400;
+					santa_pos.y = -175;
+
 
 					mounten_pos1.x = 0;
 					mounten_pos2.x = 1280;
@@ -1884,6 +1891,7 @@ void Game::Update(void) {
 		{
 			santa_bug = 2;
 		}
+		
 		
 
 		santa_pos1.x = santa_pos.x;
