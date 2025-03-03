@@ -9460,7 +9460,7 @@ void Game::Draw(void)
 		Number[4].SetPos(scorepos3.x, scorepos3.y, scorepos3.z);
 
 		//プレゼントの合計スコア
-		presentscore = 5000 * presentcount;
+		presentscore = 5000;
 		do {
 			Number[5].numU = presentscore % (int)pow(10, keta6 + 1) / (int)pow(10, keta6);//一桁を切り出す
 			Number[5].SetPos(scorepos4.x - scoresize4.x * keta6, scorepos4.y, scoresize4.z);//位置を設定
@@ -9473,7 +9473,7 @@ void Game::Draw(void)
 		Number[5].SetPos(scorepos4.x, scorepos4.y, scorepos4.z);
 
 		//プレゼント大の合計スコア
-		bigpresentscore = 10000 * bigpresentcount;
+		bigpresentscore = 10000 ;
 		
 		do {
 			Number[6].numU = bigpresentscore % (int)pow(10, keta7 + 1) / (int)pow(10, keta7);//一桁を切り出す
