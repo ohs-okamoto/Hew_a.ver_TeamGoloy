@@ -6133,58 +6133,9 @@ void Game::Update(void) {
 
 				}
 
-				
-
-
 				// 12/30  サンタの移動アニメーション追加  	畦内
 				//移動速度
-
-
 				speed = 5;
-
-
-
-
-
-				// 固有能力発動！！！！！！！
-				//if (/*bugPower >= 0 && */input.GetKeyTrigger(VK_Q) || input.GetButtonTrigger(XINPUT_X)) { // 袋が空っぽの時
-				//	santa_pos7.x = santa_pos.x;
-				//	santa_pos7.y = santa_pos.y;
-				//	santaImage = 1;
-				//	if (changeRight_SP == true)
-				//	{
-				//		//初期化
-				//		santa_Nor[7].numU = 0;
-				//		santa_Nor[7].numV = 0;
-				//		SantaAttackFg = true;
-				//		changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
-				//	}	
-				//}
-
-				//if (SantaAttackFg == true)
-				//{
-				//	framcount3++; //フレームカウント
-				//	if (framcount3 % 5 == 0) //１０フレームに一回行われる
-				//	{
-				//		santa_Nor[7].numU++;
-				//		if (santa_Nor[7].numU >= 5)
-				//		{
-				//			santa_Nor[7].numU = 0;
-				//			SantaAttackFg = false;
-				//			changeRight_SP = true;
-				//			santaImage = 0;
-				//		}
-				//	}
-
-				//}
-
-
-
-
-
-				
-				
-
 
 				// 固有能力発動！！！！！！！
 				if (bugPower >= 0 && sp_ani == false && input.GetKeyPress(VK_Q)
@@ -9638,7 +9589,7 @@ void Game::Draw(void)
 		Number[4].SetPos(scorepos3.x, scorepos3.y, scorepos3.z);
 
 		//プレゼントの合計スコア
-		presentscore = 5000 * presentcount;
+		presentscore = 5000;
 		do {
 			Number[5].numU = presentscore % (int)pow(10, keta6 + 1) / (int)pow(10, keta6);//一桁を切り出す
 			Number[5].SetPos(scorepos4.x - scoresize4.x * keta6, scorepos4.y, scoresize4.z);//位置を設定
@@ -9651,7 +9602,7 @@ void Game::Draw(void)
 		Number[5].SetPos(scorepos4.x, scorepos4.y, scorepos4.z);
 
 		//プレゼント大の合計スコア
-		bigpresentscore = 10000 * bigpresentcount;
+		bigpresentscore = 10000 ;
 		
 		do {
 			Number[6].numU = bigpresentscore % (int)pow(10, keta7 + 1) / (int)pow(10, keta7);//一桁を切り出す
@@ -9674,7 +9625,7 @@ void Game::Draw(void)
 		//クリアタイムに応じてスコア加算(仮)
 		if (kari == false)
 		{
-			score += cleartime * 15;
+			score += time*101;
 			kari = true;
 		}
 		
