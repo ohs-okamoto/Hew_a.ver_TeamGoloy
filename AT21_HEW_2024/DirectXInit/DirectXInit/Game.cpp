@@ -1501,6 +1501,13 @@ void Game::Update(void) {
 					changescene = TITLE;
 					//初期化
 					santa_pos.x = -400;
+					santa_pos.y = -175;
+
+					santa_huro_pos.x = -400;
+					santa_huro_pos.y = -175;
+
+					santa_kin_pos.x = -400;
+					santa_kin_pos.y = -175;
 
 					attackhit = false;
 
@@ -1571,7 +1578,7 @@ void Game::Update(void) {
 
 		
 
-		if (time <= 0&& gameoverFg == false|| santa_pos.y < -250 && !gameoverFg)//タイムオーバーになったら
+		if (time <= 0&& gameoverFg == false|| santa_pos.y < -420 && !gameoverFg)//タイムオーバーになったら
 		{
 			gameoverFg = true;
 			sound.Play(SOUND_LABEL_BGM001);//BGMを再生
@@ -1605,6 +1612,11 @@ void Game::Update(void) {
 					santa_pos.x = -400;
 					santa_pos.y = -175;
 
+					santa_huro_pos.x = -400;
+					santa_huro_pos.y = -175;
+
+					santa_kin_pos.x = -400;
+					santa_kin_pos.y = -175;
 
 					mounten_pos1.x = 0;
 					mounten_pos2.x = 1280;
@@ -1683,6 +1695,13 @@ void Game::Update(void) {
 					time = 150;
 					cleartime = 0;
 					santa_pos.x = -400;
+					santa_pos.y = -175;
+
+					santa_huro_pos.x = -400;
+					santa_huro_pos.y = -175;
+
+					santa_kin_pos.x = -400;
+					santa_kin_pos.y = -175;
 
 					mounten_pos1.x = 0;
 					mounten_pos2.x = 1280;
