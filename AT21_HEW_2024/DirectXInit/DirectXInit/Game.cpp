@@ -1338,6 +1338,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 wood_pos3 = wood[3].GetPos();
 
 		DirectX::XMFLOAT3 tree_pos = tree.GetPos();
+		float tree_angle = tree.GetAngle();
 
 
 		//’n–Ê
@@ -6329,6 +6330,10 @@ void Game::Update(void) {
 							himo_size.x += 13.0f;
 						}
 
+						if (collision.square_square(kintyaku[0], tree) == true) {
+							tree_Ground = true;
+						}
+
 						if (get_Kintyaku >= 300.0f && kintyaku_Fg==false) { // ‘Ü‚ªÅ‘å‹——£‚Ü‚ÅˆÚ“®‚µ‚½ê‡
 							kintyaku_Fg = true;
 						}
@@ -6349,25 +6354,25 @@ void Game::Update(void) {
 
 						if (kintyaku_Fg == true) { // ‘Ü‚ª©•ª‚Ì‚Æ‚±‚É–ß‚éˆ—
 
-							get_Kintyaku += 15.0f;
+							get_Kintyaku -= 15.0f;
 							kintyaku_pos.x += 15.0f;
 
 							himo_pos.x += 6.5f;
 							himo_size.x += 13.0f;
 						}
 						else {                     // ‘Ü‚ğ”ò‚Î‚·ˆ—
-							get_Kintyaku -= 15.0f;
-							kintyaku_pos.x -= 15.0f;
+							get_Kintyaku += 15.0f;
+							kintyaku_pos.x += -15.0f;
 
-							himo_pos.x -= 6.5f;
-							himo_size.x -= 13.0f;
+							himo_pos.x += -6.5f;
+							himo_size.x += -13.0f;
 						}
 
-						if (get_Kintyaku <= -300.0f && kintyaku_Fg == false) { // ‘Ü‚ªÅ‘å‹——£‚Ü‚ÅˆÚ“®‚µ‚½ê‡
+						if (get_Kintyaku <= 300.0f && kintyaku_Fg == false) { // ‘Ü‚ªÅ‘å‹——£‚Ü‚ÅˆÚ“®‚µ‚½ê‡
 							kintyaku_Fg = true;
 						}
 						else if (get_Kintyaku >= 0.0f && kintyaku_Fg == true) { // ‘Ü‚ª©•ª‚ÌŒ³‚É–ß‚Á‚½‚Ìˆ—
-							changeRight_SP = true;
+							changeLeft_SP = true;
 							santaImage = 17;
 							santa_Kin[6].numU = 0;
 							sp_ani = false;
@@ -6383,6 +6388,26 @@ void Game::Update(void) {
 				}
 
 				
+				if (collision.square_square(kintyaku[0], tree)==true ) {
+					if (tree_Ground == true && tree_Fg==false) {
+						tree_x = tree_pos.x;
+						tree_y = tree_pos.y;
+						
+						tree_Fg = true;
+					}
+					
+					if (tree_angle == 90.0f) {
+						tree_Ground = false;
+						tree_pos.y = tree_x + 10;
+						
+					}
+					if (tree_Fg == true) {
+						tree_angle = 90.0f;
+						tree_pos.y = tree_y + (-30.0f);
+						tree_pos.x = tree_x + (-21.0f);
+						tree_Fg = false;
+					}
+				}
 
 
 
@@ -6798,6 +6823,8 @@ void Game::Update(void) {
 		BigPresent[1].SetPos(bigpresent_pos1.x, bigpresent_pos1.y, bigpresent_pos1.z);
 
 		tree.SetPos(tree_pos.x, tree_pos.y, tree_pos.z);
+		tree.SetAngle(tree_angle);
+
 		star_monster.SetPos(star_monster_pos.x, star_monster_pos.y, star_monster_pos.z);
 		tonakai.SetPos(tonakai_pos.x, tonakai_pos.y, tonakai_pos.z);
 

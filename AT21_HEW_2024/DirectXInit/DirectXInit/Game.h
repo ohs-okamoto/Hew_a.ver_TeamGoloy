@@ -284,6 +284,13 @@ private:
 	float get_Kintyaku = 0.0f; // 巾着袋が移動するたびに追加される値を蓄積するもの。これで移動距離を制限する。
 	bool kintyaku_Fg = false;
 
+	bool tree_Ground = false;
+
+	bool tree_Fg = false;
+
+	float tree_x = 0.0f;
+	float tree_y = 0.0f;
+
 
 	// 固有能力変数
 	bool sp_ani = false; 
