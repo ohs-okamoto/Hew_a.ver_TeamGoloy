@@ -329,7 +329,7 @@ private:
 
 	bool damage5 = false;
 	
-
+	bool wazafg = false;
 
 public:
 	

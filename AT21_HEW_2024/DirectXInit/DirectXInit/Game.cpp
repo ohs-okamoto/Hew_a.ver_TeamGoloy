@@ -189,8 +189,8 @@ void Game::Init(HWND hWnd)
 	//タイトル
 	//====================================================
 	title.Init(L"asset/Main_Rogo.png", 1, 1);//サンタを初期化
-	title.SetPos(250.0f, 150.0f, 0.0f);		//位置を設定
-	title.SetSize(500.0f, 400.0f, 0.f);	//大きさを設定
+	title.SetPos(250.0f, 100.0f, 0.0f);		//位置を設定
+	title.SetSize(650.0f, 550.0f, 0.f);	//大きさを設定
 	title.SetAngle(0.0f);             		//角度を設定
 	title.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
@@ -1283,6 +1283,7 @@ void Game::Update(void) {
 			time = 150;
 			cleartime = 0;
 			changescene = STAGE_2;
+
 			sound.Play(SOUND_LABEL_BGM000);//BGMを再生
 			sound.SetVolume(SOUND_LABEL_BGM000, 0.8f);//もとの音量の80パーセントに設定
 			
@@ -1428,11 +1429,11 @@ void Game::Update(void) {
 		
 
 		// サンタが下に落ちた時に初期位置に戻る処理　ゴロイ
-		if (santa_pos.y == -250.0f)
+	/*	if (santa_pos.y == -250.0f)
 		{
 			santa_pos.x = -400.0f;
 			santa_pos.y = -175.0f;
-		}
+		}*/
 
 
 		framcount2++;
@@ -1500,6 +1501,13 @@ void Game::Update(void) {
 					changescene = TITLE;
 					//初期化
 					santa_pos.x = -400;
+					santa_pos.y = -175;
+
+					santa_huro_pos.x = -400;
+					santa_huro_pos.y = -175;
+
+					santa_kin_pos.x = -400;
+					santa_kin_pos.y = -175;
 
 					attackhit = false;
 
@@ -1567,7 +1575,10 @@ void Game::Update(void) {
 			time--;
 
 		}
-		if (time <= 0&& gameoverFg == false)//タイムオーバーになったら
+
+		
+
+		if (time <= 0&& gameoverFg == false|| santa_pos.y < -420 && !gameoverFg)//タイムオーバーになったら
 		{
 			gameoverFg = true;
 			sound.Play(SOUND_LABEL_BGM001);//BGMを再生
@@ -1597,7 +1608,15 @@ void Game::Update(void) {
 					presentcount = 0;
 					time = 150;
 					cleartime = 0;
+
 					santa_pos.x = -400;
+					santa_pos.y = -175;
+
+					santa_huro_pos.x = -400;
+					santa_huro_pos.y = -175;
+
+					santa_kin_pos.x = -400;
+					santa_kin_pos.y = -175;
 
 					mounten_pos1.x = 0;
 					mounten_pos2.x = 1280;
@@ -1676,6 +1695,13 @@ void Game::Update(void) {
 					time = 150;
 					cleartime = 0;
 					santa_pos.x = -400;
+					santa_pos.y = -175;
+
+					santa_huro_pos.x = -400;
+					santa_huro_pos.y = -175;
+
+					santa_kin_pos.x = -400;
+					santa_kin_pos.y = -175;
 
 					mounten_pos1.x = 0;
 					mounten_pos2.x = 1280;
@@ -1884,6 +1910,7 @@ void Game::Update(void) {
 		{
 			santa_bug = 2;
 		}
+		
 		
 
 		santa_pos1.x = santa_pos.x;
@@ -4650,7 +4677,7 @@ void Game::Update(void) {
 
 
 			// 固有能力発動！！！！！！！
-			if (bugPower >= 0 && input.GetKeyTrigger(VK_Q)&&glideFg==false|| bugPower >= 0 && input.GetButtonTrigger(XINPUT_X) && glideFg == false) { // 袋が空っぽの時
+			if (bugPower > 0 && input.GetKeyTrigger(VK_Q)&&glideFg==false && !wazafg || bugPower > 0 && input.GetButtonTrigger(XINPUT_X) && glideFg == false && !wazafg) { // 袋が空っぽの時
 				
 				santaImage = 15;
 				if (changeRight_SP == true)
@@ -4676,20 +4703,27 @@ void Game::Update(void) {
 						changeRight_SP = true;
 						santaImage = 15;
 						ui = true;
-
 					}
 				}
 
 			}
-			if (ui==true&&glideFg==false)
+			//風呂敷の中身あるときの能力
+			if (ui==true&&glideFg==false&&bugPower!=0&& !wazafg)
 			{
 				santa_huro_pos.y += 20;
-				if (santa_huro_pos1.y >= 200&&glideFg==false)
+				if (santa_huro_pos1.y >= 200 && glideFg == false)
 				{
 					ui = false;
+					wazafg = true;
 				}
 			}
-
+			if (wazafg)
+			{
+				if (santa_huro_pos1.y <= -140)
+				{
+					wazafg = false;
+				}
+			}
 			
 
 			// 右移動
