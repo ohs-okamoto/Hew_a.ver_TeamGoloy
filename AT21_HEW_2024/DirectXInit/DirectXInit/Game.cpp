@@ -177,7 +177,7 @@ void Game::Init(HWND hWnd)
 
 	kintyaku[1].Init(L"asset/Kintyaku_Pack_SP.png", 1, 2);//サンタを初期化
 	kintyaku[1].SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
-	kintyaku[1].SetSize(100.0f, 120.0f, 0.f);	//大きさを設定
+	kintyaku[1].SetSize(100.0f, 50.0f, 0.f);	//大きさを設定
 	kintyaku[1].SetAngle(0.0f);
 
 	himo.Init(L"asset/Kintyaku_Himo.png",1,1);//サンタを初期化
@@ -6050,21 +6050,54 @@ void Game::Update(void) {
 				speed = 5;
 
 				// 固有能力発動！！！！！！！
-				if (bugPower >= 0 && sp_ani == false && input.GetKeyPress(VK_Q)
-					|| input.GetButtonTrigger(XINPUT_X) && bugPower >= 0 && sp_ani == false) { // 袋が空っぽの時
+				if (sp_ani == false && input.GetKeyPress(VK_Q)
+					|| input.GetButtonTrigger(XINPUT_X) && sp_ani == false) { 
 
-					kintyaku_pos.x = santa_kin_pos.x;
-					kintyaku_pos.y = santa_kin_pos.y - 25.0f;;
-					kintyaku_pos1.x = santa_kin_pos.x;
-					kintyaku_pos1.y = santa_kin_pos.y;
-					himo_pos.x = santa_kin_pos.x+40;
-					himo_pos.y = santa_kin_pos.y;
+					if (bugPower > 0) { //  袋に中身がある場合
+
+						if (direction == 0) { // 右向き
+							kintyaku_pos1.x = santa_kin_pos.x;
+							kintyaku_pos1.y = santa_kin_pos.y - 25.0f;
+							himo_pos.x = santa_kin_pos.x + 40;
+							himo_pos.y = santa_kin_pos.y;
+						}
+						else if (direction == 1) { // 左向き
+							kintyaku_pos1.x = santa_kin_pos.x;
+							kintyaku_pos1.y = santa_kin_pos.y - 25.0f;
+							himo_pos.x = santa_kin_pos.x - 40;
+							himo_pos.y = santa_kin_pos.y;
+						}
+
+						sp_ani = true;
+						kintyaku_go1 = true;
+
+					}
+					else if (bugPower == 0) { // 袋が空っぽの時
+
+						if (direction == 0) { // 右向き
+							kintyaku_pos.x = santa_kin_pos.x;
+							kintyaku_pos.y = santa_kin_pos.y - 25.0f;
+							himo_pos.x = santa_kin_pos.x + 40;
+							himo_pos.y = santa_kin_pos.y;
+						}
+						else if (direction == 1) { // 左向き
+							kintyaku_pos.x = santa_kin_pos.x;
+							kintyaku_pos.y = santa_kin_pos.y - 25.0f;
+							himo_pos.x = santa_kin_pos.x - 40;
+							himo_pos.y = santa_kin_pos.y;
+						}
+
+						sp_ani = true;
+						kintyaku_go = true;
+
+
+						
+					}
 
 					
-
-					sp_ani = true;
-					kintyaku_go = true;
 				}
+				
+				
 
 
 				//	巾着のアニメーション関係
@@ -6073,9 +6106,15 @@ void Game::Update(void) {
 				
 					if (direction == 0) // もし右向きなら
 					{
-						kintyaku[0].numU = 0;
-						kintyaku[0].numV = 0;
-
+						if (bugPower == 0) {
+							kintyaku[0].numU = 0;
+							kintyaku[0].numV = 0;
+						}
+						else if(bugPower > 0) {
+							kintyaku[1].numU = 0;
+							kintyaku[1].numV = 0;
+						}
+						
 						if (changeRight_SP == true)
 						{
 							if (ani_stop == true) { // ここでアニメーションを固定する
@@ -6115,9 +6154,14 @@ void Game::Update(void) {
 					}
 					else if (direction == 1) // 左向き
 					{
-
-						kintyaku[0].numU = 0;
-						kintyaku[0].numV = 1;
+						if (bugPower <= 0) {
+							kintyaku[0].numU = 0;
+							kintyaku[0].numV = 1;
+						}
+						else if (bugPower >= 0) {
+							kintyaku[1].numU = 0;
+							kintyaku[1].numV = 1;
+						}
 
 						if (changeLeft_SP == true)
 
@@ -6128,6 +6172,7 @@ void Game::Update(void) {
 							}
 							else if (ani_stop == false) {
 								//初期化
+								santaImage = 23;
 								santa_Kin[6].numU = 0;
 								santa_Kin[6].numV = 1;
 							}
@@ -6154,7 +6199,7 @@ void Game::Update(void) {
 
 				}
 
-				// 巾着袋の移動
+				// 巾着袋の移動 (中身なし)
 				if (kintyaku_go == true) {
 
 					if (direction == 0) { // 右向き
@@ -6197,26 +6242,26 @@ void Game::Update(void) {
 					}
 				else if (direction == 1) { // 右向き
 
-						if (kintyaku_Fg1== true) { // 袋が自分のとこに戻る処理
+						if (kintyaku_Fg== true) { // 袋が自分のとこに戻る処理
 
 							get_Kintyaku += 15.0f;
 							kintyaku_pos.x += 15.0f;
 
 							himo_pos.x += 6.5f;
-							himo_size.x += 13.0f;
+							himo_size.x += -13.0f;
 						}
 						else {                     // 袋を飛ばす処理
 							get_Kintyaku -= 15.0f;
 							kintyaku_pos.x += -15.0f;
 
-							himo_pos.x += -6.5f;
-							himo_size.x += -13.0f;
+							himo_pos.x -= 6.5f;
+							himo_size.x += 13.0f;
 						}
 
-						if (get_Kintyaku <= -300.0f && kintyaku_Fg1 == false) { // 袋が最大距離まで移動した場合
-							kintyaku_Fg1 = true;
+						if (get_Kintyaku <= -300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+							kintyaku_Fg = true;
 						}
-						else if (get_Kintyaku >= 0.0f && kintyaku_Fg1 == true) { // 袋が自分の元に戻った時の処理
+						else if (get_Kintyaku >= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
 							changeLeft_SP = true;
 							santaImage = 17;
 							santa_Kin[6].numU = 0;
@@ -6226,11 +6271,87 @@ void Game::Update(void) {
 							himo_size.x = 10.0f;
 
 							get_Kintyaku = 0.0f;
-							kintyaku_Fg1 = false;
+							kintyaku_Fg = false;
 						}
 					}
 					
 				}
+
+				// 巾着袋の移動 (中身あり）
+				if (kintyaku_go1 == true) {
+
+					if (direction == 0) { // 右向き
+
+						if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+							get_Kintyaku -= 15.0f;
+							kintyaku_pos1.x -= 15.0f;
+
+							himo_pos.x -= 6.5f;
+							himo_size.x -= 13.0f;
+						}
+						else {                     // 袋を飛ばす処理
+							get_Kintyaku += 15.0f;
+							kintyaku_pos1.x += 15.0f;
+
+							himo_pos.x += 6.5f;
+							himo_size.x += 13.0f;
+						}
+
+						if (get_Kintyaku >= 300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+							kintyaku_Fg = true;
+						}
+						else if (get_Kintyaku <= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+							changeRight_SP = true;
+							santaImage = 17;
+							santa_Kin[6].numU = 0;
+							sp_ani = false;
+							kintyaku_go1 = false;
+							ani_stop = false;
+							himo_size.x = 10.0f;
+
+							get_Kintyaku = 0.0f;
+							kintyaku_Fg = false;
+						}
+					}
+					else if (direction == 1) { // 右向き
+
+						if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+							get_Kintyaku += 15.0f;
+							kintyaku_pos1.x += 15.0f;
+
+							himo_pos.x += 6.5f;
+							himo_size.x += -13.0f;
+						}
+						else {                     // 袋を飛ばす処理
+							get_Kintyaku -= 15.0f;
+							kintyaku_pos1.x += -15.0f;
+
+							himo_pos.x -= 6.5f;
+							himo_size.x += 13.0f;
+						}
+
+						if (get_Kintyaku <= -300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+							kintyaku_Fg = true;
+						}
+						else if (get_Kintyaku >= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+							changeLeft_SP = true;
+							santaImage = 17;
+							santa_Kin[6].numU = 0;
+							sp_ani = false;
+							kintyaku_go1 = false;
+							ani_stop = false;
+							himo_size.x = 10.0f;
+
+							get_Kintyaku = 0.0f;
+							kintyaku_Fg = false;
+						}
+					}
+
+				}
+
+
 
 				//　巾着袋と木の当たり判定
 				if (collision.square_square(kintyaku[0], tree)==true ) {
@@ -8990,11 +9111,11 @@ void Game::Draw(void)
 		
 
 		// 巾着袋の袋と紐
-		if (sp_ani == true && kintyaku_go==true) {
+		if (sp_ani == true && kintyaku_go==true || sp_ani == true && kintyaku_go1 == true) {
 			himo.Draw();
 		}
 
-		if (sp_ani == true && kintyaku_go == true) {
+		if (sp_ani == true && kintyaku_go == true || sp_ani == true && kintyaku_go1) {
 			if (bugPower == 0) {
 				kintyaku[0].Draw();
 			}
