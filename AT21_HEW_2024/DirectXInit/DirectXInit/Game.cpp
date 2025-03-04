@@ -1111,7 +1111,8 @@ void Game::Update(void) {
 		if (pos.x == 0)    { select = 2; }//ステージ２
 		if (pos.x == 430)  { select = 3; }//ボス
 
-		if (select !=3&&input.GetKeyTrigger(VK_D) || select != 3 && input.GetLeftAnalogStick().x >= 0.5&& Select_MoverightFg == false && Select_MoveleftFg == false)
+		if (input.GetKeyTrigger(VK_M)) { pos.x = -430; }
+		if (select !=3&&input.GetKeyTrigger(VK_D) && Select_MoverightFg == false && Select_MoveleftFg == false || select != 3 && input.GetLeftAnalogStick().x >= 0.5&& Select_MoverightFg == false && Select_MoveleftFg == false)
 		{
 			Select_MoverightFg = true;
 			//sound.Play(SOUND_LABEL_SE005);
@@ -1121,7 +1122,7 @@ void Game::Update(void) {
 			SantaCursor.numV = 0;
 			StopCheck = false;
 		}
-		if (select != 1&&input.GetKeyTrigger(VK_A) || select != 1 && input.GetLeftAnalogStick().x <= -0.5 && Select_MoveleftFg == false && Select_MoverightFg == false)
+		if (select != 1&&input.GetKeyTrigger(VK_A) && Select_MoveleftFg == false && Select_MoverightFg == false || select != 1 && input.GetLeftAnalogStick().x <= -0.5 && Select_MoveleftFg == false && Select_MoverightFg == false)
 		{
 			Select_MoveleftFg = true;
 			//がぞうを左向きに変更
@@ -5321,6 +5322,15 @@ void Game::Update(void) {
 						mounten_pos2.x = 1280;
 						mounten_pos3.x = 2560;
 
+						santa_pos.x = -400;
+						santa_pos.y = -175;
+
+						santa_huro_pos.x = -400;
+						santa_huro_pos.y = -175;
+
+						santa_kin_pos.x = -400;
+						santa_kin_pos.y = -175;
+
 						wood_pos1.x = 0;
 						wood_pos2.x = 1280;
 						wood_pos3.x = 2560;
@@ -5937,29 +5947,6 @@ void Game::Update(void) {
 					jump_now = true;
 				}
 
-				// 落下
-				/*if (OnGround == false && jump_now == false) {
- 					jumpVelocity = 0.0f;
-					falling = true;
-				}*/
-
-				// 落下処理
-				//if (falling == true) {
-				//	// 速度を適用してY座標を更新
-				//	santa_kin_pos.y += jumpVelocity;
-				//	// 重力を速度に適用
-				//	jumpVelocity += gravity;
-
-				//	// 地面に達した場合
-				//	if (santa_pos.y <= groundY && falling == true) {
-				//		santa_pos.y = groundY;
-				//		falling = false; // ジャンプ中フラグをリセット
-				//		jumpVelocity = 0.0f; // ジャンプ速度リセット
-				//		OnGround = true;
-				//		
-				//	}
-				//}
-
 				// ジャンプ処理
 				if (jump_now == true) {
 					// 速度を適用してY座標を更新
@@ -5995,70 +5982,6 @@ void Game::Update(void) {
 					//}
 				}
 
-
-
-				// ジャンプ
-				//if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
-				//	if (direction == 0) { // 右向き
-				//		if (bugPower == 0) {
-				//			santaImage = 19;
-				//			jump = 1;
-				//			santa_Kin[2].numU = 0;
-				//			santa_Kin[2].numV = 0;
-				//		}
-				//		else if (bugPower > 0) {
-				//			santaImage = 20;
-				//			jump = 2;
-				//			santa_Kin[3].numU = 0;
-				//			santa_Kin[3].numV = 0;
-				//		}
-				//	}
-				//	else if (direction == 1) { // 右向き
-				//		if (bugPower == 0) {
-				//			santaImage = 19;
-				//			jump = 1;
-				//			santa_Kin[2].numU = 0;
-				//			santa_Kin[2].numV = 1;
-				//		}
-				//		else if (bugPower > 0) {
-				//			santaImage = 20;
-				//			jump = 2;
-				//			santa_Kin[3].numU = 0;
-				//			santa_Kin[3].numV = 1;
-				//		}
-				//	}
-
-				//}
-
-
-			
-				//ジャンプ処理
-				/*if (jump == 1 || jump == 2) {
-
-					if (santa_pos.y >= get_jump_old + 175.0f && jump == 1 || santa_kin_pos.y >= get_jump_old + 175.0f && jump == 2) {
-						jump = 3;
-					}
-					else if (santa_pos.y <= get_jump_old + 175.0f && jump == 1 || santa_kin_pos.y <= get_jump_old + 175.0f && jump == 2) {
-						santa_kin_pos.y += 7.50;
-					}
-
-				}
-				if (jump == 3) {
-					santa_kin_pos.y -= 2.50f;
-					if (collision.ground_santa(ground[1], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.ground_santa(ground[2], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.ground_santa(ground[3], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.ground_santa(ground[4], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.ground_santa(ground[5], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[1], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[2], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[3], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[4], santa_Kin[0], 50.0f, 0.0f) == true)
-					{
-						jump = 0;
-					}
-
-				}*/
 
 
 				// 木との当たり判定の追加　ゴロイ
@@ -7102,63 +7025,7 @@ void Game::Update(void) {
 					pauseFg = false;
 				}
 			}
-			//if (cursor1_pos.y == 0)
-			//{
-			//	if (input.GetKeyTrigger(VK_S) || input.GetLeftAnalogStick().y < -0.5)
-			//	{
-			//		cursor1_pos.y = -100;
-			//	}
-			//	if (input.GetKeyTrigger(VK_W) || input.GetLeftAnalogStick().y >0.5)
-			//	{
-			//		cursor1_pos.y = 100;
-			//		cursor1_pos.x = 250;
-			//	}
-			//	//キー入力
-			//	if (input.GetKeyTrigger(VK_RETURN) || input.GetButtonTrigger(XINPUT_B))
-			//	{
-			//		changescene = STAGE1_LOADING;
-			//		
-			//		//初期化
-			//		santa_pos.x = -400;
-
-			//		mounten_pos1.x = 0;
-			//		mounten_pos2.x = 1280;
-			//		mounten_pos3.x = 2560;
-
-			//		wood_pos1.x = 0;
-			//		wood_pos2.x = 1280;
-			//		wood_pos3.x = 2560;
-			//		rock_pos1.x = -250;
-			//		rock_pos2.x = 300;
-			//		rock_pos3.x = 1100;
-			//		rock_pos4.x = 1100;
-			//		rock_pos5.x = 2300;
-			//		rock_pos6.x = 4400;
-			//		snowball_pos1.x = 1500;
-			//		snowball_pos2.x = 2900;
-			//		snowball_pos3.x = 4000;
-			//		ground_pos1.x = 0;
-			//		ground_pos2.x = 1300;
-			//		ground_pos3.x = 3100;
-			//		ground_pos4.x = 4500;
-			//		ground_pos5.x = 5300;
-			//		stairs_pos1.x = 540;
-			//		stairs_pos2.x = 565;
-			//		stairs_pos3.x = 600;
-			//		stairs_pos4.x = 2800;
-			//		snowman_pos1.x = 30;
-			//		snowman_pos2.x = 1400;
-			//		snowman_pos3.x = 2700;
-			//		bigpresent_pos1.x = 5400;
-			//		star_monster_pos.x = 4800;
-			//		tonakai_pos.x = 3600;
-			//		present_pos1.x = 800;
-			//		present_pos2.x = 2800;
-			//		present_pos3.x = 4500;
-			//		tree_pos.x = 1900;
-			//		goal_pos.x = 5800;
-			//	}
-			//}
+			
 			if (cursor1_pos.y == -100)
 			{
 				if (input.GetKeyTrigger(VK_W) || input.GetLeftAnalogStick().y > 0.5)
