@@ -5322,6 +5322,15 @@ void Game::Update(void) {
 						mounten_pos2.x = 1280;
 						mounten_pos3.x = 2560;
 
+						santa_pos.x = -400;
+						santa_pos.y = -175;
+
+						santa_huro_pos.x = -400;
+						santa_huro_pos.y = -175;
+
+						santa_kin_pos.x = -400;
+						santa_kin_pos.y = -175;
+
 						wood_pos1.x = 0;
 						wood_pos2.x = 1280;
 						wood_pos3.x = 2560;
