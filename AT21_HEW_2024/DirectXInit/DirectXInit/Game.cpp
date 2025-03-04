@@ -6199,22 +6199,22 @@ void Game::Update(void) {
 
 						if (kintyaku_Fg1== true) { // ‘Ü‚ª©•ª‚Ì‚Æ‚±‚É–ß‚éˆ—
 
-							get_Kintyaku -= 15.0f;
+							get_Kintyaku += 15.0f;
 							kintyaku_pos.x += 15.0f;
 
 							himo_pos.x += 6.5f;
 							himo_size.x += 13.0f;
 						}
 						else {                     // ‘Ü‚ğ”ò‚Î‚·ˆ—
-							get_Kintyaku += 15.0f;
+							get_Kintyaku -= 15.0f;
 							kintyaku_pos.x += -15.0f;
 
 							himo_pos.x += -6.5f;
 							himo_size.x += -13.0f;
 						}
 
-						if (get_Kintyaku <= 300.0f && kintyaku_Fg1 == false) { // ‘Ü‚ªÅ‘å‹——£‚Ü‚ÅˆÚ“®‚µ‚½ê‡
-							kintyaku_Fg = true;
+						if (get_Kintyaku <= -300.0f && kintyaku_Fg1 == false) { // ‘Ü‚ªÅ‘å‹——£‚Ü‚ÅˆÚ“®‚µ‚½ê‡
+							kintyaku_Fg1 = true;
 						}
 						else if (get_Kintyaku >= 0.0f && kintyaku_Fg1 == true) { // ‘Ü‚ª©•ª‚ÌŒ³‚É–ß‚Á‚½‚Ìˆ—
 							changeLeft_SP = true;
