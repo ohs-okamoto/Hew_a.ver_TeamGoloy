@@ -277,12 +277,14 @@ private:
 
 	// ‹Ğ’…‘Ü
 	bool kintyaku_go = false;
+	bool kintyaku_go1 = false;
 	float kintyaku_long = 40.0f;
 	float himo_long = 20.1f;
 	float himo_big = 20.0f;
 
 	float get_Kintyaku = 0.0f; // ‹Ğ’…‘Ü‚ªˆÚ“®‚·‚é‚½‚Ñ‚É’Ç‰Á‚³‚ê‚é’l‚ğ’~Ï‚·‚é‚à‚ÌB‚±‚ê‚ÅˆÚ“®‹——£‚ğ§ŒÀ‚·‚éB
 	bool kintyaku_Fg = false;
+	bool kintyaku_Fg1 = false;
 
 	int tree_Ground = 1;
 

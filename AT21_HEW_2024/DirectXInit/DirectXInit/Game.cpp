@@ -5981,7 +5981,7 @@ void Game::Update(void) {
 					       
 					// 地面に達した場合
 					if (santa_pos.y <= groundY && jump_now==true) {
- 						santa_pos.y = groundY;
+ 						/*santa_pos.y = groundY;*/
 						jump_now = false; // ジャンプ中フラグをリセット
 						jumpVelocity = 0.0f; // ジャンプ速度リセット
 						OnGround = true;
@@ -6234,24 +6234,6 @@ void Game::Update(void) {
 				// 巾着袋の移動
 				if (kintyaku_go == true) {
 
-					if (kintyaku_Fg == true) {
-
-						get_Kintyaku -= 15.0f;
-						kintyaku_pos.x -= 15.0f;
-
-						himo_pos.x -= 6.5f;
-						himo_size.x -= 13.0f;
-					}
-					else {
-						get_Kintyaku += 15.0f;
-						kintyaku_pos.x += 15.0f;
-
-						himo_pos.x += 6.5f;
-						himo_size.x += 13.0f;
-					}
-					
-
-
 					if (direction == 0) { // 右向き
 
 						if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
@@ -6290,9 +6272,9 @@ void Game::Update(void) {
 							kintyaku_Fg = false;
 						}
 					}
-					else if (direction == 1) { // 右向き
+				else if (direction == 1) { // 右向き
 
-						if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+						if (kintyaku_Fg1== true) { // 袋が自分のとこに戻る処理
 
 							get_Kintyaku -= 15.0f;
 							kintyaku_pos.x += 15.0f;
@@ -6308,10 +6290,10 @@ void Game::Update(void) {
 							himo_size.x += -13.0f;
 						}
 
-						if (get_Kintyaku <= 300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+						if (get_Kintyaku <= 300.0f && kintyaku_Fg1 == false) { // 袋が最大距離まで移動した場合
 							kintyaku_Fg = true;
 						}
-						else if (get_Kintyaku >= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+						else if (get_Kintyaku >= 0.0f && kintyaku_Fg1 == true) { // 袋が自分の元に戻った時の処理
 							changeLeft_SP = true;
 							santaImage = 17;
 							santa_Kin[6].numU = 0;
@@ -6321,7 +6303,7 @@ void Game::Update(void) {
 							himo_size.x = 10.0f;
 
 							get_Kintyaku = 0.0f;
-							kintyaku_Fg = false;
+							kintyaku_Fg1 = false;
 						}
 					}
 					
@@ -9141,11 +9123,11 @@ void Game::Draw(void)
 		
 
 		// 巾着袋の袋と紐
-		if (sp_ani == true) {
+		if (sp_ani == true && kintyaku_go==true) {
 			himo.Draw();
 		}
 
-		if (sp_ani == true) {
+		if (sp_ani == true && kintyaku_go == true) {
 			if (bugPower == 0) {
 				kintyaku[0].Draw();
 			}
