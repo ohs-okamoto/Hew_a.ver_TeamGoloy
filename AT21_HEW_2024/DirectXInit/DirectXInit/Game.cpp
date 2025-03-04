@@ -6059,10 +6059,11 @@ void Game::Update(void) {
 						collision.ground_santa(ground[3], santa_Kin[0], 50.0f, 0.0f) == true ||
 						collision.ground_santa(ground[4], santa_Kin[0], 50.0f, 0.0f) == true ||
 						collision.ground_santa(ground[5], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[1], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[2], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[3], santa_Kin[0], 50.0f, 0.0f) == true ||
-						collision.block_santa(stairs[4], santa_Kin[0], 50.0f, 0.0f) == true)
+						collision.block_santa(stairs[1], santa_Kin[0], 100.0f, 0.0f) == true ||
+						collision.block_santa(stairs[2], santa_Kin[0], 100.0f, 0.0f) == true ||
+						collision.block_santa(stairs[3], santa_Kin[0], 100.0f, 0.0f) == true ||
+						collision.block_santa(stairs[4], santa_Kin[0], 100.0f, 0.0f) == true||
+						collision.tree_santa(tree, santa_Kin[0], 1000.0f, 0.0f) == true)
 					{
 						jump = 0;
 						jumpVelocity = 0.0f;
@@ -6074,14 +6075,21 @@ void Game::Update(void) {
 				// 木との当たり判定の追加　ゴロイ
 				if (collision.tree_santa(tree, santa_Kin[0], 200.0f, 0.0f))
 				{
-
-					//// サンタが木の右側にぶつかった場合
-					if (santa_kin_pos.x < tree_pos.x)
-					{
-
-						collision.canMoveRight = false; // 右に移動中なら移動を停止
-
+					if (tree_Ground == 3) {
+						if (santa_kin_pos.y >= tree_pos.y) {
+							jumpVelocity = 0.0f;
+						}
 					}
+					else {
+						//// サンタが木の右側にぶつかった場合
+						if (santa_kin_pos.x < tree_pos.x)
+						{
+
+							collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+						}
+					}
+					
 
 				}
 				// サンタが木の左側にぶつかった場合
@@ -6450,12 +6458,12 @@ void Game::Update(void) {
 					}
 					
 					if (tree_Fg == true) {
-						tree_angle = 90.0f;
-						tree_pos.y = tree_y + (-180.0f);
+						tree_angle = 80.0f;
+						tree_pos.y = tree_y + (-130.0f);
 						tree_pos.x = tree_x + (-170.0f);
 						tree_Fg = false;
 					}
-					if (tree_angle == 90.0f) {
+					if (tree_angle == 80.0f) {
 						tree_Ground = 3;
 						/*tree_pos.y = tree_x + 10;*/
 
