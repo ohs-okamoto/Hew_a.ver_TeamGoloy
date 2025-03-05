@@ -14489,6 +14489,8 @@ void Game::Update(void) {
 					collision.ground_santa(Ground_Stge2[3], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[4], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[5], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[6], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[7], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[1], santa_Huro[0], 100.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[2], santa_Huro[0], 100.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[3], santa_Huro[0], 100.0f, 0.0f) == true ||
