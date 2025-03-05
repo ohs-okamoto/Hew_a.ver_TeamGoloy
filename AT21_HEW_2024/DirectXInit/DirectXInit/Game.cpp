@@ -669,9 +669,9 @@ void Game::Init(HWND hWnd)
 	BigPresent_Stage2[1].SetAngle(0.0f);//Šp“xÝ’è
 
 	//‰ó‚¹‚éŠâ
-	Breakrock_Stge2[1].Init(L"asset/iwa_yuki.png", 1, 1);//ƒvƒŒƒ[ƒ“ƒg
+	Breakrock_Stge2[1].Init(L"asset/iwa_yuki2.png", 1, 1);//ƒvƒŒƒ[ƒ“ƒg
 	Breakrock_Stge2[1].SetPos(4450.0f, -250.0f, 0.0f);////ˆÊ’u‚ð“Á’è
-	Breakrock_Stge2[1].SetSize(350.0f, 300.0f, 0.0f);//‘å‚«‚³Ý’è
+	Breakrock_Stge2[1].SetSize(300.0f, 200.0f, 0.0f);//‘å‚«‚³Ý’è
 	Breakrock_Stge2[1].SetAngle(0.0f);//Šp“xÝ’è
 
 	Breakmoji.Init(L"asset/Break2_another.png", 1, 1);//ƒvƒŒƒ[ƒ“ƒg
@@ -824,8 +824,43 @@ void Game::Init(HWND hWnd)
 	damage.Init(L"asset/damage5.png", 1, 1);//‚ð‰Šú‰»
 	damage.SetPos(100.0f, 330.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
 	damage.SetSize(70.0f, 70.0f, 0.f);     //‘å‚«‚³Ý’è
-	damage.SetAngle(-20.0f);//Šp“x‚ðÝ’è	
+	damage.SetAngle(-20.0f);//Šp“x‚ðÝ’è
 
+	UseBag.Init(L"asset/UseBag_v2.png", 1, 1);//‚ð‰Šú‰»
+	UseBag.SetPos(500.0f, 290.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	UseBag.SetSize(300.0f, 150.0f, 0.f);     //‘å‚«‚³Ý’è
+	UseBag.SetAngle(0.0f);//Šp“x‚ðÝ’è
+
+	normalUI.Init(L"asset/Normal.png", 1, 1);//‚ð‰Šú‰»
+	normalUI.SetPos(400.0f, 290.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	normalUI.SetSize(100.0f, 100.0f, 0.f);     //‘å‚«‚³Ý’è
+	normalUI.SetAngle(0.0f);//Šp“x‚ðÝ’è
+
+	hurosikilUI.Init(L"asset/HuroshikiUI.png", 1, 1);//‚ð‰Šú‰»
+	hurosikilUI.SetPos(400.0f, 290.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	hurosikilUI.SetSize(100.0f, 100.0f, 0.f);     //‘å‚«‚³Ý’è
+	hurosikilUI.SetAngle(0.0f);//Šp“x‚ðÝ’è
+
+	kintyakuUI.Init(L"asset/KintyakuUI.png", 1, 1);//‚ð‰Šú‰»
+	kintyakuUI.SetPos(400.0f, 290.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	kintyakuUI.SetSize(100.0f, 100.0f, 0.f);     //‘å‚«‚³Ý’è
+	kintyakuUI.SetAngle(0.0f);//Šp“x‚ðÝ’è
+
+
+	normalmoji.Init(L"asset/hukuro_v2.png", 1, 1);//‚ð‰Šú‰»
+	normalmoji.SetPos(530.0f, 270.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	normalmoji.SetSize(120.0f, 70.0f, 0.f);     //‘å‚«‚³Ý’è
+	normalmoji.SetAngle(0.0f);//Šp“x‚ðÝ’è
+
+	hurosikimoji.Init(L"asset/huroshiki_v2.png", 1, 1);//‚ð‰Šú‰»
+	hurosikimoji.SetPos(530.0f, 270.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	hurosikimoji.SetSize(120.0f, 70.0f, 0.f);     //‘å‚«‚³Ý’è
+	hurosikimoji.SetAngle(0.0f);//Šp“x‚ðÝ’è
+
+	kintyakumoji.Init(L"asset/kintyaku_v2.png", 1, 1);//‚ð‰Šú‰»
+	kintyakumoji.SetPos(530.0f, 270.0f, 0.0f);         //ˆÊ’u‚ðÝ’è
+	kintyakumoji.SetSize(120.0f, 70.0f, 0.f);     //‘å‚«‚³Ý’è
+	kintyakumoji.SetAngle(0.0f);//Šp“x‚ðÝ’è
 
 	//====================================================
 	//“Š‚°•¨
@@ -9788,16 +9823,28 @@ void Game::Update(void) {
 			}
 			if (rocklive)
 			{
-				if (collision.tree_santa(Breakrock_Stge2[1], santa_Huro[0], 200.0f, 50.0f))
+				if (collision.tree_santa(Breakrock_Stge2[1], santa_Huro[0], 200.0f, 0.0f))
 				{
 
+					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
+						
+						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+						/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+						tachFg = true;
+					}
+					else {
+						tachFg = false;
+						/*std::cout << "\nSanta is falling." << std::endl;*/
+					}
+
 					//// ƒTƒ“ƒ^‚ª–Ø‚Ì‰E‘¤‚É‚Ô‚Â‚©‚Á‚½ê‡
-					if (santa_huro_pos.x < breakrock_pos1.x)
+					if (santa_huro_pos.x < breakrock_pos1.x&& tachFg == false)
 					{
+
 						collision.canMoveRight = false; // ‰E‚ÉˆÚ“®’†‚È‚çˆÚ“®‚ð’âŽ~
 					}
 					// ƒTƒ“ƒ^‚ª–Ø‚Ì¶‘¤‚É‚Ô‚Â‚©‚Á‚½ê‡
-					if (santa_huro_pos.x > breakrock_pos1.x)
+					if (santa_huro_pos.x > breakrock_pos1.x && tachFg == false)
 					{
 
 						collision.canMoveLeft = false; // ¶‚ÉˆÚ“®’†‚È‚çˆÚ“®‚ð’âŽ~
@@ -11836,6 +11883,8 @@ void Game::Draw(void)
 			particle.Draw();
 		}
 		
+		
+
 
 		// ‹Ð’…‘Ü‚Ì‘Ü‚Æ•R
 		if (sp_ani == true && kintyaku_go==true || sp_ani == true && kintyaku_go1 == true) {
@@ -11958,7 +12007,24 @@ void Game::Draw(void)
 		} while (time >= (int)pow(10, keta2));
 		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
 
-		
+		UseBag.Draw();
+		if (santa_bug == 0)
+		{
+			normalUI.Draw();
+			normalmoji.Draw();
+		}
+
+		if (santa_bug == 1)
+		{
+			hurosikilUI.Draw();
+			hurosikimoji.Draw();
+		}
+
+		if (santa_bug == 2)
+		{
+			kintyakuUI.Draw();
+			kintyakumoji.Draw();
+		}
 		if (gameoverFg == true)
 		{
 			pause.Draw();
@@ -12319,6 +12385,25 @@ void Game::Draw(void)
 			keta2++;
 		} while (time >= (int)pow(10, keta2));
 		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
+
+		UseBag.Draw();
+		if (santa_bug == 0)
+		{
+			normalUI.Draw();
+			normalmoji.Draw();
+		}
+
+		if (santa_bug == 1)
+		{
+			hurosikilUI.Draw();
+			hurosikimoji.Draw();
+		}
+
+		if (santa_bug == 2)
+		{
+			kintyakuUI.Draw();
+			kintyakumoji.Draw();
+		}
 
 		if (gameoverFg == true)
 		{

@@ -112,6 +112,14 @@ private:
 	Object UseBag;//現在の袋
 	Object ScoreCounter;
 	Object damage;
+	Object normalUI;
+	Object hurosikilUI;
+	Object kintyakuUI;
+	Object normalmoji;
+	Object hurosikimoji;
+	Object kintyakumoji;
+
+
 
 	//ゲームオーバー画面
 	Object Gameover;//背景
@@ -143,6 +151,7 @@ private:
 	bool gameoverFg = false;//ポーズフラグ
 	bool pauseFg = false;//ポーズフラグ
 	bool particleFg=false;
+	bool tachFg = false;
 
 
 	bool changeRight = true;//キャラの
