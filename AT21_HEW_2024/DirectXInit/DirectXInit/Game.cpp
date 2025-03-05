@@ -14948,6 +14948,7 @@ void Game::Update(void) {
 			{
 				if (santa_kin_pos.y > stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -14970,6 +14971,7 @@ void Game::Update(void) {
 			{
 				if (santa_kin_pos.y > stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -14992,6 +14994,7 @@ void Game::Update(void) {
 			{
 				if (santa_kin_pos.y > stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -15014,6 +15017,7 @@ void Game::Update(void) {
 			{
 				if (santa_kin_pos.y > stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -15036,6 +15040,7 @@ void Game::Update(void) {
 			{
 				if (santa_kin_pos.y > stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
