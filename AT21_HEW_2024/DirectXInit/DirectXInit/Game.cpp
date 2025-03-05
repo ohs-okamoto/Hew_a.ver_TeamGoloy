@@ -1298,6 +1298,18 @@ void Game::Update(void) {
 			enemylive9 = true;
 			rocklive = true;
 			santa_bug = 0;
+
+			DirectX::XMFLOAT3 tree_pos = tree.GetPos();
+			float tree_angle = tree.GetAngle();
+			tree_pos.x = 1900;
+			tree_pos.y = -70;
+			tree_angle = 0.0f;
+
+			tree.SetPos(tree_pos.x, tree_pos.y, tree_pos.z);
+			tree.SetAngle(tree_angle);
+			tree_Fg = false;
+			tree_Ground = 2;
+
 			attackhit = false;
 			time = 150;
 			framcount = 0;
@@ -8407,14 +8419,22 @@ void Game::Update(void) {
 			{
 				if (collision.tree_santa(Breakrock_Stge2[1], santa_Nor[0], 200.0f,50.0f))
 				{
+					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
+
+						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
+						tachFg = true;
+					}
+					else {
+						tachFg = false;
+					}
 
 					//// サンタが木の右側にぶつかった場合
-					if (santa_pos.x < breakrock_pos1.x)
+					if (santa_pos.x < breakrock_pos1.x&& tachFg == false)
 					{
 						collision.canMoveRight = false; // 右に移動中なら移動を停止
 					}
 					// サンタが木の左側にぶつかった場合
-					if (santa_pos.x > breakrock_pos1.x)
+					if (santa_pos.x > breakrock_pos1.x && tachFg == false)
 					{
 
 						collision.canMoveLeft = false; // 左に移動中なら移動を停止
@@ -10344,12 +10364,10 @@ void Game::Update(void) {
 					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
 						
 						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
-						/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 						tachFg = true;
 					}
 					else {
 						tachFg = false;
-						/*std::cout << "\nSanta is falling." << std::endl;*/
 					}
 
 					//// サンタが木の右側にぶつかった場合
