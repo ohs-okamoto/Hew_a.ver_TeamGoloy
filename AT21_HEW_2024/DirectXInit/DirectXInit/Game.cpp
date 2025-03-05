@@ -12431,6 +12431,7 @@ void Game::Update(void) {
 			{
 				if (santa_huro_pos.y > stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12454,6 +12455,7 @@ void Game::Update(void) {
 			{
 				if (santa_huro_pos.y > stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12476,6 +12478,7 @@ void Game::Update(void) {
 			{
 				if (santa_huro_pos.y > stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12498,6 +12501,7 @@ void Game::Update(void) {
 			{
 				if (santa_huro_pos.y > stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12520,6 +12524,7 @@ void Game::Update(void) {
 			{
 				if (santa_huro_pos.y > stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12582,6 +12587,8 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > ground_pos1.y + Ground_Stge2[1].GetSize().y / 2.0f) {
 					santa_huro_pos.y = ground_pos1.y + Ground_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12606,6 +12613,7 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > ground_pos2.y + Ground_Stge2[2].GetSize().y / 2.0f) {
 					santa_huro_pos.y = ground_pos2.y + Ground_Stge2[2].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12630,6 +12638,7 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > ground_pos3.y + Ground_Stge2[3].GetSize().y / 2.0f) {
 					santa_huro_pos.y = ground_pos3.y + Ground_Stge2[3].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12654,6 +12663,7 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > ground_pos4.y + Ground_Stge2[4].GetSize().y / 2.0f) {
 					santa_huro_pos.y = ground_pos4.y + Ground_Stge2[4].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12678,6 +12688,7 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > ground_pos5.y+ Ground_Stge2[5].GetSize().y / 2.0f) {
 					santa_huro_pos.y = ground_pos5.y + Ground_Stge2[5].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12702,6 +12713,7 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > ground_pos6.y + Ground_Stge2[6].GetSize().y / 2.0f) {
 					santa_huro_pos.y = ground_pos6.y + Ground_Stge2[6].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12726,6 +12738,7 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > ground_pos7.y + Ground_Stge2[7].GetSize().y / 2.0f) {
 					santa_huro_pos.y = ground_pos7.y + Ground_Stge2[7].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
@@ -12750,6 +12763,7 @@ void Game::Update(void) {
 				//// サンタが地面の上にいる場合
 				if (santa_huro_pos.y > block_pos1.y + Block_Stge2[1].GetSize().y / 2.0f) {
 					santa_huro_pos.y = block_pos1.y + Block_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
