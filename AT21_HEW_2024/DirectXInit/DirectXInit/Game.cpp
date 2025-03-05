@@ -2100,6 +2100,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[2], santa_Nor[0], 100.0f, 0.0f))
@@ -2107,6 +2108,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[3], santa_Nor[0], 100.0f, 0.0f))
@@ -2114,6 +2116,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent[1], santa_Nor[0], 100.0f, 0.0f))
@@ -2121,6 +2124,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 
@@ -3753,6 +3757,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[2], santa_Huro[0], 100.0f, 0.0f))
@@ -3760,6 +3765,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[3], santa_Huro[0], 100.0f, 0.0f))
@@ -3767,6 +3773,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent[1], santa_Huro[0], 100.0f, 0.0f))
@@ -3774,6 +3781,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 
@@ -5159,6 +5167,7 @@ void Game::Update(void) {
 					presentcount += 1;
 					score += 5000;
 					present_pos1.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				if (collision.item_santa(present[2], santa_Kin[0], 100.0f, 0.0f))
@@ -5166,6 +5175,7 @@ void Game::Update(void) {
 					presentcount += 1;
 					score += 5000;
 					present_pos2.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				if (collision.item_santa(present[3], santa_Kin[0], 100.0f, 0.0f))
@@ -5173,6 +5183,7 @@ void Game::Update(void) {
 					presentcount += 1;
 					score += 5000;
 					present_pos3.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				if (collision.item_santa(BigPresent[1], santa_Kin[0], 100.0f, 0.0f))
@@ -5180,6 +5191,7 @@ void Game::Update(void) {
 					bigpresentcount += 1;
 					score += 10000;
 					bigpresent_pos1.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				
@@ -8643,6 +8655,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[2], santa_Nor[0], 100.0f, 0.0f))
@@ -8650,6 +8663,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[3], santa_Nor[0], 100.0f, 0.0f))
@@ -8657,6 +8671,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent_Stage2[1], santa_Nor[0], 100.0f, 0.0f))
@@ -8664,6 +8679,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 			// 地面との当たり判定の追加 ゴロイ
 
@@ -10587,6 +10603,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[2], santa_Huro[0], 100.0f, 0.0f))
@@ -10594,6 +10611,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[3], santa_Huro[0], 100.0f, 0.0f))
@@ -10601,6 +10619,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent_Stage2[1], santa_Huro[0], 100.0f, 0.0f))
@@ -10608,6 +10627,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 			// 地面との当たり判定の追加 ゴロイ
 
@@ -11660,6 +11680,7 @@ void Game::Update(void) {
 						SantaAttackFg = false;
 						changeRight_SP = true;
 						santaImage = 15;
+						sound.Play(SOUND_huroshiki);
 						ui = true;
 					}
 				}
@@ -11686,7 +11707,7 @@ void Game::Update(void) {
 			speed = 5;
 			//右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 			{
 				direction = 0; // 方向
 				santa_huro_pos.x += 5;//右移動
@@ -11841,7 +11862,7 @@ void Game::Update(void) {
 			}
 			//左移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 			{
 
 				direction = 1; // 方向

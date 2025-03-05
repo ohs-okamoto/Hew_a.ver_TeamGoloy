@@ -16,6 +16,7 @@ typedef enum
 	SOUND_LABEL_BGM003,         //ボス戦
 	SOUND_kintyaku,			// サンプルSE
 	SOUND_huroshiki,
+	SOUND_present,
 
 	SOUND_LABEL_MAX,
 } SOUND_LABEL;
@@ -42,6 +43,7 @@ private:
 		{"sound/BGM/Christmasboss.wav", true},
 		{"sound/SE/木が倒れる.wav", false},
 		{"sound/SE/軽いパンチ1.wav", false},
+		{"sound/SE/se_itemget_001.wav", false},
 
 
 	};
