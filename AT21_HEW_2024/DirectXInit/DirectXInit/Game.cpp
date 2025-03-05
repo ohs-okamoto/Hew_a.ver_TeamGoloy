@@ -1261,7 +1261,7 @@ void Game::Update(void) {
 			enemylive7 = true;
 			enemylive8 = true;
 			enemylive9 = true;
-
+			rocklive = true;
 			santa_bug = 0;
 			attackhit = false;
 			time = 150;
@@ -1297,7 +1297,7 @@ void Game::Update(void) {
 			enemylive7 = true;
 			enemylive8 = true;
 			enemylive9 = true;
-
+			rocklive = true;
 			framcount = 0;
 			framcount2 = 0;
 			score = 0;
@@ -7082,7 +7082,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 wall_pos2 = invisiblewall[4].GetPos();
 
 		DirectX::XMFLOAT3 particlepos = particle.GetPos();
-
+		santa_pos.y -= 1;
 		if (direction == 0)
 		{
 			hitboxpos.x = santa_pos.x + 60;
@@ -7853,6 +7853,25 @@ void Game::Update(void) {
 				damage5 = true;
 				HitFg = true;
 			}
+			if (rocklive)
+			{
+				if (collision.tree_santa(Breakrock_Stge2[1], santa_Nor[0], 200.0f,50.0f))
+				{
+
+					//// サンタが木の右側にぶつかった場合
+					if (santa_pos.x < breakrock_pos1.x)
+					{
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+					}
+					// サンタが木の左側にぶつかった場合
+					if (santa_pos.x > breakrock_pos1.x)
+					{
+
+						collision.canMoveLeft = false; // 左に移動中なら移動を停止
+					}
+				}
+			}
+			
 
 
 			// 木との当たり判定の追加　ゴロイ
@@ -9346,6 +9365,19 @@ void Game::Update(void) {
 					}
 				}
 
+				if (bugPower >= 2)
+				{
+					if (collision.tree_santa(Breakrock_Stge2[1], hitbox2, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+					{
+
+						rocklive = false;
+
+						breakrock_pos1.x = 400000000;
+						moji_pos.x = 400000000;
+					}
+				}
+				
+
 			}
 			//パーティクルアニメーション
 			if (particleFg)
@@ -10347,8 +10379,11 @@ void Game::Draw(void)
 
 
 		
-
-		Breakrock_Stge2[1].Draw();
+		if (rocklive)
+		{
+			Breakrock_Stge2[1].Draw();
+			Breakmoji.Draw();
+		}
 		BigPresent_Stage2[1].Draw();
 		//santa_Nor[0].Draw();//プレイヤー描画
 		ItemStock.Draw();
@@ -10416,7 +10451,7 @@ void Game::Draw(void)
 			use_snowball[2].Draw();
 		}
 
-		Breakmoji.Draw();
+	
 
 		///////// UI  ///////////////////
 

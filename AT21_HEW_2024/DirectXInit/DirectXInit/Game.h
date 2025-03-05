@@ -138,7 +138,8 @@ private:
 	Object Bossground;
 	Object togetoge;
 
-
+	bool rockbreak = false;
+	bool rocklive = true;
 	bool gameoverFg = false;//ポーズフラグ
 	bool pauseFg = false;//ポーズフラグ
 	bool particleFg=false;
