@@ -60,9 +60,13 @@ private:
 	Object snowman[image];//雪だるま
 	Object tonakai;//トナカイ
 	Object star_monster;//星野　敵
+
+
+
 	Object boss_monster;//ボス
 	Object boss_punch;//ボスのパンチ
 	Object boss_toujou; //ボスの登場
+	Object boss_yobidashi;
 	
 	Object present[image];//プレゼント
 	Object BigPresent[image];//プレゼント
@@ -304,7 +308,8 @@ private:
 	float tree_x = 0.0f;
 	float tree_y = 0.0f;
 
-
+	bool bosschange = false;
+	int cooltime = 0;
 	// 固有能力変数
 	bool sp_ani = false; 
 
@@ -354,6 +359,8 @@ private:
 	bool damage5 = false;
 	
 	bool wazafg = false;
+
+	int bossImage = 0;
 
 public:
 	

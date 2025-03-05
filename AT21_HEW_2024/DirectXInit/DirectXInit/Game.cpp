@@ -3,8 +3,9 @@
 #include "Collision.h"
 #include "Item.h"
 #include <iostream>
-
-
+#include <cstdlib>
+#include <ctime>
+#include <random>
 using namespace std;
 
 //2024年12/24 横スクロール 作成　畦内
@@ -979,6 +980,12 @@ void Game::Init(HWND hWnd)
 	BOSSBACK.SetAngle(0.0f);             		//角度を設定
 	BOSSBACK.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
+	BOSS_Loading.Init(L"asset/Stage3.png", 1, 1);//雪だるまを初期化
+	BOSS_Loading.SetPos(0.0f, 0.0f, 0.0f);		//位置を設定
+	BOSS_Loading.SetSize(1280.0f, 720.0f, 0.f);	//大きさを設定
+	BOSS_Loading.SetAngle(0.0f);             		//角度を設定
+	BOSS_Loading.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
 	Bossground.Init(L"asset/Stage.png", 1, 1);//雪だるまを初期化
 	Bossground.SetPos(0.0f, -455.0f, 0.0f);		//位置を設定
 	Bossground.SetSize(1280.0f, 250.0f, 0.f);	//大きさを設定
@@ -986,6 +993,29 @@ void Game::Init(HWND hWnd)
 	Bossground.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
 	
+	boss_monster.Init(L"asset/Boss_Taiki.png", 6, 1);//雪だるまボスを初期化
+	boss_monster.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
+	boss_monster.SetSize(500.0f, 350.0f, 0.0f);	//大きさを設定
+	boss_monster.SetAngle(0.0f);             		//角度を設定
+	boss_monster.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	boss_toujou.Init(L"asset/Boss_Touzyou_v2.png", 6, 2);//雪だるまボスを初期化
+	boss_toujou.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
+	boss_toujou.SetSize(500.0f, 350.0f, 0.0f);	//大きさを設定
+	boss_toujou.SetAngle(0.0f);             		//角度を設定
+	boss_toujou.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	boss_punch.Init(L"asset/Boss_Punch.png", 6, 2);//雪だるまボスを初期化
+	boss_punch.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
+	boss_punch.SetSize(500.0f, 350.0f, 0.0f);	//大きさを設定
+	boss_punch.SetAngle(0.0f);             		//角度を設定
+	boss_punch.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+
+	boss_yobidashi.Init(L"asset/Boss_Yobidashi.png", 6, 2);//雪だるまボスを初期化
+	boss_yobidashi.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
+	boss_yobidashi.SetSize(500.0f, 350.0f, 0.0f);	//大きさを設定
+	boss_yobidashi.SetAngle(0.0f);             		//角度を設定
+	boss_yobidashi.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 
 
 	//====================================================
@@ -1087,11 +1117,7 @@ void Game::Init(HWND hWnd)
 	Tonakai_Stage2[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
 	Tonakai_Stage2[2].SetHP(60);
 
-	boss_monster.Init(L"asset/Boss_Taiki.png", 6, 1);//雪だるまボスを初期化
-	boss_monster.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
-	boss_monster.SetSize(500.0f, 350.0f, 0.0f);	//大きさを設定
-	boss_monster.SetAngle(0.0f);             		//角度を設定
-	boss_monster.SetColor(1.0f, 1.0f, 1.0f, 1.0f); //色を設定
+	
 	
 	particle.Init(L"asset/X-removebg-preview.png", 7, 1);//パーティクルを初期化
 	particle.SetPos(190.0f, -160.0f, 0.0f);		//位置を設定
@@ -1236,10 +1262,10 @@ void Game::Update(void) {
 		//ボスへ	
 		if (input.GetKeyTrigger(VK_RETURN) && select == 3 && StopCheck)
 		{
-			changescene = BOSS;
+			changescene = BOSS_LOADING;
 			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
 			sound.Play(SOUND_LABEL_SE003);
-			sound.Play(SOUND_LABEL_BGM003);
+			
 			santa_bug = 0;
 		}
 
@@ -1263,10 +1289,10 @@ void Game::Update(void) {
 		//ボスへ	
 		if (input.GetButtonTrigger(XINPUT_B) && select == 3 && StopCheck)
 		{
-			changescene = BOSS;
+			changescene = BOSS_LOADING;
 			sound.Stop(SOUND_LABEL_BGM002);//BGMを再生
 			sound.Play(SOUND_LABEL_SE003);
-			sound.Play(SOUND_LABEL_BGM003);
+		
 			santa_bug = 0;
 
 		}
@@ -1362,8 +1388,42 @@ void Game::Update(void) {
 		}
 	}
 	break;
+	case BOSS_LOADING:
+	{
 
+		sound.Stop(SOUND_LABEL_BGM002);
+		kari = false;
+		pauseFg = false;
+		framcount++;
+		bossImage = 0;
+		if (framcount % 100 == 0) //２秒弱ぐらいでシーン切り替え
+		{
+			//初期化
+			enemylive1 = true;
+			enemylive2 = true;
+			enemylive3 = true;
+			enemylive4 = true;
+			enemylive5 = true;
+			enemylive6 = true;
+			enemylive7 = true;
+			enemylive8 = true;
+			enemylive9 = true;
+			rocklive = true;
+			framcount = 0;
+			framcount2 = 0;
+			score = 0;
+			presentcount = 0;
+			bigpresentcount = 0;
+			time = 150;
+			cleartime = 0;
+			changescene = BOSS;
 
+			sound.Play(SOUND_LABEL_BGM003);
+			sound.SetVolume(SOUND_LABEL_BGM003, 0.8f);//もとの音量の80パーセントに設定
+
+		}
+	}
+	break;
 	case STAGE_1:
 	{
 		//サンタ 通常袋
@@ -13831,17 +13891,101 @@ void Game::Update(void) {
 
 	case BOSS:
 		DirectX::XMFLOAT3 boss_monster_pos = boss_monster.GetPos();    //ボス
-		framcount8++;
-		if (framcount8 % 10 == 0) //１０フレームに一回行われる
+		DirectX::XMFLOAT3 boss_toujou_pos = boss_toujou.GetPos();    //ボス
+		DirectX::XMFLOAT3 boss_punch_pos = boss_punch.GetPos();    //ボス
+
+
+		
+		switch (bossImage)
 		{
-			boss_monster.numU++;
-
-			if (boss_monster.numU >= 6)
+		case 0://登場
+			framcount8++;
+			if (framcount8 % 5 == 0) //１０フレームに一回行われる
 			{
-				boss_monster.numU = 0;
+				boss_toujou.numU++;
+				if (boss_toujou.numU >= 6)
+				{
+					boss_toujou.numU = 0;
+					framcount8 = 0;
+					bossImage = 1;
+				}
+			}
+			break;
+		case 1://待機
+			framcount8++;
+			if (framcount8 % 10 == 0) //１０フレームに一回行われる
+			{
+				boss_monster.numU++;
+				if (boss_monster.numU >= 6)
+				{
+					boss_monster.numU = 0;
+					framcount8 = 0;
+					bosschange = true;
+				}
+			}
+			break;
+		case 2://つららおとすやつ、または攻撃？
+			framcount8++;
+			if (framcount8 % 10 == 0) //１０フレームに一回行われる
+			{
+				boss_punch.numU++;
+				if (boss_punch.numU >= 6)
+				{
+					boss_punch.numU = 0;
+					boss_punch.numV++;
+					if (boss_punch.numV >= 2)
+					{
+						
+							boss_punch.numV = 0;
+							framcount8 = 0;
+							bossImage = 1;
 
-			};
-		};
+						
+					}
+					
+				}
+			}
+			break;
+		case 3://よびだしorつららおとすやつ
+			framcount8++;
+			if (framcount8 % 10 == 0) //１０フレームに一回行われる
+			{
+				boss_yobidashi.numU++;
+				if (boss_yobidashi.numU >= 5)
+				{
+					boss_yobidashi.numU = 0;
+					boss_yobidashi.numV++;
+					if (boss_yobidashi.numV >= 2)
+					{
+						boss_yobidashi.numV = 0;
+						framcount8 = 0;
+						bossImage = 1;
+					}
+				}
+			}
+			break;
+
+		}
+		
+		//ランダム
+		if (bosschange)
+		{
+			cooltime++;
+			if(cooltime%600==0)//十秒
+			{
+				std::random_device rd;
+				std::mt19937 gen(rd());
+
+				//もしも数字の範囲を変えたかったら()のなかをかえる（例２から５なら（2,5））//畦内
+				std::uniform_int_distribution<int>dist(2, 3);//２から３
+
+				bossImage = dist(gen);//２から3のはんいでランダムな数を生成
+
+				bosschange = false;
+			}
+			
+		}
+
 		//キー入力でタイトル移動
 		if (input.GetKeyTrigger(VK_RETURN))
 		{
@@ -13926,15 +14070,17 @@ void Game::Draw(void)
 	case STAGE2_LOADING:
 		Stage2_Loading.Draw();
 		break;
+	case BOSS_LOADING:
+		BOSS_Loading.Draw();
+		break;
+
+
 	case STAGE_1://ゲーム
 
 
 
 		sky.Draw();
 		star.Draw();
-
-
-		
 
 		//やま
 		for (int i = 1; i < image; i++)
@@ -14664,11 +14810,23 @@ void Game::Draw(void)
 		break;
 	case BOSS:
 		BOSSBACK.Draw();
-		boss_monster.Draw();
-		
-		//Bossground.Draw();
-		
 
+		switch (bossImage)
+		{
+		case 0://登場
+			boss_toujou.Draw();
+			break;
+		case 1://待機
+			boss_monster.Draw();
+			break;
+		case 2://つららふらせる
+			boss_punch.Draw();
+			break;
+		case 3://よびだし
+			boss_yobidashi.Draw();
+			break;
+			
+		}
 		break;
 	case RESULT://リザルト
 		DirectX::XMFLOAT3 timepos = Number[1].GetPos();
