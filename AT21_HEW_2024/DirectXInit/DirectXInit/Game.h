@@ -70,6 +70,7 @@ private:
 	Object goal;//ゴール
 
 	Object hitbox;
+	Object hitbox2;
 
 	Object invisiblewall[6];
 
@@ -137,7 +138,8 @@ private:
 	Object Bossground;
 	Object togetoge;
 
-
+	bool rockbreak = false;
+	bool rocklive = true;
 	bool gameoverFg = false;//ポーズフラグ
 	bool pauseFg = false;//ポーズフラグ
 	bool particleFg=false;
@@ -335,6 +337,10 @@ private:
 	bool enemylive3 = true;
 	bool enemylive4 = true;
 	bool enemylive5 = true;
+	bool enemylive6 = true;
+	bool enemylive7 = true;
+	bool enemylive8 = true;
+	bool enemylive9 = true;
 
 	bool damage5 = false;
 	
