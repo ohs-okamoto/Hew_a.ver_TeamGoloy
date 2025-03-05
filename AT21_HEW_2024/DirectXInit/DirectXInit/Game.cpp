@@ -1299,6 +1299,7 @@ void Game::Update(void) {
 			rocklive = true;
 			santa_bug = 0;
 
+
 			DirectX::XMFLOAT3 tree_pos = tree.GetPos();
 			float tree_angle = tree.GetAngle();
 			tree_pos.x = 1900;
@@ -1309,6 +1310,7 @@ void Game::Update(void) {
 			tree.SetAngle(tree_angle);
 			tree_Fg = false;
 			tree_Ground = 2;
+
 
 			attackhit = false;
 			time = 150;
@@ -3702,6 +3704,7 @@ void Game::Update(void) {
 				time -= 5;
 				hitcooltime = 0;
 				sound.Play(SOUND_LABEL_SE002);
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -3710,6 +3713,7 @@ void Game::Update(void) {
 				time -= 5;
 				hitcooltime = 0;
 				sound.Play(SOUND_LABEL_SE002);
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -3718,6 +3722,7 @@ void Game::Update(void) {
 				time -= 5;
 				hitcooltime = 0;
 				sound.Play(SOUND_LABEL_SE002);
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -3727,6 +3732,7 @@ void Game::Update(void) {
 				sound.Play(SOUND_LABEL_SE002);
 				time -= 5;
 				hitcooltime = 0;
+				damage5 = true;
 				HitFg = true;
 			}
 			//トナカイ との当たり判定追加 
@@ -3735,6 +3741,7 @@ void Game::Update(void) {
 				sound.Play(SOUND_LABEL_SE002);
 				time -= 5;
 				hitcooltime = 0;
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -5102,6 +5109,7 @@ void Game::Update(void) {
 					time -= 5;
 					hitcooltime = 0;
 					sound.Play(SOUND_LABEL_SE002);
+					damage5 = true;
 					HitFg = true;
 				}
 
@@ -5110,6 +5118,7 @@ void Game::Update(void) {
 					time -= 5;
 					hitcooltime = 0;
 					sound.Play(SOUND_LABEL_SE002);
+					damage5 = true;
 					HitFg = true;
 				}
 
@@ -5118,6 +5127,7 @@ void Game::Update(void) {
 					time -= 5;
 					hitcooltime = 0;
 					sound.Play(SOUND_LABEL_SE002);
+					damage5 = true;
 					HitFg = true;
 				}
 
@@ -5135,6 +5145,7 @@ void Game::Update(void) {
 					sound.Play(SOUND_LABEL_SE002);
 					time -= 5;
 					hitcooltime = 0;
+					damage5 = true;
 					HitFg = true;
 				}
 
