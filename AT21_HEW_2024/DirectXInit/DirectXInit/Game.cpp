@@ -13351,6 +13351,8 @@ void Game::Update(void) {
 			{
 				std::random_device rd;
 				std::mt19937 gen(rd());
+
+				//‚à‚µ‚à”š‚Ì”ÍˆÍ‚ğ•Ï‚¦‚½‚©‚Á‚½‚ç()‚Ì‚È‚©‚ğ‚©‚¦‚éi—á‚Q‚©‚ç‚T‚È‚çi2,5jj
 				std::uniform_int_distribution<int>dist(2, 3);//‚Q‚©‚ç‚R
 
 				bossImage = dist(gen);//‚Q‚©‚ç3‚Ì‚Í‚ñ‚¢‚Åƒ‰ƒ“ƒ_ƒ€‚È”‚ğ¶¬
