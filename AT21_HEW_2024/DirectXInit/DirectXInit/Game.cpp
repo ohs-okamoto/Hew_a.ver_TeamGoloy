@@ -167,6 +167,11 @@ void Game::Init(HWND hWnd)
 	hitbox.SetSize(70.0f, 70.0f, 0.f);	//大きさを設定
 	hitbox.SetAngle(0.0f);
 
+	hitbox2.Init(L"asset/yukidama.png", 1, 1);//サンタを初期化
+	hitbox2.SetPos(-400.0f, -175.0f, 0.0f);		//位置を設定
+	hitbox2.SetSize(70.0f, 70.0f, 0.f);	//大きさを設定
+	hitbox2.SetAngle(0.0f);
+
 	//====================================================
 	//巾着のやつ
 	//====================================================
@@ -1252,6 +1257,10 @@ void Game::Update(void) {
 			enemylive3 = true;
 			enemylive4 = true;
 			enemylive5 = true;
+			enemylive6 = true;
+			enemylive7 = true;
+			enemylive8 = true;
+			enemylive9 = true;
 
 			santa_bug = 0;
 			attackhit = false;
@@ -1282,6 +1291,13 @@ void Game::Update(void) {
 			enemylive1 = true;
 			enemylive2 = true;
 			enemylive3 = true;
+			enemylive4 = true;
+			enemylive5 = true;
+			enemylive6 = true;
+			enemylive7 = true;
+			enemylive8 = true;
+			enemylive9 = true;
+
 			framcount = 0;
 			framcount2 = 0;
 			score = 0;
@@ -6970,14 +6986,17 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 himo_size = himo.GetSize();
 
 		//攻撃の当たり判定
-		DirectX::XMFLOAT3 hitboxpos = hitbox.GetPos();
+		DirectX::XMFLOAT3 hitboxpos = hitbox2.GetPos();
 
-		int snowman_hp1 = snowman[1].GetHP();          //雪の敵
-		int snowman_hp2 = snowman[2].GetHP();		   //雪の敵
-		int snowman_hp3 = snowman[3].GetHP();		   //雪の敵
+		int snowman_hp1 = Snowman_Stage2[1].GetHP();          //雪の敵
+		int snowman_hp2 = Snowman_Stage2[2].GetHP();		   //雪の敵
+		int snowman_hp3 = Snowman_Stage2[3].GetHP();		   //雪の敵
+		int snowman_hp4 = Snowman_Stage2[4].GetHP();		   //雪の敵
 
-		int  star_monster_hp1 = star_monster.GetHP();          //ほしの敵
-		int tonakai_hp = tonakai.GetHP();	                   //トナカイの敵
+		int  star_monster_hp1 = Star_Stage2[1].GetHP();          //ほしの敵
+		int  star_monster_hp2 = Star_Stage2[2].GetHP();          //ほしの敵
+		int tonakai_hp1 = Tonakai_Stage2[1].GetHP();	                   //トナカイの敵
+		int tonakai_hp2 = Tonakai_Stage2[2].GetHP();	                   //トナカイの敵
 		int santa_atk = santa_Nor[7].GetATK();
 
 		DirectX::XMFLOAT3 tree_pos = tree.GetPos();
@@ -8982,16 +9001,370 @@ void Game::Update(void) {
 			}
 
 
-			//速度
-			speed = 5;
+			//移動速度
+			if (bugPower == 0) { // 袋が空の時
 
-			santa_pos.y -= 9.8;
-			if (input.GetKeyTrigger(VK_SPACE))
-			{
-				santa_pos.y += 200;
-				sound.Play(SOUND_LABEL_SE002);
+				speed = 9;
+			}
+			else {
+
+				speed = 7;
 			}
 
+			// 固有能力発動！！！！！！！
+			if (bugPower > 0 && sp_ani == false && input.GetKeyPress(VK_Q)
+				|| input.GetButtonTrigger(XINPUT_X) && bugPower > 0 && sp_ani == false) { // 袋が空っぽの時
+
+				sp_ani = true;
+
+			}
+
+			if (sp_ani == true) {
+
+				santaImage = 7;
+
+				if (direction == 0) {
+
+					// 威力弱
+					if (bugPower == 1) {
+						if (changeRight_SP == true)
+						{
+							//初期化
+							santa_Nor[7].numU = 0;
+							santa_Nor[7].numV = 0;
+							attackhit = false;
+							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+						}
+						framcount7++; //フレームカウント
+						if (framcount7 % 4 == 0) //１０フレームに一回行われる
+						{
+							santa_Nor[7].numU++;
+
+							if (santa_Nor[7].numU == 2)
+							{
+								attackhit = true;
+							}
+
+
+							if (santa_Nor[7].numU >= 5)
+							{
+
+								sp_ani = false;
+								santaImage = 1;
+								santa_Nor[7].numU = 0;
+								changeLeft_SP = true;
+								santaatack = 0;
+								attackhit = true;
+
+							}
+						}
+					}
+					// 威力中
+					else if (bugPower == 2) {
+						if (changeRight_SP == true)
+						{
+							//初期化
+							santa_Nor[7].numU = 0;
+							santa_Nor[7].numV = 0;
+							attackhit = false;
+							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+						}
+						framcount7++; //フレームカウント
+						if (framcount7 % 7 == 0) //１０フレームに一回行われる
+						{
+							santa_Nor[7].numU++;
+							if (santa_Nor[7].numU == 2)
+							{
+								attackhit = true;
+							}
+
+							if (santa_Nor[7].numU >= 5)
+							{
+								sp_ani = false;
+								santaImage = 1;
+								santa_Nor[7].numU = 0;
+								attackhit = true;
+								changeLeft_SP = true;
+							}
+						}
+					}
+					// 威力強
+					else if (bugPower == 3) {
+						if (changeRight_SP == true)
+						{
+							//初期化
+							santa_Nor[7].numU = 0;
+							santa_Nor[7].numV = 0;
+							attackhit = false;
+							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+						}
+						framcount7++; //フレームカウント
+						if (framcount7 % 10 == 0) //１０フレームに一回行われる
+						{
+							santa_Nor[7].numU++;
+							if (santa_Nor[7].numU == 2)
+							{
+								attackhit = true;
+							}
+							if (santa_Nor[7].numU >= 5)
+							{
+								sp_ani = false;
+								santaImage = 1;
+								santa_Nor[7].numU = 0;
+								attackhit = true;
+								changeLeft_SP = true;
+							}
+						}
+					}
+				}
+				if (direction == 1) {
+
+					// 威力弱
+					if (bugPower == 1) {
+						if (changeRight_SP == true)
+						{
+							//初期化
+							santa_Nor[7].numU = 0;
+							santa_Nor[7].numV = 1;
+							attackhit = false;
+							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+						}
+						framcount7++; //フレームカウント
+						if (framcount7 % 4 == 0) //１０フレームに一回行われる
+						{
+							santa_Nor[7].numU++;
+							if (santa_Nor[7].numU == 2)
+							{
+								attackhit = true;
+							}
+
+							if (santa_Nor[7].numU >= 5)
+							{
+								sp_ani = false;
+								santaImage = 1;
+								santa_Nor[7].numU = 0;
+								attackhit = false;
+								changeRight_SP = true;
+
+							}
+						}
+					}
+					// 威力中
+					else if (bugPower == 2) {
+						if (changeRight_SP == true)
+						{
+							//初期化
+							santa_Nor[7].numU = 0;
+							santa_Nor[7].numV = 1;
+							attackhit = false;
+							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+						}
+						framcount7++; //フレームカウント
+						if (framcount7 % 7 == 0) //１０フレームに一回行われる
+						{
+							santa_Nor[7].numU++;
+							if (santa_Nor[7].numU == 2)
+							{
+								attackhit = true;
+							}
+
+							if (santa_Nor[7].numU >= 5)
+							{
+								sp_ani = false;
+								santaImage = 1;
+								santa_Nor[7].numU = 0;
+								attackhit = true;
+								changeRight_SP = true;
+							}
+						}
+					}
+					// 威力強
+					else if (bugPower == 3) {
+						if (changeRight_SP == true)
+						{
+							//初期化
+							santa_Nor[7].numU = 0;
+							santa_Nor[7].numV = 1;
+							attackhit = false;
+							changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+						}
+						framcount7++; //フレームカウント
+						if (framcount7 % 10 == 0) //１０フレームに一回行われる
+						{
+							santa_Nor[7].numU++;
+							if (santa_Nor[7].numU == 2)
+							{
+								attackhit = true;
+							}
+
+							if (santa_Nor[7].numU >= 5)
+							{
+								sp_ani = false;
+								santaImage = 1;
+								santa_Nor[7].numU = 0;
+
+								changeRight_SP = true;
+							}
+						}
+					}
+				}
+
+			}
+			else
+			{
+				attackhit = false;
+			}
+
+
+			//攻撃
+			if (attackhit==true)
+			{
+				if (collision.enemy_santa(Snowman_Stage2[1], hitbox2, 100.0f, 100.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					sound.Play(SOUND_LABEL_SE004);
+					snowman_hp1 -= santa_atk;
+
+					particleFg = true;
+					particlepos.x = snowman_pos1.x;
+					particlepos.y = snowman_pos1.y;
+
+					if (snowman_hp1 < 0)
+					{
+						enemylive1 = false;
+						snowman_hp1 = 20;
+						snowman_pos1.x = 400000000;
+					}
+				}
+
+				if (collision.enemy_santa(Snowman_Stage2[2], hitbox2, 100.0f, 100.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					snowman_hp2 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = snowman_pos2.x;
+					particlepos.y = snowman_pos2.y;
+					if (snowman_hp2 < 0)
+					{
+
+						enemylive2 = false;
+						snowman_hp2 = 20;
+						snowman_pos2.x = 400000000;
+					}
+
+				}
+
+				if (collision.enemy_santa(Snowman_Stage2[3], hitbox2, 100.0f, 100.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					snowman_hp3 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = snowman_pos3.x;
+					particlepos.y = snowman_pos3.y;
+					if (snowman_hp3 < 0)
+					{
+						enemylive3 = false;
+						snowman_hp3 = 20;
+						snowman_pos3.x = 400000000;
+					}
+				}
+
+				if (collision.enemy_santa(Snowman_Stage2[4], hitbox2, 100.0f, 100.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					snowman_hp4 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = snowman_pos4.x;
+					particlepos.y = snowman_pos4.y;
+					if (snowman_hp4 < 0)
+					{
+						enemylive4 = false;
+						snowman_hp4 = 20;
+						snowman_pos4.x = 400000000;
+					}
+				}
+
+				//星
+				if (collision.enemy_santa(Star_Stage2[1], hitbox2, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					star_monster_hp1 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = star_pos1.x;
+					particlepos.y = star_pos1.y;
+					if (star_monster_hp1 < 0)
+					{
+						enemylive5 = false;
+						star_monster_hp1 = 40;
+						star_pos1.x = 400000000;
+					}
+				}
+
+				//星
+				if (collision.enemy_santa(Star_Stage2[2], hitbox2, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					star_monster_hp2 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = star_pos2.x;
+					particlepos.y = star_pos2.y;
+					if (star_monster_hp2 < 0)
+					{
+						enemylive6 = false;
+						star_monster_hp2 = 40;
+						star_pos1.x = 400000000;
+					}
+				}
+
+				//となかい
+				if (collision.enemy_santa(Tonakai_Stage2[1], hitbox2, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					tonakai_hp1 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = tonakai_pos1.x;
+					particlepos.y = tonakai_pos1.y;
+					if (tonakai_hp1 < 0)
+					{
+						enemylive7 = false;
+						tonakai_hp1 = 60;
+						tonakai_pos1.x = 400000000;
+					}
+				}
+
+				if (collision.enemy_santa(Tonakai_Stage2[2], hitbox2, 50.0f, 50.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+				{
+					tonakai_hp2 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = tonakai_pos2.x;
+					particlepos.y = tonakai_pos2.y;
+					if (tonakai_hp2 < 0)
+					{
+						enemylive8 = false;
+						tonakai_hp2 = 60;
+						tonakai_pos2.x = 400000000;
+					}
+				}
+
+			}
+			//パーティクルアニメーション
+			if (particleFg)
+			{
+				particlecount++;
+				if (particlecount % 5 == 0)
+				{
+					//particleFg = false;
+					particle.numU++;
+					if (particle.numU > 7)
+					{
+						particle.numU = 0;
+						particleFg = false;
+					}
+				}
+
+			}
+
+			
 			//右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
 				|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
@@ -9439,14 +9812,17 @@ void Game::Update(void) {
 		use_snowball[1].SetPos(use_snowball_pos2.x, use_snowball_pos2.y, use_snowball_pos2.z);
 		use_snowball[2].SetPos(use_snowball_pos3.x, use_snowball_pos3.y, use_snowball_pos3.z);
 
-		hitbox.SetPos(hitboxpos.x, hitboxpos.y, hitboxpos.z);
+		hitbox2.SetPos(hitboxpos.x, hitboxpos.y, hitboxpos.z);
 		particle.SetPos(particlepos.x, particlepos.y, particlepos.z);
 
-		snowman[1].SetHP(snowman_hp1);
-		snowman[2].SetHP(snowman_hp2);
-		snowman[3].SetHP(snowman_hp3);
-		star_monster.SetHP(star_monster_hp1);
-		tonakai.SetHP(tonakai_hp);
+		Snowman_Stage2[1].SetHP(snowman_hp1);
+		Snowman_Stage2[2].SetHP(snowman_hp2);
+		Snowman_Stage2[3].SetHP(snowman_hp3);
+		Snowman_Stage2[4].SetHP(snowman_hp4);
+		Star_Stage2[1].SetHP(star_monster_hp1);
+		Star_Stage2[2].SetHP(star_monster_hp2);
+		Tonakai_Stage2[1].SetHP(tonakai_hp1);
+		Tonakai_Stage2[2].SetHP(tonakai_hp2);
 
 
 		santa_Nor[7].SetATK(santa_atk);
@@ -9933,22 +10309,7 @@ void Game::Draw(void)
 			Present_Stage2[i].Draw();
 		}
 		
-		//敵
-		for (int i = 1; i < image; i++)
-		{
-			Snowman_Stage2[i].Draw();
-		}
-
-		for (int i = 1; i < image; i++)
-		{
-			Star_Stage2[i].Draw();
-		}
-
-		for (int i = 1; i < image; i++)
-		{
-			Tonakai_Stage2[i].Draw();
-		}
-
+		
 		//いわ
 		if (rock_visible1 == 0) {
 			Collectrock_Stage2[1].Draw();
@@ -9992,27 +10353,45 @@ void Game::Draw(void)
 		//santa_Nor[0].Draw();//プレイヤー描画
 		ItemStock.Draw();
 		Goal_Stage2.Draw();
-		if (gameoverFg == true)
+
+		//雪だるま
+
+		if (enemylive1 == true)
 		{
-			pause.Draw();
-			Gameover.Draw();
-			GoodMorning.Draw();
-			TitleBack.Draw();
-			Retry.Draw();
-			Cursor.Draw();
+			Snowman_Stage2[1].Draw();
+		}
+		if (enemylive2 == true)
+		{
+			Snowman_Stage2[2].Draw();
+		}
+		if (enemylive3 == true)
+		{
+			Snowman_Stage2[3].Draw();
+		}
+		if (enemylive4 == true)
+		{
+			Snowman_Stage2[4].Draw();
+		}
+		//ほし
+		if (enemylive5)
+		{
+			Star_Stage2[1].Draw();
+		}
+		
+		if (enemylive6)
+		{
+			Star_Stage2[2].Draw();
 		}
 
-		if (pauseFg == true)
+		//tonakai
+		if (enemylive7)
 		{
-			pause.Draw();
-			Gameover.Draw();
-			rule.Draw();
-			Pausemoji.Draw();
-			PauseTitleBack.Draw();
-			///PauseRetry.Draw();
-			PauseCursor.Draw();
-			PauseGameback.Draw();
+			Tonakai_Stage2[1].Draw();
+		}
 
+		if (enemylive8)
+		{
+			Tonakai_Stage2[2].Draw();
 		}
 
 		///////// 投げ物 ///////////////////
@@ -10163,10 +10542,21 @@ void Game::Draw(void)
 		default:
 			break;
 		}
-
+		hitbox2.Draw();
 		if (particleFg)
 		{
 			particle.Draw();
+		}
+
+
+		if (damage5 == true)
+		{
+			damage.Draw();
+			framcount++;
+			if (framcount % 60 == 0)
+			{
+				damage5 = false;
+			}
 		}
 
 
@@ -10205,6 +10595,30 @@ void Game::Draw(void)
 			keta2++;
 		} while (time >= (int)pow(10, keta2));
 		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
+
+		if (gameoverFg == true)
+		{
+			pause.Draw();
+			Gameover.Draw();
+			GoodMorning.Draw();
+			TitleBack.Draw();
+			Retry.Draw();
+			Cursor.Draw();
+		}
+
+		if (pauseFg == true)
+		{
+			pause.Draw();
+			Gameover.Draw();
+			rule.Draw();
+			Pausemoji.Draw();
+			PauseTitleBack.Draw();
+			///PauseRetry.Draw();
+			PauseCursor.Draw();
+			PauseGameback.Draw();
+
+		}
+
 
 		break;
 	case BOSS:
