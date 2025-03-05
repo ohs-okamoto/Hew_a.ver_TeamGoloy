@@ -1548,6 +1548,11 @@ void Game::Update(void) {
 		// àÍíUâºÇ≈èdóÕìIÇ»Ç‡ÇÃÇÇí«â¡ÇµÇ‹Ç∑Å@ÉSÉçÉC
 		//santa_pos.y -= 1;
 		
+		if (input.GetKeyTrigger(VK_P))
+		{
+			jump = 0;
+		}
+
 		if (direction == 0)
 		{
 			hitboxpos.x = santa_pos.x + 60;
@@ -2195,19 +2200,21 @@ void Game::Update(void) {
 				if (santa_pos.y > stairs_pos1.y + stairs[1].GetSize().y / 2.0f) {
 					santa_pos.y = stairs_pos1.y + stairs[1].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_pos.x < stairs_pos1.x)
+				if (santa_pos.x < stairs_pos1.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_pos.x > stairs_pos1.x)
+				if (santa_pos.x > stairs_pos1.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -2218,19 +2225,21 @@ void Game::Update(void) {
 				if (santa_pos.y > stairs_pos2.y + stairs[2].GetSize().y / 2.0f) {
 					santa_pos.y = stairs_pos2.y + stairs[2].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_pos.x < stairs_pos2.x)
+				if (santa_pos.x < stairs_pos2.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_pos.x > stairs_pos2.x)
+				if (santa_pos.x > stairs_pos2.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -2240,18 +2249,20 @@ void Game::Update(void) {
 				if (santa_pos.y > stairs_pos3.y + stairs[3].GetSize().y / 2.0f) {
 					santa_pos.y = stairs_pos3.y + stairs[3].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
-				if (santa_pos.x < stairs_pos3.x && santa_pos.y / 2 < stairs_pos3.y / 3)
+				if (santa_pos.x < stairs_pos3.x && santa_pos.y / 2 < stairs_pos3.y / 3&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_pos.x > stairs_pos3.x && santa_pos.y / 2 < stairs_pos3.y / 3)
+				if (santa_pos.x > stairs_pos3.x && santa_pos.y / 2 < stairs_pos3.y / 3&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -2262,18 +2273,21 @@ void Game::Update(void) {
 				if (santa_pos.y > stairs_pos4.y + stairs[4].GetSize().y / 2.0f) {
 					santa_pos.y = stairs_pos4.y + stairs[4].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
+
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
-				if (santa_pos.x < stairs_pos4.x && santa_pos.y / 2 < stairs_pos4.y / 3)
+				if (santa_pos.x < stairs_pos4.x && santa_pos.y / 2 < stairs_pos4.y / 3&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_pos.x > stairs_pos4.x && santa_pos.y / 2 < stairs_pos4.y / 3)
+				if (santa_pos.x > stairs_pos4.x && santa_pos.y / 2 < stairs_pos4.y / 3&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -4348,19 +4362,21 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos1.y + stairs[1].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos1.y + stairs[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_huro_pos.x < stairs_pos1.x)
+				if (santa_huro_pos.x < stairs_pos1.x&& tachFg == false)
 				{
 					//collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos1.x)
+				if (santa_huro_pos.x > stairs_pos1.x&& tachFg == false)
 				{
 					//collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -4372,19 +4388,21 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos2.y + stairs[2].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos2.y + stairs[2].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_huro_pos.x < stairs_pos2.x)
+				if (santa_huro_pos.x < stairs_pos2.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos2.x)
+				if (santa_huro_pos.x > stairs_pos2.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -4395,18 +4413,20 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos3.y + stairs[3].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos3.y + stairs[3].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
-				if (santa_huro_pos.x < stairs_pos3.x && santa_huro_pos.y / 2 < stairs_pos3.y / 3)
+				if (santa_huro_pos.x < stairs_pos3.x && santa_huro_pos.y / 2 < stairs_pos3.y / 3&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos3.x && santa_huro_pos.y / 2 < stairs_pos3.y / 3)
+				if (santa_huro_pos.x > stairs_pos3.x && santa_huro_pos.y / 2 < stairs_pos3.y / 3&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -4417,18 +4437,20 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos4.y + stairs[4].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos4.y + stairs[4].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
-				if (santa_huro_pos.x < stairs_pos4.x && santa_huro_pos.y / 2 < stairs_pos4.y / 3)
+				if (santa_huro_pos.x < stairs_pos4.x && santa_huro_pos.y / 2 < stairs_pos4.y / 3&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos4.x && santa_huro_pos.y / 2 < stairs_pos4.y / 3)
+				if (santa_huro_pos.x > stairs_pos4.x && santa_huro_pos.y / 2 < stairs_pos4.y / 3&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -6302,19 +6324,21 @@ void Game::Update(void) {
 					if (santa_kin_pos.y > stairs_pos1.y + stairs[1].GetSize().y / 2.0f) {
 						santa_kin_pos.y = stairs_pos1.y + stairs[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 						jumpVelocity = 0.0f;
+						tachFg = true;
 						/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 					}
 					else {
+						tachFg = false;
 						
 					}
 
-					if (santa_kin_pos.x < stairs_pos1.x)
+					if (santa_kin_pos.x < stairs_pos1.x&& tachFg == false)
 					{
 						collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
 
 					// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-					if (santa_kin_pos.x > stairs_pos1.x)
+					if (santa_kin_pos.x > stairs_pos1.x&& tachFg == false)
 					{
 						collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
@@ -6328,20 +6352,22 @@ void Game::Update(void) {
 
 					if (santa_kin_pos.y > stairs_pos2.y + stairs[2].GetSize().y / 2.0f) {
 						santa_kin_pos.y = stairs_pos2.y + stairs[2].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+						tachFg = true;
 						jumpVelocity = 0.0f;
 						/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 					}
 					else {
+						tachFg = false;
 						/*std::cout << "\nSanta is falling." << std::endl;*/
 					}
 
-					if (santa_kin_pos.x < stairs_pos2.x)
+					if (santa_kin_pos.x < stairs_pos2.x&& tachFg == false)
 					{
 						collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
 
 					// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-					if (santa_kin_pos.x > stairs_pos2.x)
+					if (santa_kin_pos.x > stairs_pos2.x&& tachFg == false)
 					{
 						collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
@@ -6353,17 +6379,19 @@ void Game::Update(void) {
 						santa_kin_pos.y = stairs_pos3.y + stairs[3].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 						/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 						jumpVelocity = 0.0f;
+						tachFg = true;
 					}
 					else {
+						tachFg = false;
 						/*std::cout << "\nSanta is falling." << std::endl;*/
 					}
-					if (santa_kin_pos.x < stairs_pos3.x && santa_kin_pos.y / 2 < stairs_pos3.y / 3)
+					if (santa_kin_pos.x < stairs_pos3.x && santa_kin_pos.y / 2 < stairs_pos3.y / 3&& tachFg == false)
 					{
 						collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
 
 					// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-					if (santa_kin_pos.x > stairs_pos3.x && santa_kin_pos.y / 2 < stairs_pos3.y / 3)
+					if (santa_kin_pos.x > stairs_pos3.x && santa_kin_pos.y / 2 < stairs_pos3.y / 3&& tachFg == false)
 					{
 						collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
@@ -6374,18 +6402,20 @@ void Game::Update(void) {
 					if (santa_kin_pos.y > stairs_pos4.y + stairs[4].GetSize().y / 2.0f) {
 						santa_kin_pos.y = stairs_pos4.y + stairs[4].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 						jumpVelocity = 0.0f;
+						tachFg = true;
 						/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 					}
 					else {
+						tachFg = false;
 						/*std::cout << "\nSanta is falling." << std::endl;*/
 					}
-					if (santa_kin_pos.x < stairs_pos4.x && santa_kin_pos.y / 2 < stairs_pos4.y / 3)
+					if (santa_kin_pos.x < stairs_pos4.x && santa_kin_pos.y / 2 < stairs_pos4.y / 3&& tachFg == false)
 					{
 						collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
 
 					// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-					if (santa_kin_pos.x > stairs_pos4.x && santa_kin_pos.y / 2 < stairs_pos4.y / 3)
+					if (santa_kin_pos.x > stairs_pos4.x && santa_kin_pos.y / 2 < stairs_pos4.y / 3&& tachFg == false)
 					{
 						collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 					}
@@ -8770,6 +8800,11 @@ void Game::Update(void) {
 
 		DirectX::XMFLOAT3 particlepos = particle.GetPos();
 		
+		if (input.GetKeyTrigger(VK_P))
+		{
+			jump = 0;
+		}
+
 		if (direction == 0)
 		{
 			hitboxpos.x = santa_pos.x + 60;
@@ -12453,19 +12488,21 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_huro_pos.x < stairs_pos1.x)
+				if (santa_huro_pos.x < stairs_pos1.x&&tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos1.x)
+				if (santa_huro_pos.x > stairs_pos1.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -12477,19 +12514,21 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_huro_pos.x < stairs_pos2.x)
+				if (santa_huro_pos.x < stairs_pos2.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos2.x)
+				if (santa_huro_pos.x > stairs_pos2.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -12500,19 +12539,21 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_huro_pos.x < stairs_pos3.x)
+				if (santa_huro_pos.x < stairs_pos3.x&&tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos3.x)
+				if (santa_huro_pos.x > stairs_pos3.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -12523,19 +12564,21 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_huro_pos.x < stairs_pos4.x)
+				if (santa_huro_pos.x < stairs_pos4.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos4.x)
+				if (santa_huro_pos.x > stairs_pos4.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -12546,19 +12589,21 @@ void Game::Update(void) {
 				if (santa_huro_pos.y > stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f) {
 					santa_huro_pos.y = stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_huro_pos.x < stairs_pos5.x)
+				if (santa_huro_pos.x < stairs_pos5.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_huro_pos.x > stairs_pos5.x)
+				if (santa_huro_pos.x > stairs_pos5.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -14395,10 +14440,12 @@ void Game::Update(void) {
 					collision.ground_santa(Ground_Stge2[3], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[4], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[5], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[1], santa_Huro[0], 100.0f, 0.0f) == true ||
-					collision.block_santa(stairs[2], santa_Huro[0], 100.0f, 0.0f) == true ||
-					collision.block_santa(stairs[3], santa_Huro[0], 100.0f, 0.0f) == true ||
-					collision.block_santa(stairs[4], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[1], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[2], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[3], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[4], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[5], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[6], santa_Huro[0], 100.0f, 0.0f) == true ||
 					collision.tree_santa(tree, santa_Huro[0], 1000.0f, 0.0f) == true)
 				{
 
@@ -14982,19 +15029,21 @@ void Game::Update(void) {
 				if (santa_kin_pos.y > stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_kin_pos.x < stairs_pos2.x)
+				if (santa_kin_pos.x < stairs_pos2.x&&tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_kin_pos.x > stairs_pos2.x)
+				if (santa_kin_pos.x > stairs_pos2.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -15005,19 +15054,21 @@ void Game::Update(void) {
 				if (santa_kin_pos.y > stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_kin_pos.x < stairs_pos3.x)
+				if (santa_kin_pos.x < stairs_pos3.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_kin_pos.x > stairs_pos3.x)
+				if (santa_kin_pos.x > stairs_pos3.x&&tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -15028,19 +15079,21 @@ void Game::Update(void) {
 				if (santa_kin_pos.y > stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_kin_pos.x < stairs_pos4.x)
+				if (santa_kin_pos.x < stairs_pos4.x&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_kin_pos.x > stairs_pos4.x)
+				if (santa_kin_pos.x > stairs_pos4.x&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -15051,19 +15104,21 @@ void Game::Update(void) {
 				if (santa_kin_pos.y > stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f) {
 					santa_kin_pos.y = stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 					jumpVelocity = 0.0f;
+					tachFg = true;
 					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
 				}
 				else {
+					tachFg = false;
 					/*std::cout << "\nSanta is falling." << std::endl;*/
 				}
 
-				if (santa_kin_pos.x < stairs_pos5.x && santa_kin_pos.y / 2 < stairs_pos5.y / 3)
+				if (santa_kin_pos.x < stairs_pos5.x && santa_kin_pos.y / 2 < stairs_pos5.y / 3&& tachFg == false)
 				{
 					collision.canMoveRight = false; // âEÇ…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
 
 				// ÉTÉìÉ^Ç™Ç‘Ç¬Ç©Ç¡ÇΩèÍçá
-				if (santa_kin_pos.x > stairs_pos5.x && santa_kin_pos.y / 2 < stairs_pos5.y / 3)
+				if (santa_kin_pos.x > stairs_pos5.x && santa_kin_pos.y / 2 < stairs_pos5.y / 3&& tachFg == false)
 				{
 					collision.canMoveLeft = false; // ç∂Ç…à⁄ìÆíÜÇ»ÇÁà⁄ìÆÇí‚é~
 				}
@@ -16214,6 +16269,11 @@ void Game::Update(void) {
 					collision.ground_santa(Ground_Stge2[6], santa_Kin[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[7], santa_Kin[0], 50.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[1], santa_Kin[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[2], santa_Kin[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[3], santa_Kin[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[4], santa_Kin[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[5], santa_Kin[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[6], santa_Kin[0], 100.0f, 0.0f) == true ||
 					collision.tree_santa(tree, santa_Kin[0], 1000.0f, 0.0f) == true)
 				{
 
