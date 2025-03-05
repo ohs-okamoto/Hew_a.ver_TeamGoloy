@@ -8769,7 +8769,7 @@ void Game::Update(void) {
 		DirectX::XMFLOAT3 wall_pos2 = invisiblewall[4].GetPos();
 
 		DirectX::XMFLOAT3 particlepos = particle.GetPos();
-		santa_pos.y -= 1;
+		
 		if (direction == 0)
 		{
 			hitboxpos.x = santa_pos.x + 60;
@@ -14279,70 +14279,96 @@ void Game::Update(void) {
 					else if (bugPower > 0) {
 						santaImage = 12;
 						jump = 2;
-						santa_Nor[3].numU = 0;
-						santa_Nor[3].numV = 0;
+						santa_Huro[3].numU = 0;
+						santa_Huro[3].numV = 0;
 					}
 				}
 				else if (direction == 1) { // 右向き
 					if (bugPower == 0) {
 						santaImage = 10;
 						jump = 1;
-						santa_Nor[2].numU = 0;
-						santa_Nor[2].numV = 1;
+						santa_Huro[2].numU = 0;
+						santa_Huro[2].numV = 1;
 					}
 					else if (bugPower > 0) {
 						santaImage = 12;
 						jump = 2;
-						santa_Nor[3].numU = 0;
-						santa_Nor[3].numV = 1;
+						santa_Huro[3].numU = 0;
+						santa_Huro[3].numV = 1;
 					}
 				}
+				get_jump_old = santa_huro_pos.y;
+
+				jumpVelocity = 10.0f;
 
 			}
 
+
 			// 重力
-			santa_huro_pos.y -= 2.50;
+			if (jump == 0) {
+				santa_huro_pos.y += jumpVelocity;
+				//	 重力を速度に適用
+				jumpVelocity += gravity;
+				/*santa_kin_pos.y -= 2.0f;*/
+			}
+
 
 			//ジャンプ処理
 			if (jump == 1 || jump == 2) {
 
-				if (santa_huro_pos.y >= get_jump_old + 175.0f && jump == 1 || santa_huro_pos.y >= get_jump_old + 175.0f && jump == 2) {
+				if (santa_huro_pos.y >= get_jump_old + 100.5f && jump == 1 || santa_huro_pos.y >= get_jump_old + 100.0f && jump == 2) {
 					jump = 3;
 				}
-				else if (santa_pos.y <= get_jump_old + 175.0f && jump == 1 || santa_huro_pos.y <= get_jump_old + 175.0f && jump == 2) {
-					santa_huro_pos.y += 7.50;
+				else if (santa_huro_pos.y <= get_jump_old + 175.0f && jump == 1 || santa_huro_pos.y <= get_jump_old + 175.0f && jump == 2) {
+					/*santa_kin_pos.y += 7.50;*/
+					santa_huro_pos.y += jumpVelocity;
+					//	 重力を速度に適用
+					jumpVelocity += gravity;
 				}
 
 			}
-			if (jump == 3)
-			{
+			if (jump == 3) {
+
 				glideFg = true;
 				if (input.GetKeyPress(VK_Q) && bugPower <= 0 || input.GetButtonPress(XINPUT_X) && bugPower <= 0)
 				{
-
-					glideFg = true;
 					santaImage = 16;
-					santa_Huro[7].numU = 0;
-					santa_Huro[7].numV = 0;
-					santa_huro_pos.y -= 0.01f;
+					glideFg = true;
+					santa_huro_pos.y -= 1.5f;
+
+					if (direction == 0) { // 右向き
+						santa_Huro[7].numU = 0;
+						santa_Huro[7].numV = 0;
+					}
+					else if (direction == 1) { // 左向き
+						santa_Huro[7].numU = 0;
+						santa_Huro[7].numV = 1;
+					}
+
 				}
 				else
 				{
-					santa_huro_pos.y -= 6.5;
+					santa_huro_pos.y += jumpVelocity;
+					//	 重力を速度に適用
+					jumpVelocity += gravity;
 					glideFg = false;
 				}
-
-				if (collision.ground_santa(ground[1], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[2], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[3], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[4], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(ground[5], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[1], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[2], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[3], santa_Nor[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(stairs[4], santa_Nor[0], 50.0f, 0.0f) == true)
+			}
+			if (jump == 3)
+			{
+				if (collision.ground_santa(Ground_Stge2[1], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[2], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[3], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[4], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[5], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[6], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[7], santa_Huro[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[1], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.tree_santa(tree, santa_Huro[0], 1000.0f, 0.0f) == true)
 				{
+
 					jump = 0;
+					jumpVelocity = 0.0f;
 					glideFg = false;
 					if (bugPower > 0) {
 						santaImage = 9;
@@ -14351,12 +14377,9 @@ void Game::Update(void) {
 						santaImage = 8;
 					}
 				}
-
 			}
-
-
-
 			
+
 			// 固有能力発動！！！！！！！
 			if (bugPower > 0 && input.GetKeyTrigger(VK_Q) && glideFg == false && !wazafg || bugPower > 0 && input.GetButtonTrigger(XINPUT_X) && glideFg == false && !wazafg) { // 袋が空っぽの時
 
@@ -17651,8 +17674,8 @@ void Game::Update(void) {
 		Stairs_Stge2[4].SetPos(stairs_pos4.x, stairs_pos4.y, stairs_pos4.z);
 		Stairs_Stge2[5].SetPos(stairs_pos5.x, stairs_pos5.y, stairs_pos5.z);
 		//木
-		Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
-		Tree_Stge2[2].SetPos(tree_pos2.x, tree_pos2.y, tree_pos2.z);
+		//Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
+		//Tree_Stge2[2].SetPos(tree_pos2.x, tree_pos2.y, tree_pos2.z);
 		//つらら上
 		Block_Stge2[1].SetPos(block_pos1.x, block_pos1.y, block_pos1.z);
 		//プレゼント
