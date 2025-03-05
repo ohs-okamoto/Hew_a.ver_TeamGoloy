@@ -1408,6 +1408,10 @@ void Game::Update(void) {
 			enemylive7 = true;
 			enemylive8 = true;
 			enemylive9 = true;
+
+			DirectX::XMFLOAT3 moji_pos = Breakmoji.GetPos();
+			moji_pos.x = 4450;
+			Breakmoji.SetPos(moji_pos.x, moji_pos.y, moji_pos.z);
 			rocklive = true;
 			framcount = 0;
 			framcount2 = 0;
@@ -1548,7 +1552,7 @@ void Game::Update(void) {
 		// ˆê’U‰¼‚Åd—Í“I‚È‚à‚Ì‚ð‚ð’Ç‰Á‚µ‚Ü‚·@ƒSƒƒC
 		//santa_pos.y -= 1;
 		
-		if (input.GetKeyTrigger(VK_P))
+		if (input.GetKeyTrigger(VK_O))
 		{
 			jump = 0;
 		}
@@ -8705,7 +8709,7 @@ void Game::Update(void) {
 		//UŒ‚‚Ì“–‚½‚è”»’è
 		DirectX::XMFLOAT3 hitboxpos = hitbox2.GetPos();
 
-		int snowman_hp1 = Snowman_Stage2[1].GetHP();          //á‚Ì“G
+		int snowman_hp1 = Snowman_Stage2[1].GetHP();           //á‚Ì“G
 		int snowman_hp2 = Snowman_Stage2[2].GetHP();		   //á‚Ì“G
 		int snowman_hp3 = Snowman_Stage2[3].GetHP();		   //á‚Ì“G
 		int snowman_hp4 = Snowman_Stage2[4].GetHP();		   //á‚Ì“G
@@ -8800,7 +8804,7 @@ void Game::Update(void) {
 
 		DirectX::XMFLOAT3 particlepos = particle.GetPos();
 		
-		if (input.GetKeyTrigger(VK_P))
+		if (input.GetKeyTrigger(VK_O))
 		{
 			jump = 0;
 		}
@@ -9579,12 +9583,13 @@ void Game::Update(void) {
 			}
 			if (rocklive)
 			{
-				if (collision.tree_santa(Breakrock_Stge2[1], santa_Nor[0], 200.0f,50.0f))
+				if (collision.tree_santa(Breakrock_Stge2[1], santa_Nor[0], 200.0f,0.0f))
 				{
-					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
+					if (santa_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
 
-						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
+						santa_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
 						tachFg = true;
+						jumpVelocity = 0.0f;
 					}
 					else {
 						tachFg = false;
@@ -12396,6 +12401,7 @@ void Game::Update(void) {
 						
 						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
 						tachFg = true;
+						jumpVelocity = 0.0f;
 					}
 					else {
 						tachFg = false;
@@ -14497,7 +14503,7 @@ void Game::Update(void) {
 			if (ui == true && glideFg == false && bugPower != 0 && !wazafg)
 			{
 				santa_huro_pos.y += 20;
-				if (santa_huro_pos1.y >= 200 && glideFg == false)
+				if (santa_huro_pos1.y >= 240 && glideFg == false)
 				{
 					ui = false;
 					wazafg = true;
@@ -14909,12 +14915,13 @@ void Game::Update(void) {
 			}
 			if (rocklive)
 			{
-				if (collision.tree_santa(Breakrock_Stge2[1], santa_Kin[0], 200.0f, 50.0f))
+				if (collision.tree_santa(Breakrock_Stge2[1], santa_Kin[0], 200.0f, 0.0f))
 				{
-					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
+					if (santa_kin_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
 
-						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+						santa_kin_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
 						tachFg = true;
+						jumpVelocity = 0.0f;
 					}
 					else {
 						tachFg = false;
