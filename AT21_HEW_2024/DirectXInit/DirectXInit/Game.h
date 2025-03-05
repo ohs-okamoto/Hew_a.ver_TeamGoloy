@@ -302,11 +302,17 @@ private:
 	
 
 	int tree_Ground = 1;
+	int tree_Ground1 = 1;
+	int tree_Ground2 = 1;
 
 	bool tree_Fg = false;
 
 	float tree_x = 0.0f;
 	float tree_y = 0.0f;
+	float tree_x1 = 0.0f;
+	float tree_y1 = 0.0f;
+	float tree_x2 = 0.0f;
+	float tree_y2 = 0.0f;
 
 	bool bosschange = false;
 	int cooltime = 0;

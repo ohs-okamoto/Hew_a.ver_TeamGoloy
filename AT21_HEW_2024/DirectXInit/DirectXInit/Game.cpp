@@ -8716,6 +8716,8 @@ void Game::Update(void) {
 		//木
 		DirectX::XMFLOAT3 tree_pos1 = Tree_Stge2[1].GetPos();
 		DirectX::XMFLOAT3 tree_pos2 = Tree_Stge2[2].GetPos();
+		float tree_angle1 = Tree_Stge2[1].GetAngle();
+		float tree_angle2 = Tree_Stge2[2].GetAngle();
 		//つららの上
 		DirectX::XMFLOAT3 block_pos1 = Block_Stge2[1].GetPos();
 		//プレゼント
@@ -9571,38 +9573,38 @@ void Game::Update(void) {
 			
 
 
-			// 木との当たり判定の追加　ゴロイ
-			if (collision.tree_santa(Tree_Stge2[1], santa_Nor[0], 200.0f, 0.0f))
-			{
+			//// 木との当たり判定の追加　ゴロイ
+			//if (collision.tree_santa(Tree_Stge2[1], santa_Nor[0], 200.0f, 0.0f))
+			//{
 
-				//// サンタが木の右側にぶつかった場合
-				if (santa_pos.x < tree_pos1.x)
-				{
-					collision.canMoveRight = false; // 右に移動中なら移動を停止
-				}
-				// サンタが木の左側にぶつかった場合
-				if (santa_pos.x > tree_pos1.x)
-				{
+			//	//// サンタが木の右側にぶつかった場合
+			//	if (santa_pos.x < tree_pos1.x)
+			//	{
+			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//	}
+			//	// サンタが木の左側にぶつかった場合
+			//	if (santa_pos.x > tree_pos1.x)
+			//	{
 
-					collision.canMoveLeft = false; // 左に移動中なら移動を停止
-				}
-			}
+			//		collision.canMoveLeft = false; // 左に移動中なら移動を停止
+			//	}
+			//}
 
-			if (collision.tree_santa(Tree_Stge2[2], santa_Nor[0], 200.0f, 0.0f))
-			{
+			//if (collision.tree_santa(Tree_Stge2[2], santa_Nor[0], 200.0f, 0.0f))
+			//{
 
-				//// サンタが木の右側にぶつかった場合
-				if (santa_pos.x < tree_pos2.x)
-				{
-					collision.canMoveRight = false; // 右に移動中なら移動を停止
-				}
-				// サンタが木の左側にぶつかった場合
-				if (santa_pos.x > tree_pos2.x)
-				{
-					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+			//	//// サンタが木の右側にぶつかった場合
+			//	if (santa_pos.x < tree_pos2.x)
+			//	{
+			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//	}
+			//	// サンタが木の左側にぶつかった場合
+			//	if (santa_pos.x > tree_pos2.x)
+			//	{
+			//		collision.canMoveLeft = false; // 左に移動中なら移動を停止
 
-				}
-			}
+			//	}
+			//}
 
 			if (collision.tree_santa(invisiblewall[3], santa_Nor[0], 200.0f, 0.0f))
 			{
@@ -11950,6 +11952,47 @@ void Game::Update(void) {
 
 			}
 
+			// 木との当たり判定の追加　ゴロイ
+			if (collision.tree_santa(Tree_Stge2[1], santa_Nor[0], 200.0f, 0.0f))
+			{
+				if (tree_Ground1 == 3) {
+					if (santa_pos.y >= tree_pos1.y) {
+						jumpVelocity = 0.0f;
+					}
+				}
+				else {
+					//// サンタが木の右側にぶつかった場合
+					if (santa_pos.x < tree_pos1.x)
+					{
+
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+					}
+				}
+
+
+			}
+
+			if (collision.tree_santa(Tree_Stge2[2], santa_Nor[0], 200.0f, 0.0f))
+			{
+				if (tree_Ground2 == 3) {
+					if (santa_pos.y >= tree_pos2.y) {
+						jumpVelocity = 0.0f;
+					}
+				}
+				else {
+					//// サンタが木の右側にぶつかった場合
+					if (santa_pos.x < tree_pos2.x)
+					{
+
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+					}
+				}
+
+
+			}
+
 			
 			//右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
@@ -12373,38 +12416,38 @@ void Game::Update(void) {
 
 
 
-			// 木との当たり判定の追加　ゴロイ
-			if (collision.tree_santa(Tree_Stge2[1], santa_Huro[0], 200.0f, 0.0f))
-			{
+			//// 木との当たり判定の追加　ゴロイ
+			//if (collision.tree_santa(Tree_Stge2[1], santa_Huro[0], 200.0f, 0.0f))
+			//{
 
-				//// サンタが木の右側にぶつかった場合
-				if (santa_huro_pos.x < tree_pos1.x)
-				{
-					collision.canMoveRight = false; // 右に移動中なら移動を停止
-				}
-				// サンタが木の左側にぶつかった場合
-				if (santa_huro_pos.x > tree_pos1.x)
-				{
+			//	//// サンタが木の右側にぶつかった場合
+			//	if (santa_huro_pos.x < tree_pos1.x)
+			//	{
+			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//	}
+			//	// サンタが木の左側にぶつかった場合
+			//	if (santa_huro_pos.x > tree_pos1.x)
+			//	{
 
-					collision.canMoveLeft = false; // 左に移動中なら移動を停止
-				}
-			}
+			//		collision.canMoveLeft = false; // 左に移動中なら移動を停止
+			//	}
+			//}
 
-			if (collision.tree_santa(Tree_Stge2[2], santa_Huro[0], 200.0f, 0.0f))
-			{
+			//if (collision.tree_santa(Tree_Stge2[2], santa_Huro[0], 200.0f, 0.0f))
+			//{
 
-				//// サンタが木の右側にぶつかった場合
-				if (santa_huro_pos.x < tree_pos2.x)
-				{
-					collision.canMoveRight = false; // 右に移動中なら移動を停止
-				}
-				// サンタが木の左側にぶつかった場合
-				if (santa_huro_pos.x > tree_pos2.x)
-				{
-					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+			//	//// サンタが木の右側にぶつかった場合
+			//	if (santa_huro_pos.x < tree_pos2.x)
+			//	{
+			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//	}
+			//	// サンタが木の左側にぶつかった場合
+			//	if (santa_huro_pos.x > tree_pos2.x)
+			//	{
+			//		collision.canMoveLeft = false; // 左に移動中なら移動を停止
 
-				}
-			}
+			//	}
+			//}
 
 			if (collision.tree_santa(invisiblewall[3], santa_Huro[0], 200.0f, 0.0f))
 			{
@@ -14403,6 +14446,48 @@ void Game::Update(void) {
 					}
 				}
 			}
+
+
+			// 木との当たり判定の追加　ゴロイ
+			if (collision.tree_santa(Tree_Stge2[1], santa_Huro[0], 200.0f, 0.0f))
+			{
+				if (tree_Ground1 == 3) {
+					if (santa_huro_pos.y >= tree_pos1.y) {
+						jumpVelocity = 0.0f;
+					}
+				}
+				else {
+					//// サンタが木の右側にぶつかった場合
+					if (santa_huro_pos.x < tree_pos1.x)
+					{
+
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+					}
+				}
+
+
+			}
+
+			if (collision.tree_santa(Tree_Stge2[2], santa_Huro[0], 200.0f, 0.0f))
+			{
+				if (tree_Ground2 == 3) {
+					if (santa_huro_pos.y >= tree_pos2.y) {
+						jumpVelocity = 0.0f;
+					}
+				}
+				else {
+					//// サンタが木の右側にぶつかった場合
+					if (santa_huro_pos.x < tree_pos2.x)
+					{
+
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+					}
+				}
+
+
+			}
 			
 			// 固有能力発動！！！！！！！
 			if (bugPower > 0 && input.GetKeyTrigger(VK_Q) && glideFg == false && !wazafg || bugPower > 0 && input.GetButtonTrigger(XINPUT_X) && glideFg == false && !wazafg) { // 袋が空っぽの時
@@ -14879,38 +14964,38 @@ void Game::Update(void) {
 
 
 
-			// 木との当たり判定の追加　ゴロイ
-			if (collision.tree_santa(Tree_Stge2[1], santa_Kin[0], 200.0f, 0.0f))
-			{
+			//// 木との当たり判定の追加　ゴロイ
+			//if (collision.tree_santa(Tree_Stge2[1], santa_Kin[0], 200.0f, 0.0f))
+			//{
 
-				//// サンタが木の右側にぶつかった場合
-				if (santa_kin_pos.x < tree_pos1.x)
-				{
-					collision.canMoveRight = false; // 右に移動中なら移動を停止
-				}
-				// サンタが木の左側にぶつかった場合
-				if (santa_kin_pos.x > tree_pos1.x)
-				{
+			//	//// サンタが木の右側にぶつかった場合
+			//	if (santa_kin_pos.x < tree_pos1.x)
+			//	{
+			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//	}
+			//	// サンタが木の左側にぶつかった場合
+			//	if (santa_kin_pos.x > tree_pos1.x)
+			//	{
 
-					collision.canMoveLeft = false; // 左に移動中なら移動を停止
-				}
-			}
+			//		collision.canMoveLeft = false; // 左に移動中なら移動を停止
+			//	}
+			//}
 
-			if (collision.tree_santa(Tree_Stge2[2], santa_Kin[0], 200.0f, 0.0f))
-			{
+			//if (collision.tree_santa(Tree_Stge2[2], santa_Kin[0], 200.0f, 0.0f))
+			//{
 
-				//// サンタが木の右側にぶつかった場合
-				if (santa_kin_pos.x < tree_pos2.x)
-				{
-					collision.canMoveRight = false; // 右に移動中なら移動を停止
-				}
-				// サンタが木の左側にぶつかった場合
-				if (santa_kin_pos.x > tree_pos2.x)
-				{
-					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+			//	//// サンタが木の右側にぶつかった場合
+			//	if (santa_kin_pos.x < tree_pos2.x)
+			//	{
+			//		collision.canMoveRight = false; // 右に移動中なら移動を停止
+			//	}
+			//	// サンタが木の左側にぶつかった場合
+			//	if (santa_kin_pos.x > tree_pos2.x)
+			//	{
+			//		collision.canMoveLeft = false; // 左に移動中なら移動を停止
 
-				}
-			}
+			//	}
+			//}
 
 			if (collision.tree_santa(invisiblewall[3], santa_Kin[0], 200.0f, 0.0f))
 			{
@@ -17046,8 +17131,12 @@ void Game::Update(void) {
 						himo_size.x += 13.0f;
 					}
 
-					if (collision.square_square(kintyaku[0], tree) == true && tree_Ground == 1) {
-						tree_Ground = 2;
+					if (collision.square_square(kintyaku[0], Tree_Stge2[1]) == true && tree_Ground1 == 1) {
+						tree_Ground1 = 2;
+					}
+
+					if (collision.square_square(kintyaku[0], Tree_Stge2[2]) == true && tree_Ground2 == 1) {
+						tree_Ground2 = 2;
 					}
 
 					if (get_Kintyaku >= 300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
@@ -17316,6 +17405,94 @@ void Game::Update(void) {
 			}
 
 
+			// 木との当たり判定の追加　ゴロイ
+			if (collision.tree_santa(Tree_Stge2[1], santa_Kin[0], 200.0f, 0.0f))
+			{
+				if (tree_Ground1 == 3) {
+					if (santa_kin_pos.y >= tree_pos1.y) {
+						jumpVelocity = 0.0f;
+					}
+				}
+				else {
+					//// サンタが木の右側にぶつかった場合
+					if (santa_kin_pos.x < tree_pos1.x)
+					{
+
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+					}
+				}
+
+
+			}
+
+			if (collision.tree_santa(Tree_Stge2[2], santa_Kin[0], 200.0f, 0.0f))
+			{
+				if (tree_Ground2 == 3) {
+					if (santa_kin_pos.y >= tree_pos2.y) {
+						jumpVelocity = 0.0f;
+					}
+				}
+				else {
+					//// サンタが木の右側にぶつかった場合
+					if (santa_kin_pos.x < tree_pos2.x)
+					{
+
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+
+					}
+				}
+
+
+			}
+
+			//　巾着袋と木の当たり判定 1
+			if (collision.square_square(kintyaku[0], Tree_Stge2[1]) == true) {
+				if (tree_Ground1 == 2 && tree_Fg == false) {
+					tree_x1 = tree_pos1.x;
+					tree_y1 = tree_pos1.y;
+
+					tree_Fg = true;
+				}
+
+				if (tree_Fg == true) {
+					tree_angle1 = 80.0f;
+					tree_pos1.y = tree_y1 + (-130.0f);
+					tree_pos1.x = tree_x1 + (-170.0f);
+					sound.Play(SOUND_kintyaku);
+					tree_Fg = false;
+				}
+				if (tree_angle1 == 80.0f) {
+					tree_Ground1 = 3;
+					/*tree_pos.y = tree_x + 10;*/
+
+				}
+			}
+
+			//　巾着袋と木の当たり判定 2
+			if (collision.square_square(kintyaku[0], Tree_Stge2[2]) == true) {
+				if (tree_Ground2 == 2 && tree_Fg == false) {
+					tree_x2 = tree_pos2.x;
+					tree_y2 = tree_pos2.y;
+
+					tree_Fg = true;
+				}
+
+				if (tree_Fg == true) {
+					tree_angle2 = 80.0f;
+					tree_pos2.y = tree_y2 + (-130.0f);
+					tree_pos2.x = tree_x2 + (-170.0f);
+					sound.Play(SOUND_kintyaku);
+					tree_Fg = false;
+				}
+				if (tree_angle2 == 80.0f) {
+					tree_Ground2 = 3;
+					/*tree_pos.y = tree_x + 10;*/
+
+				}
+			}
+
+			speed = 5;
 			//右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
 				|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
@@ -17703,8 +17880,10 @@ void Game::Update(void) {
 		Stairs_Stge2[4].SetPos(stairs_pos4.x, stairs_pos4.y, stairs_pos4.z);
 		Stairs_Stge2[5].SetPos(stairs_pos5.x, stairs_pos5.y, stairs_pos5.z);
 		//木
-		//Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
-		//Tree_Stge2[2].SetPos(tree_pos2.x, tree_pos2.y, tree_pos2.z);
+		Tree_Stge2[1].SetPos(tree_pos1.x, tree_pos1.y, tree_pos1.z);
+		Tree_Stge2[2].SetPos(tree_pos2.x, tree_pos2.y, tree_pos2.z);
+		Tree_Stge2[1].SetAngle(tree_angle1);
+		Tree_Stge2[2].SetAngle(tree_angle2);
 		//つらら上
 		Block_Stge2[1].SetPos(block_pos1.x, block_pos1.y, block_pos1.z);
 		//プレゼント
