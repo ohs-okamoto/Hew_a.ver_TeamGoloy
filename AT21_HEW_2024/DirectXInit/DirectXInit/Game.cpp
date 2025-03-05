@@ -14494,7 +14494,7 @@ void Game::Update(void) {
 					collision.block_santa(Stairs_Stge2[3], santa_Huro[0], 100.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[4], santa_Huro[0], 100.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[5], santa_Huro[0], 100.0f, 0.0f) == true ||
-					collision.block_santa(Stairs_Stge2[6], santa_Huro[0], 100.0f, 0.0f) == true ||
+					/*collision.block_santa(Stairs_Stge2[6], santa_Huro[0], 100.0f, 0.0f) == true ||*/
 					collision.tree_santa(tree, santa_Huro[0], 1000.0f, 0.0f) == true)
 				{
 
@@ -16365,7 +16365,7 @@ void Game::Update(void) {
 					collision.block_santa(Stairs_Stge2[3], santa_Kin[0], 100.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[4], santa_Kin[0], 100.0f, 0.0f) == true ||
 					collision.block_santa(Stairs_Stge2[5], santa_Kin[0], 100.0f, 0.0f) == true ||
-					collision.block_santa(Stairs_Stge2[6], santa_Kin[0], 100.0f, 0.0f) == true ||
+				/*	collision.block_santa(Stairs_Stge2[6], santa_Kin[0], 100.0f, 0.0f) == true ||*/
 					collision.tree_santa(tree, santa_Kin[0], 1000.0f, 0.0f) == true)
 				{
 
