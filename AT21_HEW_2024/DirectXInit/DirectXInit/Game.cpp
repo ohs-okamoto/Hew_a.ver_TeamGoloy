@@ -10274,7 +10274,7 @@ void Game::Update(void) {
 				}
 			}
 
-			if (collision.square_square(Star_Stage2[2], use_rock[1]) == true) {
+			if (collision.square_square(Star_Stage2[1], use_rock[1]) == true) {
 				star_monster_hp1 -= santa_atk;
 				sound.Play(SOUND_LABEL_SE004);
 				particleFg = true;
@@ -10288,7 +10288,7 @@ void Game::Update(void) {
 				}
 			}
 
-			if (collision.square_square(star_monster, use_rock[2]) == true) {
+			if (collision.square_square(Star_Stage2[1], use_rock[2]) == true) {
 				star_monster_hp1 -= santa_atk;
 				sound.Play(SOUND_LABEL_SE004);
 				particleFg = true;
@@ -10299,287 +10299,330 @@ void Game::Update(void) {
 					enemylive5 = false;
 					star_monster_hp1 = 40;
 					star_pos1.x = 400000000;
-				}
-			}
-
-			// トナカイ
-			if (collision.square_square(tonakai, use_rock[0]) == true) {
-				tonakai_hp -= santa_atk;
-				sound.Play(SOUND_LABEL_SE004);
-				particleFg = true;
-				particlepos.x = tonakai_pos.x;
-				particlepos.y = tonakai_pos.y;
-				if (tonakai_hp < 0)
-				{
-					enemylive5 = false;
-					tonakai_hp = 60;
-					tonakai_pos.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(tonakai, use_rock[1]) == true) {
-				tonakai_hp -= santa_atk;
-				sound.Play(SOUND_LABEL_SE004);
-				particleFg = true;
-				particlepos.x = tonakai_pos.x;
-				particlepos.y = tonakai_pos.y;
-				if (tonakai_hp < 0)
-				{
-					enemylive5 = false;
-					tonakai_hp = 60;
-					tonakai_pos.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(tonakai, use_rock[2]) == true) {
-				tonakai_hp -= santa_atk;
-				sound.Play(SOUND_LABEL_SE004);
-				particleFg = true;
-				particlepos.x = tonakai_pos.x;
-				particlepos.y = tonakai_pos.y;
-				if (tonakai_hp < 0)
-				{
-					enemylive5 = false;
-					tonakai_hp = 60;
-					tonakai_pos.x = 400000000;
-				}
-			}
-
-
-			// 投げ物の当たり判定 雪玉
-
-			// 雪だるま１
-			if (collision.square_square(snowman[1], use_snowball[0]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp1 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos1.x;
-				particlepos.y = snowman_pos1.y;
-
-				if (snowman_hp1 < 0)
-				{
-					enemylive1 = false;
-					snowman_hp1 = 20;
-					snowman_pos1.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(snowman[1], use_snowball[1]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp1 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos1.x;
-				particlepos.y = snowman_pos1.y;
-
-				if (snowman_hp1 < 0)
-				{
-					enemylive1 = false;
-					snowman_hp1 = 20;
-					snowman_pos1.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(snowman[1], use_snowball[2]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp1 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos1.x;
-				particlepos.y = snowman_pos1.y;
-
-				if (snowman_hp1 < 0)
-				{
-					enemylive1 = false;
-					snowman_hp1 = 20;
-					snowman_pos1.x = 400000000;
-				}
-			}
-
-			// 雪だるま２
-			if (collision.square_square(snowman[2], use_snowball[0]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp2 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos2.x;
-				particlepos.y = snowman_pos2.y;
-
-				if (snowman_hp2 < 0)
-				{
-					enemylive2 = false;
-					snowman_hp2 = 20;
-					snowman_pos2.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(snowman[2], use_snowball[1]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp2 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos2.x;
-				particlepos.y = snowman_pos2.y;
-
-				if (snowman_hp2 < 0)
-				{
-					enemylive2 = false;
-					snowman_hp2 = 20;
-					snowman_pos2.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(snowman[2], use_snowball[2]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp2 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos2.x;
-				particlepos.y = snowman_pos2.y;
-
-				if (snowman_hp2 < 0)
-				{
-					enemylive2 = false;
-					snowman_hp2 = 20;
-					snowman_pos2.x = 400000000;
-				}
-			}
-
-			// 雪だるま3
-			if (collision.square_square(snowman[3], use_snowball[0]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp3 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos3.x;
-				particlepos.y = snowman_pos3.y;
-
-				if (snowman_hp3 < 0)
-				{
-					enemylive3 = false;
-					snowman_hp3 = 20;
-					snowman_pos3.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(snowman[3], use_snowball[1]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp3 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos3.x;
-				particlepos.y = snowman_pos3.y;
-
-				if (snowman_hp3 < 0)
-				{
-					enemylive3 = false;
-					snowman_hp3 = 20;
-					snowman_pos3.x = 400000000;
-				}
-			}
-
-			if (collision.square_square(snowman[3], use_snowball[2]) == true) {
-				sound.Play(SOUND_LABEL_SE004);
-				snowman_hp3 -= santa_atk;
-
-				particleFg = true;
-				particlepos.x = snowman_pos3.x;
-				particlepos.y = snowman_pos3.y;
-
-				if (snowman_hp3 < 0)
-				{
-					enemylive3 = false;
-					snowman_hp3 = 20;
-					snowman_pos3.x = 400000000;
 				}
 			}
 
 			// クリスマスツリー
-			if (collision.square_square(star_monster, use_snowball[0]) == true) {
-				star_monster_hp1 -= santa_atk;
+			if (collision.square_square(Star_Stage2[2], use_rock[0]) == true) {
+				star_monster_hp2 -= santa_atk;
 				sound.Play(SOUND_LABEL_SE004);
 				particleFg = true;
-				particlepos.x = star_monster_pos.x;
-				particlepos.y = star_monster_pos.y;
-				if (star_monster_hp1 < 0)
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
 				{
-					enemylive4 = false;
-					star_monster_hp1 = 40;
-					star_monster_pos.x = 400000000;
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
 				}
 			}
 
-			if (collision.square_square(star_monster, use_snowball[1]) == true) {
-				star_monster_hp1 -= santa_atk;
+			if (collision.square_square(Star_Stage2[2], use_rock[1]) == true) {
+				star_monster_hp2 -= santa_atk;
 				sound.Play(SOUND_LABEL_SE004);
 				particleFg = true;
-				particlepos.x = star_monster_pos.x;
-				particlepos.y = star_monster_pos.y;
-				if (star_monster_hp1 < 0)
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
 				{
-					enemylive4 = false;
-					star_monster_hp1 = 40;
-					star_monster_pos.x = 400000000;
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
 				}
 			}
 
-			if (collision.square_square(star_monster, use_snowball[2]) == true) {
-				star_monster_hp1 -= santa_atk;
+			if (collision.square_square(Star_Stage2[2], use_rock[2]) == true) {
+				star_monster_hp2 -= santa_atk;
 				sound.Play(SOUND_LABEL_SE004);
 				particleFg = true;
-				particlepos.x = star_monster_pos.x;
-				particlepos.y = star_monster_pos.y;
-				if (star_monster_hp1 < 0)
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
 				{
-					enemylive4 = false;
-					star_monster_hp1 = 40;
-					star_monster_pos.x = 400000000;
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
 				}
 			}
 
 			// トナカイ
-			if (collision.square_square(tonakai, use_snowball[0]) == true) {
-				tonakai_hp -= santa_atk;
-				sound.Play(SOUND_LABEL_SE004);
-				particleFg = true;
-				particlepos.x = tonakai_pos.x;
-				particlepos.y = tonakai_pos.y;
-				if (tonakai_hp < 0)
-				{
-					enemylive5 = false;
-					tonakai_hp = 60;
-					tonakai_pos.x = 400000000;
-				}
-			}
+			//if (collision.square_square(tonakai, use_rock[0]) == true) {
+			//	tonakai_hp -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = tonakai_pos.x;
+			//	particlepos.y = tonakai_pos.y;
+			//	if (tonakai_hp < 0)
+			//	{
+			//		enemylive5 = false;
+			//		tonakai_hp = 60;
+			//		tonakai_pos.x = 400000000;
+			//	}
+			//}
 
-			if (collision.square_square(tonakai, use_snowball[1]) == true) {
-				tonakai_hp -= santa_atk;
-				sound.Play(SOUND_LABEL_SE004);
-				particleFg = true;
-				particlepos.x = tonakai_pos.x;
-				particlepos.y = tonakai_pos.y;
-				if (tonakai_hp < 0)
-				{
-					enemylive5 = false;
-					tonakai_hp = 60;
-					tonakai_pos.x = 400000000;
-				}
-			}
+			//if (collision.square_square(tonakai, use_rock[1]) == true) {
+			//	tonakai_hp -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = tonakai_pos.x;
+			//	particlepos.y = tonakai_pos.y;
+			//	if (tonakai_hp < 0)
+			//	{
+			//		enemylive5 = false;
+			//		tonakai_hp = 60;
+			//		tonakai_pos.x = 400000000;
+			//	}
+			//}
 
-			if (collision.square_square(tonakai, use_snowball[2]) == true) {
-				tonakai_hp -= santa_atk;
-				sound.Play(SOUND_LABEL_SE004);
-				particleFg = true;
-				particlepos.x = tonakai_pos.x;
-				particlepos.y = tonakai_pos.y;
-				if (tonakai_hp < 0)
-				{
-					enemylive5 = false;
-					tonakai_hp = 60;
-					tonakai_pos.x = 400000000;
-				}
-			}
+			//if (collision.square_square(tonakai, use_rock[2]) == true) {
+			//	tonakai_hp -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = tonakai_pos.x;
+			//	particlepos.y = tonakai_pos.y;
+			//	if (tonakai_hp < 0)
+			//	{
+			//		enemylive5 = false;
+			//		tonakai_hp = 60;
+			//		tonakai_pos.x = 400000000;
+			//	}
+			//}
+
+
+			//// 投げ物の当たり判定 雪玉
+
+			//// 雪だるま１
+			//if (collision.square_square(snowman[1], use_snowball[0]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp1 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos1.x;
+			//	particlepos.y = snowman_pos1.y;
+
+			//	if (snowman_hp1 < 0)
+			//	{
+			//		enemylive1 = false;
+			//		snowman_hp1 = 20;
+			//		snowman_pos1.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(snowman[1], use_snowball[1]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp1 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos1.x;
+			//	particlepos.y = snowman_pos1.y;
+
+			//	if (snowman_hp1 < 0)
+			//	{
+			//		enemylive1 = false;
+			//		snowman_hp1 = 20;
+			//		snowman_pos1.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(snowman[1], use_snowball[2]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp1 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos1.x;
+			//	particlepos.y = snowman_pos1.y;
+
+			//	if (snowman_hp1 < 0)
+			//	{
+			//		enemylive1 = false;
+			//		snowman_hp1 = 20;
+			//		snowman_pos1.x = 400000000;
+			//	}
+			//}
+
+			//// 雪だるま２
+			//if (collision.square_square(snowman[2], use_snowball[0]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp2 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos2.x;
+			//	particlepos.y = snowman_pos2.y;
+
+			//	if (snowman_hp2 < 0)
+			//	{
+			//		enemylive2 = false;
+			//		snowman_hp2 = 20;
+			//		snowman_pos2.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(snowman[2], use_snowball[1]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp2 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos2.x;
+			//	particlepos.y = snowman_pos2.y;
+
+			//	if (snowman_hp2 < 0)
+			//	{
+			//		enemylive2 = false;
+			//		snowman_hp2 = 20;
+			//		snowman_pos2.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(snowman[2], use_snowball[2]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp2 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos2.x;
+			//	particlepos.y = snowman_pos2.y;
+
+			//	if (snowman_hp2 < 0)
+			//	{
+			//		enemylive2 = false;
+			//		snowman_hp2 = 20;
+			//		snowman_pos2.x = 400000000;
+			//	}
+			//}
+
+			//// 雪だるま3
+			//if (collision.square_square(snowman[3], use_snowball[0]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp3 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos3.x;
+			//	particlepos.y = snowman_pos3.y;
+
+			//	if (snowman_hp3 < 0)
+			//	{
+			//		enemylive3 = false;
+			//		snowman_hp3 = 20;
+			//		snowman_pos3.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(snowman[3], use_snowball[1]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp3 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos3.x;
+			//	particlepos.y = snowman_pos3.y;
+
+			//	if (snowman_hp3 < 0)
+			//	{
+			//		enemylive3 = false;
+			//		snowman_hp3 = 20;
+			//		snowman_pos3.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(snowman[3], use_snowball[2]) == true) {
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	snowman_hp3 -= santa_atk;
+
+			//	particleFg = true;
+			//	particlepos.x = snowman_pos3.x;
+			//	particlepos.y = snowman_pos3.y;
+
+			//	if (snowman_hp3 < 0)
+			//	{
+			//		enemylive3 = false;
+			//		snowman_hp3 = 20;
+			//		snowman_pos3.x = 400000000;
+			//	}
+			//}
+
+			//// クリスマスツリー
+			//if (collision.square_square(star_monster, use_snowball[0]) == true) {
+			//	star_monster_hp1 -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = star_monster_pos.x;
+			//	particlepos.y = star_monster_pos.y;
+			//	if (star_monster_hp1 < 0)
+			//	{
+			//		enemylive4 = false;
+			//		star_monster_hp1 = 40;
+			//		star_monster_pos.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(star_monster, use_snowball[1]) == true) {
+			//	star_monster_hp1 -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = star_monster_pos.x;
+			//	particlepos.y = star_monster_pos.y;
+			//	if (star_monster_hp1 < 0)
+			//	{
+			//		enemylive4 = false;
+			//		star_monster_hp1 = 40;
+			//		star_monster_pos.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(star_monster, use_snowball[2]) == true) {
+			//	star_monster_hp1 -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = star_monster_pos.x;
+			//	particlepos.y = star_monster_pos.y;
+			//	if (star_monster_hp1 < 0)
+			//	{
+			//		enemylive4 = false;
+			//		star_monster_hp1 = 40;
+			//		star_monster_pos.x = 400000000;
+			//	}
+			//}
+
+			//// トナカイ
+			//if (collision.square_square(tonakai, use_snowball[0]) == true) {
+			//	tonakai_hp -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = tonakai_pos.x;
+			//	particlepos.y = tonakai_pos.y;
+			//	if (tonakai_hp < 0)
+			//	{
+			//		enemylive5 = false;
+			//		tonakai_hp = 60;
+			//		tonakai_pos.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(tonakai, use_snowball[1]) == true) {
+			//	tonakai_hp -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = tonakai_pos.x;
+			//	particlepos.y = tonakai_pos.y;
+			//	if (tonakai_hp < 0)
+			//	{
+			//		enemylive5 = false;
+			//		tonakai_hp = 60;
+			//		tonakai_pos.x = 400000000;
+			//	}
+			//}
+
+			//if (collision.square_square(tonakai, use_snowball[2]) == true) {
+			//	tonakai_hp -= santa_atk;
+			//	sound.Play(SOUND_LABEL_SE004);
+			//	particleFg = true;
+			//	particlepos.x = tonakai_pos.x;
+			//	particlepos.y = tonakai_pos.y;
+			//	if (tonakai_hp < 0)
+			//	{
+			//		enemylive5 = false;
+			//		tonakai_hp = 60;
+			//		tonakai_pos.x = 400000000;
+			//	}
+			//}
 
 			//パーティクルアニメーション
 			if (particleFg)
@@ -10644,7 +10687,7 @@ void Game::Update(void) {
 			//ジャンプ処理
 			if (jump == 1 || jump == 2) {
 
-				if (santa_pos.y >= get_jump_old + 100.5f && jump == 1 || santa_pos.y >= get_jump_old + 100.0f && jump == 2) {
+				if (santa_pos.y >= get_jump_old + 50.0f && jump == 1 || santa_pos.y >= get_jump_old + 50.0f && jump == 2) {
 					jump = 3;
 				}
 				else if (santa_pos.y <= get_jump_old + 175.0f && jump == 1 || santa_pos.y <= get_jump_old + 175.0f && jump == 2) {
