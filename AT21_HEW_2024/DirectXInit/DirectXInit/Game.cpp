@@ -12253,6 +12253,8 @@ void Game::Update(void) {
 
 			santa_pos.y = santa_huro_pos.y;
 			santa_kin_pos.y = santa_huro_pos.y;
+
+
 			// 雪だるまとの当たり判定追加 
 			if (collision.enemy_santa(Snowman_Stage2[1], santa_Huro[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
@@ -14279,22 +14281,22 @@ void Game::Update(void) {
 					else if (bugPower > 0) {
 						santaImage = 12;
 						jump = 2;
-						santa_Huro[3].numU = 0;
-						santa_Huro[3].numV = 0;
+						santa_Nor[3].numU = 0;
+						santa_Nor[3].numV = 0;
 					}
 				}
 				else if (direction == 1) { // 右向き
 					if (bugPower == 0) {
 						santaImage = 10;
 						jump = 1;
-						santa_Huro[2].numU = 0;
-						santa_Huro[2].numV = 1;
+						santa_Nor[2].numU = 0;
+						santa_Nor[2].numV = 1;
 					}
 					else if (bugPower > 0) {
 						santaImage = 12;
 						jump = 2;
-						santa_Huro[3].numU = 0;
-						santa_Huro[3].numV = 1;
+						santa_Nor[3].numU = 0;
+						santa_Nor[3].numV = 1;
 					}
 				}
 				get_jump_old = santa_huro_pos.y;
@@ -14353,17 +14355,17 @@ void Game::Update(void) {
 					jumpVelocity += gravity;
 					glideFg = false;
 				}
-			}
-			if (jump == 3)
-			{
+
+
 				if (collision.ground_santa(Ground_Stge2[1], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[2], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[3], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[4], santa_Huro[0], 50.0f, 0.0f) == true ||
 					collision.ground_santa(Ground_Stge2[5], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(Ground_Stge2[6], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.ground_santa(Ground_Stge2[7], santa_Huro[0], 50.0f, 0.0f) == true ||
-					collision.block_santa(Stairs_Stge2[1], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(stairs[1], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(stairs[2], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(stairs[3], santa_Huro[0], 100.0f, 0.0f) == true ||
+					collision.block_santa(stairs[4], santa_Huro[0], 100.0f, 0.0f) == true ||
 					collision.tree_santa(tree, santa_Huro[0], 1000.0f, 0.0f) == true)
 				{
 
@@ -14379,7 +14381,6 @@ void Game::Update(void) {
 				}
 			}
 			
-
 			// 固有能力発動！！！！！！！
 			if (bugPower > 0 && input.GetKeyTrigger(VK_Q) && glideFg == false && !wazafg || bugPower > 0 && input.GetButtonTrigger(XINPUT_X) && glideFg == false && !wazafg) { // 袋が空っぽの時
 
