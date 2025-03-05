@@ -3703,7 +3703,7 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
 				damage5 = true;
 				HitFg = true;
 			}
@@ -3712,7 +3712,7 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
 				damage5 = true;
 				HitFg = true;
 			}
@@ -3721,7 +3721,7 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
 				damage5 = true;
 				HitFg = true;
 			}
@@ -3729,7 +3729,7 @@ void Game::Update(void) {
 			// 星との当たり判定追加 
 			if (collision.enemy_santa(star_monster, santa_Huro[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
 				time -= 5;
 				hitcooltime = 0;
 				damage5 = true;
@@ -3738,7 +3738,7 @@ void Game::Update(void) {
 			//トナカイ との当たり判定追加 
 			if (collision.enemy_santa(tonakai, santa_Huro[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
 				time -= 5;
 				hitcooltime = 0;
 				damage5 = true;
@@ -4778,6 +4778,7 @@ void Game::Update(void) {
 						SantaAttackFg = false;
 						changeRight_SP = true;
 						santaImage = 15;
+						sound.Play(SOUND_huroshiki);
 						ui = true;
 					}
 				}
@@ -4804,7 +4805,7 @@ void Game::Update(void) {
 
 			// 右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 			{
 				direction = 0; // 方向
 				santa_huro_pos.x += 5;//右移動
@@ -4955,7 +4956,7 @@ void Game::Update(void) {
 
 			// 左移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 			{
 				direction = 1; // 方向
 				santa_huro_pos.x -= 5;//左移動
@@ -5108,7 +5109,7 @@ void Game::Update(void) {
 				{
 					time -= 5;
 					hitcooltime = 0;
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
 					damage5 = true;
 					HitFg = true;
 				}
@@ -5117,7 +5118,7 @@ void Game::Update(void) {
 				{
 					time -= 5;
 					hitcooltime = 0;
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
 					damage5 = true;
 					HitFg = true;
 				}
@@ -5126,7 +5127,7 @@ void Game::Update(void) {
 				{
 					time -= 5;
 					hitcooltime = 0;
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
 					damage5 = true;
 					HitFg = true;
 				}
@@ -5134,15 +5135,16 @@ void Game::Update(void) {
 				// 星との当たり判定追加 
 				if (collision.enemy_santa(star_monster, santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 				{
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
 					time -= 5;
 					hitcooltime = 0;
+					damage5 = true;
 					HitFg = true;
 				}
 				//トナカイ との当たり判定追加 
 				if (collision.enemy_santa(tonakai, santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 				{
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
 					time -= 5;
 					hitcooltime = 0;
 					damage5 = true;
@@ -7060,6 +7062,7 @@ void Game::Update(void) {
 						tree_angle = 80.0f;
 						tree_pos.y = tree_y + (-130.0f);
 						tree_pos.x = tree_x + (-170.0f);
+						sound.Play(SOUND_kintyaku);
 						tree_Fg = false;
 					}
 					if (tree_angle == 80.0f) {
@@ -12179,6 +12182,7 @@ void Game::Update(void) {
 			time = 150;
 			cleartime = 0;
 			sound.Stop(SOUND_LABEL_BGM001);
+			sound.Play(SOUND_LABEL_BGM002);
 			enemylive1 = true;
 			enemylive2 = true;
 			enemylive3 = true;

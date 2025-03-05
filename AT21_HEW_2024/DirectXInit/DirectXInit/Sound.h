@@ -14,8 +14,8 @@ typedef enum
 	SOUND_LABEL_SE003,          // 決定SE
 	SOUND_LABEL_SE004,          // 攻撃SE
 	SOUND_LABEL_BGM003,         //ボス戦
-	//SOUND_LABEL_SE003,			// サンプルSE
-
+	SOUND_kintyaku,			// サンプルSE
+	SOUND_huroshiki,
 
 	SOUND_LABEL_MAX,
 } SOUND_LABEL;
@@ -40,6 +40,9 @@ private:
 		{"sound/SE/kettei.wav", false},		// サンプルSE
 		{"sound/SE/重いパンチ1.wav", false},		// 攻撃SE
 		{"sound/BGM/Christmasboss.wav", true},
+		{"sound/SE/木が倒れる.wav", false},
+		{"sound/SE/軽いパンチ1.wav", false},
+
 
 	};
 
