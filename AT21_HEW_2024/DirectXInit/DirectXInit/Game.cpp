@@ -13352,7 +13352,7 @@ void Game::Update(void) {
 				std::random_device rd;
 				std::mt19937 gen(rd());
 
-				//もしも数字の範囲を変えたかったら()のなかをかえる（例２から５なら（2,5））
+				//もしも数字の範囲を変えたかったら()のなかをかえる（例２から５なら（2,5））//畦内
 				std::uniform_int_distribution<int>dist(2, 3);//２から３
 
 				bossImage = dist(gen);//２から3のはんいでランダムな数を生成
