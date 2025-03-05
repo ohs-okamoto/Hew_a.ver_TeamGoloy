@@ -669,9 +669,9 @@ void Game::Init(HWND hWnd)
 	BigPresent_Stage2[1].SetAngle(0.0f);//角度設定
 
 	//壊せる岩
-	Breakrock_Stge2[1].Init(L"asset/iwa_yuki.png", 1, 1);//プレゼント
+	Breakrock_Stge2[1].Init(L"asset/iwa_yuki2.png", 1, 1);//プレゼント
 	Breakrock_Stge2[1].SetPos(4450.0f, -250.0f, 0.0f);////位置を特定
-	Breakrock_Stge2[1].SetSize(350.0f, 300.0f, 0.0f);//大きさ設定
+	Breakrock_Stge2[1].SetSize(300.0f, 200.0f, 0.0f);//大きさ設定
 	Breakrock_Stge2[1].SetAngle(0.0f);//角度設定
 
 	Breakmoji.Init(L"asset/Break2_another.png", 1, 1);//プレゼント
@@ -824,8 +824,43 @@ void Game::Init(HWND hWnd)
 	damage.Init(L"asset/damage5.png", 1, 1);//を初期化
 	damage.SetPos(100.0f, 330.0f, 0.0f);         //位置を設定
 	damage.SetSize(70.0f, 70.0f, 0.f);     //大きさ設定
-	damage.SetAngle(-20.0f);//角度を設定	
+	damage.SetAngle(-20.0f);//角度を設定
 
+	UseBag.Init(L"asset/UseBag_v2.png", 1, 1);//を初期化
+	UseBag.SetPos(500.0f, 290.0f, 0.0f);         //位置を設定
+	UseBag.SetSize(300.0f, 150.0f, 0.f);     //大きさ設定
+	UseBag.SetAngle(0.0f);//角度を設定
+
+	normalUI.Init(L"asset/Normal.png", 1, 1);//を初期化
+	normalUI.SetPos(400.0f, 290.0f, 0.0f);         //位置を設定
+	normalUI.SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	normalUI.SetAngle(0.0f);//角度を設定
+
+	hurosikilUI.Init(L"asset/HuroshikiUI.png", 1, 1);//を初期化
+	hurosikilUI.SetPos(400.0f, 290.0f, 0.0f);         //位置を設定
+	hurosikilUI.SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	hurosikilUI.SetAngle(0.0f);//角度を設定
+
+	kintyakuUI.Init(L"asset/KintyakuUI.png", 1, 1);//を初期化
+	kintyakuUI.SetPos(400.0f, 290.0f, 0.0f);         //位置を設定
+	kintyakuUI.SetSize(100.0f, 100.0f, 0.f);     //大きさ設定
+	kintyakuUI.SetAngle(0.0f);//角度を設定
+
+
+	normalmoji.Init(L"asset/hukuro_v2.png", 1, 1);//を初期化
+	normalmoji.SetPos(530.0f, 270.0f, 0.0f);         //位置を設定
+	normalmoji.SetSize(120.0f, 70.0f, 0.f);     //大きさ設定
+	normalmoji.SetAngle(0.0f);//角度を設定
+
+	hurosikimoji.Init(L"asset/huroshiki_v2.png", 1, 1);//を初期化
+	hurosikimoji.SetPos(530.0f, 270.0f, 0.0f);         //位置を設定
+	hurosikimoji.SetSize(120.0f, 70.0f, 0.f);     //大きさ設定
+	hurosikimoji.SetAngle(0.0f);//角度を設定
+
+	kintyakumoji.Init(L"asset/kintyaku_v2.png", 1, 1);//を初期化
+	kintyakumoji.SetPos(530.0f, 270.0f, 0.0f);         //位置を設定
+	kintyakumoji.SetSize(120.0f, 70.0f, 0.f);     //大きさ設定
+	kintyakumoji.SetAngle(0.0f);//角度を設定
 
 	//====================================================
 	//投げ物
@@ -1263,6 +1298,20 @@ void Game::Update(void) {
 			enemylive9 = true;
 			rocklive = true;
 			santa_bug = 0;
+
+
+			DirectX::XMFLOAT3 tree_pos = tree.GetPos();
+			float tree_angle = tree.GetAngle();
+			tree_pos.x = 1900;
+			tree_pos.y = -70;
+			tree_angle = 0.0f;
+
+			tree.SetPos(tree_pos.x, tree_pos.y, tree_pos.z);
+			tree.SetAngle(tree_angle);
+			tree_Fg = false;
+			tree_Ground = 2;
+
+
 			attackhit = false;
 			time = 150;
 			framcount = 0;
@@ -2051,6 +2100,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[2], santa_Nor[0], 100.0f, 0.0f))
@@ -2058,6 +2108,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[3], santa_Nor[0], 100.0f, 0.0f))
@@ -2065,6 +2116,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent[1], santa_Nor[0], 100.0f, 0.0f))
@@ -2072,6 +2124,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 
@@ -3654,7 +3707,8 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -3662,7 +3716,8 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -3670,24 +3725,27 @@ void Game::Update(void) {
 			{
 				time -= 5;
 				hitcooltime = 0;
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
 				HitFg = true;
 			}
 
 			// 星との当たり判定追加 
 			if (collision.enemy_santa(star_monster, santa_Huro[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
 				time -= 5;
 				hitcooltime = 0;
+				damage5 = true;
 				HitFg = true;
 			}
 			//トナカイ との当たり判定追加 
 			if (collision.enemy_santa(tonakai, santa_Huro[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 			{
-				sound.Play(SOUND_LABEL_SE002);
+				sound.Play(SOUND_LABEL_SE000);
 				time -= 5;
 				hitcooltime = 0;
+				damage5 = true;
 				HitFg = true;
 			}
 
@@ -3699,6 +3757,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[2], santa_Huro[0], 100.0f, 0.0f))
@@ -3706,6 +3765,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(present[3], santa_Huro[0], 100.0f, 0.0f))
@@ -3713,6 +3773,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent[1], santa_Huro[0], 100.0f, 0.0f))
@@ -3720,6 +3781,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 
@@ -5252,6 +5314,7 @@ void Game::Update(void) {
 						SantaAttackFg = false;
 						changeRight_SP = true;
 						santaImage = 15;
+						sound.Play(SOUND_huroshiki);
 						ui = true;
 					}
 				}
@@ -5278,7 +5341,7 @@ void Game::Update(void) {
 
 			// 右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 			{
 				direction = 0; // 方向
 				santa_huro_pos.x += 5;//右移動
@@ -5429,7 +5492,7 @@ void Game::Update(void) {
 
 			// 左移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 			{
 				direction = 1; // 方向
 				santa_huro_pos.x -= 5;//左移動
@@ -5582,7 +5645,8 @@ void Game::Update(void) {
 				{
 					time -= 5;
 					hitcooltime = 0;
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
+					damage5 = true;
 					HitFg = true;
 				}
 
@@ -5590,7 +5654,8 @@ void Game::Update(void) {
 				{
 					time -= 5;
 					hitcooltime = 0;
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
+					damage5 = true;
 					HitFg = true;
 				}
 
@@ -5598,24 +5663,27 @@ void Game::Update(void) {
 				{
 					time -= 5;
 					hitcooltime = 0;
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
+					damage5 = true;
 					HitFg = true;
 				}
 
 				// 星との当たり判定追加 
 				if (collision.enemy_santa(star_monster, santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 				{
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
 					time -= 5;
 					hitcooltime = 0;
+					damage5 = true;
 					HitFg = true;
 				}
 				//トナカイ との当たり判定追加 
 				if (collision.enemy_santa(tonakai, santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
 				{
-					sound.Play(SOUND_LABEL_SE002);
+					sound.Play(SOUND_LABEL_SE000);
 					time -= 5;
 					hitcooltime = 0;
+					damage5 = true;
 					HitFg = true;
 				}
 
@@ -5627,6 +5695,7 @@ void Game::Update(void) {
 					presentcount += 1;
 					score += 5000;
 					present_pos1.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				if (collision.item_santa(present[2], santa_Kin[0], 100.0f, 0.0f))
@@ -5634,6 +5703,7 @@ void Game::Update(void) {
 					presentcount += 1;
 					score += 5000;
 					present_pos2.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				if (collision.item_santa(present[3], santa_Kin[0], 100.0f, 0.0f))
@@ -5641,6 +5711,7 @@ void Game::Update(void) {
 					presentcount += 1;
 					score += 5000;
 					present_pos3.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				if (collision.item_santa(BigPresent[1], santa_Kin[0], 100.0f, 0.0f))
@@ -5648,6 +5719,7 @@ void Game::Update(void) {
 					bigpresentcount += 1;
 					score += 10000;
 					bigpresent_pos1.y = 100000;
+					sound.Play(SOUND_present);
 				}
 
 				
@@ -7530,6 +7602,7 @@ void Game::Update(void) {
 						tree_angle = 80.0f;
 						tree_pos.y = tree_y + (-130.0f);
 						tree_pos.x = tree_x + (-170.0f);
+						sound.Play(SOUND_kintyaku);
 						tree_Fg = false;
 					}
 					if (tree_angle == 80.0f) {
@@ -8900,14 +8973,22 @@ void Game::Update(void) {
 			{
 				if (collision.tree_santa(Breakrock_Stge2[1], santa_Nor[0], 200.0f,50.0f))
 				{
+					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
+
+						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Nor[0].GetSize().y / 2.0f;
+						tachFg = true;
+					}
+					else {
+						tachFg = false;
+					}
 
 					//// サンタが木の右側にぶつかった場合
-					if (santa_pos.x < breakrock_pos1.x)
+					if (santa_pos.x < breakrock_pos1.x&& tachFg == false)
 					{
 						collision.canMoveRight = false; // 右に移動中なら移動を停止
 					}
 					// サンタが木の左側にぶつかった場合
-					if (santa_pos.x > breakrock_pos1.x)
+					if (santa_pos.x > breakrock_pos1.x && tachFg == false)
 					{
 
 						collision.canMoveLeft = false; // 左に移動中なら移動を停止
@@ -9102,6 +9183,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[2], santa_Nor[0], 100.0f, 0.0f))
@@ -9109,6 +9191,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[3], santa_Nor[0], 100.0f, 0.0f))
@@ -9116,6 +9199,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent_Stage2[1], santa_Nor[0], 100.0f, 0.0f))
@@ -9123,6 +9207,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 			// 地面との当たり判定の追加 ゴロイ
 
@@ -10831,16 +10916,26 @@ void Game::Update(void) {
 			}
 			if (rocklive)
 			{
-				if (collision.tree_santa(Breakrock_Stge2[1], santa_Huro[0], 200.0f, 50.0f))
+				if (collision.tree_santa(Breakrock_Stge2[1], santa_Huro[0], 200.0f, 0.0f))
 				{
 
+					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
+						
+						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Huro[0].GetSize().y / 2.0f;
+						tachFg = true;
+					}
+					else {
+						tachFg = false;
+					}
+
 					//// サンタが木の右側にぶつかった場合
-					if (santa_huro_pos.x < breakrock_pos1.x)
+					if (santa_huro_pos.x < breakrock_pos1.x&& tachFg == false)
 					{
+
 						collision.canMoveRight = false; // 右に移動中なら移動を停止
 					}
 					// サンタが木の左側にぶつかった場合
-					if (santa_huro_pos.x > breakrock_pos1.x)
+					if (santa_huro_pos.x > breakrock_pos1.x && tachFg == false)
 					{
 
 						collision.canMoveLeft = false; // 左に移動中なら移動を停止
@@ -11036,6 +11131,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[2], santa_Huro[0], 100.0f, 0.0f))
@@ -11043,6 +11139,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(Present_Stage2[3], santa_Huro[0], 100.0f, 0.0f))
@@ -11050,6 +11147,7 @@ void Game::Update(void) {
 				presentcount += 1;
 				score += 5000;
 				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
 			}
 
 			if (collision.item_santa(BigPresent_Stage2[1], santa_Huro[0], 100.0f, 0.0f))
@@ -11057,6 +11155,7 @@ void Game::Update(void) {
 				bigpresentcount += 1;
 				score += 10000;
 				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
 			}
 			// 地面との当たり判定の追加 ゴロイ
 
@@ -12109,6 +12208,7 @@ void Game::Update(void) {
 						SantaAttackFg = false;
 						changeRight_SP = true;
 						santaImage = 15;
+						sound.Play(SOUND_huroshiki);
 						ui = true;
 					}
 				}
@@ -12135,7 +12235,7 @@ void Game::Update(void) {
 			speed = 5;
 			//右移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
 			{
 				direction = 0; // 方向
 				santa_huro_pos.x += 5;//右移動
@@ -12290,7 +12390,7 @@ void Game::Update(void) {
 			}
 			//左移動
 			if (sp_ani == false && gameoverFg == false && collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false
-				|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+				&& SantaAttackFg == false || gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
 			{
 
 				direction = 1; // 方向
@@ -12631,6 +12731,7 @@ void Game::Update(void) {
 			time = 150;
 			cleartime = 0;
 			sound.Stop(SOUND_LABEL_BGM001);
+			sound.Play(SOUND_LABEL_BGM002);
 			enemylive1 = true;
 			enemylive2 = true;
 			enemylive3 = true;
@@ -12879,6 +12980,8 @@ void Game::Draw(void)
 			particle.Draw();
 		}
 		
+		
+
 
 		// 巾着袋の袋と紐
 		if (sp_ani == true && kintyaku_go==true || sp_ani == true && kintyaku_go1 == true) {
@@ -13001,7 +13104,24 @@ void Game::Draw(void)
 		} while (time >= (int)pow(10, keta2));
 		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
 
-		
+		UseBag.Draw();
+		if (santa_bug == 0)
+		{
+			normalUI.Draw();
+			normalmoji.Draw();
+		}
+
+		if (santa_bug == 1)
+		{
+			hurosikilUI.Draw();
+			hurosikimoji.Draw();
+		}
+
+		if (santa_bug == 2)
+		{
+			kintyakuUI.Draw();
+			kintyakumoji.Draw();
+		}
 		if (gameoverFg == true)
 		{
 			pause.Draw();
@@ -13362,6 +13482,25 @@ void Game::Draw(void)
 			keta2++;
 		} while (time >= (int)pow(10, keta2));
 		Number_UI[2].SetPos(timepos.x, timepos.y, timepos.z);
+
+		UseBag.Draw();
+		if (santa_bug == 0)
+		{
+			normalUI.Draw();
+			normalmoji.Draw();
+		}
+
+		if (santa_bug == 1)
+		{
+			hurosikilUI.Draw();
+			hurosikimoji.Draw();
+		}
+
+		if (santa_bug == 2)
+		{
+			kintyakuUI.Draw();
+			kintyakumoji.Draw();
+		}
 
 		if (gameoverFg == true)
 		{
