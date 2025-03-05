@@ -14724,6 +14724,2856 @@ void Game::Update(void) {
 
 			santa_huro_pos.y = santa_kin_pos.y;
 			santa_pos.y = santa_kin_pos.y;
+
+			// 雪だるまとの当たり判定追加 
+			if (collision.enemy_santa(Snowman_Stage2[1], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+
+			}
+
+			if (collision.enemy_santa(Snowman_Stage2[2], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Snowman_Stage2[3], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Snowman_Stage2[4], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			// 星との当たり判定追加 
+			if (collision.enemy_santa(Star_Stage2[1], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Star_Stage2[2], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			//トナカイ との当たり判定追加 
+
+			if (collision.enemy_santa(Tonakai_Stage2[1], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Tonakai_Stage2[2], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && pauseFg == false && gameoverFg == false)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+			if (rocklive)
+			{
+				if (collision.tree_santa(Breakrock_Stge2[1], santa_Kin[0], 200.0f, 50.0f))
+				{
+					if (santa_huro_pos.y > breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f) {
+
+						santa_huro_pos.y = breakrock_pos1.y + Breakrock_Stge2[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+						tachFg = true;
+					}
+					else {
+						tachFg = false;
+					}
+
+					//// サンタが木の右側にぶつかった場合
+					if (santa_kin_pos.x < breakrock_pos1.x && tachFg == false)
+					{
+						collision.canMoveRight = false; // 右に移動中なら移動を停止
+					}
+					// サンタが木の左側にぶつかった場合
+					if (santa_kin_pos.x > breakrock_pos1.x && tachFg == false)
+					{
+
+						collision.canMoveLeft = false; // 左に移動中なら移動を停止
+					}
+				}
+			}
+
+
+
+			// 木との当たり判定の追加　ゴロイ
+			if (collision.tree_santa(Tree_Stge2[1], santa_Kin[0], 200.0f, 0.0f))
+			{
+
+				//// サンタが木の右側にぶつかった場合
+				if (santa_kin_pos.x < tree_pos1.x)
+				{
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+				// サンタが木の左側にぶつかった場合
+				if (santa_kin_pos.x > tree_pos1.x)
+				{
+
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.tree_santa(Tree_Stge2[2], santa_Kin[0], 200.0f, 0.0f))
+			{
+
+				//// サンタが木の右側にぶつかった場合
+				if (santa_kin_pos.x < tree_pos2.x)
+				{
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+				// サンタが木の左側にぶつかった場合
+				if (santa_kin_pos.x > tree_pos2.x)
+				{
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+
+				}
+			}
+
+			if (collision.tree_santa(invisiblewall[3], santa_Kin[0], 200.0f, 0.0f))
+			{
+
+				//// サンタが木の右側にぶつかった場合
+				if (santa_kin_pos.x < wall_pos1.x)
+				{
+					collision.canMoveRight = false; //右に移動中なら移動を停止
+				}
+
+				// サンタが木の左側にぶつかった場合
+				if (santa_kin_pos.x > wall_pos1.x)
+				{
+					collision.canMoveLeft = false; //右に移動中なら移動を停止
+				}
+			}
+
+			if (collision.tree_santa(invisiblewall[4], santa_Kin[0], 200.0f, 0.0f))
+			{
+
+				//// サンタが木の右側にぶつかった場合
+				if (santa_kin_pos.x < wall_pos2.x)
+				{
+					collision.canMoveRight = false; //右に移動中なら移動を停止
+				}
+
+				// サンタが木の左側にぶつかった場合
+				if (santa_kin_pos.x > wall_pos2.x)
+				{
+					collision.canMoveLeft = false; //右に移動中なら移動を停止
+				}
+			}
+
+			if (collision.block_santa(Stairs_Stge2[1], santa_Kin[0], 100.0f, 0.0f))
+			{
+				if (santa_kin_pos.y > stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f) {
+					santa_kin_pos.y = stairs_pos1.y + Stairs_Stge2[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				if (santa_kin_pos.x < stairs_pos1.x)
+				{
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタがぶつかった場合
+				if (santa_kin_pos.x > stairs_pos1.x)
+				{
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.block_santa(Stairs_Stge2[2], santa_Kin[0], 100.0f, 0.0f))
+			{
+				if (santa_kin_pos.y > stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f) {
+					santa_kin_pos.y = stairs_pos2.y + Stairs_Stge2[2].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				if (santa_kin_pos.x < stairs_pos2.x)
+				{
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタがぶつかった場合
+				if (santa_kin_pos.x > stairs_pos2.x)
+				{
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.block_santa(Stairs_Stge2[3], santa_Kin[0], 100.0f, 0.0f))
+			{
+				if (santa_kin_pos.y > stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f) {
+					santa_kin_pos.y = stairs_pos3.y + Stairs_Stge2[3].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				if (santa_kin_pos.x < stairs_pos3.x)
+				{
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタがぶつかった場合
+				if (santa_kin_pos.x > stairs_pos3.x)
+				{
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.block_santa(Stairs_Stge2[4], santa_Kin[0], 100.0f, 0.0f))
+			{
+				if (santa_kin_pos.y > stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f) {
+					santa_kin_pos.y = stairs_pos4.y + Stairs_Stge2[4].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				if (santa_kin_pos.x < stairs_pos4.x)
+				{
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタがぶつかった場合
+				if (santa_kin_pos.x > stairs_pos4.x)
+				{
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.block_santa(Stairs_Stge2[5], santa_Kin[0], 100.0f, 0.0f))
+			{
+				if (santa_kin_pos.y > stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f) {
+					santa_kin_pos.y = stairs_pos5.y + Stairs_Stge2[5].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				if (santa_kin_pos.x < stairs_pos5.x && santa_kin_pos.y / 2 < stairs_pos5.y / 3)
+				{
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタがぶつかった場合
+				if (santa_kin_pos.x > stairs_pos5.x && santa_kin_pos.y / 2 < stairs_pos5.y / 3)
+				{
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+
+
+
+			//プレゼントの当たり判定
+			if (collision.item_santa(Present_Stage2[1], santa_Kin[0], 100.0f, 0.0f) && pauseFg == false)
+
+			{
+				presentcount += 1;
+				score += 5000;
+				present_pos1.y = 100000;
+				sound.Play(SOUND_present);
+			}
+
+			if (collision.item_santa(Present_Stage2[2], santa_Kin[0], 100.0f, 0.0f))
+			{
+				presentcount += 1;
+				score += 5000;
+				present_pos2.y = 100000;
+				sound.Play(SOUND_present);
+			}
+
+			if (collision.item_santa(Present_Stage2[3], santa_Kin[0], 100.0f, 0.0f))
+			{
+				presentcount += 1;
+				score += 5000;
+				present_pos3.y = 100000;
+				sound.Play(SOUND_present);
+			}
+
+			if (collision.item_santa(BigPresent_Stage2[1], santa_Kin[0], 100.0f, 0.0f))
+			{
+				bigpresentcount += 1;
+				score += 10000;
+				bigpresent_pos1.y = 100000;
+				sound.Play(SOUND_present);
+			}
+			// 地面との当たり判定の追加 ゴロイ
+
+
+			if (collision.ground_santa(Ground_Stge2[1], santa_Kin[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > ground_pos1.y + Ground_Stge2[1].GetSize().y / 2.0f) {
+					santa_kin_pos.y = ground_pos1.y + Ground_Stge2[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < ground_pos1.x && santa_kin_pos.y < ground_pos1.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > ground_pos1.x && santa_kin_pos.y < ground_pos1.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.ground_santa(Ground_Stge2[2], santa_Kin[0], 50.0f, 0.0f))
+			{
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > ground_pos2.y + Ground_Stge2[2].GetSize().y / 2.0f) {
+					santa_kin_pos.y = ground_pos2.y + Ground_Stge2[2].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < ground_pos2.x && santa_kin_pos.y < ground_pos2.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > ground_pos2.x && santa_kin_pos.y < ground_pos2.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.ground_santa(Ground_Stge2[3], santa_Kin[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > ground_pos3.y + Ground_Stge2[3].GetSize().y / 2.0f) {
+					santa_kin_pos.y = ground_pos3.y + Ground_Stge2[3].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < ground_pos3.x && santa_kin_pos.y < ground_pos3.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > ground_pos3.x && santa_kin_pos.y < ground_pos3.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.ground_santa(Ground_Stge2[4], santa_Kin[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > ground_pos4.y + Ground_Stge2[4].GetSize().y / 2.0f) {
+					santa_kin_pos.y = ground_pos4.y + Ground_Stge2[4].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < ground_pos4.x && santa_kin_pos.y < ground_pos4.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > ground_pos4.x && santa_kin_pos.y < ground_pos4.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.ground_santa(Ground_Stge2[5], santa_Kin[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > ground_pos5.y + Ground_Stge2[5].GetSize().y / 2.0f) {
+					santa_kin_pos.y = ground_pos5.y + Ground_Stge2[5].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < ground_pos5.x && santa_kin_pos.y < ground_pos5.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > ground_pos5.x && santa_kin_pos.y < ground_pos5.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.ground_santa(Ground_Stge2[6], santa_Kin[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > ground_pos6.y + Ground_Stge2[6].GetSize().y / 2.0f) {
+					santa_kin_pos.y = ground_pos6.y + Ground_Stge2[6].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < ground_pos6.x && santa_kin_pos.y < ground_pos6.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > ground_pos6.x && santa_kin_pos.y < ground_pos6.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.ground_santa(Ground_Stge2[7], santa_Kin[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > ground_pos7.y + Ground_Stge2[7].GetSize().y / 2.0f) {
+					santa_kin_pos.y = ground_pos7.y + Ground_Stge2[7].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < ground_pos7.x && santa_kin_pos.y < ground_pos7.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > ground_pos7.x && santa_kin_pos.y < ground_pos7.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+			if (collision.ground_santa(Block_Stge2[1], santa_Kin[0], 50.0f, 0.0f)) {
+
+				//// サンタが地面の上にいる場合
+				if (santa_kin_pos.y > block_pos1.y + Block_Stge2[1].GetSize().y / 2.0f) {
+					santa_kin_pos.y = block_pos1.y + Block_Stge2[1].GetSize().y / 2.0f + santa_Kin[0].GetSize().y / 2.0f;
+					jumpVelocity = 0.0f;
+					/*std::cout << "\nSanta is on top of the ground." << std::endl;*/
+				}
+				else {
+					/*std::cout << "\nSanta is falling." << std::endl;*/
+				}
+
+				// サンタが地面の右側にぶつかった場合
+				if (santa_kin_pos.x < block_pos1.x && santa_kin_pos.y < block_pos1.y) {
+
+					collision.canMoveRight = false; // 右に移動中なら移動を停止
+				}
+
+				// サンタが地面にぶつかった場合
+				if (santa_kin_pos.x > block_pos1.x && santa_kin_pos.y < block_pos1.y) {
+					collision.canMoveLeft = false; // 左に移動中なら移動を停止
+				}
+			}
+
+
+
+			//ゴール当たり判定
+			if (collision.goal_santa(Goal_Stage2, santa_Kin[0], 250.0f, 0.0f))
+			{
+				changescene = RESULT;
+				gameoverFg = false;
+				//初期化
+				santa_kin_pos.x = -400;
+				santa_kin_pos.y = -160;
+
+				santa_kin_pos.x = -400;
+				santa_kin_pos.y = -160;
+
+				santa_huro_pos.x = -400;
+				santa_huro_pos.y = -160;
+
+				mounten_pos1.x = 0;
+				mounten_pos2.x = 1280;
+				mounten_pos3.x = 2560;
+
+				rock_pos1.x = -275;
+				rock_pos2.x = 5000;
+				rock_pos3.x = 1100;
+				rock_pos4.x = 2800;
+				rock_pos5.x = 4000;
+				rock_pos6.x = 7500;
+
+				snowball_pos1.x = 3100;
+				snowball_pos2.x = 5500;
+				snowball_pos3.x = 7000;
+
+				ground_pos1.x = 0;
+				ground_pos2.x = 2000;
+				ground_pos3.x = 3300;
+				ground_pos4.x = 3800;
+				ground_pos5.x = 4450;
+				ground_pos6.x = 5300;
+				ground_pos7.x = 7400;
+
+				block_pos1.x = 2000;
+
+				icicle_pos1.x = 1800;
+				icicle_pos2.x = 2000;
+				icicle_pos3.x = 2200;
+
+				icicle_pos1.y = 100;
+				icicle_pos2.y = 100;
+				icicle_pos3.y = 100;
+
+				tree_pos1.x = 900;
+				tree_pos2.x = 3450;
+
+				stairs_pos1.x = 5720;
+				stairs_pos2.x = 5755;
+				stairs_pos3.x = 5790;
+				stairs_pos4.x = 5825;
+				stairs_pos5.x = 5860;
+
+				snowman_pos1.x = 30;
+				snowman_pos2.x = 1400;
+				snowman_pos3.x = 3800;
+				snowman_pos4.x = 7000;
+
+				star_pos1.x = 2000;
+				star_pos2.x = 5000;
+
+				tonakai_pos1.x = 26000;
+				tonakai_pos2.x = 7500;
+				bigpresent_pos1.x = 4450;
+				present_pos1.x = 3300;
+				present_pos2.x = 6300;
+				present_pos3.x = 2000;
+
+				breakrock_pos1.x = 4450;
+				moji_pos.x = 4450;
+
+				goal_pos.x = 7900;
+
+				wall_pos1.x = -600;
+				wall_pos2.x = 7850;
+
+			}
+
+
+			// 投げ物の当たり判定 石
+
+				// 雪だるま１
+			if (collision.square_square(Snowman_Stage2[1], use_rock[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp1 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos1.x;
+				particlepos.y = snowman_pos1.y;
+
+				if (snowman_hp1 < 0)
+				{
+					enemylive1 = false;
+					snowman_hp1 = 20;
+					snowman_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[1], use_rock[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp1 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos1.x;
+				particlepos.y = snowman_pos1.y;
+
+				if (snowman_hp1 < 0)
+				{
+					enemylive1 = false;
+					snowman_hp1 = 20;
+					snowman_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[1], use_rock[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp1 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos1.x;
+				particlepos.y = snowman_pos1.y;
+
+				if (snowman_hp1 < 0)
+				{
+					enemylive1 = false;
+					snowman_hp1 = 20;
+					snowman_pos1.x = 400000000;
+				}
+			}
+
+			// 雪だるま２
+			if (collision.square_square(Snowman_Stage2[2], use_rock[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp2 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos2.x;
+				particlepos.y = snowman_pos2.y;
+
+				if (snowman_hp2 < 0)
+				{
+					enemylive2 = false;
+					snowman_hp2 = 20;
+					snowman_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[2], use_rock[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp2 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos2.x;
+				particlepos.y = snowman_pos2.y;
+
+				if (snowman_hp2 < 0)
+				{
+					enemylive2 = false;
+					snowman_hp2 = 20;
+					snowman_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[2], use_rock[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp2 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos2.x;
+				particlepos.y = snowman_pos2.y;
+
+				if (snowman_hp2 < 0)
+				{
+					enemylive2 = false;
+					snowman_hp2 = 20;
+					snowman_pos2.x = 400000000;
+				}
+			}
+
+			// 雪だるま3
+			if (collision.square_square(Snowman_Stage2[3], use_rock[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp3 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos3.x;
+				particlepos.y = snowman_pos3.y;
+
+				if (snowman_hp3 < 0)
+				{
+					enemylive3 = false;
+					snowman_hp3 = 20;
+					snowman_pos3.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[3], use_rock[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp3 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos3.x;
+				particlepos.y = snowman_pos3.y;
+
+				if (snowman_hp3 < 0)
+				{
+					enemylive3 = false;
+					snowman_hp3 = 20;
+					snowman_pos3.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[3], use_rock[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp3 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos3.x;
+				particlepos.y = snowman_pos3.y;
+
+				if (snowman_hp3 < 0)
+				{
+					enemylive3 = false;
+					snowman_hp3 = 20;
+					snowman_pos3.x = 400000000;
+				}
+			}
+
+			// 雪だるま3
+			if (collision.square_square(Snowman_Stage2[4], use_rock[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp4 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos4.x;
+				particlepos.y = snowman_pos4.y;
+
+				if (snowman_hp4 < 0)
+				{
+					enemylive4 = false;
+					snowman_hp4 = 20;
+					snowman_pos4.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[4], use_rock[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp4 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos4.x;
+				particlepos.y = snowman_pos4.y;
+
+				if (snowman_hp4 < 0)
+				{
+					enemylive4 = false;
+					snowman_hp4 = 20;
+					snowman_pos4.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[4], use_rock[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp4 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos4.x;
+				particlepos.y = snowman_pos4.y;
+
+				if (snowman_hp4 < 0)
+				{
+					enemylive4 = false;
+					snowman_hp4 = 20;
+					snowman_pos4.x = 400000000;
+				}
+			}
+
+			// クリスマスツリー1
+			if (collision.square_square(Star_Stage2[1], use_rock[0]) == true) {
+				star_monster_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos1.x;
+				particlepos.y = star_pos1.y;
+				if (star_monster_hp1 < 0)
+				{
+					enemylive5 = false;
+					star_monster_hp1 = 40;
+					star_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[1], use_rock[1]) == true) {
+				star_monster_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos1.x;
+				particlepos.y = star_pos1.y;
+				if (star_monster_hp1 < 0)
+				{
+					enemylive5 = false;
+					star_monster_hp1 = 40;
+					star_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[1], use_rock[2]) == true) {
+				star_monster_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos1.x;
+				particlepos.y = star_pos1.y;
+				if (star_monster_hp1 < 0)
+				{
+					enemylive5 = false;
+					star_monster_hp1 = 40;
+					star_pos1.x = 400000000;
+				}
+			}
+
+			// クリスマスツリー2
+			if (collision.square_square(Star_Stage2[2], use_rock[0]) == true) {
+				star_monster_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
+				{
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[2], use_rock[1]) == true) {
+				star_monster_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
+				{
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[2], use_rock[2]) == true) {
+				star_monster_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
+				{
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
+				}
+			}
+
+			// トナカイ1
+			if (collision.square_square(Tonakai_Stage2[1], use_rock[0]) == true) {
+				tonakai_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos1.x;
+				particlepos.y = tonakai_pos1.y;
+				if (tonakai_hp1 < 0)
+				{
+					enemylive7 = false;
+					tonakai_hp1 = 60;
+					tonakai_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[1], use_rock[1]) == true) {
+				tonakai_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos1.x;
+				particlepos.y = tonakai_pos1.y;
+				if (tonakai_hp1 < 0)
+				{
+					enemylive7 = false;
+					tonakai_hp1 = 60;
+					tonakai_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[1], use_rock[2]) == true) {
+				tonakai_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos1.x;
+				particlepos.y = tonakai_pos1.y;
+				if (tonakai_hp1 < 0)
+				{
+					enemylive7 = false;
+					tonakai_hp1 = 60;
+					tonakai_pos1.x = 400000000;
+				}
+			}
+
+			// トナカイ2
+			if (collision.square_square(Tonakai_Stage2[2], use_rock[0]) == true) {
+				tonakai_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos2.x;
+				particlepos.y = tonakai_pos2.y;
+				if (tonakai_hp2 < 0)
+				{
+					enemylive8 = false;
+					tonakai_hp2 = 60;
+					tonakai_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[2], use_rock[1]) == true) {
+				tonakai_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos2.x;
+				particlepos.y = tonakai_pos2.y;
+				if (tonakai_hp2 < 0)
+				{
+					enemylive8 = false;
+					tonakai_hp2 = 60;
+					tonakai_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[2], use_rock[2]) == true) {
+				tonakai_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos2.x;
+				particlepos.y = tonakai_pos2.y;
+				if (tonakai_hp2 < 0)
+				{
+					enemylive8 = false;
+					tonakai_hp2 = 60;
+					tonakai_pos2.x = 400000000;
+				}
+			}
+
+
+			// 投げ物の当たり判定 雪玉
+			// 雪だるま１
+			if (collision.square_square(Snowman_Stage2[1], use_snowball[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp1 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos1.x;
+				particlepos.y = snowman_pos1.y;
+
+				if (snowman_hp1 < 0)
+				{
+					enemylive1 = false;
+					snowman_hp1 = 20;
+					snowman_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[1], use_snowball[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp1 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos1.x;
+				particlepos.y = snowman_pos1.y;
+
+				if (snowman_hp1 < 0)
+				{
+					enemylive1 = false;
+					snowman_hp1 = 20;
+					snowman_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[1], use_snowball[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp1 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos1.x;
+				particlepos.y = snowman_pos1.y;
+
+				if (snowman_hp1 < 0)
+				{
+					enemylive1 = false;
+					snowman_hp1 = 20;
+					snowman_pos1.x = 400000000;
+				}
+			}
+
+			// 雪だるま２
+			if (collision.square_square(Snowman_Stage2[2], use_snowball[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp2 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos2.x;
+				particlepos.y = snowman_pos2.y;
+
+				if (snowman_hp2 < 0)
+				{
+					enemylive2 = false;
+					snowman_hp2 = 20;
+					snowman_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[2], use_snowball[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp2 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos2.x;
+				particlepos.y = snowman_pos2.y;
+
+				if (snowman_hp2 < 0)
+				{
+					enemylive2 = false;
+					snowman_hp2 = 20;
+					snowman_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[2], use_snowball[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp2 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos2.x;
+				particlepos.y = snowman_pos2.y;
+
+				if (snowman_hp2 < 0)
+				{
+					enemylive2 = false;
+					snowman_hp2 = 20;
+					snowman_pos2.x = 400000000;
+				}
+			}
+
+			// 雪だるま3
+			if (collision.square_square(Snowman_Stage2[3], use_snowball[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp3 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos3.x;
+				particlepos.y = snowman_pos3.y;
+
+				if (snowman_hp3 < 0)
+				{
+					enemylive3 = false;
+					snowman_hp3 = 20;
+					snowman_pos3.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[3], use_snowball[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp3 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos3.x;
+				particlepos.y = snowman_pos3.y;
+
+				if (snowman_hp3 < 0)
+				{
+					enemylive3 = false;
+					snowman_hp3 = 20;
+					snowman_pos3.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[3], use_snowball[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp3 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos3.x;
+				particlepos.y = snowman_pos3.y;
+
+				if (snowman_hp3 < 0)
+				{
+					enemylive3 = false;
+					snowman_hp3 = 20;
+					snowman_pos3.x = 400000000;
+				}
+			}
+
+			// 雪だるま3
+			if (collision.square_square(Snowman_Stage2[4], use_snowball[0]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp4 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos4.x;
+				particlepos.y = snowman_pos4.y;
+
+				if (snowman_hp4 < 0)
+				{
+					enemylive4 = false;
+					snowman_hp4 = 20;
+					snowman_pos4.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[4], use_snowball[1]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp4 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos4.x;
+				particlepos.y = snowman_pos4.y;
+
+				if (snowman_hp4 < 0)
+				{
+					enemylive4 = false;
+					snowman_hp4 = 20;
+					snowman_pos4.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Snowman_Stage2[4], use_snowball[2]) == true) {
+				sound.Play(SOUND_LABEL_SE004);
+				snowman_hp4 -= santa_atk;
+
+				particleFg = true;
+				particlepos.x = snowman_pos4.x;
+				particlepos.y = snowman_pos4.y;
+
+				if (snowman_hp4 < 0)
+				{
+					enemylive4 = false;
+					snowman_hp4 = 20;
+					snowman_pos4.x = 400000000;
+				}
+			}
+
+			// クリスマスツリー1
+			if (collision.square_square(Star_Stage2[1], use_snowball[0]) == true) {
+				star_monster_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos1.x;
+				particlepos.y = star_pos1.y;
+				if (star_monster_hp1 < 0)
+				{
+					enemylive5 = false;
+					star_monster_hp1 = 40;
+					star_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[1], use_snowball[1]) == true) {
+				star_monster_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos1.x;
+				particlepos.y = star_pos1.y;
+				if (star_monster_hp1 < 0)
+				{
+					enemylive5 = false;
+					star_monster_hp1 = 40;
+					star_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[1], use_snowball[2]) == true) {
+				star_monster_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos1.x;
+				particlepos.y = star_pos1.y;
+				if (star_monster_hp1 < 0)
+				{
+					enemylive5 = false;
+					star_monster_hp1 = 40;
+					star_pos1.x = 400000000;
+				}
+			}
+
+			// クリスマスツリー2
+			if (collision.square_square(Star_Stage2[2], use_snowball[0]) == true) {
+				star_monster_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
+				{
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[2], use_snowball[1]) == true) {
+				star_monster_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
+				{
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Star_Stage2[2], use_snowball[2]) == true) {
+				star_monster_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = star_pos2.x;
+				particlepos.y = star_pos2.y;
+				if (star_monster_hp2 < 0)
+				{
+					enemylive6 = false;
+					star_monster_hp2 = 40;
+					star_pos2.x = 400000000;
+				}
+			}
+
+			// トナカイ1
+			if (collision.square_square(Tonakai_Stage2[1], use_snowball[0]) == true) {
+				tonakai_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos1.x;
+				particlepos.y = tonakai_pos1.y;
+				if (tonakai_hp1 < 0)
+				{
+					enemylive7 = false;
+					tonakai_hp1 = 60;
+					tonakai_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[1], use_snowball[1]) == true) {
+				tonakai_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos1.x;
+				particlepos.y = tonakai_pos1.y;
+				if (tonakai_hp1 < 0)
+				{
+					enemylive7 = false;
+					tonakai_hp1 = 60;
+					tonakai_pos1.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[1], use_snowball[2]) == true) {
+				tonakai_hp1 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos1.x;
+				particlepos.y = tonakai_pos1.y;
+				if (tonakai_hp1 < 0)
+				{
+					enemylive7 = false;
+					tonakai_hp1 = 60;
+					tonakai_pos1.x = 400000000;
+				}
+			}
+
+			// トナカイ2
+			if (collision.square_square(Tonakai_Stage2[2], use_snowball[0]) == true) {
+				tonakai_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos2.x;
+				particlepos.y = tonakai_pos2.y;
+				if (tonakai_hp2 < 0)
+				{
+					enemylive8 = false;
+					tonakai_hp2 = 60;
+					tonakai_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[2], use_snowball[1]) == true) {
+				tonakai_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos2.x;
+				particlepos.y = tonakai_pos2.y;
+				if (tonakai_hp2 < 0)
+				{
+					enemylive8 = false;
+					tonakai_hp2 = 60;
+					tonakai_pos2.x = 400000000;
+				}
+			}
+
+			if (collision.square_square(Tonakai_Stage2[2], use_snowball[2]) == true) {
+				tonakai_hp2 -= santa_atk;
+				sound.Play(SOUND_LABEL_SE004);
+				particleFg = true;
+				particlepos.x = tonakai_pos2.x;
+				particlepos.y = tonakai_pos2.y;
+				if (tonakai_hp2 < 0)
+				{
+					enemylive8 = false;
+					tonakai_hp2 = 60;
+					tonakai_pos2.x = 400000000;
+				}
+			}
+
+			//パーティクルアニメーション
+			if (particleFg)
+			{
+				particlecount++;
+				if (particlecount % 5 == 0)
+				{
+					//particleFg = false;
+					particle.numU++;
+					if (particle.numU > 7)
+					{
+						particle.numU = 0;
+						particleFg = false;
+					}
+				}
+
+			}
+
+			// ジャンプ
+			if (input.GetKeyTrigger(VK_SPACE) && jump == 0 || input.GetButtonTrigger(XINPUT_A) && jump == 0) {
+				if (direction == 0) { // 右向き
+					if (bugPower == 0) {
+						santaImage = 19;
+						jump = 1;
+						santa_Kin[2].numU = 0;
+						santa_Kin[2].numV = 0;
+					}
+					else if (bugPower > 0) {
+						santaImage = 20;
+						jump = 2;
+						santa_Kin[3].numU = 0;
+						santa_Kin[3].numV = 0;
+					}
+					get_jump_old = santa_kin_pos.y;
+				}
+				else if (direction == 1) { // 右向き
+					if (bugPower == 0) {
+						santaImage = 19;
+						jump = 1;
+						santa_Kin[2].numU = 0;
+						santa_Kin[2].numV = 1;
+					}
+					else if (bugPower > 0) {
+						santaImage = 20;
+						jump = 2;
+						santa_Kin[3].numU = 0;
+						santa_Kin[3].numV = 1;
+					}
+				}
+				get_jump_old = santa_kin_pos.y;
+
+				jumpVelocity = 10.0f;
+			}
+
+			// 重力
+			if (jump == 0) {
+				santa_kin_pos.y += jumpVelocity;
+				//	 重力を速度に適用
+				jumpVelocity += gravity;
+				/*santa_kin_pos.y -= 2.0f;*/
+			}
+
+			//ジャンプ処理
+			if (jump == 1 || jump == 2) {
+
+				if (santa_kin_pos.y >= get_jump_old + 50.0f && jump == 1 || santa_kin_pos.y >= get_jump_old + 50.0f && jump == 2) {
+					jump = 3;
+				}
+				else if (santa_kin_pos.y <= get_jump_old + 175.0f && jump == 1 || santa_kin_pos.y <= get_jump_old + 175.0f && jump == 2) {
+					/*santa_kin_pos.y += 7.50;*/
+					santa_kin_pos.y += jumpVelocity;
+					//	 重力を速度に適用
+					jumpVelocity += gravity;
+				}
+
+			}
+			if (jump == 3) {
+
+				santa_kin_pos.y += jumpVelocity;
+				//	 重力を速度に適用
+				jumpVelocity += gravity;
+				if (collision.ground_santa(Ground_Stge2[1], santa_Kin[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[2], santa_Kin[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[3], santa_Kin[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[4], santa_Kin[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[5], santa_Kin[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[6], santa_Kin[0], 50.0f, 0.0f) == true ||
+					collision.ground_santa(Ground_Stge2[7], santa_Kin[0], 50.0f, 0.0f) == true ||
+					collision.block_santa(Stairs_Stge2[1], santa_Kin[0], 100.0f, 0.0f) == true ||
+					collision.tree_santa(tree, santa_Kin[0], 1000.0f, 0.0f) == true)
+				{
+
+					jump = 0;
+					jumpVelocity = 0.0f;
+				}
+			}
+
+
+			// サンタがアイテムに当たった時
+			bool itemCollected = false; // アイテムが既に回収されたかどうかのフラグ
+
+
+			const float rightScreen = 670.0f; // 画面の右端
+			const float leftScreen = -670.0f; // 画面の左端
+
+
+			if (collision.item_santa(Collectrock_Stage2[1], santa_Kin[0], 100.0f, 0.0f) && rock_visible1 == 0)
+			{
+
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+
+					item->ItemGet(1); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					rock_visible1 = 1;
+
+				}
+
+				//if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				//{
+				//	/*itemID = 1;*/
+				//	item->ItemGet(1); // いわを回収
+				//	bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+				//	itemCollected = true;
+
+				//	rock_visible1 = 1;
+
+				//}
+			}
+
+			if (collision.item_santa(Collectrock_Stage2[2], santa_Kin[0], 100.0f, 0.0f) && rock_visible2 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+
+					item->ItemGet(1); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					rock_visible2 = 1;
+
+				}
+			}
+
+			if (collision.item_santa(Collectrock_Stage2[3], santa_Kin[0], 100.0f, 0.0f) && rock_visible3 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+
+					item->ItemGet(1); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					rock_visible3 = 1;
+
+				}
+			}
+
+			if (collision.item_santa(Collectrock_Stage2[4], santa_Kin[0], 100.0f, 0.0f) && rock_visible4 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+
+					item->ItemGet(1); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					rock_visible4 = 1;
+
+				}
+			}
+
+			if (collision.item_santa(Collectrock_Stage2[5], santa_Kin[0], 100.0f, 0.0f) && rock_visible5 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+
+					item->ItemGet(1); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					rock_visible5 = 1;
+
+				}
+			}
+
+			if (collision.item_santa(Collectrock_Stage2[6], santa_Kin[0], 100.0f, 0.0f) && rock_visible6 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected || input.GetButtonTrigger(XINPUT_B) && !itemCollected)
+				{
+					if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+					{
+
+						item->ItemGet(1); // いわを回収
+						bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+						itemCollected = true;
+						santaImage = 4;
+
+						rock_visible6 = 1;
+
+					}
+				}
+			}
+
+			if (collision.item_santa(Snowball_Stage2[1], santa_Kin[0], 100.0f, 0.0f) && snow_visible1 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+					/*itemID = 1;*/
+					item->ItemGet(2); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					snow_visible1 = 1;
+				}
+			}
+
+			if (collision.item_santa(Snowball_Stage2[2], santa_Kin[0], 100.0f, 0.0f) && snow_visible1 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+					/*itemID = 1;*/
+					item->ItemGet(2); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					snow_visible2 = 1;
+				}
+			}
+
+			if (collision.item_santa(Snowball_Stage2[3], santa_Kin[0], 100.0f, 0.0f) && snow_visible1 == 0)
+			{
+				if (input.GetKeyTrigger(VK_S) && !itemCollected && !sp_ani || input.GetButtonTrigger(XINPUT_B) && !itemCollected && !sp_ani)
+				{
+					/*itemID = 1;*/
+					item->ItemGet(2); // いわを回収
+					bugPower = item->GetItemCnt(); // 現在の袋のアイテム個数を代入
+					itemCollected = true;
+					santaImage = 4;
+
+					snow_visible3 = 1;
+				}
+			}
+
+			// 画面外に行くと、アイテムが再スポーンする処理
+			if (leftScreen > rock_pos1.x || rock_pos1.x > rightScreen) {
+				rock_visible1 = 0;
+			}
+			if (leftScreen > rock_pos2.x || rock_pos2.x > rightScreen) {
+				rock_visible2 = 0;
+			}
+			if (leftScreen > rock_pos3.x || rock_pos3.x > rightScreen) {
+				rock_visible3 = 0;
+			}
+			if (leftScreen > rock_pos4.x || rock_pos4.x > rightScreen) {
+				rock_visible4 = 0;
+			}
+			if (leftScreen > rock_pos5.x || rock_pos5.x > rightScreen) {
+				rock_visible5 = 0;
+			}
+			if (leftScreen > rock_pos6.x || rock_pos6.x > rightScreen) {
+				rock_visible6 = 0;
+			}
+			if (leftScreen > snowball_pos1.x || snowball_pos1.x > rightScreen) {
+				snow_visible1 = 0;
+			}
+			if (leftScreen > snowball_pos2.x || snowball_pos2.x > rightScreen) {
+				snow_visible2 = 0;
+			}
+			if (leftScreen > snowball_pos3.x || snowball_pos3.x > rightScreen) {
+				snow_visible3 = 0;
+			}
+
+
+			if (!itemCollected && !changeItem) {// 当たってない場合
+				if (input.GetKeyTrigger(VK_S) && pauseFg == false || input.GetButtonTrigger(XINPUT_B) && pauseFg == false)
+				{
+
+					if (item->GetItem_3() > 0) {
+						changeItem = true;
+
+						if (item->GetItem_3() == 1) {
+							use_rock_pos3.x = santa_kin_pos.x;
+							use_rock_pos3.y = santa_kin_pos.y;
+							sound.Play(SOUND_LABEL_SE004);
+							itemID_3 = 1;
+							itemMove3 = true;
+						}
+						else if (item->GetItem_3() == 2) {
+							use_snowball_pos3.x = santa_kin_pos.x;
+							use_snowball_pos3.y = santa_kin_pos.y;
+							sound.Play(SOUND_LABEL_SE002);
+							itemID_3 = 2;
+							itemMove3 = true;
+						}
+
+					}
+					else if (item->GetItem_3() < 0) {
+
+						if (item->GetItem_2() > 0) {
+
+							if (item->GetItem_2() == 1) {
+								use_rock_pos2.x = santa_kin_pos.x;
+								use_rock_pos2.y = santa_kin_pos.y;
+								sound.Play(SOUND_LABEL_SE004);
+								itemID_2 = 1;
+								itemMove2 = true;
+							}
+							else if (item->GetItem_2() == 2) {
+								use_snowball_pos2.x = santa_kin_pos.x;
+								use_snowball_pos2.y = santa_kin_pos.y;
+								sound.Play(SOUND_LABEL_SE004);
+								itemID_2 = 2;
+								itemMove2 = true;
+							}
+
+						}
+						else if (item->GetItem_2() < 0) {
+
+							if (item->GetItem_1() > 0) {
+
+								if (item->GetItem_1() == 1) {
+									use_rock_pos1.x = santa_kin_pos.x;
+									use_rock_pos1.y = santa_kin_pos.y;
+									itemID_1 = 1;
+									itemMove1 = true;
+								}
+								else if (item->GetItem_1() == 2) {
+									use_snowball_pos1.x = santa_kin_pos.x;
+									use_snowball_pos1.y = santa_kin_pos.y;
+									itemID_1 = 2;
+									itemMove1 = true;
+								}
+
+							}
+						}
+					}
+
+
+					item->ItemRelease(); // 取り出す
+					bugPower = item->GetItemCnt();
+				}
+			}
+
+
+
+
+			if (collision.enemy_santa(Icicles_Stge2[1], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && turarafall1 == true)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Icicles_Stge2[2], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			if (collision.enemy_santa(Icicles_Stge2[3], santa_Kin[0], 200.0f, 0.0f) && HitFg == false && turarafall3 == true)
+			{
+				time -= 5;
+				hitcooltime = 0;
+				sound.Play(SOUND_LABEL_SE000);
+				damage5 = true;
+				HitFg = true;
+			}
+
+			if (!itemCollected && !changeItem) {// 当たってない場合
+				if (input.GetKeyTrigger(VK_S) && pauseFg == false && !sp_ani || input.GetButtonTrigger(XINPUT_B) && pauseFg == false && !sp_ani)
+				{
+
+					if (item->GetItem_3() > 0) {
+						changeItem = true;
+
+						if (item->GetItem_3() == 1) {
+							use_rock_pos3.x = santa_kin_pos.x;
+							use_rock_pos3.y = santa_kin_pos.y;
+							sound.Play(SOUND_LABEL_SE003);
+							itemID_3 = 1;
+							itemMove3 = true;
+						}
+						else if (item->GetItem_3() == 2) {
+							use_snowball_pos3.x = santa_kin_pos.x;
+							use_snowball_pos3.y = santa_kin_pos.y;
+							sound.Play(SOUND_LABEL_SE003);
+							itemID_3 = 2;
+							itemMove3 = true;
+						}
+
+					}
+					else if (item->GetItem_3() < 0) {
+
+						if (item->GetItem_2() > 0) {
+
+							if (item->GetItem_2() == 1) {
+								use_rock_pos2.x = santa_kin_pos.x;
+								use_rock_pos2.y = santa_kin_pos.y;
+								sound.Play(SOUND_LABEL_SE003);
+								itemID_2 = 1;
+								itemMove2 = true;
+							}
+							else if (item->GetItem_2() == 2) {
+								use_snowball_pos2.x = santa_kin_pos.x;
+								use_snowball_pos2.y = santa_kin_pos.y;
+								sound.Play(SOUND_LABEL_SE003);
+								itemID_2 = 2;
+								itemMove2 = true;
+							}
+
+						}
+						else if (item->GetItem_2() < 0) {
+
+							if (item->GetItem_1() > 0) {
+
+								if (item->GetItem_1() == 1) {
+									use_rock_pos1.x = santa_kin_pos.x;
+									use_rock_pos1.y = santa_kin_pos.y;
+									itemID_1 = 1;
+									itemMove1 = true;
+								}
+								else if (item->GetItem_1() == 2) {
+									use_snowball_pos1.x = santa_kin_pos.x;
+									use_snowball_pos1.y = santa_kin_pos.y;
+									itemID_1 = 2;
+									itemMove1 = true;
+								}
+
+							}
+						}
+					}
+
+					santaImage = 5;
+					item->ItemRelease(); // 取り出す
+					bugPower = item->GetItemCnt();
+				}
+			}
+
+
+			// 回収アニメーション
+			if (santaImage == 4) {
+				getItem = 1;
+				if (direction == 0) { // 右向き
+					if (changeRight_get == true)
+					{
+						//初期化
+						santa_Nor[4].numU = 0;
+						santa_Nor[4].numV = 0;
+						changeRight_get = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount4++; //フレームカウント
+					if (framcount4 % 4 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[4].numU++;
+						if (santa_Nor[4].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 1;
+							getItem = 0;
+							santa_Nor[4].numU = 0;
+
+						}
+					}
+				}
+				else if (direction == 1) {
+					if (changeLeft_get == true)
+					{
+						//初期化
+						santa_Nor[4].numU = 0;
+						santa_Nor[4].numV = 1;
+						changeLeft_get = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount4++; //フレームカウント
+					if (framcount4 % 4 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[4].numU++;
+						if (santa_Nor[4].numU >= 5)
+						{
+							sp_ani = false;
+							santaImage = 1;
+							getItem = 0;
+							santa_Nor[4].numU = 0;
+
+						}
+					}
+				}
+			}
+
+			// 取出アニメーション
+			if (santaImage == 5) {
+
+				if (direction == 0) { // 右向き
+					if (changeRight_out == true)
+					{
+						//初期化
+						santa_Nor[5].numU = 0;
+						santa_Nor[5].numV = 0;
+						changeRight_out = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount5++; //フレームカウント
+					if (framcount5 % 4 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[5].numU++;
+						if (santa_Nor[5].numU >= 5)
+						{
+							sp_ani = false;
+							if (bugPower > 0) {
+								santaImage = 1;
+							}
+							else if (bugPower == 0) {
+								santaImage = 0;
+							}
+
+							santa_Nor[5].numU = 0;
+							changeRight_out = true;
+
+						}
+					}
+				}
+				else if (direction == 1) {
+					if (changeLeft_out == true)
+					{
+						//初期化
+						santa_Nor[5].numU = 0;
+						santa_Nor[5].numV = 1;
+						changeLeft_out = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount5++; //フレームカウント
+					if (framcount5 % 4 == 0) //１０フレームに一回行われる
+					{
+						santa_Nor[5].numU++;
+						if (santa_Nor[5].numU >= 5)
+						{
+							sp_ani = false;
+							if (bugPower > 0) {
+								santaImage = 1;
+							}
+							else if (bugPower == 0) {
+								santaImage = 0;
+							}
+							santa_Nor[5].numU = 0;
+							changeLeft_out = true;
+
+						}
+					}
+				}
+			}
+
+
+
+			// 投げ物の動き　その① 
+			if (itemMove1 == true) {
+				if (direction == 0) { // 右向き
+
+					if (itemID_1 == 1) { // 岩
+
+						if (itemMove1_M == true || use_rock_pos1.y >= -100.0f) {
+							itemMove1_M = true;
+							use_rock_pos1.y -= 3.00f;
+							use_rock_pos1.x += 3.00f;
+						}
+						else if (itemMove1_M == false) {
+							use_rock_pos1.y += 3.00f;
+							use_rock_pos1.x += 3.00f;
+						}
+						if (use_rock_pos1.y <= -190.0f && itemMove1_M == true) {
+							itemID_1 = 0;
+							itemMove1_M = false;
+							itemMove1 = false;
+						}
+					}
+					else if (itemID_1 == 2) {
+						if (use_snowball_pos1.x >= rightScreen) {
+							itemID_1 = 0;
+							itemMove1 = false;
+						}
+						else if (use_snowball_pos1.x <= rightScreen) {
+							use_snowball_pos1.x += 20.00f;
+						}
+					}
+				}
+				else if (direction == 1) { // 左向き
+
+					if (itemID_1 == 1) { // 岩
+
+						if (itemMove1_M == true || use_rock_pos1.y >= -100.0f) {
+							itemMove1_M = true;
+							use_rock_pos1.y -= 3.00f;
+							use_rock_pos1.x -= 3.00f;
+						}
+						else if (itemMove1_M == false) {
+							use_rock_pos1.y += 3.00f;
+							use_rock_pos1.x -= 3.00f;
+						}
+						if (use_rock_pos1.y <= -190.0f && itemMove1_M == true) {
+							itemID_1 = 0;
+							itemMove1_M = false;
+							itemMove1 = false;
+						}
+					}
+					else if (itemID_1 == 2) {
+						if (use_snowball_pos1.x <= leftScreen) {
+							itemID_1 = 0;
+							itemMove1 = false;
+						}
+						else if (use_snowball_pos1.x >= leftScreen) {
+							use_snowball_pos1.x -= 20.00f;
+						}
+					}
+				}
+
+
+
+			}
+
+			// 投げ物の動き　その②
+			if (itemMove2 == true) {
+				if (direction == 0) { // 右向き
+
+					if (itemID_2 == 1) { //岩
+
+						if (itemMove2_M == true || use_rock_pos2.y >= -100.0f) {
+							itemMove2_M = true;
+							use_rock_pos2.y -= 3.00f;
+							use_rock_pos2.x += 3.00f;
+						}
+						else if (itemMove2_M == false) {
+							use_rock_pos2.y += 3.00f;
+							use_rock_pos2.x += 3.00f;
+						}
+						if (use_rock_pos2.y <= -190.0f && itemMove2_M == true) {
+							itemID_2 = 0;
+							itemMove2_M = false;
+							itemMove2 = false;
+						}
+					}
+					else if (itemID_2 == 2) {
+						if (use_snowball_pos2.x >= rightScreen) {
+							itemID_2 = 0;
+							itemMove2 = false;
+						}
+						else if (use_snowball_pos2.x <= rightScreen) {
+							use_snowball_pos2.x += 20.00f;
+						}
+					}
+				}
+				else if (direction == 1) { // 左向き
+
+					if (itemID_2 == 1) { //岩
+
+						if (itemMove2_M == true || use_rock_pos2.y >= -100.0f) {
+							itemMove2_M = true;
+							use_rock_pos2.y -= 3.00f;
+							use_rock_pos2.x -= 3.00f;
+						}
+						else if (itemMove2_M == false) {
+							use_rock_pos2.y += 3.00f;
+							use_rock_pos2.x -= 3.00f;
+						}
+						if (use_rock_pos2.y <= -190.0f && itemMove2_M == true) {
+							itemID_2 = 0;
+							itemMove2_M = false;
+							itemMove2 = false;
+						}
+					}
+					else if (itemID_2 == 2) {
+						if (use_snowball_pos2.x <= leftScreen) {
+							itemID_2 = 0;
+							itemMove2 = false;
+						}
+						else if (use_snowball_pos2.x >= leftScreen) {
+							use_snowball_pos2.x -= 20.00f;
+						}
+					}
+				}
+
+
+			}
+
+			// 投げ物の動き　その③
+			if (itemMove3 == true) {
+
+				if (direction == 0) { // 右向き
+
+					if (itemID_3 == 1) { // 岩
+
+						if (itemMove3_M == true || use_rock_pos3.y >= -100.0f) {
+							itemMove3_M = true;
+							use_rock_pos3.y -= 3.00f;
+							use_rock_pos3.x += 3.00f;
+						}
+						else if (itemMove3_M == false) {
+							use_rock_pos3.y += 3.00f;
+							use_rock_pos3.x += 3.00f;
+						}
+						if (use_rock_pos3.y <= -190.0f && itemMove3_M == true) {
+							itemID_3 = 0;
+							itemMove3_M = false;
+							itemMove3 = false;
+							changeItem = false;
+						}
+					}
+					else if (itemID_3 == 2) {
+						if (use_snowball_pos3.x >= rightScreen) {
+							itemID_3 = 0;
+							itemMove3 = false;
+							changeItem = false;
+						}
+						else if (use_snowball_pos3.x <= rightScreen) {
+							use_snowball_pos3.x += 30.00f;
+						}
+					}
+				}
+				else if (direction == 1) { // 左向き
+
+					if (itemID_3 == 1) { // 岩
+
+						if (itemMove3_M == true || use_rock_pos3.y >= -100.0f) {
+							itemMove3_M = true;
+							use_rock_pos3.y -= 3.00f;
+							use_rock_pos3.x -= 3.00f;
+						}
+						else if (itemMove3_M == false) {
+							use_rock_pos3.y += 3.00f;
+							use_rock_pos3.x -= 3.00f;
+						}
+						if (use_rock_pos3.y <= -190.0f && itemMove3_M == true) {
+							itemID_3 = 0;
+							itemMove3_M = false;
+							itemMove3 = false;
+							changeItem = false;
+						}
+					}
+					else if (itemID_3 == 2) {
+						if (use_snowball_pos3.x <= leftScreen) {
+							itemID_3 = 0;
+							itemMove3 = false;
+							changeItem = false;
+						}
+						else if (use_snowball_pos3.x >= leftScreen) {
+							use_snowball_pos3.x -= 30.00f;
+						}
+					}
+				}
+
+
+			}
+
+			// 固有能力発動！！！！！！！
+			if (sp_ani == false && input.GetKeyPress(VK_Q)
+				|| input.GetButtonTrigger(XINPUT_X) && sp_ani == false) {
+
+				if (bugPower > 0) { //  袋に中身がある場合
+
+					if (direction == 0) { // 右向き
+						kintyaku_pos1.x = santa_kin_pos.x;
+						kintyaku_pos1.y = santa_kin_pos.y - 25.0f;
+						himo_pos.x = santa_kin_pos.x + 40;
+						himo_pos.y = santa_kin_pos.y;
+					}
+					else if (direction == 1) { // 左向き
+						kintyaku_pos1.x = santa_kin_pos.x;
+						kintyaku_pos1.y = santa_kin_pos.y - 25.0f;
+						himo_pos.x = santa_kin_pos.x - 40;
+						himo_pos.y = santa_kin_pos.y;
+					}
+
+					sp_ani = true;
+					kintyaku_go1 = true;
+
+				}
+				else if (bugPower == 0) { // 袋が空っぽの時
+
+					if (direction == 0) { // 右向き
+						kintyaku_pos.x = santa_kin_pos.x;
+						kintyaku_pos.y = santa_kin_pos.y - 25.0f;
+						himo_pos.x = santa_kin_pos.x + 40;
+						himo_pos.y = santa_kin_pos.y;
+					}
+					else if (direction == 1) { // 左向き
+						kintyaku_pos.x = santa_kin_pos.x;
+						kintyaku_pos.y = santa_kin_pos.y - 25.0f;
+						himo_pos.x = santa_kin_pos.x - 40;
+						himo_pos.y = santa_kin_pos.y;
+					}
+
+					sp_ani = true;
+					kintyaku_go = true;
+
+
+
+				}
+
+
+			}
+
+			//	巾着のアニメーション関係
+			if (sp_ani == true) {
+
+
+				if (direction == 0) // もし右向きなら
+				{
+					if (bugPower == 0) {
+						kintyaku[0].numU = 0;
+						kintyaku[0].numV = 0;
+					}
+					else if (bugPower > 0) {
+						kintyaku[1].numU = 0;
+						kintyaku[1].numV = 0;
+					}
+
+					if (changeRight_SP == true)
+					{
+						if (ani_stop == true) { // ここでアニメーションを固定する
+							santa_Kin[6].numU = 2;
+							santa_Kin[6].numV = 0;
+
+						}
+						else if (ani_stop == false) { // falseの場合は、初期化する（最初はここにくる）
+
+							//初期化
+							santaImage = 23;
+							santa_Kin[6].numU = 0;
+							santa_Kin[6].numV = 0;
+
+						}
+
+						changeRight_SP = false;//一旦falseにして一回しか処理されないようにする
+					}
+					if (ani_stop == true) {
+
+					}
+					else if (ani_stop == false) {
+
+						framcount7++; //フレームカウント
+						if (framcount7 % 4 == 0) //１０フレームに一回行われる
+						{
+							santa_Kin[6].numU++;
+							if (santa_Kin[6].numU >= 3)
+							{
+								changeRight_SP = true;
+								ani_stop = true;
+
+							}
+						}
+					}
+
+				}
+				else if (direction == 1) // 左向き
+				{
+					if (bugPower <= 0) {
+						kintyaku[0].numU = 0;
+						kintyaku[0].numV = 1;
+					}
+					else if (bugPower >= 0) {
+						kintyaku[1].numU = 0;
+						kintyaku[1].numV = 1;
+					}
+
+					if (changeLeft_SP == true)
+
+						if (ani_stop == true) { // ここでアニメーションを固定する
+							santa_Kin[6].numU = 2;
+							santa_Kin[6].numV = 1;
+
+						}
+						else if (ani_stop == false) {
+							//初期化
+							santaImage = 23;
+							santa_Kin[6].numU = 0;
+							santa_Kin[6].numV = 1;
+						}
+					changeLeft_SP = false;//一旦falseにして一回しか処理されないようにする
+
+					if (ani_stop == true) {
+
+					}
+					else if (ani_stop == false) {
+						framcount7++; //フレームカウント
+						if (framcount7 % 4 == 0) //１０フレームに一回行われる
+						{
+							santa_Kin[6].numU++;
+							if (santa_Kin[6].numU >= 3)
+							{
+
+								changeLeft_SP = true;
+								ani_stop = true;
+
+							}
+						}
+					}
+				}
+
+			}
+
+			// 巾着袋の移動 (中身なし)
+			if (kintyaku_go == true) {
+
+				if (direction == 0) { // 右向き
+
+					if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+						get_Kintyaku -= 15.0f;
+						kintyaku_pos.x -= 15.0f;
+
+						himo_pos.x -= 6.5f;
+						himo_size.x -= 13.0f;
+					}
+					else {                     // 袋を飛ばす処理
+						get_Kintyaku += 15.0f;
+						kintyaku_pos.x += 15.0f;
+
+						himo_pos.x += 6.5f;
+						himo_size.x += 13.0f;
+					}
+
+					if (collision.square_square(kintyaku[0], tree) == true && tree_Ground == 1) {
+						tree_Ground = 2;
+					}
+
+					if (get_Kintyaku >= 300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+						kintyaku_Fg = true;
+					}
+					else if (get_Kintyaku <= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+						changeRight_SP = true;
+						santaImage = 17;
+						santa_Kin[6].numU = 0;
+						sp_ani = false;
+						kintyaku_go = false;
+						ani_stop = false;
+						himo_size.x = 10.0f;
+
+						get_Kintyaku = 0.0f;
+						kintyaku_Fg = false;
+					}
+				}
+				else if (direction == 1) { // 右向き
+
+					if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+						get_Kintyaku += 15.0f;
+						kintyaku_pos.x += 15.0f;
+
+						himo_pos.x += 6.5f;
+						himo_size.x += -13.0f;
+					}
+					else {                     // 袋を飛ばす処理
+						get_Kintyaku -= 15.0f;
+						kintyaku_pos.x += -15.0f;
+
+						himo_pos.x -= 6.5f;
+						himo_size.x += 13.0f;
+					}
+
+					if (get_Kintyaku <= -300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+						kintyaku_Fg = true;
+					}
+					else if (get_Kintyaku >= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+						changeLeft_SP = true;
+						santaImage = 17;
+						santa_Kin[6].numU = 0;
+						sp_ani = false;
+						kintyaku_go = false;
+						ani_stop = false;
+						himo_size.x = 10.0f;
+
+						get_Kintyaku = 0.0f;
+						kintyaku_Fg = false;
+					}
+				}
+
+			}
+
+			// 巾着袋の移動 (中身あり）
+			if (kintyaku_go1 == true) {
+
+				if (direction == 0) { // 右向き
+
+					if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+						get_Kintyaku -= 15.0f;
+						kintyaku_pos1.x -= 15.0f;
+
+						himo_pos.x -= 6.5f;
+						himo_size.x -= 13.0f;
+					}
+					else {                     // 袋を飛ばす処理
+						get_Kintyaku += 15.0f;
+						kintyaku_pos1.x += 15.0f;
+
+						himo_pos.x += 6.5f;
+						himo_size.x += 13.0f;
+					}
+
+					if (get_Kintyaku >= 300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+						kintyaku_Fg = true;
+					}
+					else if (get_Kintyaku <= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+						changeRight_SP = true;
+						santaImage = 17;
+						santa_Kin[6].numU = 0;
+						sp_ani = false;
+						kintyaku_go1 = false;
+						ani_stop = false;
+						himo_size.x = 10.0f;
+
+						get_Kintyaku = 0.0f;
+						kintyaku_Fg = false;
+					}
+				}
+				else if (direction == 1) { // 右向き
+
+					if (kintyaku_Fg == true) { // 袋が自分のとこに戻る処理
+
+						get_Kintyaku += 15.0f;
+						kintyaku_pos1.x += 15.0f;
+
+						himo_pos.x += 6.5f;
+						himo_size.x += -13.0f;
+					}
+					else {                     // 袋を飛ばす処理
+						get_Kintyaku -= 15.0f;
+						kintyaku_pos1.x += -15.0f;
+
+						himo_pos.x -= 6.5f;
+						himo_size.x += 13.0f;
+					}
+
+					if (get_Kintyaku <= -300.0f && kintyaku_Fg == false) { // 袋が最大距離まで移動した場合
+						kintyaku_Fg = true;
+					}
+					else if (get_Kintyaku >= 0.0f && kintyaku_Fg == true) { // 袋が自分の元に戻った時の処理
+						changeLeft_SP = true;
+						santaImage = 17;
+						santa_Kin[6].numU = 0;
+						sp_ani = false;
+						kintyaku_go1 = false;
+						ani_stop = false;
+						himo_size.x = 10.0f;
+
+						get_Kintyaku = 0.0f;
+						kintyaku_Fg = false;
+					}
+				}
+
+			}
+
+			// 巾着袋と敵の当たり判定
+			if (kintyaku_go1 == true && kintyaku_Fg == false) {
+				if (collision.square_square(Snowman_Stage2[1], kintyaku[1]) == true) {
+					sound.Play(SOUND_LABEL_SE004);
+					snowman_hp1 -= santa_atk;
+
+					particleFg = true;
+					particlepos.x = snowman_pos1.x;
+					particlepos.y = snowman_pos1.y;
+
+					if (snowman_hp1 < 0)
+					{
+						enemylive1 = false;
+						snowman_hp1 = 20;
+						snowman_pos1.x = 400000000;
+					}
+				}
+
+				if (collision.square_square(Snowman_Stage2[2], kintyaku[1]) == true) {
+					snowman_hp2 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = snowman_pos2.x;
+					particlepos.y = snowman_pos2.y;
+					if (snowman_hp2 < 0)
+					{
+
+						enemylive2 = false;
+						snowman_hp2 = 20;
+						snowman_pos2.x = 400000000;
+					}
+				}
+
+				if (collision.square_square(Snowman_Stage2[3], kintyaku[1]) == true) {
+					snowman_hp3 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = snowman_pos3.x;
+					particlepos.y = snowman_pos3.y;
+					if (snowman_hp3 < 0)
+					{
+
+						enemylive3 = false;
+						snowman_hp3 = 20;
+						snowman_pos3.x = 400000000;
+					}
+				}
+
+				if (collision.square_square(Snowman_Stage2[4], kintyaku[1]) == true) {
+					snowman_hp4 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = snowman_pos4.x;
+					particlepos.y = snowman_pos4.y;
+					if (snowman_hp4 < 0)
+					{
+
+						enemylive4 = false;
+						snowman_hp4 = 20;
+						snowman_pos4.x = 400000000;
+					}
+				}
+
+				if (collision.square_square(Star_Stage2[1], kintyaku[1]) == true) {
+					star_monster_hp1 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = star_pos1.x;
+					particlepos.y = star_pos1.y;
+					if (star_monster_hp1 < 0)
+					{
+						enemylive5 = false;
+						star_monster_hp1 = 40;
+						star_pos1.x = 400000000;
+					}
+				}
+
+				if (collision.square_square(Star_Stage2[2], kintyaku[1]) == true) {
+					star_monster_hp2 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = star_pos2.x;
+					particlepos.y = star_pos2.y;
+					if (star_monster_hp2 < 0)
+					{
+						enemylive6 = false;
+						star_monster_hp2 = 40;
+						star_pos2.x = 400000000;
+					}
+				}
+
+				if (collision.square_square(Tonakai_Stage2[1], kintyaku[1]) == true) {
+					tonakai_hp1 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = tonakai_pos1.x;
+					particlepos.y = tonakai_pos1.y;
+					if (tonakai_hp1 < 0)
+					{
+						enemylive7 = false;
+						tonakai_hp1 = 60;
+						tonakai_pos1.x = 400000000;
+					}
+				}
+
+				if (collision.square_square(Tonakai_Stage2[2], kintyaku[1]) == true) {
+					tonakai_hp2 -= santa_atk;
+					sound.Play(SOUND_LABEL_SE004);
+					particleFg = true;
+					particlepos.x = tonakai_pos2.x;
+					particlepos.y = tonakai_pos2.y;
+					if (tonakai_hp2 < 0)
+					{
+						enemylive8 = false;
+						tonakai_hp2 = 60;
+						tonakai_pos2.x = 400000000;
+					}
+				}
+
+			}
+
+			//パーティクルアニメーション
+			if (particleFg)
+			{
+				particlecount++;
+				if (particlecount % 5 == 0)
+				{
+					//particleFg = false;
+					particle.numU++;
+					if (particle.numU > 7)
+					{
+						particle.numU = 0;
+						particleFg = false;
+					}
+				}
+
+			}
+
+
+			//右移動
+			if (sp_ani == false && gameoverFg == false && collision.canMoveRight && input.GetKeyPress(VK_D) && pauseFg == false
+				|| gameoverFg == false && collision.canMoveRight && input.GetLeftAnalogStick().x >= 0.1 && pauseFg == false)
+			{
+				direction = 0; // 方向
+				santa_kin_pos.x += 5;//右移動
+				/*santa_kin_pos.x += 5;
+				santa_pos.x += 5;*/
+
+
+				if (bugPower == 0) {
+					santaImage = 17;
+					if (changeRight_SP_1 == true)
+					{
+						//初期化
+						santa_Kin[0].numU = 0;
+						santa_Kin[0].numV = 0;
+						changeRight_SP_1 = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount6++; //フレームカウント
+					if (framcount6 % 10 == 0) //１０フレームに一回行われる
+					{
+						santa_Kin[0].numU++;
+						if (santa_Kin[0].numU >= 4)
+						{
+							santa_Kin[0].numU = 0;
+							santa_Kin[0].numV++;
+							if (santa_Kin[0].numV >= 2)
+							{
+								santa_Kin[0].numV = 0;
+							}
+						}
+					}
+
+				}
+				else if (bugPower > 0) {
+					santaImage = 18;
+					if (changeRight == true)
+					{
+						//初期化
+						santa_Kin[1].numU = 0;
+						santa_Kin[1].numV = 0;
+						changeRight = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount++; //フレームカウント
+					if (framcount % 10 == 0) //１０フレームに一回行われる
+					{
+						santa_Kin[1].numU++;
+						if (santa_Kin[1].numU >= 4)
+						{
+							santa_Kin[1].numU = 0;
+							santa_Kin[1].numV++;
+							if (santa_Kin[1].numV >= 2)
+							{
+								santa_Kin[1].numV = 0;
+							}
+						}
+					}
+
+				}
+
+				if (santa_kin_pos.x >= 0) //プレイヤーが画面真ん中に行ったとき
+				{
+					santa_kin_pos.x -= 5;
+
+					//背景などを左に動かしてプレイヤーが右に動いてるように見せる
+					//山
+					mounten_pos1.x -= speed - 4.5;
+					mounten_pos2.x -= speed - 4.5;
+					mounten_pos3.x -= speed - 4.5;
+					mounten_pos4.x -= speed - 4.5;
+					//地面
+					ground_pos1.x -= speed;
+					ground_pos2.x -= speed;
+					ground_pos3.x -= speed;
+					ground_pos4.x -= speed;
+					ground_pos5.x -= speed;
+					ground_pos6.x -= speed;
+					ground_pos7.x -= speed;
+					//木
+					tree_pos1.x -= speed;
+					tree_pos2.x -= speed;
+					//つらら上
+					block_pos1.x -= speed;
+					//つらら
+					icicle_pos1.x -= speed;
+					icicle_pos2.x -= speed;
+					icicle_pos3.x -= speed;
+					//階段
+					stairs_pos1.x -= speed;
+					stairs_pos2.x -= speed;
+					stairs_pos3.x -= speed;
+					stairs_pos4.x -= speed;
+					stairs_pos5.x -= speed;
+
+					//プレゼント
+					present_pos1.x -= speed;
+					present_pos2.x -= speed;
+					present_pos3.x -= speed;
+
+					bigpresent_pos1.x -= speed;
+					//壊せる岩
+					breakrock_pos1.x -= speed;
+					moji_pos.x -= speed;
+					//回収岩
+					rock_pos1.x -= speed;
+					rock_pos2.x -= speed;
+					rock_pos3.x -= speed;
+					rock_pos4.x -= speed;
+					rock_pos5.x -= speed;
+					rock_pos6.x -= speed;
+
+					//回収雪玉
+					snowball_pos1.x -= speed;
+					snowball_pos2.x -= speed;
+					snowball_pos3.x -= speed;
+
+					//敵
+					snowman_pos1.x -= speed;
+					snowman_pos2.x -= speed;
+					snowman_pos3.x -= speed;
+					snowman_pos4.x -= speed;
+
+					star_pos1.x -= speed;
+					star_pos2.x -= speed;
+
+					tonakai_pos1.x -= speed;
+					tonakai_pos2.x -= speed;
+
+					wall_pos1.x -= speed;
+					wall_pos2.x -= speed;
+
+					goal_pos.x -= speed;
+
+				}
+			}
+			else
+			{
+				//キーを離すとtrueに戻る
+				if (sp_ani == false && changeRight_SP_1 == false) {
+
+					santa_Kin[0].numU = 0;
+					santa_Kin[0].numV = 0;
+					santa_Kin[1].numU = 0;
+					santa_Kin[1].numV = 0;
+					if (bugPower > 0) {
+						santaImage = 18;
+					}
+					else if (bugPower == 0) {
+						santaImage = 17;
+					}
+
+				}
+
+				changeRight = true;
+				changeRight_SP_1 = true;
+			}
+			//左移動
+			if (sp_ani == false && gameoverFg == false && collision.canMoveLeft && input.GetKeyPress(VK_A) && pauseFg == false
+				|| gameoverFg == false && collision.canMoveLeft && input.GetLeftAnalogStick().x <= -0.1 && pauseFg == false)
+			{
+
+				direction = 1; // 方向
+				santa_kin_pos.x -= 5;//左移動
+				//santa_huro_pos.x -= 5;//左移動
+				//santa_pos.x -= 5;//左移動
+
+
+				if (bugPower == 0) {
+
+					santaImage = 17;
+					if (changeLeft_SP_1 == true)
+					{
+						//初期化
+						santa_Kin[0].numU = 0;
+						santa_Kin[0].numV = 2;
+						changeLeft_SP_1 = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount6++; //フレームカウント
+					if (framcount6 % 10 == 0) //１０フレームに一回行われる
+					{
+						santa_Kin[0].numU++;
+						if (santa_Kin[0].numU >= 4)
+						{
+
+							santa_Kin[0].numU = 0;
+
+						}
+					}
+				}
+				else if (bugPower > 0) {
+
+					if (changeLeft == true)
+					{
+						//初期化
+						santa_Kin[1].numU = 0;
+						santa_Kin[1].numV = 2;
+						changeLeft = false;//一旦falseにして一回しか処理されないようにする
+					}
+					framcount++; //フレームカウント
+					if (framcount % 10 == 0) //１０フレームに一回行われる
+					{
+						santa_Kin[1].numU++;
+						if (santa_Kin[1].numU >= 4)
+						{
+							santa_Kin[1].numU = 0;
+							santa_Kin[1].numV++;
+							if (santa_Kin[1].numV >= 4)
+							{
+								santa_Kin[1].numV = 2;
+							}
+						}
+					}
+				}
+
+				if (santa_kin_pos.x <= 0) //プレイヤーが画面真ん中に行ったとき
+				{
+					santa_kin_pos.x += 5;
+
+					//背景などを左に動かしてプレイヤーが右に動いてるように見せる
+					//山
+					mounten_pos1.x += speed - 4.5;
+					mounten_pos2.x += speed - 4.5;
+					mounten_pos3.x += speed - 4.5;
+					mounten_pos4.x += speed - 4.5;
+					//地面
+					ground_pos1.x += speed;
+					ground_pos2.x += speed;
+					ground_pos3.x += speed;
+					ground_pos4.x += speed;
+					ground_pos5.x += speed;
+					ground_pos6.x += speed;
+					ground_pos7.x += speed;
+					//木
+					tree_pos1.x += speed;
+					tree_pos2.x += speed;
+					//つらら上
+					block_pos1.x += speed;
+					//つらら
+					icicle_pos1.x += speed;
+					icicle_pos2.x += speed;
+					icicle_pos3.x += speed;
+					//階段
+					stairs_pos1.x += speed;
+					stairs_pos2.x += speed;
+					stairs_pos3.x += speed;
+					stairs_pos4.x += speed;
+					stairs_pos5.x += speed;
+
+					//プレゼント
+					present_pos1.x += speed;
+					present_pos2.x += speed;
+					present_pos3.x += speed;
+
+					bigpresent_pos1.x += speed;
+					//壊せる岩
+					breakrock_pos1.x += speed;
+					moji_pos.x += speed;
+					//回収岩
+					rock_pos1.x += speed;
+					rock_pos2.x += speed;
+					rock_pos3.x += speed;
+					rock_pos4.x += speed;
+					rock_pos5.x += speed;
+					rock_pos6.x += speed;
+
+					//回収雪玉
+					snowball_pos1.x += speed;
+					snowball_pos2.x += speed;
+					snowball_pos3.x += speed;
+
+					//敵
+					snowman_pos1.x += speed;
+					snowman_pos2.x += speed;
+					snowman_pos3.x += speed;
+					snowman_pos4.x += speed;
+
+					star_pos1.x += speed;
+					star_pos2.x += speed;
+
+					tonakai_pos1.x += speed;
+					tonakai_pos2.x += speed;
+
+					wall_pos1.x += speed;
+					wall_pos2.x += speed;
+
+
+
+					goal_pos.x += speed;
+
+				}
+			}
+			else
+			{
+				//キーを離すとtrueに戻る
+				if (sp_ani == false && changeLeft_SP_1 == false) {
+					santa_Kin[0].numU = 0;
+					santa_Kin[0].numV = 2;
+					santa_Kin[1].numU = 0;
+					santa_Kin[1].numV = 2;
+					if (bugPower > 0) {
+						santaImage = 18;
+					}
+					else if (bugPower == 0) {
+						santaImage = 17;
+					}
+				}
+				changeLeft = true;
+				changeLeft_SP_1 = true;
+			}
 		}
 		//画像が画面外に行ったときにその画像を一番後ろに置く
 			//例　画像１が画面外→画像３の後ろに 
