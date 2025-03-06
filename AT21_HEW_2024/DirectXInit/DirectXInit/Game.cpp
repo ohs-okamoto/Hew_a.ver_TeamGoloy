@@ -11577,6 +11577,7 @@ void Game::Update(void) {
 							itemMove3_M = false;
 							itemMove3 = false;
 							changeItem = false;
+							use_rock_pos3.y = 1000.0f;
 						}
 					}
 					else if (itemID_3 == 2) {
@@ -11584,6 +11585,7 @@ void Game::Update(void) {
 							itemID_3 = 0;
 							itemMove3 = false;
 							changeItem = false;
+							use_snowball_pos3.y = 1000.0f;
 						}
 						else if (use_snowball_pos3.x <= rightScreen) {
 							use_snowball_pos3.x += 30.00f;
@@ -11608,6 +11610,7 @@ void Game::Update(void) {
 							itemMove3_M = false;
 							itemMove3 = false;
 							changeItem = false;
+							use_rock_pos3.y = 1000.0f;
 						}
 					}
 					else if (itemID_3 == 2) {
@@ -11615,6 +11618,7 @@ void Game::Update(void) {
 							itemID_3 = 0;
 							itemMove3 = false;
 							changeItem = false;
+							use_snowball_pos3.y = 1000.0f;
 						}
 						else if (use_snowball_pos3.x >= leftScreen) {
 							use_snowball_pos3.x -= 30.00f;
@@ -13570,6 +13574,7 @@ void Game::Update(void) {
 			}
 
 			// 投げ物の動き　その③
+			// 投げ物の動き　その③
 			if (itemMove3 == true) {
 
 				if (direction == 0) { // 右向き
@@ -13590,6 +13595,7 @@ void Game::Update(void) {
 							itemMove3_M = false;
 							itemMove3 = false;
 							changeItem = false;
+							use_rock_pos3.y = 1000.0f;
 						}
 					}
 					else if (itemID_3 == 2) {
@@ -13597,6 +13603,7 @@ void Game::Update(void) {
 							itemID_3 = 0;
 							itemMove3 = false;
 							changeItem = false;
+							use_snowball_pos3.y = 1000.0f;
 						}
 						else if (use_snowball_pos3.x <= rightScreen) {
 							use_snowball_pos3.x += 30.00f;
@@ -13621,6 +13628,7 @@ void Game::Update(void) {
 							itemMove3_M = false;
 							itemMove3 = false;
 							changeItem = false;
+							use_rock_pos3.y = 1000.0f;
 						}
 					}
 					else if (itemID_3 == 2) {
@@ -13628,6 +13636,7 @@ void Game::Update(void) {
 							itemID_3 = 0;
 							itemMove3 = false;
 							changeItem = false;
+							use_snowball_pos3.y = 1000.0f;
 						}
 						else if (use_snowball_pos3.x >= leftScreen) {
 							use_snowball_pos3.x -= 30.00f;
@@ -16974,6 +16983,7 @@ void Game::Update(void) {
 			}
 
 			// 投げ物の動き　その③
+			// 投げ物の動き　その③
 			if (itemMove3 == true) {
 
 				if (direction == 0) { // 右向き
@@ -16994,6 +17004,7 @@ void Game::Update(void) {
 							itemMove3_M = false;
 							itemMove3 = false;
 							changeItem = false;
+							use_rock_pos3.y = 1000.0f;
 						}
 					}
 					else if (itemID_3 == 2) {
@@ -17001,6 +17012,7 @@ void Game::Update(void) {
 							itemID_3 = 0;
 							itemMove3 = false;
 							changeItem = false;
+							use_snowball_pos3.y = 1000.0f;
 						}
 						else if (use_snowball_pos3.x <= rightScreen) {
 							use_snowball_pos3.x += 30.00f;
@@ -17025,6 +17037,7 @@ void Game::Update(void) {
 							itemMove3_M = false;
 							itemMove3 = false;
 							changeItem = false;
+							use_rock_pos3.y = 1000.0f;
 						}
 					}
 					else if (itemID_3 == 2) {
@@ -17032,6 +17045,7 @@ void Game::Update(void) {
 							itemID_3 = 0;
 							itemMove3 = false;
 							changeItem = false;
+							use_snowball_pos3.y = 1000.0f;
 						}
 						else if (use_snowball_pos3.x >= leftScreen) {
 							use_snowball_pos3.x -= 30.00f;
