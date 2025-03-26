@@ -10590,7 +10590,7 @@ void Game::Update(void) {
 				}
 			}
 
-			// ê·ÇæÇÈÇ‹3
+			// ê·ÇæÇÈÇ‹3o
 			if (collision.square_square(Snowman_Stage2[3], use_snowball[0]) == true) {
 				sound.Play(SOUND_LABEL_SE004);
 				snowman_hp3 -= santa_atk;
@@ -10716,6 +10716,7 @@ void Game::Update(void) {
 					star_pos1.x = 400000000;
 				}
 			}
+
 
 			if (collision.square_square(Star_Stage2[1], use_snowball[2]) == true) {
 				star_monster_hp1 -= santa_atk;
